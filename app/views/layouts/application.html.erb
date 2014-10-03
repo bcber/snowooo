@@ -1,14 +1,77 @@
 <!DOCTYPE html>
-<html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
 <head>
+
+  <!-- Meta -->
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="description">
+  <meta content="" name="author">
   <title>Snowooo</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
+  <!-- CSS Global Compulsory -->
+  <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- CSS Implementing Plugins -->
+  <link rel="stylesheet" href="assets/plugins/line-icons/line-icons.css">
+  <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.css">
+
+  <!-- CSS Theme -->
+  <link rel="stylesheet" href="assets/css/themes/default.css">
 </head>
 <body>
 
-<%= yield %>
+  <div class="wrapper">
+    <div class="header">
+      <div class="topbar">
+        <div class="navbar navbar-default" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="fa fa-bars"></span>
+                    </button>
 
+              <a href="/" class="navbar-brand">
+                <h1>
+                雪圈
+                </h1>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container content">
+      <%= yield %>
+    </div>
+  
+  </div>
 </body>
+<!-- JS Global Compulsory -->
+<script src="assets/plugins/jquery-1.10.2.min.js"></script>
+<script src="assets/plugins/jquery-migrate-1.2.1.min.js"></script>
+<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- JS Implementing Plugins -->
+<script src="assets/plugins/back-to-top.js"></script>
+
+<!-- JS Page Level -->
+<script src="assets/js/app.js"></script>
+<script>
+jQuery(document).ready(function() {
+    App.init();
+});
+</script>
+
+<!--[if lt IE 9]>
+    <script src="assets/js/respond.js"></script>
+<![endif]-->
 </html>
