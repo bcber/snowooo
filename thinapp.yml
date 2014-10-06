@@ -1,5 +1,5 @@
 ---
-chdir: "/var/www/snowooo"
+chdir: "/home/god/project/snowooo"
 environment: production
 timeout: 30
 log: "/home/god/project/snowooo/log/thin.log"

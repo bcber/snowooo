@@ -29,7 +29,7 @@ class TodosController < ApplicationController
 
   def done
     if @todo.done
-      redirect_to todos_path, notice: 'Change Todo "#{@todo.content}" to Done' 
+      redirect_to todos_path, notice: "Change Todo #{@todo.content} to Done" 
     end
   end
 
