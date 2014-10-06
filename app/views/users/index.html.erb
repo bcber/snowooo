@@ -1,0 +1,27 @@
+<h1>manage users</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>email</th>
+      <th>sign_in_count</th>
+      <th>last_sign_in_at</th>
+      <th>Operation</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= user.sign_in_count %></td>
+        <td><%= user.last_sign_in_at %></td>
+        <td><%= link_to 'More info', user , class: 'btn btn-default btn-xs'%>|
+
+        <% if !user.has_role?(:admin) %>
+        <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn btn-danger btn-xs'%></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

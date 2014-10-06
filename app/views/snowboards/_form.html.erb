@@ -1,0 +1,17 @@
+<%= form_for(@snowboard) do |f| %>
+  <% if @snowboard.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@snowboard.errors.count, "error") %> prohibited this snowboard from being saved:</h2>
+
+      <ul>
+      <% @snowboard.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

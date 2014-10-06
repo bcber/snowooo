@@ -1,5 +1,8 @@
 source 'https://ruby.taobao.org'
 
+gem 'cancancan', '~> 1.9'
+gem 'devise', :git => 'https://github.com/plataformatec/devise'
+gem "will_paginate_mongoid"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
@@ -30,6 +33,7 @@ gem "mongoid", "~> 4.0.0"
 group :development do
   gem 'capistrano-rails', '~> 1.1.1'
   gem 'spring'
+  gem 'hirb'
 end
 
 # Use ActiveModel has_secure_password

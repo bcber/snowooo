@@ -1,0 +1,75 @@
+<h1>Snowooo project management</h1>
+
+<div class="margin-bottom-20"></div>
+
+<div class="row">
+
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@todo) do |f| %>
+    <div class="input-group">
+      <%= f.text_field :content , placeholder: "thing need to be done",class: "form-control"%>
+      <%= f.text_field :user_id , value: current_user.id, class: 'hide' %>
+      <span class="input-group-btn">
+        <%= f.submit 'Go!', class: "btn btn-default" %>
+      </span>
+    </div>
+  <% end %>  
+  </div>
+</div>
+
+<div class="margin-bottom-50"></div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="headline">
+        <h2>TODO</h2>
+    </div>
+      
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>TODO</th>
+            <th>Editor</th>
+            <th>operation</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @todos.each do |todo| %>
+            <tr>
+              <td><%= todo.content %></td>
+              <td><%= todo.user.email if todo.user %></td>
+              <td>
+                <%= link_to 'Done', done_todo_path(todo), method: :post ,  class: "btn btn-success btn-xs"%>
+                <%= link_to 'Delete', todo, method: :delete, class: "btn btn-danger btn-xs"%>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+  <div class="col-md-6">
+    <div class="headline">
+        <h2>DONE</h2>
+    </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>DONE</th>
+            <th>Editor</th>
+            <th>operation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @dones.each do |done| %>
+            <tr>
+              <td><%= done.content %></td>
+              <td><%= done.user.email if done.user %></td>
+              <td>
+                <%= link_to 'Delete', done, method: :delete, class: "btn btn-danger btn-xs"%>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+</div>

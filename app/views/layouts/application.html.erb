@@ -15,15 +15,15 @@
   <%= csrf_meta_tags %>
 
   <!-- CSS Global Compulsory -->
-  <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="/assets/plugins/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
 
   <!-- CSS Implementing Plugins -->
-  <link rel="stylesheet" href="assets/plugins/line-icons/line-icons.css">
-  <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="/assets/plugins/line-icons/line-icons.css">
+  <link rel="stylesheet" href="/assets/plugins/font-awesome/css/font-awesome.css">
 
   <!-- CSS Theme -->
-  <link rel="stylesheet" href="assets/css/themes/default.css">
+  <link rel="stylesheet" href="/assets/css/themes/default.css">
 </head>
 <body>
 
@@ -39,10 +39,36 @@
                     </button>
 
               <a href="/" class="navbar-brand">
-                <h1>
+                <h2>
                 雪圈
-                </h1>
+                </h2>
               </a>
+            </div>
+
+            <div class="collapse navbar-collapse navbar-responsive-collapse">
+              <ul class="nav navbar-nav">
+                <% if user_signed_in? %>
+                  <li class="pull-right dropdown">
+                    <%= link_to current_user.email, '#', class: 'dropdown-toggle', "data-toggle" => "dropdown"%>
+                    <ul class="dropdown-menu">
+                        <% if can? :manage, User %>
+                        <li>
+                          <%= link_to 'user management', users_path %>
+                        </li>
+                        <% end %>
+
+                        <% if can? :manage, Todo %>
+                        <li>
+                          <%= link_to 'project management', todos_path %>
+                        </li>
+                        <% end %>
+                      <li>
+                        <%= link_to 'sign out', logout_path ,method: :delete  %>
+                      </li>
+                    </ul>
+                  </li>
+                <% end %>
+              </ul>
             </div>
           </div>
         </div>
@@ -50,21 +76,38 @@
     </div>
 
     <div class="container content">
+      
+      <% if notice %>
+        <div class="row margin-bottom-20">
+          <div class="alert alert-info fade in alert-dismissable">
+          <%= notice %>
+          </div>  
+        </div>
+      <% end %>
+
+      <% if alert %>
+        <div class="row margin-bottom-20">
+          <div class="alert alert-danger fade in alert-dismissable">
+          <%= alert %>
+          </div>  
+        </div>
+      <% end %>
+
       <%= yield %>
     </div>
   
   </div>
 </body>
 <!-- JS Global Compulsory -->
-<script src="assets/plugins/jquery-1.10.2.min.js"></script>
-<script src="assets/plugins/jquery-migrate-1.2.1.min.js"></script>
-<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="/assets/plugins/jquery-1.10.2.min.js"></script>
+<script src="/assets/plugins/jquery-migrate-1.2.1.min.js"></script>
+<script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- JS Implementing Plugins -->
-<script src="assets/plugins/back-to-top.js"></script>
+<script src="/assets/plugins/back-to-top.js"></script>
 
 <!-- JS Page Level -->
-<script src="assets/js/app.js"></script>
+<script src="/assets/js/app.js"></script>
 <script>
 jQuery(document).ready(function() {
     App.init();

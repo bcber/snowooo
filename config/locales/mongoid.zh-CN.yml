@@ -1,0 +1,15 @@
+'zh-CN':
+  mongoid:
+    errors:
+      models:
+        user:
+          attributes:
+            password_confirmation:
+              confirmation: "password not match"
+            password:
+              too_short: "password too short"
+              blank: "password can't be blank"
+            confirmation_token:
+              invalid: "this token is invalid"
+            email:
+              blank: "email can't be blank"

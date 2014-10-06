@@ -1,4 +1,32 @@
 Rails.application.routes.draw do
+
+  devise_for :users , skip: [:sessions],controllers: {
+    sessions: 'user/sessions',
+    passwords: 'user/passwords',
+    registrations: 'user/registrations',
+    confirmations: 'user/confirmations'
+  }
+
+  devise_scope :user do
+    get "login", to: "user/sessions#new"
+    post "login", to: "user/sessions#create"
+    delete "logout", to: "user/sessions#destroy"
+    get 'signup', to: 'user/registrations#new'
+    post 'signup', to: 'user/registrations#create'
+  end
+
+  resources :todos do
+    member do
+      post 'done'
+    end
+  end
+
+  scope '/admin' do
+    resources :users
+  end
+
+  resources :snowboards
+
   get 'welcome/index'
   root 'welcome#index'
 

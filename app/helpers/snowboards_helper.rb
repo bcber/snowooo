@@ -1,0 +1,2 @@
+module SnowboardsHelper
+end
