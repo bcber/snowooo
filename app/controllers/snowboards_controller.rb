@@ -1,6 +1,6 @@
 class SnowboardsController < ApplicationController
   before_action :set_snowboard, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
   # GET /snowboards
   # GET /snowboards.json
   def index

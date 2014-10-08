@@ -43,6 +43,15 @@ class User
   # associations
   has_many :todos
 
+  after_create :setAdmin
+  def setAdmin
+    if ENV['admin_emails'].include?(email) and not has_role?(:admin)
+      logger.info "*"*40+"add #{email} to admin role!"
+      self.update(roles_mask: 1)
+      self.confirm!
+    end
+  end
+
   def roles=(roles)
     self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)
   end
@@ -64,4 +73,16 @@ class User
     end
   end
 
+  protected 
+
+  # TODO use mailgun
+  def send_devise_notification(notification, *args)
+  end
+
+  # def send_pending_notifications
+  # end
+
+  # def peding_notifications
+  #   @send_pending_notifications ||= []
+  # end
 end

@@ -5,11 +5,12 @@
         user:
           attributes:
             password_confirmation:
-              confirmation: "password not match"
+              confirmation: "前后两次输入的密码不一致"
             password:
-              too_short: "password too short"
-              blank: "password can't be blank"
+              too_short: "密码过短"
+              blank: "密码不能为空"
             confirmation_token:
-              invalid: "this token is invalid"
+              invalid: "该密钥已失效"
             email:
-              blank: "email can't be blank"
+              blank: "邮箱不能为空"
+              taken: "此邮箱已注册"

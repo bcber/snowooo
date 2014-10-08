@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :confirm]
   load_and_authorize_resource
 
   # GET /users
@@ -20,6 +20,17 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+  end
+
+  def confirm
+    
+    respond_to do |format|
+      if @user.confirm!
+        format.html {redirect_to @user, notice: 'User confirmed, but not in a normal way!'}
+      else
+        format.html {redirect_to @user, alert: 'User confirm fail!'}
+      end
+    end
   end
 
   # POST /users
@@ -70,6 +81,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params[:user]
+      params.require(:user).permit(:roles => [])
     end
 end

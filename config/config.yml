@@ -1,0 +1,13 @@
+defaults: &defaults
+  app_name: "snowooo"
+  admin_emails:
+    - "nxbtch@163.com"
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

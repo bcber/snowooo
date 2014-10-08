@@ -13,7 +13,14 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.email %></td>
+        <td>
+          <% if user.confirmed? %>
+            <span class="glyphicon glyphicon-ok-sign"></span>
+          <% else %>
+            <span class="glyphicon glyphicon-remove-circle"></span>
+          <% end %>
+          <%= user.email %> &nbsp;
+        </td>
         <td><%= user.sign_in_count %></td>
         <td><%= user.last_sign_in_at %></td>
         <td><%= link_to 'More info', user , class: 'btn btn-default btn-xs'%>|

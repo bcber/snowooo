@@ -1,11 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :users , skip: [:sessions],controllers: {
-    sessions: 'user/sessions',
-    passwords: 'user/passwords',
-    registrations: 'user/registrations',
-    confirmations: 'user/confirmations'
-  }
+  devise_for :users
 
   devise_scope :user do
     get "login", to: "user/sessions#new"
@@ -22,7 +17,11 @@ Rails.application.routes.draw do
   end
 
   scope '/admin' do
-    resources :users
+    resources :users do
+      member do
+        post 'confirm'
+      end
+    end
   end
 
   resources :snowboards

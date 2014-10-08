@@ -29,6 +29,7 @@
           <tr>
             <th>TODO</th>
             <th>Editor</th>
+            <th>Create Time</th>
             <th>operation</th>
           </tr>
         </thead>
@@ -38,6 +39,7 @@
             <tr>
               <td><%= todo.content %></td>
               <td><%= todo.user.email if todo.user %></td>
+              <td><%= todo.created_at.strftime("%Y-%m-%d") if todo.created_at %></td>
               <td>
                 <%= link_to 'Done', done_todo_path(todo), method: :post ,  class: "btn btn-success btn-xs"%>
                 <%= link_to 'Delete', todo, method: :delete, class: "btn btn-danger btn-xs"%>
@@ -56,6 +58,7 @@
           <tr>
             <th>DONE</th>
             <th>Editor</th>
+            <th>Done Time</th>
             <th>operation</th>
           </tr>
         </thead>
@@ -64,6 +67,7 @@
             <tr>
               <td><%= done.content %></td>
               <td><%= done.user.email if done.user %></td>
+              <td><%= done.done_at.strftime("%Y-%m-%d") if done.done_at %></td>
               <td>
                 <%= link_to 'Delete', done, method: :delete, class: "btn btn-danger btn-xs"%>
               </td>

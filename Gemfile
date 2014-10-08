@@ -1,8 +1,16 @@
 source 'https://ruby.taobao.org'
 
+# settings
+gem 'figaro'
+
+# authorization
 gem 'cancancan', '~> 1.9'
 gem 'devise', :git => 'https://github.com/plataformatec/devise'
 gem "will_paginate_mongoid"
+
+#mailgun
+gem 'rest-client'
+gem 'multimap'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'

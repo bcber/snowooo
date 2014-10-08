@@ -4,6 +4,7 @@ lock '3.2.1'
 set :application, 'snowooo'
 set :repo_url, 'git@github.com:Nxbtch/snowooo.git'
 
+set :default_stage , "staging"
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
@@ -41,6 +42,7 @@ namespace :deploy do
     on roles(:app), in: :sequence, wait: 5 do
       # Your restart mechanism here, for example:
       # execute :touch, release_path.join('tmp/restart.txt')
+      execute "thin restart -C thinapp.yml"
     end
   end
 
