@@ -75,7 +75,7 @@ class User
 
   protected 
 
-  # TODO use mailgun
+  # TODO use mail
   def send_devise_notification(notification, *args)
   end
 
