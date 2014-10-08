@@ -45,7 +45,7 @@ class User
 
   after_create :setAdmin
   def setAdmin
-    if ENV['admin_emails'].include?(email) and not has_role?(:admin)
+    if Figaro.env['admin_emails'].include?(email) and not has_role?(:admin)
       logger.info "*"*40+"add #{email} to admin role!"
       self.update(roles_mask: 1)
       self.confirm!
