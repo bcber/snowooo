@@ -16,3 +16,5 @@
 /tmp
 thinapp.yml
 
+start_production.sh
+start_staging_server.sh
