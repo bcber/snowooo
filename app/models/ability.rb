@@ -30,6 +30,6 @@ class Ability
   end
 
   def default
-
+    can :read, Snowboard
   end
 end

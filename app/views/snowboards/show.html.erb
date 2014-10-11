@@ -1,4 +1,87 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_snowboard_path(@snowboard) %> |
-<%= link_to 'Back', snowboards_path %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>key</th>
+      <th>value</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>name</td>
+      <td><%= @snowboard.name %></td>
+    </tr>
+
+    <tr>
+      <td>brand</td>
+      <td><%= @snowboard.brand %></td>
+    </tr>
+    <tr>
+      <td>length</td>
+      <td>
+         <% if @snowboard.length %>
+            <% @snowboard.length.each do |l| %>
+              <%= l %>cm &nbsp;
+            <% end %>
+         <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>profile</td>
+      <td><%= @snowboard.profile %></td> 
+    </tr>
+    <tr>
+      <td>shape</td>
+      <td><%= @snowboard.shape %></td>
+    </tr>
+    <tr>
+      <td>flex</td>
+      <td><%= @snowboard.flex %></td>
+    </tr>
+    <tr>
+      <td>effectiveEdge</td>
+      <td><%= @snowboard.effectiveEdge %></td>
+    </tr>
+    <tr>
+      <td>waistWidth</td>
+      <td><%= @snowboard.waistWidth %></td>
+    </tr>
+    <tr>
+      <td>sidecutRadius</td>
+      <td><%= @snowboard.sidecutRadius %></td>
+    </tr>
+    <tr>
+      <td>stanceWidth</td>
+      <td><%= @snowboard.stanceWidth %></td>
+    </tr>
+    <tr>
+      <td>stanceSetback</td>
+      <td><%= @snowboard.stanceSetback %></td>
+    </tr>
+    <tr>
+      <td>mount</td>
+      <td><%= @snowboard.mount %></td>
+    </tr>
+    <tr>
+      <td>images</td>
+      <td>
+        <% @snowboard.images.each do |image| %>
+          <div class="row">
+            <h3><%= image.color %> color</h3>
+            <br>
+            <%= image_tag image.original_url , class:"img-thumbnail" , style:"width:140px;hegith:140px"%>
+            <%= image_tag image.full_url , class:"img-thumbnail",style:"width:140px;hegith:140px"%>
+          </div>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<% if can? :edit, Snowboard %>
+  <%= link_to 'Edit', edit_snowboard_path(@snowboard) , class: "btn-u btn-u-sea"%> |
+<% end %>
+
+<%= link_to 'Back', snowboards_path , class: "btn-u btn-u-default btn-xs" %>

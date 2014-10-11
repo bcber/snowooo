@@ -11,6 +11,7 @@
               blank: "密码不能为空"
             confirmation_token:
               invalid: "该密钥已失效"
+              blank: "密钥为空"
             email:
               blank: "邮箱不能为空"
               taken: "此邮箱已注册"

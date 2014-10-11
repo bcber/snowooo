@@ -1,6 +1,11 @@
 <h1>Editing snowboard</h1>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @snowboard %> |
-<%= link_to 'Back', snowboards_path %>
+<div class="row">
+  <div class="col-xs-8">
+    <%= render 'form' %>
+  </div>
+  <div class="col-xs-4"></div>
+</div>
+<br>
+<%= link_to 'Show', @snowboard , class:"btn-u btn-u-default"%>
+<%= link_to 'Back', snowboards_path , class:"btn-u btn-u-green"%>

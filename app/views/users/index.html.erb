@@ -1,4 +1,10 @@
-<h1>manage users</h1>
+<div class="row">
+  <h1>manage users</h1>
+  <div class="btn-group">
+    <% if can? :manage, User %>
+      <%= link_to 'Delete non active user', remove_not_confirmed_users_path ,class:'btn btn-primary btn-xs'%>
+    <% end %>
+  </div>
 
 <table class="table">
   <thead>
@@ -32,3 +38,4 @@
     <% end %>
   </tbody>
 </table>
+</div>

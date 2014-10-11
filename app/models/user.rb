@@ -1,5 +1,7 @@
 class User
   include Mongoid::Document
+  include Mongoid::Timestamps
+  
   ROLES = %w[admin moderator editor member banned]
   
   # Include default devise modules. Others available are:
@@ -41,7 +43,7 @@ class User
   field :roles_mask, type: Integer, default: 2**ROLES.index('member')
 
   # associations
-  has_many :todos
+  has_many :todos, dependent: :destroy
 
   after_create :setAdmin
   def setAdmin
@@ -76,8 +78,12 @@ class User
   protected 
 
   # TODO use mail
-  def send_devise_notification(notification, *args)
+  def send_devise_notification(notification, token,*args)
+    MailWorker.perform_async(email, token);
   end
+
+
+  private
 
   # def send_pending_notifications
   # end

@@ -1,8 +1,10 @@
 <h1>Listing snowboards</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
+      <th>name</th>
+      <th>brand</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -10,9 +12,15 @@
   <tbody>
     <% @snowboards.each do |snowboard| %>
       <tr>
-        <td><%= link_to 'Show', snowboard %></td>
-        <td><%= link_to 'Edit', edit_snowboard_path(snowboard) %></td>
-        <td><%= link_to 'Destroy', snowboard, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= snowboard.name %></td>
+        <td><%= snowboard.brand %></td>
+        <td>
+        <%= link_to 'Show', snowboard , class:"btn btn-default btn-xs"%>
+        <% if can? :manage, Snowboard %>
+          <%= link_to 'Edit', edit_snowboard_path(snowboard) ,class:"btn btn-default btn-xs"%>
+          <%= link_to 'Destroy', snowboard, method: :delete, data: { confirm: 'Are you sure?' } ,class:"btn btn-default btn-xs"%>
+        <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -20,4 +28,6 @@
 
 <br>
 
-<%= link_to 'New Snowboard', new_snowboard_path %>
+<% if can? :create, Snowboard %>
+  <%= link_to 'New Snowboard', new_snowboard_path,class:"btn-u" %>
+<% end %>

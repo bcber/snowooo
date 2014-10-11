@@ -77,10 +77,24 @@
                           <%= link_to 'project management', todos_path %>
                         </li>
                         <% end %>
+
+                        <% if current_user.has_role? :admin %>
+                        <li>
+                          <%= link_to 'sidekiq', sidekiq_web_path, target:'_blank' %>
+                        </li>
+                        <% end %>
                       <li>
                         <%= link_to 'sign out', logout_path ,method: :delete  %>
                       </li>
                     </ul>
+                  </li>
+
+                <% else %>
+                  <li>
+                    <%= link_to 'signup', signup_path  %>                   
+                  </li>
+                  <li class="pull-right">
+                    <%= link_to 'login', login_path %>
                   </li>
                 <% end %>
               </ul>
@@ -121,7 +135,6 @@
 
 </body>
 <!-- JS Global Compulsory -->
-<script src="/assets/plugins/jquery-1.10.2.min.js"></script>
 <script src="/assets/plugins/jquery-migrate-1.2.1.min.js"></script>
 <script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 

@@ -1,4 +1,8 @@
+require 'sidekiq/web'
 Rails.application.routes.draw do
+  authenticate :user, lambda { |u| u.has_role? :admin } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
   devise_for :users
 
@@ -20,6 +24,10 @@ Rails.application.routes.draw do
     resources :users do
       member do
         post 'confirm'
+      end
+
+      collection do
+        get 'remove_not_confirmed'
       end
     end
   end

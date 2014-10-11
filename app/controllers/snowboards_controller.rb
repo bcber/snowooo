@@ -15,10 +15,12 @@ class SnowboardsController < ApplicationController
   # GET /snowboards/new
   def new
     @snowboard = Snowboard.new
+    3.times { @snowboard.images.build }
   end
 
   # GET /snowboards/1/edit
   def edit
+    @snowboard.images.build
   end
 
   # POST /snowboards
@@ -69,6 +71,15 @@ class SnowboardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def snowboard_params
-      params[:snowboard]
+      params.require(:snowboard).permit(
+        {images_attributes: 
+          [:id, :_destroy,:color, :original_url, :full_url] 
+        },
+        :name, 
+        :brand, 
+        {:length => []},
+        :profile,
+        :shape
+        )
     end
 end

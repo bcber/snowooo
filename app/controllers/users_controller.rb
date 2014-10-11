@@ -33,6 +33,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def remove_not_confirmed
+    User.where(confirmed_at: nil).delete
+    redirect_to users_path
+  end
+
   # POST /users
   # POST /users.json
   def create

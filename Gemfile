@@ -3,10 +3,18 @@ source 'https://ruby.taobao.org'
 # settings
 gem 'figaro'
 
+
+#mailgun
+# gem 'mailgun-ruby', '~>1.0.2', require: 'mailgun'
+
 # authorization
 gem 'cancancan', '~> 1.9'
 gem 'devise', :git => 'https://github.com/plataformatec/devise'
 gem "will_paginate_mongoid"
+
+#queue
+gem 'sidekiq'
+gem 'sinatra', '>= 1.3.0', :require => nil
 
 #mailgun
 gem 'rest-client'
@@ -42,6 +50,8 @@ group :development do
   gem 'capistrano-rails', '~> 1.1.1'
   gem 'spring'
   gem 'hirb'
+  gem 'better_errors'
+  gem 'capistrano-sidekiq'
 end
 
 # Use ActiveModel has_secure_password
@@ -55,4 +65,3 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
