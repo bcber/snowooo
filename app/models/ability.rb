@@ -14,7 +14,8 @@ class Ability
   end
 
   def moderator
-
+    can :manage, Snowboard
+    can :manage, Image
   end
 
   def editor
