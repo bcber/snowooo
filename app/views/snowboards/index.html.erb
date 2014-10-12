@@ -1,5 +1,5 @@
 <% @snowboards.each do |snowboard| %>
-<div class="thumbnails thumbnail-style thumbnail-kenburn", style="width:250px;height:250px;">
+<div class="thumbnails thumbnail-style thumbnail-kenburn snowboard-box">
   <div class="thumbnail-img">
     <div class="overflow-hidden">
       <%= image_tag snowboard.images[0].original_url, class:"img-responsive", style:"width:250px;height:250px;"%>
@@ -8,13 +8,19 @@
   </div>
 
   <div class="caption">
-    <h1><%= snowboard.brand %></h1>
-    <% if can? :manage, Snowboard %>
-    <%= link_to 'Edit', edit_snowboard_path(snowboard) ,class:"btn-u btn-u-default"%>
-    <%= link_to 'Destroy', snowboard, method: :delete, data: { confirm: 'Are you sure?' } ,class:"btn-u btn-u-default"%>
-    <% end %>  
-  </div>
 
+    <div class="content-boxes-v1">
+      <strong><%= snowboard.brand %></strong>
+      <h3>
+        <%= link_to snowboard.name, snowboard %>
+      </h3>
+      <% if can? :manage, Snowboard %>
+      <%= link_to 'Edit', edit_snowboard_path(snowboard) ,class:"btn-u btn-u-default"%>
+      <%= link_to 'Destroy', snowboard, method: :delete, data: { confirm: 'Are you sure?' } ,class:"btn-u btn-u-default"%>
+      <% end %>  
+    </div>
+      
+  </div>
 </div>
 <% end %>
 
