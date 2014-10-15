@@ -95,14 +95,30 @@ class SnowboardsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def snowboard_params
       params.require(:snowboard).permit(
-        {images_attributes: 
-          [:id, :_destroy,:color, :original_url, :full_url] 
+        {
+          images_attributes: [:id, :_destroy,:color, :small, :medium, :large] 
         },
         :name, 
-        :brand, 
-        {:length => []},
+        :brand,
         :profile,
-        :shape
-        )
+        :shape,
+        :style,
+        :flex,
+        :effectiveedge,
+        :waistwidth,
+        :sidecutradius,
+        :stancewidth,
+        :stancesetback,
+        :mount,
+        :core,
+        :wrap,
+        :sidewalls,
+        :edge,
+        :base,
+        :recommendedriderweight,
+        :recommendeduse,
+        :manufacturerwarranty,
+        :description,
+        :length)
     end
 end

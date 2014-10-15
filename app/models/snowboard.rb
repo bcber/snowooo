@@ -47,7 +47,7 @@ class Snowboard
 
   embeds_many :images, store_as: "snowboard_imgs"
   accepts_nested_attributes_for :images, reject_if: -> (a) {
-    a[:original_url].blank? or a[:full_url].blank?
+    a[:small].blank? or a[:medium].blank? or a[:large].blank?
   }, allow_destroy: true
   
 end
