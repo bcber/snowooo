@@ -13,7 +13,11 @@
       <td>name</td>
       <td><%= @snowboard.name %></td>
     </tr>
-
+  
+    <tr>
+      <td>style</td>
+      <td><%= @snowboard.style %></td>
+    </tr>
     <tr>
       <td>brand</td>
       <td><%= @snowboard.brand %></td>
@@ -21,11 +25,7 @@
     <tr>
       <td>length</td>
       <td>
-         <% if @snowboard.length %>
-            <% @snowboard.length.each do |l| %>
-              <%= l %>cm &nbsp;
-            <% end %>
-         <% end %>
+        <%= @snowboard.length %>         
       </td>
     </tr>
     <tr>
@@ -42,23 +42,23 @@
     </tr>
     <tr>
       <td>effectiveEdge</td>
-      <td><%= @snowboard.effectiveEdge %></td>
+      <td><%= @snowboard.effectiveedge %></td>
     </tr>
     <tr>
       <td>waistWidth</td>
-      <td><%= @snowboard.waistWidth %></td>
+      <td><%= @snowboard.waistwidth %></td>
     </tr>
     <tr>
       <td>sidecutRadius</td>
-      <td><%= @snowboard.sidecutRadius %></td>
+      <td><%= @snowboard.sidecutradius %></td>
     </tr>
     <tr>
       <td>stanceWidth</td>
-      <td><%= @snowboard.stanceWidth %></td>
+      <td><%= @snowboard.stancewidth %></td>
     </tr>
     <tr>
       <td>stanceSetback</td>
-      <td><%= @snowboard.stanceSetback %></td>
+      <td><%= @snowboard.stancesetback %></td>
     </tr>
     <tr>
       <td>mount</td>
@@ -69,12 +69,24 @@
       <td>
         <% @snowboard.images.each do |image| %>
           <div class="row">
-            <h3><%= image.color %> color</h3>
+            <h3><%= image.color %></h3>
             <br>
-            <%= image_tag image.original_url , class:"img-thumbnail" , style:"width:140px;hegith:140px"%>
-            <%= image_tag image.full_url , class:"img-thumbnail",style:"width:140px;hegith:140px"%>
+            <%= image_tag image.small , class:"img-thumbnail" , style:"width:50px;hegith:50px"%>
+            <%= image_tag image.qismall , class:"img-thumbnail" , style:"width:50px;hegith:50px"%>
+            <br>
+            <%= image_tag image.medium , class:"img-thumbnail",style:"width:100px;hegith:100px"%>
+            <%= image_tag image.qimedium , class:"img-thumbnail",style:"width:100px;hegith:100px"%>
+            <br>
+            <%= image_tag image.large , class:"img-thumbnail",style:"width:150px;hegith:150px"%>
+            <%= image_tag image.qilarge , class:"img-thumbnail",style:"width:150px;hegith:150px"%>
           </div>
         <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>original url</td>
+      <td>
+        <%= link_to @snowboard.origurl, @snowboard.origurl, target: "_blank" %>
       </td>
     </tr>
   </tbody>

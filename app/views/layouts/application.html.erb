@@ -6,7 +6,7 @@
 
   <!-- Meta -->
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta content="" name="description">
   <meta content="" name="author">
   <title>Snowooo</title>
@@ -51,8 +51,13 @@
                   <li class="dropdown pull-left">
                     <%= link_to 'Snowboard', '#', class:'dropdown-toggle', 'data-toggle' => 'dropdown' %>
                     <ul class="dropdown-menu">
-                      <li>
+                      <li class="dropdown-submenu">
                         <%= link_to 'All Snowboards', snowboards_path %>
+                        <ul class="dropdown-menu">
+                          <% Snowboard::STYLES.each do |style| %>
+                            <li> <%= link_to style, snowboards_path(style: style) %></li>
+                          <% end %>    
+                        </ul>
                       </li>
                     </ul>
                   </li>

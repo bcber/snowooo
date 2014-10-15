@@ -34,7 +34,15 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :snowboards
+  resources :snowboards do
+    member do 
+      get 'crawl'
+    end
+
+    collection do
+      get 'noimage'
+    end
+  end
 
   get 'welcome/index'
   root 'welcome#index'

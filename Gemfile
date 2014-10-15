@@ -3,6 +3,11 @@ source 'https://ruby.taobao.org'
 # settings
 gem 'figaro'
 
+# qiniu
+gem 'qiniu'
+
+# crontab
+gem 'whenever', :require => false
 
 #mailgun
 # gem 'mailgun-ruby', '~>1.0.2', require: 'mailgun'
@@ -51,6 +56,7 @@ group :development do
   gem 'spring'
   gem 'hirb'
   gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'capistrano-sidekiq'
 end
 

@@ -1,10 +1,18 @@
 class SnowboardsController < ApplicationController
   before_action :set_snowboard, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
+  respond_to :html
   # GET /snowboards
   # GET /snowboards.json
   def index
-    @snowboards = Snowboard.all
+    style ||= params[:style]
+    if style
+      @snowboards = Snowboard.send(style.to_sym)
+      @style = style
+    else
+      @snowboards = Snowboard.all
+    end
+    @snowboards = @snowboards.paginate(:page => params[:page], :per_page => 16)
   end
 
   # GET /snowboards/1
@@ -12,10 +20,25 @@ class SnowboardsController < ApplicationController
   def show
   end
 
+  def noimage
+    @snowboards = Snowboard.where(images: nil)
+  end
+
   # GET /snowboards/new
   def new
     @snowboard = Snowboard.new
     3.times { @snowboard.images.build }
+  end
+
+  # GET
+  def crawl
+    ImageWorker.perform_async(@snowboard.id.to_s)
+    redirect_to snowboards_path , notice: 'updating img'
+  end
+
+  # update all 
+  def crawlall
+
   end
 
   # GET /snowboards/1/edit

@@ -1,28 +1,77 @@
-<% @snowboards.each do |snowboard| %>
-<div class="thumbnails thumbnail-style thumbnail-kenburn snowboard-box">
-  <div class="thumbnail-img">
-    <div class="overflow-hidden">
-      <%= image_tag snowboard.images[0].original_url, class:"img-responsive", style:"width:250px;height:250px;"%>
+<h2>
+  <% if @style %>
+    All the <%= @style %>
+  <% else %>
+    All snowboards
+  <% end %>
+</h2>
+
+<div class="row">
+  <div class="col-md-2">
+    <div class="row">
+      <div class="headline">
+        <h4>Choose Style</h4>
+      </div>
+
+      <div class="row">
+        <ul class="list-unstyled col-xs-8">
+          <% Snowboard::STYLES.each do |style| %>
+            <li> <%= link_to style, snowboards_path(style: style) , class:'color-green'%></li>
+          <% end %>    
+        </ul>
+      </div>
     </div>
-    <%= link_to 'Show', snowboard, class:"btn-more hover-effect" %>
   </div>
+  <div class="col-md-10">
+    <div class="list-container">
+      <ul style="list-style:none" class="item-list">
+      <% @snowboards.each do |snowboard| %>
+      <li style="float:left;width:195px;height:310px; margin:10px;position:relative;">
+        <div class="thumbnails thumbnail-style thumbnail-kenburn">
+          <div class="thumbnail-img">
+            <div class="overflow-hidden">
+              <% if snowboard.images.empty? %>
+                no image for this snowboard
+              <% else %>
+                <%= image_tag snowboard.images.first.medium, class:"img-responsive"%>
+              <% end %>
+            </div>
+            <%= link_to 'Show', snowboard, class:"btn-more hover-effect" %>
+          </div>
 
-  <div class="caption">
+          <div class="caption">
 
-    <div class="content-boxes-v1">
-      <strong><%= snowboard.brand %></strong>
-      <h3>
-        <%= link_to snowboard.name, snowboard %>
-      </h3>
-      <% if can? :manage, Snowboard %>
-      <%= link_to 'Edit', edit_snowboard_path(snowboard) ,class:"btn-u btn-u-default"%>
-      <%= link_to 'Destroy', snowboard, method: :delete, data: { confirm: 'Are you sure?' } ,class:"btn-u btn-u-default"%>
-      <% end %>  
+            <div class="content-boxes-v1">
+              <strong><%= snowboard.brand %></strong>
+              <h4>
+                <%= link_to snowboard.name, snowboard %>
+                <p>
+                  <%= snowboard.style %>
+                </p>
+              </h4>
+              
+              <% if can? :manage, Snowboard %>
+              <%= link_to 'Edit', edit_snowboard_path(snowboard) ,class:"btn btn-xs btn-default"%>
+              <%= link_to 'Destroy', snowboard, method: :delete, data: { confirm: 'Are you sure?' } ,class:"btn btn-xs btn-default"%>
+              <% end %>  
+            </div>
+              
+          </div>
+        </div>
+      </li>
+      <% end %>
+      </ul>
     </div>
-      
+
+    <div class="text-center">
+      <div class="pagination">
+        <%= will_paginate @snowboards %>
+      </div>
+    </div>
   </div>
 </div>
-<% end %>
+
+
 
 <br>
 

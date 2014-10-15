@@ -4,4 +4,5 @@ class Video
   field :title, type: String
   field :thumbnail, type: String
   field :bigThumbnail, type: String
+  field :link, type: String
 end

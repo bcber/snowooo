@@ -1,5 +1,6 @@
 class VideosController < ApplicationController
   before_action :set_video, only: [:show, :edit, :update, :destroy]
+  respond_to :html
 
   def index
     @videos = Video.all
@@ -40,6 +41,6 @@ class VideosController < ApplicationController
     end
 
     def video_params
-      params.require(:video).permit(:vid, :title, :thumbnail, :bigThumbnail)
+      params.require(:video).permit(:vid, :title, :thumbnail, :bigThumbnail,:link)
     end
 end

@@ -18,86 +18,58 @@
 
   <div class="form-group">
     <%= f.label :brand %>
-    <br>
-    <div class="btn-group">
-      <% Snowboard::BRAND_OPTIONS.each do |brand| %>
-        <%= f.radio_button :brand, brand %> <%= brand %>
-      <% end %>
-    </div>
+    <%= f.text_field :brand ,class:"form-control"%>
   </div>
 
   <div class="form-group">
     <%= f.label :length %>(cm)
-    <br>
-    <div class="btn-group">
-      <% Snowboard::LENGTH_OPTIONS.each do |length| %>
-          <input type="checkbox" value="<%= length %>" name="snowboard[length][]" <%= (@snowboard.length and @snowboard.length.include? length)? "checked": "" %> > 
-        <%= length %>
-      <% end %>
-    </div>
+    <%= f.text_field :length ,class:"form-control"%>
   </div>
 
   <div class="form-group">
     <%= f.label :profile %>
-    <% Snowboard::PROFILE_OPTIONS.each do |profile| %>
-      <%= f.radio_button :profile, profile %> <%= profile %>
-    <% end %>
+    <%= f.text_field :profile ,class:"form-control"%>
   </div>
 
 
   <div class="form-group">
     <%= f.label :shape %>
-    <br>
-    <div class="btn-group">
-      <% Snowboard::SHAPE_OPTIONS.each do |shape| %>
-        <%= f.radio_button :shape, shape %> <%= shape %>
-      <% end %>
-    </div>
+    <%= f.text_field :shape ,class:"form-control"%>
   </div>
 
   <div class="form-group">
     <%= f.label :flex %>
-    <br>
-    <div class="btn-group">
-      <% Snowboard::FLEX_OPTIONS.each do |flex| %>
-        <%= f.radio_button :flex, flex %> <%= flex %>
-      <% end %>
-    </div>
+    <%= f.text_field :flex ,class:"form-control"%>
   </div>
 
   <div class="form-group">
-    <%= f.label :effectiveEdge %>
-    <%= f.text_field :effectiveEdge ,class:"form-control"%>
+    <%= f.label :effectiveedge %>
+    <%= f.text_field :effectiveedge ,class:"form-control"%>
   </div>
   
   <div class="form-group">
-    <%= f.label :waistWidth %>
-    <%= f.text_field :waistWidth ,class:"form-control"%>
+    <%= f.label :waistwidth %>
+    <%= f.text_field :waistwidth ,class:"form-control"%>
   </div>
 
   <div class="form-group">
-    <%= f.label :sidecutRadius %>
-    <%= f.text_field :sidecutRadius ,class:"form-control"%>
+    <%= f.label :sidecutradius %>
+    <%= f.text_field :sidecutradius ,class:"form-control"%>
   </div>
 
   <div class="form-group">
-    <%= f.label :stanceWidth %>
-    <%= f.text_field :stanceWidth ,class:"form-control"%>
+    <%= f.label :stancewidth %>
+    <%= f.text_field :stancewidth ,class:"form-control"%>
   </div>
 
   <div class="form-group">
-    <%= f.label :stanceSetback %>
-    <%= f.text_field :stanceSetback ,class:"form-control"%>
+    <%= f.label :stancesetback %>
+    <%= f.text_field :stancesetback ,class:"form-control"%>
   </div>
 
   <div class="form-group">
     <%= f.label :mount %>
-    <br>
-    <div class="btn-group">
-      <% Snowboard::MOUNT_OPTIONS.each do |mount| %>
-        <%= f.radio_button :mount, mount %> <%= mount %>
-      <% end %>
-    </div>
+    <%= f.text_field :mount ,class:"form-control"%>
   </div>
   
   <div class="form-group">
@@ -107,19 +79,22 @@
 
         <div class="form-group">
           <%= p.label :color %>
-          <% Image::COLOR_OPTIONS.each do |color| %>
-            <%= p.radio_button :color, color %> <%= color %>         
-          <% end %>
+          <%= p.text_field :color ,class:"form-control"%>
         </div>
 
         <div class="form-group">
-          <%= p.label :original_url %>
-          <%= p.text_field :original_url, class: "form-control" %>
+          <%= p.label :thumbnails %>
+          <%= p.text_field :thumbnails, class: "form-control" %>
         </div>
 
         <div class="form-group">
-          <%= p.label :full_url %>
-          <%= p.text_field :full_url, class: "form-control" %>
+          <%= p.label :medium %>
+          <%= p.text_field :medium, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= p.label :large %>
+          <%= p.text_field :large, class: "form-control" %>
         </div>
         
 

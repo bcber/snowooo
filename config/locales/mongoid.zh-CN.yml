@@ -1,4 +1,6 @@
 'zh-CN':
+  will_paginate:
+    page_gap: "..."
   mongoid:
     errors:
       models:
