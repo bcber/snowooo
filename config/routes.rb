@@ -1,5 +1,11 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
+  resources :places
+
+  resources :snowbindings
+
+  resources :snowboots
+
   resources :videos
 
   authenticate :user, lambda { |u| u.has_role? :admin } do

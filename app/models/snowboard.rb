@@ -2,14 +2,24 @@ class Snowboard
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  STYLES = %w{ freestyle allmountain powder split womenallmountain wide womenfreestyle kid }
+  STYLES = Snowboard.all.pluck(:style).uniq
 
+  def self.create_scope(scopes)
+    scopes.each do |s|
+      scope s.to_sym, ->{ where(style: s.to_s) }
+    end
+  end
+
+  create_scope STYLES
+  
   def self.crawlAll
-    snowboards = Snowboard.all
+    snowboards = Snowboard.all.limit(5)
     snowboards.each do |snowboard|
       ImageWorker.perform_async(snowboard.id.to_s)
     end
   end
+
+  
 
   # property
   field :name, type:String
@@ -38,14 +48,7 @@ class Snowboard
 
   field :review, type: Hash
 
-  def self.create_scope(scopes)
-    scopes.each do |s|
-      scope s.to_sym, ->{ where(style: s.to_s) }
-    end
-  end
-  create_scope STYLES
-
-  embeds_many :images, store_as: "snowboard_imgs"
+  embeds_many :images, store_as: "snowboard_imgs", inverse_of: :images
   accepts_nested_attributes_for :images, reject_if: -> (a) {
     a[:small].blank? or a[:medium].blank? or a[:large].blank?
   }, allow_destroy: true

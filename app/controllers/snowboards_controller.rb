@@ -6,13 +6,15 @@ class SnowboardsController < ApplicationController
   # GET /snowboards.json
   def index
     style ||= params[:style]
-    if style
+    if style and Snowboard::STYLES.include? style
       @snowboards = Snowboard.send(style.to_sym)
       @style = style
     else
       @snowboards = Snowboard.all
+      flash[:alert] = 'no such style' if style
     end
     @snowboards = @snowboards.paginate(:page => params[:page], :per_page => 16)
+    respond_with @snowboards
   end
 
   # GET /snowboards/1

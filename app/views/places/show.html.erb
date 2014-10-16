@@ -1,0 +1,4 @@
+<% if can? :manage, Place %>
+<%= link_to 'Edit', edit_place_path(@place) %> |
+<%= link_to 'Back', places_path %>
+<% end %>

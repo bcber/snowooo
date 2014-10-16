@@ -13,5 +13,6 @@ class Image
   field :qimedium, type:String
   field :qilarge, type:String
 
-  embedded_in :snowboard
+  embedded_in :snowboard, inverse_of: :snowboard_images
+  embedded_in :snowboot, inverse_of: :snowboot_images
 end

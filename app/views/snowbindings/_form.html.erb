@@ -1,0 +1,17 @@
+<%= form_for(@snowbinding) do |f| %>
+  <% if @snowbinding.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@snowbinding.errors.count, "error") %> prohibited this snowbinding from being saved:</h2>
+
+      <ul>
+      <% @snowbinding.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,6 +1,7 @@
 class VideosController < ApplicationController
   before_action :set_video, only: [:show, :edit, :update, :destroy]
   respond_to :html
+  load_and_authorize_resource
 
   def index
     @videos = Video.all

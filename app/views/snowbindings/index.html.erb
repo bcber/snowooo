@@ -1,0 +1,80 @@
+<h2>
+  <% if @style %>
+    All the <%= @style %>
+  <% else %>
+    All Snowbindings
+  <% end %>
+</h2>
+
+<div class="row">
+  <div class="col-md-2">
+    <div class="row">
+      <div class="headline">
+        <h4>Choose Style</h4>
+      </div>
+
+      <div class="row">
+        <ul class="list-unstyled col-xs-8">
+          <% Snowbinding::STYLES.each do |style| %>
+            <li> <%= link_to style, snowbindings_path(style: style) , class:'color-green'%></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-10">
+    <div class="list-container">
+      <ul style="list-style:none" class="item-list">
+      <% @snowbindings.each do |snowbinding| %>
+      <li style="float:left;width:195px;height:310px; margin:10px;position:relative;">
+        <div class="thumbnails thumbnail-style thumbnail-kenburn">
+          <div class="thumbnail-img">
+            <div class="overflow-hidden">
+              <% if snowbinding.images.empty? %>
+                no image for this snowbinding
+              <% else %>
+                <%= image_tag snowbinding.images.first.medium, class:"img-responsive"%>
+              <% end %>
+            </div>
+            <%= link_to 'Show', snowbinding, class:"btn-more hover-effect" %>
+          </div>
+
+          <div class="caption">
+
+            <div class="content-boxes-v1">
+              <strong><%= snowbinding.brand %></strong>
+              <h4>
+                <%= link_to snowbinding.name, snowbinding %>
+                <p>
+                  <%= snowbinding.style %>
+                </p>
+              </h4>
+              
+              <% if can? :manage, snowbinding %>
+              <%= link_to 'Edit', edit_snowbinding_path(snowbinding) ,class:"btn btn-xs btn-default"%>
+              <%= link_to 'Destroy', snowbinding, method: :delete, data: { confirm: 'Are you sure?' } ,class:"btn btn-xs btn-default"%>
+              <% end %>  
+            </div>
+              
+          </div>
+        </div>
+      </li>
+      <% end %>
+      </ul>
+    </div>
+
+    <div class="text-center">
+      <div class="pagination">
+        <%= will_paginate @snowbindings %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<br>
+
+<% if can? :create, Snowbinding %>
+  <%= link_to 'New snowbinding', new_snowbinding_path,class:"btn-u" %>
+<% end %>

@@ -8,16 +8,19 @@ class ImageWorker
   @@expires_in = 13.hours
   @@mediumwartermark = 'mediumwartermark'
   @@smallwartermark = 'smallwartermark'
-  @@tmpImageBasePath = (Rails.root+'tmp/images').to_s
+  @@tmpImageBasePath = Rails.root.join 'tmp/images'
 
   @@logger ||= Logger.new("#{Rails.root}/log/image.log")
   
 
   def perform(id)
-    # images = Snowboard.find(id).images
+    snowboard = Snowboard.find(id)
+    images = snowboard.images
 
-    # imagesPath = Pathname.new(Rails.root+'tmp/images')
-    # images.each do |img|
+    images.each do |img|
+
+      path = @@tmpImageBasePath.join(snowboard.name+File.basename(img.small))
+      download(img.small, path)
 
     #   img
 
@@ -29,7 +32,8 @@ class ImageWorker
     #   download_url = Qiniu::Auth.authorize_download_url(originalUrl)
     #   img.update(qilarge: download_url)
       
-    # end
+    end
+
   end
 
   def download(fromUrl,path)

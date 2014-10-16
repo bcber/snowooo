@@ -24,7 +24,7 @@ class Ability
   end
 
   def member
-    can :read, Snowboard
+    default
   end
 
   def banned
@@ -33,5 +33,9 @@ class Ability
 
   def default
     can :read, Snowboard
+    can :read, Snowboot
+    can :read, Snowbinding
+    can :read, Video
+    can :read, Place
   end
 end
