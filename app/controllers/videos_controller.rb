@@ -4,7 +4,7 @@ class VideosController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @videos = Video.all
+    @videos = Video.crawled
     respond_with(@videos)
   end
 
@@ -42,6 +42,6 @@ class VideosController < ApplicationController
     end
 
     def video_params
-      params.require(:video).permit(:vid, :title, :thumbnail, :bigThumbnail,:link)
+      params.require(:video).permit(:link)
     end
 end

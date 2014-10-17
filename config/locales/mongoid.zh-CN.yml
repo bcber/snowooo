@@ -17,3 +17,7 @@
             email:
               blank: "邮箱不能为空"
               taken: "此邮箱已注册"
+        video:
+          attributes:
+            link:
+              taken: "已存在此条视频"

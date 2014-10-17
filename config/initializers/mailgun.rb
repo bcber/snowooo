@@ -1,1 +1,0 @@
-# MGCLIENT = Mailgun::Client.new "key-4d6c4032665e5a0b11445847b0892074"
