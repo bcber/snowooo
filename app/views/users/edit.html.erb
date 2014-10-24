@@ -1,9 +1,9 @@
-<h1> edit my profile </h1>
+<h1>修改我的个人资料</h1>
 
-<%= form_for(@user, url: :modify) do |f| %>
+<%= form_for(@user, url: :modify, multipart: true) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <h2><%= pluralize(@user.errors.count, "error") %> 产生了</h2>
 
       <ul>
       <% @user.errors.full_messages.each do |message| %>
@@ -14,13 +14,20 @@
   <% end %>
 
   <div class="input-group">
+    <%= f.label :avatar %>
+    <%= f.file_field :avatar, class:"form-control" %>
+    <br/>
+    或者图片的链接
+    <%= f.text_field :remote_avatar_url , class:"form-control"%>
+   </div>
+
+  <div class="input-group">
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name , class:"form-control"%>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+    <br/>
+  <div class="input-group">
+    <%= f.submit '确认修改',class:"btn btn-default"%>
   </div>
 <% end %>
-
-<%= link_to 'Back To Profile', profile_path, class: "btn btn-default " %>

@@ -8,7 +8,7 @@
 
             <div class="item <%= index == 1 ? "active":"" %>">
               <%= link_to post  do %>
-                <%= image_tag post.cover , style: "width:100%"%>
+                <%= image_tag post.cover.big , style: "width:100%"%>
                 <div class="carousel-caption">
                   <h3><%= post.title %></h3>
                 </div>
@@ -33,7 +33,7 @@
     <% @posts.each do |post| %>
       <div class="row margin-bottom-40">
         <div class="col-sm-4">
-          <%= image_tag post.cover, class:"img-responsive" %>
+          <%= image_tag post.cover.medium, class:"img-responsive" %>
         </div>
         <div class="col-sm-8">
           <h2><%= post.title %></h2>
@@ -47,7 +47,7 @@
               <%= post.comments.count %> <%= t("comments") %>
             </li>
             <li>
-              <i class="fa fa-users"></i>
+              <i class="fa fa-pencil"></i>
               <%= post.user.present? ? post.user.name: "admin" %>
             </li>
           </ul>
@@ -78,13 +78,13 @@
       <% end %>
     <div class="posts margin-bottom-40">
       <div class="headline headline-md"> 
-        <h2>Recommend posts</h2>
+        <h2>推荐文章</h2>
       </div>
       <% @recommend_posts.each do |post| %>
         <dl class="dl-horizontal">
           <dt>
             <%= link_to post do %>
-              <%= image_tag post.cover %>
+              <%= image_tag post.cover.thumb %>
             <% end %>
           </dt>
           <dd>

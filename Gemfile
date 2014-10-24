@@ -4,6 +4,7 @@ source 'https://ruby.taobao.org'
 gem 'ckeditor'
 #file upload
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+gem 'mongoid-grid_fs', github: 'ahoward/mongoid-grid_fs'
 gem 'mini_magick'
 
 # settings

@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_tag, only: [:create, :update]
+  load_and_authorize_resource
   respond_to :html
 
   def index
@@ -28,6 +30,7 @@ class PostsController < ApplicationController
 
   def update
     @post.update(post_params)
+    redirect_to @post
   end
 
   def destroy
@@ -35,11 +38,15 @@ class PostsController < ApplicationController
   end
 
   private
+    def set_tag
+      logger.info params[:tag_string]
+    end
+
     def set_post
       @post = Post.find(params[:id])
     end
 
     def post_params
-      params.require(:post).permit(:title, :content)
+      params.require(:post).permit( :title, :content, :cover, :remote_cover_url, :tag_string )
     end
 end

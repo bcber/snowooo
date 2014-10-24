@@ -35,7 +35,8 @@ class User
   field :unconfirmed_email,    type: String # Only if using reconfirmable
 
   field :name, type: String, default: ""
-  field :avatar, type: String ,default: "http://placekitten.com/g/200/200"
+  field :avatar, type: String
+  mount_uploader :avatar, AvatarUploader
 
   ## Lockable
   # field :failed_attempts, type: Integer, default: 0 # Only if lock strategy is :failed_attempts

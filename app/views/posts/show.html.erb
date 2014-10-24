@@ -3,6 +3,10 @@
     <div class="margin-bottom-40">
       <h1><%= link_to @post.title, @post %></h1>
       <hr>
+      <% if can? :edit, @post %>
+        <%= link_to '编辑', edit_post_path(@post), class: "btn btn-info btn-xs" %>
+        <hr/>
+    <% end  %>
       <div class="blog-post-tags">
         <ul class="list-unstyled list-inline blog-info">
             <li><i class="fa fa-calendar"></i> <%= @post.created_at.to_date %></li>
@@ -21,10 +25,10 @@
       </div>
       <hr>
       <div class="blog-img margin-bottom-40">
-        <%= image_tag @post.cover %>
+        <%= image_tag @post.cover, class:"img-responsive" %>
       </div>
       <p>
-        <%= raw @post.content %>
+        <%= @post.content.html_safe %>
       </p>
     </div>
     <div class="media">
@@ -49,7 +53,7 @@
         <dl class="dl-horizontal">
           <dt>
             <%= link_to post do %>
-              <%= image_tag post.cover %>
+              <%= image_tag post.cover , class:"img-responsive"%>
             <% end %>
           </dt>
           <dd>

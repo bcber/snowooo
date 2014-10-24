@@ -1,7 +1,7 @@
-<%= form_for(@post) do |f| %>
+<%= form_for(@post,  multipart: true ) do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <h2><%= pluralize(@post.errors.count, "error") %></h2>
 
       <ul>
       <% @post.errors.full_messages.each do |message| %>
@@ -11,16 +11,25 @@
     </div>
   <% end %>
 
-  <div class="input-group">
-    <%= f.label :title %><br>
-    <%= f.text_field :title , class: "form-control"%>
-  </div>
-  <div class="field">
-    <%= f.label :content %><br>
-    <%= f.cktext_area :content, ckeditor: { language: 'zh-cn', height: 500} %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="input-group">
+      <span class="input-group-addon">题目</span>
+      <%= f.text_field :title, class:"form-control", placeholder:"题目"%>
+    </div>
+
+    <hr/>
+    <div class="input-group">
+      <span class="input-group-addon">上传封面图片</span>
+      <%= f.file_field :cover, class:"form-control" %>
+      <%= f.text_field :remote_cover_url, class: "form-control",placeholder:"或者图片的链接" %>
+    </div>
+
+    <br/>
+    <div class="field">
+        <%= f.cktext_area :content, ckeditor: { language: 'zh-cn', height: 500} %>
+    </div>
+    <br/>
+    <div class="actions text-center">
+        <%= f.submit '提交',class:"btn btn-default btn-lg"%>
+    </div>
 <% end %>
 

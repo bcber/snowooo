@@ -131,7 +131,7 @@ var App = function () {
 
     function handleHeader() {
          jQuery(window).scroll(function() {
-            if (jQuery(window).scrollTop()>200){
+            if (jQuery(window).scrollTop()>10   ){
                 jQuery(".header-fixed .header").addClass("header-fixed-shrink");
                 jQuery(".header-fixed .header .topbar .loginbar").addClass("hide");
                 jQuery(".navbar-brand").removeClass("hide");
