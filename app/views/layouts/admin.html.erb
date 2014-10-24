@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta content="" name="description">
+  <meta content="" name="author">
+  <title>Snowooo</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+  <!-- Latest compiled and minified CSS -->
+  <link href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Optional theme -->
+  <link href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" rel="stylesheet">
+  
+  <!-- CSS Global Compulsory -->
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+  <!-- CSS Implementing Plugins -->
+  <link rel="stylesheet" href="/assets/plugins/line-icons/line-icons.css">
+  <link href="http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- CSS Theme -->
+  <link rel="stylesheet" href="/assets/css/themes/default.css">
+
+  <!-- CSS Brand Button plugin -->
+  <link rel="stylesheet" href="/assets/css/plugins/brand-buttons/brand-buttons.css">
+</head>
+<body>
+  
+  <div class="header">
+    <div class="container">
+      <div class="collapse navbar-collapse">
+        <div class="nav navbar-nav pull-left">
+          <li><%= link_to t("admin.index"), admin_root_path %></li>
+        </div>
+        <div class="nav navbar-nav">
+          <li><%= link_to t("admin.users") , admin_users_path%></li>
+          <li><%= link_to t("admin.posts") , admin_posts_path %></li>
+          <li><%= link_to t("admin.settings"), admin_settings_path %></li>
+          <li><%= link_to("回到前台", root_path)%></li>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <% if notice %>
+      <div class="alert alert-info"><%= notice %></div>
+    <% end %>
+    <div id="main">
+      <%= yield %>
+    </div>
+  </div>
+</body>
+<!-- JS Global Compulsory -->
+<script src="http://cdn.bootcss.com/jquery-migrate/1.2.1/jquery-migrate.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<!-- JS Implementing Plugins -->
+<script src="/assets/plugins/back-to-top.js"></script>
+
+<!-- JS Page Level -->
+<script src="/assets/js/app.js"></script>
+<script>
+jQuery(document).ready(function() {
+    App.init();
+});
+</script>
+
+<!--[if lt IE 9]>
+    <script src="assets/js/respond.js"></script>
+<![endif]-->
+</html>

@@ -1,0 +1,62 @@
+<div class="blog-item">
+  <div class="col-sm-9">
+    <div class="margin-bottom-40">
+      <h1><%= link_to @post.title, @post %></h1>
+      <hr>
+      <div class="blog-post-tags">
+        <ul class="list-unstyled list-inline blog-info">
+            <li><i class="fa fa-calendar"></i> <%= @post.created_at.to_date %></li>
+            <li><i class="fa fa-pencil"></i> <%= @post.user.present? ? @post.user.name: "admin" %></li>
+            <li><i class="fa fa-comments"></i> <span class="comment-count"><%= @post.comments.count %></span> 条评论</li>
+        </ul>
+        <ul class="list-unstyled list-inline blog-tags">
+            <li>
+                <i class="fa fa-tags"></i> 
+                <a href="#">Technology</a> 
+                <a href="#">Education</a>
+                <a href="#">Internet</a>
+                <a href="#">Media</a>
+            </li>
+        </ul>                                                
+      </div>
+      <hr>
+      <div class="blog-img margin-bottom-40">
+        <%= image_tag @post.cover %>
+      </div>
+      <p>
+        <%= raw @post.content %>
+      </p>
+    </div>
+    <div class="media">
+      <h3> <span class="comment-count"><%= @post.comments.count %></span> <%= t("comments") %></h3>
+    </div>
+
+    <hr>
+    <div class="comment_container">
+      <%= render partial: "comments/comment", collection: @post.comments %>
+    </div>
+
+    <% if current_user %>
+      <%= form_for [@post, @comment], remote: true do |f| %>
+        <%= render 'comments/form'%>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="col-sm-3">
+    <div class="posts margin-bottom-40">
+      <div class="headline headline-md"> Recent posts</div>
+      <% @recommend_posts.each do |post| %>
+        <dl class="dl-horizontal">
+          <dt>
+            <%= link_to post do %>
+              <%= image_tag post.cover %>
+            <% end %>
+          </dt>
+          <dd>
+            <p><%= truncate(post.title, length: 20) %></p>
+          </dd>
+        </dl>
+      <% end %>
+    </div>
+  </div>
+</div>

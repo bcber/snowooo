@@ -49,11 +49,6 @@
                   <%= snowboard.style %>
                 </h6>
               </h5>
-              
-              <% if can? :manage, Snowboard %>
-              <%= link_to 'Edit', edit_snowboard_path(snowboard) ,class:"btn btn-xs btn-default"%>
-              <%= link_to 'Destroy', snowboard, method: :delete, data: { confirm: 'Are you sure?' } ,class:"btn btn-xs btn-default"%>
-              <% end %>  
             </div>
               
           </div>
@@ -70,11 +65,3 @@
     </div>
   </div>
 </div>
-
-
-
-<br>
-
-<% if can? :create, Snowboard %>
-  <%= link_to 'New Snowboard', new_snowboard_path,class:"btn-u" %>
-<% end %>

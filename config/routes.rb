@@ -1,18 +1,35 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
-  resources :places
+  mount Ckeditor::Engine => '/ckeditor'
 
-  resources :snowbindings
-
-  resources :snowboots
-
-  resources :videos
+  resources :posts do 
+    resources :comments
+  end
+  resources :comments
+  resources :places do 
+    resources :comments
+  end
+  resources :snowbindings do 
+    resources :comments
+  end
+  resources :snowboots do 
+    resources :comments
+  end
+  resources :videos do 
+    resources :comments
+  end
 
   authenticate :user, lambda { |u| u.has_role? :admin } do
     mount Sidekiq::Web => '/sidekiq'
   end
 
-  devise_for :users
+  authenticate :user do 
+    get 'profile', to: 'users#show'
+    get 'modify', to: 'users#edit'
+    patch 'modify', to: 'users#update'
+  end
+
+  devise_for :users , :controllers => { omniauth_callbacks: "user/omniauth_callbacks" }
 
   devise_scope :user do
     get "login", to: "user/sessions#new"
@@ -28,29 +45,27 @@ Rails.application.routes.draw do
     end
   end
 
-  scope '/admin' do
-    resources :users do
-      member do
-        post 'confirm'
-      end
-
-      collection do
-        get 'remove_not_confirmed'
-      end
-    end
-  end
-
   resources :snowboards do
     member do 
       get 'crawl'
     end
-
     collection do
       get 'noimage'
     end
   end
 
-  get 'welcome/index'
+  namespace :admin do 
+    root to: "home#index"
+    resources :settings
+    resources :users
+    resources :posts do
+      member do
+        get 'up'
+        get 'recommend'
+      end
+    end
+  end
+
   root 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

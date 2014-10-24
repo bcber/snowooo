@@ -6,6 +6,30 @@ class User::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # def twitter
   # end
 
+  def weibo
+    omniauth = request.env['omniauth.auth']
+    logger.info "omniauth"+"*"*50
+
+    omniauth = Omniauth.find_or_initialize_by(provider: omniauth.provider, uid:omniauth.uid)
+    
+    logger.info "+"*80
+    logger.info omniauth.new_record?
+
+    if omniauth.new_record?
+      if user_signed_in?
+        omniauth.user = current_user
+        omniauth.save
+        flash[:notice] = "bind weibo success, you can use weibo login in our site"
+        redirect_to root_path
+      else
+        flash[:notice] = "register first"
+        redirect_to root_path
+      end
+    else
+      sign_in_and_redirect omniauth.user
+    end
+
+  end
   # More info at:
   # https://github.com/plataformatec/devise#omniauth
 
@@ -25,4 +49,9 @@ class User::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # def after_omniauth_failure_path_for(scope)
   #   super(scope)
   # end
+
+  protected
+  def after_omniauth_failure_path_for(scope)
+    super(scope)
+  end
 end

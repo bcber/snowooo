@@ -14,170 +14,140 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 
+  <!-- Latest compiled and minified CSS -->
+  <link href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Optional theme -->
+  <link href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" rel="stylesheet">
+  
   <!-- CSS Global Compulsory -->
-  <link rel="stylesheet" href="/assets/plugins/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="/assets/css/style.css">
 
   <!-- CSS Implementing Plugins -->
   <link rel="stylesheet" href="/assets/plugins/line-icons/line-icons.css">
-  <link rel="stylesheet" href="/assets/plugins/font-awesome/css/font-awesome.css">
+  <link href="http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
   <!-- CSS Theme -->
   <link rel="stylesheet" href="/assets/css/themes/default.css">
-  <script type="text/javascript" src="http://player.youku.com/jsapi"></script>
+
+  <!-- CSS Brand Button plugin -->
+  <link rel="stylesheet" href="/assets/css/plugins/brand-buttons/brand-buttons.css">
+  <link rel="stylesheet" href="http://nxbtch-cdn.qiniudn.com/css/pages/page_404_error.css"/>
+  
 </head>
-<body>
-
-  <div class="wrapper">
-    <div class="header">
-      <div class="topbar">
-        <div class="navbar navbar-default" role="navigation">
+<body class="header-fixed">
+  <div class="header">
+        <!-- Topbar -->
+        <div class="topbar">
           <div class="container-fluid">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="fa fa-bars"></span>
-                    </button>
-
-              <a href="/" class="navbar-brand">
-                <h1 style="margin-top:14px;margin-left:5px;">
-                雪圈
-                </h1>
-              </a>
+            <ul class="loginbar">
+              <div class="col-sm-2">
+                <a href="/"><img id="logo-header" src="http://snowooo-cdn.qiniudn.com/snowooolog.png?imageMogr2/thumbnail/200x/crop/!200x200a4a30" alt="Logo"></a>
+              </div>
+              <div class="col-sm-10">
+                <% if Setting.show_index_ad_1 %>
+                  <%= raw Setting.index_ad_1 %>
+                <% else %>
+                  <img src="http://placekitten.com/1200/200" alt="">
+                <% end %>
+              </div>
+            </ul>
             </div>
-
-            <div class="collapse navbar-collapse navbar-responsive-collapse">
-              <ul class="nav navbar-nav pull-left">
-                <li class="dropdown">
-                  <%= link_to 'Snowboard', '#', class:'dropdown-toggle', 'data-toggle' => 'dropdown' %>
-                  <ul class="dropdown-menu">
-                    <li class="dropdown-submenu">
-                      <%= link_to 'All Snowboards', snowboards_path %>
-                      <ul class="dropdown-menu">
-                        <% Snowboard::STYLES.each do |style| %>
-                          <li> <%= link_to style, snowboards_path(style: style) %></li>
-                        <% end %>    
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-
-                <li class="dropdown">
-                  <%= link_to 'snowboot', '#', class:'dropdown-toggle', 'data-toggle' => 'dropdown' %>
-                  <ul class="dropdown-menu">
-                    <li class="dropdown-submenu">
-                      <%= link_to 'All Snowboots', snowboots_path %>
-                      <ul class="dropdown-menu">
-                        <% Snowboot::STYLES.each do |style| %>
-                          <li> <%= link_to style, snowboots_path(style: style) %></li>
-                        <% end %>    
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-
-                <li class="dropdown">
-                  <%= link_to 'snowbinding', '#', class:'dropdown-toggle', 'data-toggle' => 'dropdown' %>
-                  <ul class="dropdown-menu">
-                    <li class="dropdown-submenu">
-                      <%= link_to 'All Snowbindings', snowbindings_path %>
-                      <ul class="dropdown-menu">
-                        <% Snowbinding::STYLES.each do |style| %>
-                          <li> <%= link_to style, snowbindings_path(style: style) %></li>
-                        <% end %>    
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-
-                <li class="dropdown">
-                  <%= link_to 'place', '#', class:'dropdown-toggle', 'data-toggle' => 'dropdown' %>
-                  <ul class="dropdown-menu">
-                    <li class="dropdown-submenu">
-                      <%= link_to 'All place', places_path %>
-                    </li>
-                  </ul>
-                </li>
-
-                <li class="dropdown">
-                  <%= link_to 'video', '#', class:'dropdown-toggle', 'data-toggle' => 'dropdown' %>
-                  <ul class="dropdown-menu">
-                    <li class="dropdown-submenu">
-                      <%= link_to 'All videos', videos_path %>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-
-              <ul class="nav navbar-nav">
-                
-
-                <% if user_signed_in? %>
-                  <li class="pull-right dropdown">
-                    <%= link_to current_user.email, '#', class: 'dropdown-toggle', "data-toggle" => "dropdown"%>
+        </div>
+        <!-- End Topbar -->
+        <!-- Navbar -->
+        <div class="navbar navbar-default" role="navigation">
+            <div class="container">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="fa fa-bars"></span>
+                </button>
+                <a class="navbar-brand hide" href="/">
+                    <img id="logo-header" src="http://snowooo-cdn.qiniudn.com/snowooolog.png?imageMogr2/thumbnail/80x/crop/!72x72a4a18" alt="Logo">
+                </a>
+              </div>
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="collapse navbar-collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav pull-left">
+                  <li><%= link_to t('post'), posts_path %></li>
+                  <li class="dropdown">
+                    <%= link_to t('snowboard'), '#', class:'dropdown-toggle', 'data-toggle' => 'dropdown' %>
                     <ul class="dropdown-menu">
-                        <% if can? :manage, User %>
-                        <li>
-                          <%= link_to 'user management', users_path %>
-                        </li>
-                        <% end %>
+                      <li><%= link_to "All snwoboot",  snowboards_path%></li>
+                      <% Snowboard::STYLES.each do |style| %>
+                        <li> <%= link_to style, snowboards_path(style: style) %></li>
+                      <% end %>    
+                    </ul>
+                  </li>
 
-                        <% if can? :manage, Todo %>
-                        <li>
-                          <%= link_to 'project management', todos_path %>
-                        </li>
-                        <% end %>
+                  <li class="dropdown">
+                    <%= link_to t('snowboot'), "#", class:'dropdown-toggle', 'data-toggle' => 'dropdown' %>
+                    <ul class="dropdown-menu">
+                      <li><%= link_to "All snwoboot",  snowboots_path%></li>
+                      <% Snowboot::STYLES.each do |style| %>
+                        <li> <%= link_to style, snowboots_path(style: style) %></li>
+                      <% end %>
+                    </ul>
+                  </li>
 
-                        <% if current_user.has_role? :admin %>
-                        <li>
-                          <%= link_to 'sidekiq', sidekiq_web_path, target:'_blank' %>
-                        </li>
-                        <% end %>
-                      <li>
-                        <%= link_to 'sign out', logout_path ,method: :delete  %>
+                  <li class="dropdown">
+                    <%= link_to t('snowbinding'), "#", class:'dropdown-toggle', 'data-toggle' => 'dropdown' %>
+                    <ul class="dropdown-menu">
+                      <li><%= link_to "All snwoboot",  snowbindings_path%></li>
+                      <% Snowbinding::STYLES.each do |style| %>
+                        <li> <%= link_to style, snowbindings_path(style: style) %></li>
+                      <% end %>
+                    </ul>
+                  </li>
+
+                  <li class="dropdown">
+                    <%= link_to t('place'), places_path, class:'dropdown-toggle', 'data-toggle' => 'dropdown' %>
+                    <ul class="dropdown-menu">
+                      <li class="dropdown-submenu">
                       </li>
                     </ul>
                   </li>
 
-                <% else %>
-                  <li>
-                    <%= link_to 'signup', signup_path  %>                   
+                  <li class="dropdown">
+                    <%= link_to t('video'), videos_path, class:'dropdown-toggle', 'data-toggle' => 'dropdown' %>
+                    <ul class="dropdown-menu">
+                      <li><%= link_to "All videos",  videos_path %></li>
+                      <li class="dropdown-submenu">
+                      </li>
+                    </ul>
                   </li>
-                  <li class="pull-right">
-                    <%= link_to 'login', login_path %>
-                  </li>
-                <% end %>
-              </ul>
+
+                </ul> 
+
+                <ul class="nav navbar-nav">
+                  <%= render 'common/user_nav' %>
+                </ul>
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
+        </div>            
+        <!-- End Navbar -->
+  </div>
 
-    <div class="container content">
-      
-      <% if notice %>
-        <div class="row margin-bottom-20">
-          <div class="alert alert-info fade in alert-dismissable">
-          <%= notice %>
-          </div>  
-        </div>
-      <% end %>
-
-      <% if alert %>
-        <div class="row margin-bottom-20">
-          <div class="alert alert-danger fade in alert-dismissable">
-          <%= alert %>
-          </div>  
-        </div>
-      <% end %>
-
+  <div class="container content">
+    <div class="row">
       <%= yield %>
     </div>
-  
+
+    <hr/>
+
+    <div class="row">
+      <%= link_to  url_for(:back), class: 'btn btn-info' do %>
+          <span class="glyphicon glyphicon-backward"></span>
+          <%= t("back") %>
+      <% end %>
+    </div>
   </div>
 
   <% if Rails.env.development? %>
+  <div class="well">
+    <%= user_omniauth_callback_path(:weibo) %>
+  </div>
   <div class="well">
     <%= info.inspect %>
   </div>
@@ -185,8 +155,10 @@
 
 </body>
 <!-- JS Global Compulsory -->
-<script src="/assets/plugins/jquery-migrate-1.2.1.min.js"></script>
-<script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="http://cdn.bootcss.com/jquery-migrate/1.2.1/jquery-migrate.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 <!-- JS Implementing Plugins -->
 <script src="/assets/plugins/back-to-top.js"></script>

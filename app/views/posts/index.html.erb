@@ -1,0 +1,97 @@
+<div class="row">
+  <div class="col-sm-9">
+    <div id="carousel" class="margin-bottom-40 carousel carousel-v1 slide" data-ride="carousel">
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+        <% index = 1 %>
+        <% @top_posts.each do |post| %>
+
+            <div class="item <%= index == 1 ? "active":"" %>">
+              <%= link_to post  do %>
+                <%= image_tag post.cover , style: "width:100%"%>
+                <div class="carousel-caption">
+                  <h3><%= post.title %></h3>
+                </div>
+              <% end %>
+            </div>
+
+          <% index = index + 1 %>
+        <% end %>
+      </div>
+
+      <div class="carousel-arrow">
+          <a data-slide="prev" href="#carousel" class="left carousel-control">
+              <i class="fa fa-angle-left"></i>
+          </a>
+          <a data-slide="next" href="#carousel" class="right carousel-control">
+              <i class="fa fa-angle-right"></i>
+          </a>
+      </div>
+      
+    </div>
+
+    <% @posts.each do |post| %>
+      <div class="row margin-bottom-40">
+        <div class="col-sm-4">
+          <%= image_tag post.cover, class:"img-responsive" %>
+        </div>
+        <div class="col-sm-8">
+          <h2><%= post.title %></h2>
+          <ul class="list-unstyled list-inline">
+            <li>
+              <i class="fa fa-calendar"></i>
+              <%= post.created_at.to_date %>
+            </li>
+            <li>
+              <i class="fa fa-comments"></i>
+              <%= post.comments.count %> <%= t("comments") %>
+            </li>
+            <li>
+              <i class="fa fa-users"></i>
+              <%= post.user.present? ? post.user.name: "admin" %>
+            </li>
+          </ul>
+          <p>
+            <%= truncate(post.content, length: 100) %>
+          </p>
+          <p>
+            <%= link_to post, class:"btn-u btn-u-small" do %>
+              <i class="fa fa-location-arrow"></i>
+              <%= t("more") %>
+            <% end %>
+          </p>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="text-center">
+      <div class="pagination">
+        <%= will_paginate @posts %>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3">
+      <% if can? :create, Post %>
+        <div class="text-center">
+          <%= link_to t('newpost'), new_post_path, class:"btn btn-default btn-block" %>
+        </div>
+      <% end %>
+    <div class="posts margin-bottom-40">
+      <div class="headline headline-md"> 
+        <h2>Recommend posts</h2>
+      </div>
+      <% @recommend_posts.each do |post| %>
+        <dl class="dl-horizontal">
+          <dt>
+            <%= link_to post do %>
+              <%= image_tag post.cover %>
+            <% end %>
+          </dt>
+          <dd>
+            <p><%= truncate(post.title, length: 20) %></p>
+          </dd>
+        </dl>
+      <% end %>
+    </div>
+  </div>
+</div>

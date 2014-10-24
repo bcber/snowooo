@@ -1,5 +1,6 @@
 class Video
   include Mongoid::Document
+  include Mongoid::Timestamps
   before_save :getVid
   after_save :addToWorker
 
@@ -17,6 +18,9 @@ class Video
 
   scope :crawled, ->{where(:title.nin => [nil,''])}
 
+  has_many :comments, as: :commentable
+  accepts_nested_attributes_for :comments
+  
   def getVid
     mtch = VIDPATTERN.match link
     self.vid = mtch[1]

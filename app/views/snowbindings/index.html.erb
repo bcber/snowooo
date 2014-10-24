@@ -49,11 +49,6 @@
                   <%= snowbinding.style %>
                 </p>
               </h4>
-              
-              <% if can? :manage, snowbinding %>
-              <%= link_to 'Edit', edit_snowbinding_path(snowbinding) ,class:"btn btn-xs btn-default"%>
-              <%= link_to 'Destroy', snowbinding, method: :delete, data: { confirm: 'Are you sure?' } ,class:"btn btn-xs btn-default"%>
-              <% end %>  
             </div>
               
           </div>
@@ -70,11 +65,3 @@
     </div>
   </div>
 </div>
-
-
-
-<br>
-
-<% if can? :create, Snowbinding %>
-  <%= link_to 'New snowbinding', new_snowbinding_path,class:"btn-u" %>
-<% end %>

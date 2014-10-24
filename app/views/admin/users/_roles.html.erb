@@ -1,0 +1,26 @@
+<div class="modal fade" id="role-options-<%= @admin_user.id %>" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <a href="#" class="close" data-dismiss="modal">&#215;</a>
+        <h3>Change Role</h3>
+      </div>
+
+      <%= form_for admin_user_path(@admin_user), :html => {:method => :put} do |f| %>
+
+      <div class="modal-body">
+        <% User::ROLES.each do |role| %>
+          <%= check_box_tag "admin_user[roles][]", role , @admin_user.roles.include?(role)%><%= role %>
+        <% end %>
+      </div>
+
+      <div class="modal-footer">
+        <%= f.submit "Change Role", class: "btn btn-primary btn-xs" %>
+        <a href="#" class="btn btn-default btn-xs" data-dismiss="modal">cancel</a>
+      </div>
+
+      <% end %>
+
+    </div>
+  </div>
+</div>

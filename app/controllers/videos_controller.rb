@@ -1,5 +1,5 @@
 class VideosController < ApplicationController
-  before_action :set_video, only: [:show, :edit, :update, :destroy]
+  before_action :set_video, only: [:show, :edit, :update, :destroy, :comment]
   respond_to :html
   load_and_authorize_resource
 
@@ -9,12 +9,11 @@ class VideosController < ApplicationController
   end
 
   def show
-    respond_with(@video)
+    @comment = Comment.new
   end
 
   def new
     @video = Video.new
-    respond_with(@video)
   end
 
   def edit
@@ -28,7 +27,10 @@ class VideosController < ApplicationController
 
   def update
     @video.update(video_params)
-    respond_with(@video)
+    respond_to do |format|
+      format.html {redirect_to @video}
+      format.js
+    end
   end
 
   def destroy
@@ -42,6 +44,9 @@ class VideosController < ApplicationController
     end
 
     def video_params
-      params.require(:video).permit(:link)
+      params.require(:video).permit(
+        :link,
+        {comments_attributes: [:_destroy, :user_id, :content]}
+        )
     end
 end

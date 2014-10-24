@@ -1,5 +1,11 @@
 source 'https://ruby.taobao.org'
 
+#editor
+gem 'ckeditor'
+#file upload
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+gem 'mini_magick'
+
 # settings
 gem 'figaro'
 
@@ -49,6 +55,9 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'capistrano', '~> 3.2.0'
+
+# weibo
+gem 'omniauth-weibo-oauth2'
 
 gem "mongoid", "~> 4.0.0"
 group :development do

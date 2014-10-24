@@ -3,31 +3,33 @@ class Ability
 
   def initialize(user)
     if user
-      user.roles.each{ |role| send(role) }
+      user.roles.each{ |role| send(role, user) }
+      can :manage, User, id: user.id
     else
       default
     end
   end
 
-  def admin
+  def admin(uid)
     can :manage, :all
   end
 
-  def moderator
+  def moderator(uid)
     can :manage, Snowboard
     can :manage, Image
     can :manage, Todo
   end
 
-  def editor
-
+  def editor(uid)
+    can :create, Post
+    can :update, Post, user_id: uid
   end
 
-  def member
+  def member(uid)
     default
   end
 
-  def banned
+  def banned(uid)
 
   end
 
@@ -37,5 +39,7 @@ class Ability
     can :read, Snowbinding
     can :read, Video
     can :read, Place
+    can :read, User
+    can :read, Post
   end
 end

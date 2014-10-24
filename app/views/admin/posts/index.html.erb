@@ -1,0 +1,35 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>题目</th>
+      <th>最近置顶</th>
+      <th>最近推荐</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admin_posts.each do |admin_post| %>
+      <tr>
+        <td><%= admin_post.title %></td>
+        <td><%= admin_post.up_at %></td>
+        <td><%= admin_post.recommend_at %></td>
+        <td>
+        <%= link_to '显示', admin_post , class:"btn btn-default btn-xs" %>
+        <%= link_to '编辑', edit_post_path(admin_post), class:"btn btn-default btn-xs" %>
+        <%= link_to '置顶' , up_admin_post_path(admin_post), class:"btn btn-default btn-xs"%>
+        <%= link_to "推荐", recommend_admin_post_path(admin_post), class:"btn btn-default btn-xs" %>
+        <%= link_to '删除', admin_post, method: :delete, data: { confirm: 'Are you sure?' } , class:"btn btn-danger btn-xs"%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="text-center">
+  <div class="pagination">
+    <%= will_paginate @admin_posts %>
+  </div>
+</div>
+<br>
+
+<%= link_to 'New Post', new_post_path %>

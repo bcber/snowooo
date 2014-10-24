@@ -131,11 +131,15 @@ var App = function () {
 
     function handleHeader() {
          jQuery(window).scroll(function() {
-            if (jQuery(window).scrollTop()>100){
+            if (jQuery(window).scrollTop()>200){
                 jQuery(".header-fixed .header").addClass("header-fixed-shrink");
+                jQuery(".header-fixed .header .topbar .loginbar").addClass("hide");
+                jQuery(".navbar-brand").removeClass("hide");
             }
             else {
                 jQuery(".header-fixed .header").removeClass("header-fixed-shrink");
+                jQuery(".header-fixed .header .topbar .loginbar").removeClass("hide");
+                jQuery(".navbar-brand").addClass("hide");
             }
         });
     }

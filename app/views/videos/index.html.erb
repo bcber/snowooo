@@ -1,14 +1,5 @@
-
-
-
-
 <div class="row">
   <div class="col-sm-2">
-    <div class="row">
-      <% if  can? :create, Video%>
-        <%= link_to 'New Video', new_video_path %>
-      <% end %>
-    </div>
   </div>
   <div class="col-sm-10">
     <% @videos.each do |video| %>

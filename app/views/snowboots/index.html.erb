@@ -50,11 +50,6 @@
                       <%= snowboot.style %>
                     </h6>
                   </h5>
-                  
-                  <% if can? :manage, snowboot %>
-                  <%= link_to 'Edit', edit_snowboot_path(snowboot) ,class:"btn btn-xs btn-default"%>
-                  <%= link_to 'Destroy', snowboot, method: :delete, data: { confirm: 'Are you sure?' } ,class:"btn btn-xs btn-default"%>
-                  <% end %>  
                 </div>
               </div>
             </div>

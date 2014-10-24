@@ -1,89 +1,29 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th>key</th>
-      <th>value</th>
-    </tr>
-  </thead>
+<div class="row">
+  <div class="col-sm-3">
+    <%= image_tag @user.avatar , style:"width:100%;"%>
+    <hr>
+    <h2><%= @user.name.present? ? @user.name: t("users.messages.no_name")%></h2>
+    <h3><%= @user.email %></h3>
+  </div>
+  <div class="col-sm-9">
+    <div class="profile">
+      <h2 class="heading-md"><%= t("profile") %></h2>
 
-  <tbody>
-    <tr>
-      <th>Email</th>
-      <th><%= @user.email %></th>
-    </tr>
+      <dl class="dl-horizontal">
+        <dt><%= t("users.messages.binding_social") %></dt>
+        <dd>
+          <% @user.omniauths.each do |social| %>
+            <button class="btn  btn-<%= social.provider %>">
+              <i class="fa fa-<%= social.provider %>"></i> <%= t(social.provider) %>
+            </button>
+          <% end %>
+        </dd>
+        <hr>
+      </dl>
+    </div>
+  </div>
+</div>
 
-    <tr>
-      <th>Roles</th>
-      <th>
-        <% @user.roles.each do |role| %>
-          <%= role %>&nbsp;&nbsp;
-        <% end %>
-      </th>
-    </tr>
-
-    <tr>
-      <th>name</th>
-      <th><%= @user.name  if @user.name %></th>
-    </tr>
-    <tr>
-      <th>reset_password_send_at</th>
-      <th><%= @user.reset_password_sent_at if @user.reset_password_sent_at %></th>
-    </tr>
-    <tr>
-      <th>remember_created_at</th>
-      <th><%= @user.remember_created_at if @user.remember_created_at %></th>
-    </tr>
-    <tr>
-      <th>sign_in_count</th>
-      <th><%= @user.sign_in_count if @user.sign_in_count %></th>
-    </tr>
-    
-    <tr>
-      <th>current_sign_in_at</th>
-      <th><%= @user.current_sign_in_at if @user.current_sign_in_at %></th>
-    </tr>
-    <tr>
-      <th>last_sign_in_at</th>
-      <th><%= @user.last_sign_in_at if @user.last_sign_in_at %></th>
-    </tr>
-    <tr>
-      <th>current_sign_in_ip</th>
-      <th><%= @user.current_sign_in_ip if @user.current_sign_in_ip %></th>
-    </tr>
-    <tr>
-      <th>last_sign_in_ip</th>
-      <th><%= @user.last_sign_in_ip if @user.last_sign_in_ip %></th>
-    </tr>
-    <tr>
-      <th>confirmed_at</th>
-      <th><%= @user.confirmed_at if @user.confirmed_at %></th>
-    </tr>
-
-    <tr>
-      <th>confirmation_sent_at</th>
-      <th><%= @user.confirmation_sent_at if @user.confirmation_sent_at %></th>
-    </tr>
-    <tr>
-      <th>unconfirmed_email</th>
-      <th><%= @user.unconfirmed_email if @user.unconfirmed_email %></th>
-    </tr>
-
-
-    <tr>
-      <th>operation</th>
-      <th>
-        <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#role-options-<%= @user.id %>">change role</button>
-        <%= render 'roles' %>
-
-        <% if not @user.confirmed? %>
-          <%= link_to 'Confirmed manual', confirm_user_path ,method: :post,class:'btn btn-default btn-xs' %>    
-        <% end %>
-      </th>
-    </tr>
-  </tbody>
-</table>
-
-<%= link_to(users_path , class: 'btn btn-primary btn-xs') do%>
-  <span class="glyphicon glyphicon-chevron-left"></span>
-  Back
+<% if can? :edit, User %>
+  <%= link_to t('modify'), modify_path , class:"btn btn-default"%>
 <% end %>

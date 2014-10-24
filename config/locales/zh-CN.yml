@@ -1,0 +1,32 @@
+zh-CN:
+  weibo: "微博"
+  modify: "修改个人资料"
+  signup: "注册"
+  signin: "登录"
+  weibosignin: "微博登录"
+  todo: "项目管理"
+  adminpage: "后台"
+  back: "返回"
+  admin:
+    users: "用户管理"
+    posts: "文章管理"
+    settings: "网站设定"
+    index: "后台首页"
+  logout: "退出登录"
+  profile: "个人资料"
+  snowboard: "雪板"
+  snowboot: "雪鞋"
+  snowbinding: "固定器"
+  post: "资讯"
+  comments: "条评论"
+  comment: "评论"
+  more: "继续阅读"
+  place: "雪场"
+  video: "视频"
+  comment: "评论"
+  newpost: "写文章"
+  users:
+    messages:
+      no_name: "还没有设置昵称"
+      binding_social: "已绑定的社交帐号"
+

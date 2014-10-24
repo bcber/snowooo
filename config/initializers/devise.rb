@@ -6,6 +6,8 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   config.secret_key = '66fabc7e29ef39f3da680eb929458333b6c9c424f960368c908dd775c8dd66eedcec286634e5da373d0438780259904451e2fec449c80ff25769ac76c86f9362'
 
+  config.omniauth :weibo, '1267461088', '26dea5500d39eca95abe880905cb178d'
+
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class

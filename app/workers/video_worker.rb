@@ -15,5 +15,4 @@ class VideoWorker
     video.description = info["description"]
     video.save!
   end
-
 end

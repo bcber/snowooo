@@ -1,13 +1,14 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
-  
+  validates_uniqueness_of :name, :email
   ROLES = %w[admin moderator editor member banned]
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable, :confirmable
+  devise :omniauthable, omniauth_providers: [:weibo]
 
   ## Database authenticatable
   field :email,              type: String, default: ""
@@ -34,7 +35,8 @@ class User
   field :unconfirmed_email,    type: String # Only if using reconfirmable
 
   field :name, type: String, default: ""
-  
+  field :avatar, type: String ,default: "http://placekitten.com/g/200/200"
+
   ## Lockable
   # field :failed_attempts, type: Integer, default: 0 # Only if lock strategy is :failed_attempts
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
@@ -42,10 +44,18 @@ class User
 
   field :roles_mask, type: Integer, default: 2**ROLES.index('member')
 
-  # associations
+  # user credit
+  field :credit, type: Integer, default: 0
+
+  # comments
   has_many :todos, dependent: :destroy
+  has_many :comments
+
+  # onmiauthable
+  has_many :omniauths
 
   after_create :setAdmin
+  
   def setAdmin
     if ENV['admin_emails'].include?(email) and not has_role?(:admin)
       logger.info "*"*40+"add #{email} to admin role!"

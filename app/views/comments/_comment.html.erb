@@ -1,0 +1,14 @@
+<div class="media">
+  <span class="pull-left">
+    <%= image_tag comment.user.avatar %>
+  </span>
+  <div class="media-body">
+    <h4 class="media-heading">
+      <%= comment.user.present? ? comment.user.name: "admin" %>
+      <span class="pull-right"><%= comment.created_at.to_date %></span>
+    </h4>
+    <p>
+      <%= comment.content %>
+    </p>
+  </div>
+</div>
