@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta content="" name="description">
   <meta content="" name="author">
-  <title>Snowooo</title>
+  <title>雪圈网</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -19,7 +19,7 @@
 
   <!-- Optional theme -->
   <link href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" rel="stylesheet">
-  
+
   <!-- CSS Global Compulsory -->
   <link rel="stylesheet" href="/assets/css/style.css">
 
@@ -63,72 +63,32 @@
                     <span class="sr-only">Toggle navigation</span>
                     <span class="fa fa-bars"></span>
                 </button>
-                <a class="navbar-brand hide" href="/">
+                <a class="navbar-brand" href="/" style="visibility: hidden;">
                     <img id="logo-header" src="http://snowooo-cdn.qiniudn.com/snowooolog.png?imageMogr2/thumbnail/80x/crop/!72x72a4a18" alt="Logo">
                 </a>
               </div>
               <!-- Brand and toggle get grouped for better mobile display -->
               <div class="collapse navbar-collapse navbar-responsive-collapse">
                 <ul class="nav navbar-nav pull-left">
-                  <li><%= link_to t('post'), posts_path %></li>
-                  <li class="dropdown">
-                    <%= link_to t('snowboard'), '#', class:'dropdown-toggle', 'data-toggle' => 'dropdown' %>
-                    <ul class="dropdown-menu">
-                      <li><%= link_to "所有雪板",  snowboards_path%></li>
-                      <% Snowboard::STYLES.each do |style| %>
-                        <li> <%= link_to style, snowboards_path(style: style) %></li>
-                      <% end %>    
-                    </ul>
-                  </li>
-
-                  <li class="dropdown">
-                    <%= link_to t('snowboot'), "#", class:'dropdown-toggle', 'data-toggle' => 'dropdown' %>
-                    <ul class="dropdown-menu">
-                      <li><%= link_to "所有雪鞋",  snowboots_path%></li>
-                      <% Snowboot::STYLES.each do |style| %>
-                        <li> <%= link_to style, snowboots_path(style: style) %></li>
-                      <% end %>
-                    </ul>
-                  </li>
-
-                  <li class="dropdown">
-                    <%= link_to t('snowbinding'), "#", class:'dropdown-toggle', 'data-toggle' => 'dropdown' %>
-                    <ul class="dropdown-menu">
-                      <li><%= link_to "所有固定器",  snowbindings_path%></li>
-                      <% Snowbinding::STYLES.each do |style| %>
-                        <li> <%= link_to style, snowbindings_path(style: style) %></li>
-                      <% end %>
-                    </ul>
-                  </li>
-
-                  <li class="dropdown">
-                    <%= link_to t('place'), "#", class:'dropdown-toggle', 'data-toggle' => 'dropdown' %>
-                    <ul class="dropdown-menu">
-                        <li><%= link_to "所有雪场", places_path %></li>
-                    </ul>
-                  </li>
-
-                  <li class="dropdown">
-                    <%= link_to t('video'), videos_path, class:'dropdown-toggle', 'data-toggle' => 'dropdown' %>
-                    <ul class="dropdown-menu">
-                      <li><%= link_to "所有的视频",  videos_path %></li>
-                      <li class="dropdown-submenu">
-                      </li>
-                    </ul>
-                  </li>
-
-                </ul> 
+                    <%= render 'common/menu_bar' %>
+                </ul>
 
                 <ul class="nav navbar-nav">
                   <%= render 'common/user_nav' %>
                 </ul>
               </div>
             </div>
-        </div>            
+        </div>
         <!-- End Navbar -->
   </div>
 
-  <div class="container content">
+  <div class="container content" style="padding-top:50px;">
+    <% if notice %>
+        <div class="alert alert-info"><%= notice %></div>
+    <% end %>
+    <% if alert %>
+        <div class="alert alert-danger"><%= alert %></div>
+    <% end %>
     <div class="row">
       <%= yield %>
     </div>
@@ -155,13 +115,10 @@
 </body>
 <!-- JS Global Compulsory -->
 <script src="http://cdn.bootcss.com/jquery-migrate/1.2.1/jquery-migrate.min.js"></script>
-
 <!-- Latest compiled and minified JavaScript -->
 <script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
 <!-- JS Implementing Plugins -->
 <script src="/assets/plugins/back-to-top.js"></script>
-
 <!-- JS Page Level -->
 <script src="/assets/js/app.js"></script>
 <script>

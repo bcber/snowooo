@@ -1,0 +1,46 @@
+<li><%= link_to t('post'), posts_path %></li>
+<li class="dropdown">
+  <%= link_to t('snowboard'),'#', class:'dropdown-toggle', 'data-toggle' => 'dropdown' %>
+  <ul class="dropdown-menu">
+    <li><%= link_to "所有雪板",  snowboards_path%></li>
+    <% Snowboard::STYLES.each do |style| %>
+        <li> <%= link_to style, snowboards_path(style: style) %></li>
+    <% end %>
+  </ul>
+</li>
+
+<li class="dropdown">
+  <%= link_to t('snowboot'), "#", class:'dropdown-toggle', 'data-toggle' => 'dropdown' %>
+  <ul class="dropdown-menu">
+    <li><%= link_to "所有雪鞋",  snowboots_path%></li>
+    <% Snowboot::STYLES.each do |style| %>
+        <li> <%= link_to style, snowboots_path(style: style) %></li>
+    <% end %>
+  </ul>
+</li>
+
+<li class="dropdown">
+  <%= link_to t('snowbinding'), "#", class:'dropdown-toggle', 'data-toggle' => 'dropdown' %>
+  <ul class="dropdown-menu">
+    <li><%= link_to "所有固定器",  snowbindings_path%></li>
+    <% Snowbinding::STYLES.each do |style| %>
+        <li> <%= link_to style, snowbindings_path(style: style) %></li>
+    <% end %>
+  </ul>
+</li>
+
+<li class="dropdown">
+  <%= link_to t('place'), "#", class:'dropdown-toggle', 'data-toggle' => 'dropdown' %>
+  <ul class="dropdown-menu">
+    <li><%= link_to "所有雪场", places_path %></li>
+  </ul>
+</li>
+
+<li class="dropdown">
+  <%= link_to t('video'), videos_path, class:'dropdown-toggle', 'data-toggle' => 'dropdown' %>
+  <ul class="dropdown-menu">
+    <li><%= link_to "所有的视频",  videos_path %></li>
+    <li class="dropdown-submenu">
+    </li>
+  </ul>
+</li>

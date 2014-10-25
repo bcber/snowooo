@@ -131,17 +131,20 @@ var App = function () {
 
     function handleHeader() {
          jQuery(window).scroll(function() {
-            if (jQuery(window).scrollTop()>10   ){
-                jQuery(".header-fixed .header").addClass("header-fixed-shrink");
-                jQuery(".header-fixed .header .topbar .loginbar").addClass("hide");
-                jQuery(".navbar-brand").removeClass("hide");
+            if($(document).height()-$(window).height() > 800){
+                if (jQuery(window).scrollTop()> 100   ){
+                    jQuery(".header-fixed .header").addClass("header-fixed-shrink");
+                    jQuery(".header-fixed .header .topbar .loginbar").slideUp();
+                    jQuery(".navbar-brand").css('visibility','visible');
+                }
+                else {
+                    jQuery(".header-fixed .header").removeClass("header-fixed-shrink");
+                    jQuery(".header-fixed .header .topbar .loginbar").slideDown();
+                    jQuery(".navbar-brand").css('visibility','hidden');
+                }
             }
-            else {
-                jQuery(".header-fixed .header").removeClass("header-fixed-shrink");
-                jQuery(".header-fixed .header .topbar .loginbar").removeClass("hide");
-                jQuery(".navbar-brand").addClass("hide");
-            }
-        });
+
+         });
     }
 
     return {

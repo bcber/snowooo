@@ -60,7 +60,7 @@
 
     <div class="text-center">
       <div class="pagination">
-        <%= will_paginate @snowboards %>
+        <%= will_paginate @snowboards , renderer: BootstrapPagination::Rails%>
       </div>
     </div>
   </div>

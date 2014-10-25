@@ -1,0 +1,29 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th>视频链接</th>
+    <th>标题</th>
+    <th>操作</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @admin_videos.each do |admin_video| %>
+      <tr>
+        <td><%= link_to '优酷链接', admin_video.url, target:"_blank" %></td>
+        <td><%= admin_video.title %></td>
+        <td>
+          <%= link_to '详情', admin_video ,class: "btn btn-default btn-xs"%>
+          <%= link_to '编辑', edit_admin_video_path(admin_video) ,class: "btn btn-default btn-xs"%>
+          <%= link_to '删除', admin_video, method: :delete, data: { confirm: 'Are you sure?' } ,class: "btn btn-danger btn-xs"%></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<div class="text-center">
+  <div class="pagination">
+    <%= will_paginate @admin_videos , renderer: BootstrapPagination::Rails%>
+  </div>
+</div>
+<br/>
+<%= link_to '新建视频', new_admin_video_path, class:"btn btn-default btn-xs" %>

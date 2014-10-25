@@ -30,43 +30,11 @@
       
     </div>
 
-    <% @posts.each do |post| %>
-      <div class="row margin-bottom-40">
-        <div class="col-sm-4">
-          <%= image_tag post.cover.medium, class:"img-responsive" %>
-        </div>
-        <div class="col-sm-8">
-          <h2><%= post.title %></h2>
-          <ul class="list-unstyled list-inline">
-            <li>
-              <i class="fa fa-calendar"></i>
-              <%= post.created_at.to_date %>
-            </li>
-            <li>
-              <i class="fa fa-comments"></i>
-              <%= post.comments.count %> <%= t("comments") %>
-            </li>
-            <li>
-              <i class="fa fa-pencil"></i>
-              <%= post.user.present? ? post.user.name: "admin" %>
-            </li>
-          </ul>
-          <p>
-            <%= truncate(post.content, length: 100) %>
-          </p>
-          <p>
-            <%= link_to post, class:"btn-u btn-u-small" do %>
-              <i class="fa fa-location-arrow"></i>
-              <%= t("more") %>
-            <% end %>
-          </p>
-        </div>
-      </div>
-    <% end %>
+    <%= render partial: "post", collection: @posts %>
 
     <div class="text-center">
       <div class="pagination">
-        <%= will_paginate @posts %>
+        <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
       </div>
     </div>
   </div>

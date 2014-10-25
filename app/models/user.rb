@@ -2,6 +2,7 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
   validates_uniqueness_of :name, :email
+  validates_presence_of :name, :email
   ROLES = %w[admin moderator editor member banned]
   
   # Include default devise modules. Others available are:
@@ -11,7 +12,7 @@ class User
   devise :omniauthable, omniauth_providers: [:weibo]
 
   ## Database authenticatable
-  field :email,              type: String, default: ""
+  field :email,              type: String
   field :encrypted_password, type: String, default: ""
 
   ## Recoverable
@@ -35,7 +36,7 @@ class User
   field :unconfirmed_email,    type: String # Only if using reconfirmable
 
   field :name, type: String, default: ""
-  field :avatar, type: String
+  field :avatar
   mount_uploader :avatar, AvatarUploader
 
   ## Lockable

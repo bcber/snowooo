@@ -23,7 +23,10 @@ class MailWorker
     data[:text] = confirm_email_text
     data[:html] = confirm_email_html
 
-    RestClient.post("http://bin.mailgun.net/5d738565",data) if Rails.env.development?
-    RestClient.post("https://api:key-4d6c4032665e5a0b11445847b0892074@api.mailgun.net/v2/snowooo.nxbtch.com/messages", data) if Rails.env.production?
+    if Rails.env.development?
+      RestClient.post("http://bin.mailgun.net/7458c6a8",data)
+    else
+      RestClient.post("https://api:key-4d6c4032665e5a0b11445847b0892074@api.mailgun.net/v2/snowooo.nxbtch.com/messages", data)
+    end
   end
 end

@@ -1,0 +1,21 @@
+<%= form_for(@admin_video,url: admin_videos_path(@admin_video)) do |f| %>
+    <% if @admin_video.errors.any? %>
+        <div class="alert alert-danger">
+          <h2><%= pluralize(@admin_video.errors.count, "error") %></h2>
+
+          <ul>
+            <% @admin_video.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <div class="field">
+      <%= f.label :url %><br>
+      <%= f.text_field :url ,class:"form-control"%>
+    </div>
+    <br/>
+    <div class="actions">
+      <%= f.submit "确认", class:"btn btn-default btn-xs"%>
+    </div>
+<% end %>

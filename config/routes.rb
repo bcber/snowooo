@@ -58,6 +58,7 @@ Rails.application.routes.draw do
     root to: "home#index"
     resources :settings
     resources :users
+    resources :videos
     resources :posts do
       member do
         get 'up'

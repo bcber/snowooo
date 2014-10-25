@@ -1,5 +1,6 @@
 class VideoWorker
   include Sidekiq::Worker
+  sidekiq_options :retry => 5
 
   @@client_id = "c11677d902e397c0"
   @@client_secret = "797976d12157d7c1db2c814313ecb192"

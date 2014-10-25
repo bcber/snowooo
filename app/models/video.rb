@@ -7,12 +7,12 @@ class Video
 
   VIDPATTERN = /_([a-zA-Z0-9]+)\./
 
-  validates :link, format: { with: /youku\.com\/v_show\/id_[\w]+\.html/,
-    message: "not a youku link" }, uniqueness: true
+  validates :url, format: { with: /youku\.com\/v_show\/id_[\w]+\.html/,
+    message: "不是优酷的链接" }, uniqueness: true
 
   field :vid, type: String
   field :title, type: String
-  field :link, type: String
+  field :url, type: String
   field :thumbnail, type: String
   field :description, type: String
 
@@ -22,12 +22,14 @@ class Video
   accepts_nested_attributes_for :comments
   
   def getVid
-    mtch = VIDPATTERN.match link
+    mtch = VIDPATTERN.match url
     self.vid = mtch[1]
   end
 
   def addToWorker
-    if self.title.blank? and self.thumbnail.blank? and self.description.blank? 
+    if self.title.blank?
+      logger.info "*"*60
+      logger.info "add video to queue"
       VideoWorker.perform_async(self.id.to_s)
     end
   end

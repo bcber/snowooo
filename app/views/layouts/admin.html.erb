@@ -39,6 +39,7 @@
           <li><%= link_to t("admin.index"), admin_root_path %></li>
         </div>
         <div class="nav navbar-nav">
+          <li><%= link_to t("admin.videos") , admin_videos_path %></li>
           <li><%= link_to t("admin.users") , admin_users_path%></li>
           <li><%= link_to t("admin.posts") , admin_posts_path %></li>
           <li><%= link_to t("admin.settings"), admin_settings_path %></li>
@@ -52,6 +53,7 @@
     <% if notice %>
       <div class="alert alert-info"><%= notice %></div>
     <% end %>
+
     <div id="main">
       <%= yield %>
     </div>
