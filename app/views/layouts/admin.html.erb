@@ -39,9 +39,12 @@
           <li><%= link_to t("admin.index"), admin_root_path %></li>
         </div>
         <div class="nav navbar-nav">
+          <li><%= link_to "雪板管理", admin_snowboards_path %></li>
+          <li><%= link_to "雪鞋管理", admin_snowboots_path %></li>
+          <li><%= link_to "固定器管理", admin_snowbindings_path %></li>
+          <li><%= link_to t("admin.places"), admin_places_path %></li>
           <li><%= link_to t("admin.videos") , admin_videos_path %></li>
           <li><%= link_to t("admin.users") , admin_users_path%></li>
-          <li><%= link_to t("admin.posts") , admin_posts_path %></li>
           <li><%= link_to t("admin.settings"), admin_settings_path %></li>
           <li><%= link_to("回到前台", root_path)%></li>
         </div>

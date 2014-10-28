@@ -1,23 +1,12 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
+  post '/rate' => 'rater#create', :as => 'rate'
   mount Ckeditor::Engine => '/ckeditor'
 
-  resources :posts do 
+  resources :places ,:snowboards , :posts, :snowbindings ,:snowboots ,:videos do
     resources :comments
   end
   resources :comments
-  resources :places do 
-    resources :comments
-  end
-  resources :snowbindings do 
-    resources :comments
-  end
-  resources :snowboots do 
-    resources :comments
-  end
-  resources :videos do 
-    resources :comments
-  end
 
   authenticate :user, lambda { |u| u.has_role? :admin } do
     mount Sidekiq::Web => '/sidekiq'
@@ -45,20 +34,17 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :snowboards do
-    member do 
-      get 'crawl'
-    end
-    collection do
-      get 'noimage'
-    end
-  end
+
 
   namespace :admin do 
     root to: "home#index"
+    resources :snowboards
+    resources :snowboots
+    resources :snowbindings
     resources :settings
     resources :users
     resources :videos
+    resources :places
     resources :posts do
       member do
         get 'up'

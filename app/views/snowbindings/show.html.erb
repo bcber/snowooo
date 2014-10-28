@@ -1,4 +1,144 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-sm-4">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1> <strong><%= @snowbinding.name %></strong></h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">固定器评分(<%= @snowbinding.rates.count %> 个人评分)<h1><%= @snowbinding.average.present?? @snowbinding.average.avg : 0 %></h1> <%= rating_for @snowbinding %></div>
+    </div>
+    <hr/>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="headline">
+          <h4>详情</h4>
+        </div>
+        <table class="table table-striped">
+          <tbody>
+          <tr>
+            <td><%= t("snowbinding.style") %></td>
+            <td><%= @snowbinding.style %></td>
+          </tr>
+          <tr>
+            <td><%= t("snowbinding.material") %></td>
+            <td><%= @snowbinding.material %></td>
+          </tr>
+          <tr>
+            <td><%= t("snowbinding.baseplate") %></td>
+            <td><%= @snowbinding.baseplate %></td>
+          </tr>
+          <tr>
+            <td><%= t("snowbinding.highback") %></td>
+            <td><%= @snowbinding.highback %></td>
+          </tr>
+          <tr>
+            <td><%= t("snowbinding.anklestrap") %></td>
+            <td><%= @snowbinding.anklestrap %></td>
+          </tr>
+          <tr>
+            <td><%= t("snowbinding.toestrap") %></td>
+            <td><%= @snowbinding.toestrap %></td>
+          </tr>
+          <tr>
+            <td><%= t("snowbinding.ratchet") %></td>
+            <td><%= @snowbinding.ratchet %></td>
+          </tr>
+          <tr>
+            <td><%= t("snowbinding.baseplatepadding") %></td>
+            <td><%= @snowbinding.baseplatepadding %></td>
+          </tr>
+          <tr>
+            <td><%= t("snowbinding.flex") %></td>
+            <td><%= @snowbinding.flex %></td>
+          </tr>
+          <tr>
+            <td><%= t("snowbinding.compatibility") %></td>
+            <td><%= @snowbinding.compatibility %></td>
+          </tr>
+          <tr>
+            <td><%= t("snowbinding.recommendeduse") %></td>
+            <td><%= @snowbinding.recommendeduse %></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-8">
+    <div class="row">
+      <div class="col-sm-12">
+        <h2 style="text-align:right;"><%= @snowbinding.brand %></h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+        <div class="owl-carousel">
+          <% @snowbinding.images.each do |img| %>
+              <div class="item"><%= image_tag img.medium ,style:"width:100%"%></div>
+          <% end %>
+        </div>
+      </div>
+    </div>
 
-<%= link_to 'Edit', edit_snowbinding_path(@snowbinding) %> |
-<%= link_to 'Back', snowbindings_path %>
+    <hr/>
+
+    <div class="row">
+      <div class="headline"><h2>固定器介绍</h2></div>
+      <div class="col-sm-12">
+        <%=  @snowbinding.description.to_s.html_safe   %>
+      </div>
+    </div>
+
+    <hr/>
+    <div class="row">
+      <div class="headline">
+        <h4><span class="comment-count"><%= @snowbinding.comments.count %></span> 条评论</h4>
+      </div>
+    </div>
+
+    <div class="comment_container">
+      <%= render partial: "comments/comment", collection: @snowbinding.comments %>
+    </div>
+
+    <hr/>
+    <% if current_user %>
+        <div class="row">
+          <%= form_for [@snowbinding, Comment.new], remote: true do |f| %>
+              <div class="post-comment">
+                <div class="headline">
+                  <h3><%= t("comment") %></h3>
+                </div>
+                <div class="field">
+                  <%= f.label :content %><br>
+                  <%= f.text_area :content , class: "form-control", rows:"8"%>
+                </div>
+
+                <br>
+                <div class="actions">
+                  <%= f.submit t("comment"), class:"btn-u" %>
+                </div>
+              </div>
+          <% end %>
+        </div>
+
+    <% else %>
+        <%= link_to '登录', login_path %>或<%= link_to '注册' , signup_path%>评论此雪场
+    <% end %>
+
+  </div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    $('.owl-carousel').owlCarousel({
+        slideSpeed : 300,
+        paginationSpeed : 400,
+        singleItem:true
+        // "singleItem:true" is a shortcut for:
+        // items : 1,
+        // itemsDesktop : false,
+        // itemsDesktopSmall : false,
+        // itemsTablet: false,
+        // itemsMobile : false
+    });
+</script>

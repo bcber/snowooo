@@ -1,0 +1,22 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th>名称</th>
+    <th>创建时间</th>
+    <th>操作</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @snowboards.each do |snowboard| %>
+      <tr>
+        <td><%= snowboard.name %></td>
+        <td><%= snowboard.created_at %></td>
+        <td>
+          <%= link_to '详情', snowboard, class: "btn btn-default btn-xs" %>
+          <%= link_to '编辑', snowboard, class: "btn btn-default btn-xs" %>
+          <%= link_to '删除', snowboard, data:{confirm:"确定?"},method: :delete,class: "btn btn-default btn-xs" %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

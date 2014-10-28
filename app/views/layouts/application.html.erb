@@ -30,10 +30,17 @@
   <!-- CSS Theme -->
   <link rel="stylesheet" href="/assets/css/themes/default.css">
 
+
+  <!--owlgraphic carousel-->
+  <link href="http://cdn.bootcss.com/owl-carousel/1.32/owl.carousel.min.css" rel="stylesheet">
+  <link href="http://cdn.bootcss.com/owl-carousel/1.32/owl.theme.min.css" rel="stylesheet">
+
   <!-- CSS Brand Button plugin -->
   <link rel="stylesheet" href="/assets/css/plugins/brand-buttons/brand-buttons.css">
   <link rel="stylesheet" href="http://nxbtch-cdn.qiniudn.com/css/pages/page_404_error.css"/>
-  
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=AoosGLCN5hncfMh6u3IoZa90"></script>
+  <script src="http://cdn.bootcss.com/owl-carousel/1.32/owl.carousel.min.js"></script>
+  <%= yield :javascript_includes %>
 </head>
 <body class="header-fixed">
   <div class="header">
@@ -92,16 +99,9 @@
     <div class="row">
       <%= yield %>
     </div>
-
-    <hr/>
-
-    <div class="row">
-      <%= link_to  url_for(:back), class: 'btn btn-info' do %>
-          <span class="glyphicon glyphicon-backward"></span>
-          <%= t("back") %>
-      <% end %>
-    </div>
   </div>
+
+  <%= render 'common/footer' %>
 
   <% if Rails.env.development? %>
   <div class="well">

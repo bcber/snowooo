@@ -3,15 +3,14 @@ source 'https://ruby.taobao.org'
 #editor
 gem 'ckeditor'
 #file upload
+gem 'carrierwave'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+gem 'carrierwave-qiniu'
 gem 'mongoid-grid_fs', github: 'ahoward/mongoid-grid_fs'
 gem 'mini_magick'
 
 # settings
 gem 'figaro'
-
-# qiniu
-gem 'qiniu'
 
 # crontab
 gem 'whenever', :require => false
@@ -62,6 +61,10 @@ gem 'will_paginate-bootstrap'
 gem 'omniauth-weibo-oauth2'
 
 gem "mongoid", "~> 4.0.0"
+
+# rating
+gem 'mongoid-letsrate'
+
 group :development do
   gem 'capistrano-rails', '~> 1.1.1'
   gem 'spring'
@@ -69,6 +72,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'capistrano-sidekiq'
+  gem 'pry-rails'
 end
 
 # Use ActiveModel has_secure_password

@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
     request.env['devise.mapping'] if Rails.env.development?
   end
 
+  def year
+    Time.now.year
+  end
+
   def admin?
     user_signed_in? and current_user.has_role? :admin
   end
@@ -26,5 +30,5 @@ class ApplicationController < ActionController::Base
            handler: [:erb], status: status, layout: 'application'
   end
 
-  helper_method :info, :admin?
+  helper_method :info, :admin?, :year
 end

@@ -1,4 +1,105 @@
-<% if can? :manage, Place %>
-<%= link_to 'Edit', edit_place_path(@place) %> |
-<%= link_to 'Back', places_path %>
+<div class="row">
+  <div class="col-sm-9">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1><%= @place.name %></h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="owl-carousel">
+          <% @place.place_images.each do |img| %>
+          <div class="item"><%= image_tag img.original.medium ,style:"width:100%"%></div>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="row">
+          <div class="col-sm-12">
+            场地评分(<%= @place.rates.count %> 个人评分)<h1><%= @place.average.present?? @place.average.avg : 0 %></h1> <%= rating_for @place %>
+          </div>
+        </div>
+        <hr/>
+        <div class="row">
+          <div class="col-sm-12">
+               <%= link_to @place.site , target:"_blank",class:"btn btn-default btn-xs" do %>
+                  <span class="glyphicon glyphicon-send"></span>
+                  雪场官网
+                  <% end %>
+               <button class="btn btn-default btn-xs">
+                 <span class="glyphicon glyphicon-earphone"></span> <%= @place.phone %>
+               </button>
+          </div>
+
+        </div>
+        <hr/>
+        <div class="row">
+          <div class="col-sm-12">
+            <%= @place.address %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr/>
+    <div class="row">
+      <div class="col-sm-12">
+        <h3>雪场简介:</h3>
+        <p>
+          <%= @place.description %>
+        </p>
+      </div>
+    </div>
+
+    <hr/>
+    <div class="media">
+      <h3> <span class="comment-count"><%= @place.comments.count %></span> <%= t("comments") %></h3>
+    </div>
+
+    <div class="comment_container">
+      <%= render partial: "comments/comment", collection: @place.comments %>
+    </div>
+
+    <hr/>
+    <% if current_user %>
+        <%= form_for [@place, Comment.new], remote: true do |f| %>
+            <%= render 'comments/form'%>
+        <% end %>
+    <% else %>
+        <%= link_to '登录', login_path %>或<%= link_to '注册' , signup_path%>评论此雪场
+    <% end %>
+
+  </div>
+  <div class="col-sm-3">
+    <div class="row">
+      <p>地图</p>
+      <div id="baidumap" class="map">
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :javascript_includes do %>
+    <%= javascript_include_tag 'jquery.raty.js','letsrate.js'%>
 <% end %>
+
+<script type="text/javascript" charset="utf-8">
+    $('.owl-carousel').owlCarousel({
+        slideSpeed : 300,
+        paginationSpeed : 400,
+        singleItem:true
+
+        // "singleItem:true" is a shortcut for:
+        // items : 1,
+        // itemsDesktop : false,
+        // itemsDesktopSmall : false,
+        // itemsTablet: false,
+        // itemsMobile : false
+    });
+</script>
+
+<script type="text/javascript">
+    var map = new BMap.Map("baidumap");    // 创建Map实例
+    map.centerAndZoom(new BMap.Point(<%= @place.xcoordinate %>, <%= @place.ycoordinate %>), 11);  // 初始化地图,设置中心点坐标和地图级别
+    map.setCurrentCity("北京");          // 设置地图显示的城市 此项是必须设置的
+    map.disableDragging();
+</script>

@@ -11,7 +11,9 @@ zh-CN:
   todo: "项目管理"
   adminpage: "后台"
   back: "返回"
+  freestyle: "自由风格"
   admin:
+    places: "场地管理"
     users: "用户管理"
     posts: "文章管理"
     settings: "网站设定"
@@ -58,3 +60,9 @@ zh-CN:
         images: "图片"
       comment:
         content: "评论内容"
+      place:
+        name: "名称"
+        region: "所属地区"
+        site: "场地官网"
+        description: "场地介绍"
+        images: "图片"

@@ -1,0 +1,27 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>名称</th>
+      <th>所属地区</th>
+      <th>官网</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admin_places.each do |admin_place| %>
+      <tr>
+        <td><%= admin_place.name %></td>
+        <td><%= admin_place.region %></td>
+        <td><%= admin_place.site %></td>
+        <td><%= link_to '详情', admin_place, class:"btn btn-default btn-xs" %>
+        <%= link_to '编辑', edit_admin_place_path(admin_place) , class:"btn btn-default btn-xs"%>
+        <%= link_to '删除', admin_place_path(admin_place), method: :delete, data: { confirm: 'Are you sure?' } , class:"btn btn-danger btn-xs"%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '新建场地', new_admin_place_path ,class:"btn btn-default btn-xs"%>

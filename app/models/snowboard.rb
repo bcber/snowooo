@@ -1,6 +1,8 @@
 class Snowboard
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Letsrate
+  letsrate_rateable
 
   STYLES = Snowboard.all.pluck(:style).uniq
 
@@ -19,32 +21,30 @@ class Snowboard
     end
   end
 
-  
-
   # property
-  field :name, type:String
-  field :brand, type: String
-  field :length, type: String
-  field :profile, type: String
-  field :shape, type: String
-  field :style, type: String
-  field :flex, type: String
-  field :effectiveedge, type: String
-  field :waistwidth, type: String
-  field :sidecutradius, type: String
-  field :stancewidth, type: String
-  field :stancesetback, type: String
-  field :mount, type: String
-  field :core, type: String
-  field :wrap, type: String
-  field :sidewalls, type: String
-  field :edge, type: String
-  field :base, type: String
-  field :recommendedriderweight, type: String
-  field :recommendeduse, type: String
-  field :manufacturerwarranty, type: String
-  field :description, type: String
-  field :origurl , type: String
+  field :name
+  field :brand
+  field :length
+  field :profile
+  field :shape
+  field :style
+  field :flex
+  field :effectiveedge
+  field :waistwidth
+  field :sidecutradius
+  field :stancewidth
+  field :stancesetback
+  field :mount
+  field :core
+  field :wrap
+  field :sidewalls
+  field :edge
+  field :base
+  field :recommendedriderweight
+  field :recommendeduse
+  field :manufacturerwarranty
+  field :description
+  field :origurl
 
   field :review, type: Hash
 
@@ -52,5 +52,8 @@ class Snowboard
   accepts_nested_attributes_for :images, reject_if: -> (a) {
     a[:small].blank? or a[:medium].blank? or a[:large].blank?
   }, allow_destroy: true
-  
+
+  has_many :comments, as: :commentable
+  accepts_nested_attributes_for :comments
+
 end

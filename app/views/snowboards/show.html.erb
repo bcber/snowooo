@@ -1,99 +1,147 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-sm-4">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1> <strong><%= @snowboard.name %></strong></h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">雪板评分(<%= @snowboard.rates.count %> 个人评分)<h1><%= @snowboard.average.present?? @snowboard.average.avg : 0 %></h1> <%= rating_for @snowboard %></div>
+    </div>
+    <hr/>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="headline">
+          <h4>技术指标</h4>
+        </div>
+        <table class="table table-striped">
+          <tbody>
+          <tr>
+            <td>风格</td>
+            <td><%= @snowboard.style %></td>
+          </tr>
+          <tr>
+            <td>长度</td>
+            <td>
+              <%= @snowboard.length %>
+            </td>
+          </tr>
+          <tr>
+            <td>profile</td>
+            <td><%= @snowboard.profile %></td>
+          </tr>
+          <tr>
+            <td>shape</td>
+            <td><%= @snowboard.shape %></td>
+          </tr>
+          <tr>
+            <td>flex</td>
+            <td><%= @snowboard.flex %></td>
+          </tr>
+          <tr>
+            <td>effectiveEdge</td>
+            <td><%= @snowboard.effectiveedge %></td>
+          </tr>
+          <tr>
+            <td>waistWidth</td>
+            <td><%= @snowboard.waistwidth %></td>
+          </tr>
+          <tr>
+            <td>sidecutRadius</td>
+            <td><%= @snowboard.sidecutradius %></td>
+          </tr>
+          <tr>
+            <td>stanceWidth</td>
+            <td><%= @snowboard.stancewidth %></td>
+          </tr>
+          <tr>
+            <td>stanceSetback</td>
+            <td><%= @snowboard.stancesetback %></td>
+          </tr>
+          <tr>
+            <td>mount</td>
+            <td><%= @snowboard.mount %></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-8">
+    <div class="row">
+      <div class="col-sm-12">
+        <h2 style="text-align:right;"><%= @snowboard.brand %></h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+        <div class="owl-carousel">
+          <% @snowboard.images.each do |img| %>
+              <div class="item"><%= image_tag img.medium ,style:"width:100%"%></div>
+          <% end %>
+        </div>
+      </div>
+    </div>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>key</th>
-      <th>value</th>
-    </tr>
-  </thead>
+    <hr/>
 
-  <tbody>
-    <tr>
-      <td>name</td>
-      <td><%= @snowboard.name %></td>
-    </tr>
-  
-    <tr>
-      <td>style</td>
-      <td><%= @snowboard.style %></td>
-    </tr>
-    <tr>
-      <td>brand</td>
-      <td><%= @snowboard.brand %></td>
-    </tr>
-    <tr>
-      <td>length</td>
-      <td>
-        <%= @snowboard.length %>         
-      </td>
-    </tr>
-    <tr>
-      <td>profile</td>
-      <td><%= @snowboard.profile %></td> 
-    </tr>
-    <tr>
-      <td>shape</td>
-      <td><%= @snowboard.shape %></td>
-    </tr>
-    <tr>
-      <td>flex</td>
-      <td><%= @snowboard.flex %></td>
-    </tr>
-    <tr>
-      <td>effectiveEdge</td>
-      <td><%= @snowboard.effectiveedge %></td>
-    </tr>
-    <tr>
-      <td>waistWidth</td>
-      <td><%= @snowboard.waistwidth %></td>
-    </tr>
-    <tr>
-      <td>sidecutRadius</td>
-      <td><%= @snowboard.sidecutradius %></td>
-    </tr>
-    <tr>
-      <td>stanceWidth</td>
-      <td><%= @snowboard.stancewidth %></td>
-    </tr>
-    <tr>
-      <td>stanceSetback</td>
-      <td><%= @snowboard.stancesetback %></td>
-    </tr>
-    <tr>
-      <td>mount</td>
-      <td><%= @snowboard.mount %></td>
-    </tr>
-    <tr>
-      <td>images</td>
-      <td>
-        <% @snowboard.images.each do |image| %>
-          <div class="row">
-            <h3><%= image.color %></h3>
-            <br>
-            <%= image_tag image.small , class:"img-thumbnail" , style:"width:50px;hegith:50px"%>
-            <%= image_tag image.qismall , class:"img-thumbnail" , style:"width:50px;hegith:50px"%>
-            <br>
-            <%= image_tag image.medium , class:"img-thumbnail",style:"width:100px;hegith:100px"%>
-            <%= image_tag image.qimedium , class:"img-thumbnail",style:"width:100px;hegith:100px"%>
-            <br>
-            <%= image_tag image.large , class:"img-thumbnail",style:"width:150px;hegith:150px"%>
-            <%= image_tag image.qilarge , class:"img-thumbnail",style:"width:150px;hegith:150px"%>
-          </div>
-        <% end %>
-      </td>
-    </tr>
-    <tr>
-      <td>original url</td>
-      <td>
-        <%= link_to @snowboard.origurl, @snowboard.origurl, target: "_blank" %>
-      </td>
-    </tr>
-  </tbody>
-</table>
+    <div class="row">
+      <div class="headline"><h2>雪板介绍</h2></div>
+      <div class="col-sm-12">
+        <%= @snowboard.description.html_safe %>
+      </div>
+    </div>
 
-<% if can? :edit, Snowboard %>
-  <%= link_to 'Edit', edit_snowboard_path(@snowboard) , class: "btn-u btn-u-sea"%> |
-<% end %>
+    <hr/>
+    <div class="row">
+      <div class="headline">
+        <h4><span class="comment-count"><%= @snowboard.comments.count %></span> 条评论</h4>
+      </div>
+    </div>
 
-<%= link_to 'Back', snowboards_path , class: "btn-u btn-u-default btn-xs" %>
+    <div class="comment_container">
+      <%= render partial: "comments/comment", collection: @snowboard.comments %>
+    </div>
+
+    <hr/>
+    <% if current_user %>
+        <div class="row">
+            <%= form_for [@snowboard, Comment.new], remote: true do |f| %>
+                <div class="post-comment">
+                  <div class="headline">
+                    <h3><%= t("comment") %></h3>
+                  </div>
+                  <div class="field">
+                    <%= f.label :content %><br>
+                    <%= f.text_area :content , class: "form-control", rows:"8"%>
+                  </div>
+
+                  <br>
+                  <div class="actions">
+                    <%= f.submit t("comment"), class:"btn-u" %>
+                  </div>
+                </div>
+            <% end %>
+        </div>
+
+    <% else %>
+        <%= link_to '登录', login_path %>或<%= link_to '注册' , signup_path%>评论此雪场
+    <% end %>
+
+  </div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    $('.owl-carousel').owlCarousel({
+        slideSpeed : 300,
+        paginationSpeed : 400,
+        singleItem:true
+
+        // "singleItem:true" is a shortcut for:
+        // items : 1,
+        // itemsDesktop : false,
+        // itemsDesktopSmall : false,
+        // itemsTablet: false,
+        // itemsMobile : false
+    });
+</script>

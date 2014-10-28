@@ -123,7 +123,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="bcrypt (v3.1.7, RVM: ruby-1.9.3-p547 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bson (v2.3.0, RVM: ruby-1.9.3-p547 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.2, RVM: ruby-1.9.3-p547 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bundler (v1.6.2, RVM: ruby-1.9.3-p547 [global]) [gem]" level="application" />
@@ -138,9 +137,7 @@
     <orderEntry type="library" scope="PROVIDED" name="multi_json (v1.10.1, RVM: ruby-1.9.3-p547 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="multi_xml (v0.5.5, RVM: ruby-1.9.3-p547 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="multipart-post (v2.0.0, RVM: ruby-1.9.3-p547 [global]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="oauth2 (v0.9.4, RVM: ruby-1.9.3-p547 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="omniauth (v1.2.2, RVM: ruby-1.9.3-p547 [global]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="omniauth-oauth2 (v1.1.2, RVM: ruby-1.9.3-p547 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="optionable (v0.2.0, RVM: ruby-1.9.3-p547 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="origin (v2.1.1, RVM: ruby-1.9.3-p547 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="orm_adapter (v0.5.0, RVM: ruby-1.9.3-p547 [global]) [gem]" level="application" />

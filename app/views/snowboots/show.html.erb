@@ -1,4 +1,105 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-sm-4">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1> <strong><%= @snowboot.name %></strong></h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">雪鞋评分(<%= @snowboot.rates.count %> 个人评分)<h1><%= @snowboot.average.present?? @snowboot.average.avg : 0 %></h1> <%= rating_for @snowboot %></div>
+    </div>
+    <hr/>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="headline">
+          <h4>详情</h4>
+        </div>
+        <table class="table table-striped">
+          <tbody>
+          <tr>
+            <td>风格</td>
+            <td><%= @snowboot.style %></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-8">
+    <div class="row">
+      <div class="col-sm-12">
+        <h2 style="text-align:right;"><%= @snowboot.brand %></h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+        <div class="owl-carousel">
+          <% @snowboot.images.each do |img| %>
+              <div class="item"><%= image_tag img.medium ,style:"width:100%"%></div>
+          <% end %>
+        </div>
+      </div>
+    </div>
 
-<%= link_to 'Edit', edit_snowboot_path(@snowboot) %> |
-<%= link_to 'Back', snowboots_path %>
+    <hr/>
+
+    <div class="row">
+      <div class="headline"><h2>雪鞋介绍</h2></div>
+      <div class="col-sm-12">
+        <%=  @snowboot.description.to_s.html_safe   %>
+      </div>
+    </div>
+
+    <hr/>
+    <div class="row">
+      <div class="headline">
+        <h4><span class="comment-count"><%= @snowboot.comments.count %></span> 条评论</h4>
+      </div>
+    </div>
+
+    <div class="comment_container">
+      <%= render partial: "comments/comment", collection: @snowboot.comments %>
+    </div>
+
+    <hr/>
+    <% if current_user %>
+        <div class="row">
+          <%= form_for [@snowboot, Comment.new], remote: true do |f| %>
+              <div class="post-comment">
+                <div class="headline">
+                  <h3><%= t("comment") %></h3>
+                </div>
+                <div class="field">
+                  <%= f.label :content %><br>
+                  <%= f.text_area :content , class: "form-control", rows:"8"%>
+                </div>
+
+                <br>
+                <div class="actions">
+                  <%= f.submit t("comment"), class:"btn-u" %>
+                </div>
+              </div>
+          <% end %>
+        </div>
+
+    <% else %>
+        <%= link_to '登录', login_path %>或<%= link_to '注册' , signup_path%>评论此雪场
+    <% end %>
+
+  </div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    $('.owl-carousel').owlCarousel({
+        slideSpeed : 300,
+        paginationSpeed : 400,
+        singleItem:true
+
+        // "singleItem:true" is a shortcut for:
+        // items : 1,
+        // itemsDesktop : false,
+        // itemsDesktopSmall : false,
+        // itemsTablet: false,
+        // itemsMobile : false
+    });
+</script>

@@ -1,6 +1,6 @@
 <h2>
   <% if @style %>
-    所有的 <%= @style %>雪板
+    所有的<%= t(@style) %>雪板
   <% else %>
     所有的雪板
   <% end %>
@@ -10,13 +10,13 @@
   <div class="col-md-2">
     <div class="row">
       <div class="headline">
-        <h4>Choose Style</h4>
+        <h4>选择风格</h4>
       </div>
 
       <div class="row">
         <ul class="list-unstyled col-xs-8">
           <% Snowboard::STYLES.each do |style| %>
-            <li> <%= link_to style, snowboards_path(style: style) , class:'color-green'%></li>
+            <li> <%= link_to t(style), snowboards_path(style: style) , class:'color-green'%></li>
           <% end %>
         </ul>
       </div>

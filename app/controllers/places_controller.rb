@@ -4,12 +4,11 @@ class PlacesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @places = Place.all
-    respond_with(@places)
+    @places = Place.desc(:created_at).paginate(:page => params[:page], :per_page => 16)
   end
 
   def show
-    respond_with(@place)
+    @comment = Comment.new
   end
 
   def new

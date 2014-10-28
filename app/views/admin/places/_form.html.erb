@@ -1,0 +1,82 @@
+<%= form_for([:admin , @admin_place ], multipart: true) do |f| %>
+  <% if @admin_place.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@admin_place.errors.count, "error") %> prohibited this admin_place from being saved:</h2>
+
+      <ul>
+      <% @admin_place.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="input-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class:"form-control" %>
+    </div>
+    <div class="input-group">
+      <%= f.label :address %>
+      <%= f.text_field :address, class:"form-control" %>
+    </div>
+    <div class="input-group">
+      <%= f.label :phone %>
+      <%= f.telephone_field :phone, class:"form-control" %>
+    </div>
+    <div class="input-group">
+      <%= f.label :region %>
+      <%= f.text_field :region, class: "form-control" %>
+    </div>
+    <div class="input-group">
+      <%= f.label :site %>
+      <%= f.text_field :site, class: "form-control" %>
+    </div>
+
+    <div class="input-group">
+      <%= f.label :description %>
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
+
+    <div class="input-group">
+      <%= f.label :xcoordinate %>
+      <%= f.number_field :xcoordinate , class:"form-control",step:"0.000001"%>
+    </div>
+
+    <div class="input-group">
+      <%= f.label :ycoordinate %>
+      <%= f.number_field :ycoordinate , class:"form-control",step:"0.000001"%>
+    </div>
+
+    <br/>
+    <div class="input-group well">
+      <%= f.label :cover %>
+      <%= image_tag f.object.cover.thumb %>
+      <%= f.file_field :cover , class:"form-control"%>
+      <%= f.text_field :remote_cover_url, class:"form-control" , placeholder:"或者原图链接"%>
+    </div>
+
+    <div class="input-group">
+        <%= f.label :place_images %>
+        <%= f.fields_for :place_images do |p| %>
+
+              <div>
+                <h3>image preview</h3>
+                <%= image_tag p.object.original.thumb, class:"img-responsive" %>
+              </div>
+
+              <div class="form-group">
+                <%= p.label :original %>
+                <%= p.file_field :original, class: "form-control" %>
+                <%= p.text_field :remote_original_url ,class: "form-control" , placeholder:"或者原图链接"%>
+              </div>
+
+              <div class="form-group">
+                <%= p.label "删除"%>
+                <%= p.check_box :_destroy %>
+              </div>
+        <% end %>
+    </div>
+      <br/>
+      <div class="actions">
+        <%= f.submit "确定", class:"btn btn-default btn-xs"%>
+      </div>
+<% end %>

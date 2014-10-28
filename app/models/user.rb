@@ -1,6 +1,10 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Letsrate
+
+  letsrate_rater
+
   validates_uniqueness_of :name, :email
   validates_presence_of :name, :email
   ROLES = %w[admin moderator editor member banned]
