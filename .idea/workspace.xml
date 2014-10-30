@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fe0aafb0-c432-45a8-ac2f-c083d39e2612" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/initializers/assets.rb" afterPath="$PROJECT_DIR$/config/initializers/assets.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Capfile" afterPath="$PROJECT_DIR$/Capfile" />
     </list>
     <ignored path="snowooo.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,16 +25,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="show.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/users/show.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.875" vertical-offset="0" max-vertical-offset="510">
-              <caret line="27" column="53" selection-start-line="27" selection-start-column="53" selection-end-line="27" selection-end-column="53" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="letsrate.js.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/letsrate.js.erb">
           <provider selected="true" editor-type-id="text-editor">
@@ -50,16 +40,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345">
               <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="places.js.coffee" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/places.js.coffee">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="135">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -95,11 +75,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="assets.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Gemfile" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Gemfile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1410">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="assets.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/initializers/assets.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.21686748" vertical-offset="0" max-vertical-offset="415">
-              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Capfile" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Capfile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.60240966" vertical-offset="5" max-vertical-offset="480">
+              <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -142,7 +142,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/app/views/admin/home/index.html.erb" />
         <option value="$PROJECT_DIR$/app/views/admin/places/index.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/snowbindings_controller.rb" />
@@ -193,6 +192,7 @@
         <option value="$PROJECT_DIR$/config/environments/production.rb" />
         <option value="$PROJECT_DIR$/app/views/admin/posts/index.html.erb" />
         <option value="$PROJECT_DIR$/config/initializers/assets.rb" />
+        <option value="$PROJECT_DIR$/Capfile" />
       </list>
     </option>
   </component>
@@ -242,38 +242,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="snowooo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="snowooo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="snowooo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="snowooo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="snowooo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -642,7 +610,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../jiulongpei" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
-    <property name="SearchEverywhereHistoryKey" value="ass&#9;FILE&#9;file:///home/god/project/snowooo/config/initializers/assets.rb&#10;app.css&#9;FILE&#9;file:///home/god/project/snowooo/public/assets/css/app.css&#10;routes&#9;FILE&#9;file:///home/god/project/snowooo/config/routes.rb&#10;admi&#9;FILE&#9;file:///home/god/project/snowooo/app/views/layouts/admin.html.erb&#10;app&#9;FILE&#9;file:///home/god/project/snowooo/app/views/layouts/application.html.erb&#10;snowbind&#9;null&#9;null&#10;gemfile&#9;FILE&#9;file:///home/god/project/snowooo/Gemfile&#10;gemfi&#9;FILE&#9;file:///home/god/project/snowooo/Gemfile&#10;gem&#9;FILE&#9;file:///home/god/project/snowooo/Gemfile&#10;user.rb&#9;FILE&#9;file:///home/god/project/snowooo/app/models/user.rb&#10;snowboar&#9;FILE&#9;file:///home/god/project/snowooo/app/controllers/admin/snowboards_controller.rb&#10;home/index&#9;FILE&#9;file:///home/god/project/snowooo/app/views/admin/home/index.html.erb&#10;ad&#9;FILE&#9;file:///home/god/project/snowooo/app/views/layouts/admin.html.erb&#10;application.js&#9;FILE&#9;file:///home/god/project/snowooo/app/assets/javascripts/application.js&#10;snowboards/show&#9;FILE&#9;file:///home/god/project/snowooo/app/views/snowboards/show.html.erb&#10;appl&#9;FILE&#9;file:///home/god/project/snowooo/app/views/layouts/application.html.erb&#10;posts/in&#9;FILE&#9;file:///home/god/project/snowooo/app/views/posts/index.html.erb&#10;adm&#9;FILE&#9;file:///home/god/project/snowooo/app/views/layouts/admin.html.erb&#10;zh&#9;FILE&#9;file:///home/god/project/snowooo/config/locales/zh-CN.yml&#10;snowboards/in&#9;FILE&#9;file:///home/god/project/snowooo/app/views/snowboards/index.html.erb&#10;show&#9;FILE&#9;file:///home/god/project/snowooo/app/views/videos/show.html.erb&#10;place&#9;FILE&#9;file:///home/god/project/snowooo/app/models/place.rb&#10;place/show&#9;FILE&#9;file:///home/god/project/snowooo/app/views/places/show.html.erb&#10;gemf&#9;FILE&#9;file:///home/god/project/snowooo/Gemfile&#10;ind&#9;FILE&#9;file:///home/god/project/snowooo/app/views/admin/places/index.html.erb&#10;rout&#9;FILE&#9;file:///home/god/project/snowooo/config/routes.rb&#10;admin&#9;FILE&#9;file:///home/god/project/snowooo/app/views/layouts/admin.html.erb&#10;mai&#9;null&#9;null&#10;&#9;FILE&#9;file:///home/god/project/snowooo/config/locales/zh-CN.yml&#10;snowbi/in&#9;FILE&#9;file:///home/god/project/snowooo/app/views/snowbindings/index.html.erb&#10;snowboard/index&#9;FILE&#9;file:///home/god/project/snowooo/app/views/snowboards/index.html.erb&#10;index&#9;FILE&#9;file:///home/god/project/snowooo/app/views/snowboots/index.html.erb&#10;inde&#9;FILE&#9;file:///home/god/project/snowooo/app/views/posts/index.html.erb&#10;a&#9;FILE&#9;file:///home/god/project/snowooo/app/views/layouts/application.html.erb&#10;_post&#9;FILE&#9;file:///home/god/project/snowooo/app/views/posts/_post.html.erb&#10;posts/ind&#9;FILE&#9;file:///home/god/project/snowooo/app/views/posts/index.html.erb&#10;users/edit&#9;FILE&#9;file:///home/god/project/snowooo/app/views/users/edit.html.erb&#10;users/_&#9;FILE&#9;file:///home/god/project/snowooo/app/views/users/_form.html.erb&#10;users/_fo&#9;FILE&#9;file:///home/god/project/snowooo/app/views/admin/users/_form.html.erb&#10;user/_for&#9;FILE&#9;file:///home/god/project/snowooo/app/views/users/_form.html.erb&#10;admin/users/show.&#9;FILE&#9;file:///home/god/project/snowooo/app/views/admin/users/show.html.erb&#10;admin/users/ind&#9;FILE&#9;file:///home/god/project/snowooo/app/views/admin/users/index.html.erb&#10;app.js&#9;FILE&#9;file:///home/god/project/snowooo/public/assets/js/app.js&#10;video&#9;FILE&#9;file:///home/god/project/snowooo/app/workers/video_worker.rb&#10;video.rb&#9;FILE&#9;file:///home/god/project/snowooo/app/models/video.rb&#10;videowo&#9;null&#9;null&#10;scaf&#9;FILE&#9;file:///home/god/project/snowooo/app/assets/stylesheets/scaffolds.css.scss&#10;videos/ind&#9;FILE&#9;file:///home/god/project/snowooo/app/views/admin/videos/index.html.erb&#10;videos/show&#9;FILE&#9;file:///home/god/project/snowooo/app/views/videos/show.html.erb&#10;welcome&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="capfile&#9;FILE&#9;file:///home/god/project/snowooo/Capfile&#10;ass&#9;FILE&#9;file:///home/god/project/snowooo/config/initializers/assets.rb&#10;app.css&#9;FILE&#9;file:///home/god/project/snowooo/public/assets/css/app.css&#10;routes&#9;FILE&#9;file:///home/god/project/snowooo/config/routes.rb&#10;admi&#9;FILE&#9;file:///home/god/project/snowooo/app/views/layouts/admin.html.erb&#10;app&#9;FILE&#9;file:///home/god/project/snowooo/app/views/layouts/application.html.erb&#10;snowbind&#9;null&#9;null&#10;gemfile&#9;FILE&#9;file:///home/god/project/snowooo/Gemfile&#10;gemfi&#9;FILE&#9;file:///home/god/project/snowooo/Gemfile&#10;gem&#9;FILE&#9;file:///home/god/project/snowooo/Gemfile&#10;user.rb&#9;FILE&#9;file:///home/god/project/snowooo/app/models/user.rb&#10;snowboar&#9;FILE&#9;file:///home/god/project/snowooo/app/controllers/admin/snowboards_controller.rb&#10;home/index&#9;FILE&#9;file:///home/god/project/snowooo/app/views/admin/home/index.html.erb&#10;ad&#9;FILE&#9;file:///home/god/project/snowooo/app/views/layouts/admin.html.erb&#10;application.js&#9;FILE&#9;file:///home/god/project/snowooo/app/assets/javascripts/application.js&#10;snowboards/show&#9;FILE&#9;file:///home/god/project/snowooo/app/views/snowboards/show.html.erb&#10;appl&#9;FILE&#9;file:///home/god/project/snowooo/app/views/layouts/application.html.erb&#10;posts/in&#9;FILE&#9;file:///home/god/project/snowooo/app/views/posts/index.html.erb&#10;adm&#9;FILE&#9;file:///home/god/project/snowooo/app/views/layouts/admin.html.erb&#10;zh&#9;FILE&#9;file:///home/god/project/snowooo/config/locales/zh-CN.yml&#10;snowboards/in&#9;FILE&#9;file:///home/god/project/snowooo/app/views/snowboards/index.html.erb&#10;show&#9;FILE&#9;file:///home/god/project/snowooo/app/views/videos/show.html.erb&#10;place&#9;FILE&#9;file:///home/god/project/snowooo/app/models/place.rb&#10;place/show&#9;FILE&#9;file:///home/god/project/snowooo/app/views/places/show.html.erb&#10;gemf&#9;FILE&#9;file:///home/god/project/snowooo/Gemfile&#10;ind&#9;FILE&#9;file:///home/god/project/snowooo/app/views/admin/places/index.html.erb&#10;rout&#9;FILE&#9;file:///home/god/project/snowooo/config/routes.rb&#10;admin&#9;FILE&#9;file:///home/god/project/snowooo/app/views/layouts/admin.html.erb&#10;mai&#9;null&#9;null&#10;&#9;FILE&#9;file:///home/god/project/snowooo/config/locales/zh-CN.yml&#10;snowbi/in&#9;FILE&#9;file:///home/god/project/snowooo/app/views/snowbindings/index.html.erb&#10;snowboard/index&#9;FILE&#9;file:///home/god/project/snowooo/app/views/snowboards/index.html.erb&#10;index&#9;FILE&#9;file:///home/god/project/snowooo/app/views/snowboots/index.html.erb&#10;inde&#9;FILE&#9;file:///home/god/project/snowooo/app/views/posts/index.html.erb&#10;a&#9;FILE&#9;file:///home/god/project/snowooo/app/views/layouts/application.html.erb&#10;_post&#9;FILE&#9;file:///home/god/project/snowooo/app/views/posts/_post.html.erb&#10;posts/ind&#9;FILE&#9;file:///home/god/project/snowooo/app/views/posts/index.html.erb&#10;users/edit&#9;FILE&#9;file:///home/god/project/snowooo/app/views/users/edit.html.erb&#10;users/_&#9;FILE&#9;file:///home/god/project/snowooo/app/views/users/_form.html.erb&#10;users/_fo&#9;FILE&#9;file:///home/god/project/snowooo/app/views/admin/users/_form.html.erb&#10;user/_for&#9;FILE&#9;file:///home/god/project/snowooo/app/views/users/_form.html.erb&#10;admin/users/show.&#9;FILE&#9;file:///home/god/project/snowooo/app/views/admin/users/show.html.erb&#10;admin/users/ind&#9;FILE&#9;file:///home/god/project/snowooo/app/views/admin/users/index.html.erb&#10;app.js&#9;FILE&#9;file:///home/god/project/snowooo/public/assets/js/app.js&#10;video&#9;FILE&#9;file:///home/god/project/snowooo/app/workers/video_worker.rb&#10;video.rb&#9;FILE&#9;file:///home/god/project/snowooo/app/models/video.rb&#10;videowo&#9;null&#9;null&#10;scaf&#9;FILE&#9;file:///home/god/project/snowooo/app/assets/stylesheets/scaffolds.css.scss&#10;videos/ind&#9;FILE&#9;file:///home/god/project/snowooo/app/views/admin/videos/index.html.erb&#10;videos/show&#9;FILE&#9;file:///home/god/project/snowooo/app/views/videos/show.html.erb" />
     <property name="FullScreen" value="false" />
   </component>
   <component name="RunManager" selected="Rails.Development: snowooo">
@@ -843,22 +811,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/models/snowboot.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
-          <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="19" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/admin/snowboards/new.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.0" vertical-offset="0" max-vertical-offset="240">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="9" selection-end-column="75" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/admin/snowboots/new.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.25" vertical-offset="0" max-vertical-offset="120">
@@ -1245,8 +1197,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/initializers/assets.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21686748" vertical-offset="0" max-vertical-offset="415">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1410">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Capfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.60240966" vertical-offset="5" max-vertical-offset="480">
+          <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
           <folding />
         </state>
       </provider>
