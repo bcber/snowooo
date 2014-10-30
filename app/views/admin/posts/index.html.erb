@@ -22,7 +22,7 @@
         <td><%= post.recommend_at %></td>
         <td>
         <%= link_to '显示', post , class:"btn btn-default btn-xs" %>
-        <%= link_to '编辑', edit_admin_post_path(post), class:"btn btn-default btn-xs" %>
+        <%= link_to '编辑', edit_post_path(post), class:"btn btn-default btn-xs" %>
         <%= link_to '置顶' , up_admin_post_path(post), class:"btn btn-default btn-xs"%>
         <%= link_to "推荐", recommend_admin_post_path(post), class:"btn btn-default btn-xs" %>
         <%= link_to '删除', admin_post_path(post), method: :delete, data: { confirm: 'Are you sure?' } , class:"btn btn-danger btn-xs"%></td>
