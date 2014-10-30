@@ -46,7 +46,8 @@ class Snowboard
   field :description
   field :origurl
 
-  field :review, type: Hash
+  embeds_many :qiniu_images, :cascade_callbacks => true
+  accepts_nested_attributes_for :qiniu_images, reject_if: :all_blank, allow_destroy: true
 
   embeds_many :images, store_as: "snowboard_imgs", inverse_of: :images
   accepts_nested_attributes_for :images, reject_if: -> (a) {
@@ -55,5 +56,4 @@ class Snowboard
 
   has_many :comments, as: :commentable
   accepts_nested_attributes_for :comments
-
 end

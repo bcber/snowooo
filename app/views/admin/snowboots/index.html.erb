@@ -1,0 +1,38 @@
+<div class="row margin-bottom-20"></div>
+<div class="row">
+  <div class="col-xs-12">
+    <%= link_to '新建', new_admin_snowboot_path, class: "btn btn-default btn-xs" %>
+  </div>
+</div>
+<div class="row">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>名称</th>
+      <th>创建时间</th>
+      <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @snowboots.each do |snowboot| %>
+        <tr>
+          <td><%= snowboot.name %></td>
+          <td><%= snowboot.created_at %></td>
+          <td>
+            <%= link_to '详情', snowboot, class: "btn btn-default btn-xs" %>
+            <%= link_to '编辑', edit_admin_snowboot_path(snowboot), class: "btn btn-default btn-xs" %>
+            <%= link_to '删除', admin_snowboot_path(snowboot), data:{confirm:"确定?"},method: :delete,class: "btn btn-danger btn-xs" %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="row">
+  <div class="text-center">
+    <div class="pagination">
+      <%= will_paginate @snowboots , renderer: BootstrapPagination::Rails%>
+    </div>
+  </div>
+</div>

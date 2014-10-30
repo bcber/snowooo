@@ -31,9 +31,13 @@
               <div class="thumbnail-img">
                 <div class="overflow-hidden">
                   <% if snowboot.images.empty? %>
-                    no image for this snowboot
+                      <% if snowboot.qiniu_images.empty? %>
+                          暂时还没有图片
+                      <% else %>
+                          <%= image_tag snowboot.qiniu_images.first.original.medium, class:"img-responsive" %>
+                      <% end %>
                   <% else %>
-                    <%= image_tag snowboot.images.first.medium, class:"img-responsive"%>
+                      <%= image_tag snowboot.images.first.medium, class:"img-responsive"%>
                   <% end %>
                 </div>
                 <%= link_to 'Show', snowboot, class:"btn-more hover-effect" %>
@@ -65,10 +69,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-<br>
-
-<%= link_to 'New Snowboot', new_snowboot_path %>

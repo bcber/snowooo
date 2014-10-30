@@ -7,7 +7,7 @@ class PostCoverUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
+  storage :qiniu
   # storage :fog
 
   # Override the directory where uploaded files will be stored.
@@ -30,15 +30,21 @@ class PostCoverUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :thumb do
-    process :resize_to_fill => [50, 50]
+    def full_filename(for_file)
+      [for_file, version_name].compact.join('-')
+    end
   end
 
   version :medium do
-    process :resize_to_fill => [300,200]
+    def full_filename(for_file)
+      [for_file, version_name].compact.join('-')
+    end
   end
 
   version :big do
-    process :resize_to_fill => [500,200]
+    def full_filename(for_file)
+      [for_file, version_name].compact.join('-')
+    end
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

@@ -31,7 +31,11 @@
           <div class="thumbnail-img">
             <div class="overflow-hidden">
               <% if snowbinding.images.empty? %>
-                no image for this snowbinding
+                <% if snowbinding.qiniu_images.empty? %>
+                    暂时还没有图片
+                <% else %>
+                    <%= image_tag snowbinding.qiniu_images.first.original.medium, class:"img-responsive" %>
+                <% end %>
               <% else %>
                 <%= image_tag snowbinding.images.first.medium, class:"img-responsive"%>
               <% end %>

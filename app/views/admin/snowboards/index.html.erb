@@ -1,22 +1,38 @@
-<table class="table">
-  <thead>
-  <tr>
-    <th>名称</th>
-    <th>创建时间</th>
-    <th>操作</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @snowboards.each do |snowboard| %>
+<div class="row margin-bottom-20"></div>
+<div class="row">
+  <div class="col-xs-12">
+    <%= link_to '新建', new_admin_snowboard_path, class: "btn btn-default btn-xs" %>
+  </div>
+</div>
+<div class="row">
+    <table class="table">
+      <thead>
       <tr>
-        <td><%= snowboard.name %></td>
-        <td><%= snowboard.created_at %></td>
-        <td>
-          <%= link_to '详情', snowboard, class: "btn btn-default btn-xs" %>
-          <%= link_to '编辑', snowboard, class: "btn btn-default btn-xs" %>
-          <%= link_to '删除', snowboard, data:{confirm:"确定?"},method: :delete,class: "btn btn-default btn-xs" %>
-        </td>
+        <th>名称</th>
+        <th>创建时间</th>
+        <th>操作</th>
       </tr>
-  <% end %>
-  </tbody>
-</table>
+      </thead>
+      <tbody>
+      <% @snowboards.each do |snowboard| %>
+          <tr>
+            <td><%= snowboard.name %></td>
+            <td><%= snowboard.created_at %></td>
+            <td>
+              <%= link_to '详情', snowboard, class: "btn btn-default btn-xs" %>
+              <%= link_to '编辑', edit_admin_snowboard_path(snowboard), class: "btn btn-default btn-xs" %>
+              <%= link_to '删除', admin_snowboard_path(snowboard), data:{confirm:"确定?"},method: :delete,class: "btn btn-danger btn-xs" %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+</div>
+
+<div class="row">
+    <div class="text-center">
+      <div class="pagination">
+        <%= will_paginate @snowboards , renderer: BootstrapPagination::Rails%>
+      </div>
+    </div>
+</div>

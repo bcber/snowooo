@@ -40,12 +40,11 @@
   <link rel="stylesheet" href="http://nxbtch-cdn.qiniudn.com/css/pages/page_404_error.css"/>
   <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=AoosGLCN5hncfMh6u3IoZa90"></script>
   <script src="http://cdn.bootcss.com/owl-carousel/1.32/owl.carousel.min.js"></script>
-  <%= yield :javascript_includes %>
 </head>
 <body class="header-fixed">
   <div class="header">
         <!-- Topbar -->
-        <div class="topbar">
+        <div class="topbar hidden-xs">
           <div class="container-fluid">
             <ul class="loginbar">
               <div class="col-sm-2">
@@ -65,7 +64,7 @@
         <!-- Navbar -->
         <div class="navbar navbar-default" role="navigation">
             <div class="container">
-              <div class="navbar-header">
+              <div class="navbar-header hidden-xs">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="fa fa-bars"></span>
@@ -90,12 +89,14 @@
   </div>
 
   <div class="container content" style="padding-top:50px;">
+    <div class="row" style="margin-top:20px;">
     <% if notice %>
-        <div class="alert alert-info"><%= notice %></div>
+        <div class="alert alert-info fade in alert-dismissable"><%= notice %></div>
     <% end %>
     <% if alert %>
-        <div class="alert alert-danger"><%= alert %></div>
+        <div class="alert alert-danger  fade in alert-dismissable"><%= alert %></div>
     <% end %>
+    </div>
     <div class="row">
       <%= yield %>
     </div>

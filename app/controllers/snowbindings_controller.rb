@@ -19,30 +19,6 @@ class SnowbindingsController < ApplicationController
     respond_with(@snowbinding)
   end
 
-  def new
-    @snowbinding = Snowbinding.new
-    respond_with(@snowbinding)
-  end
-
-  def edit
-  end
-
-  def create
-    @snowbinding = Snowbinding.new(snowbinding_params)
-    @snowbinding.save
-    respond_with(@snowbinding)
-  end
-
-  def update
-    @snowbinding.update(snowbinding_params)
-    respond_with(@snowbinding)
-  end
-
-  def destroy
-    @snowbinding.destroy
-    respond_with(@snowbinding)
-  end
-
   private
     def set_snowbinding
       @snowbinding = Snowbinding.find(params[:id])

@@ -1,0 +1,99 @@
+<%= form_for([:admin, @snowboot],html:{class: "sky-form", role:"form", multipart:true}) do |f| %>
+    <% if @snowboot.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@snowboot.errors.count, "error") %> prohibited this snowboot from being saved:</h2>
+
+          <ul>
+            <% @snowboot.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name ,class:"form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :brand %>
+      <%= f.text_field :brand ,class:"form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :style %>
+      <%= f.text_field :style ,class:"form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :description %>
+      <%= f.text_field :description ,class:"form-control"%>
+    </div>
+
+
+      <%= f.label :qiniu_images %>
+      <%= f.fields_for :qiniu_images do |p| %>
+        <div class="well">
+
+          <div class="form-group">
+            <%= p.label :color %>
+            <%= p.text_field :color, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= p.label :original %>
+            <div class="row">
+              <div class="col-sm-12">
+                <h3>预览</h3>
+                <%= image_tag p.object.original.medium, class: "img-responsive" %>
+                <%= p.file_field :original, class: "form-control" %>
+                <%= p.text_field :remote_original_url , class: "form-control",placeholder:"或者图片链接" %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr/>
+      <% end %>
+
+    <% if false %>
+        <div class="form-group">
+          <%= f.label :images %>
+          <%= f.fields_for :images do |p| %>
+              <div class="well images-form">
+
+                <div class="form-group">
+                  <%= p.label :color %>
+                  <%= p.text_field :color ,class:"form-control"%>
+                </div>
+
+                <div class="form-group">
+                  <%= p.label :small %>
+                  <%= p.text_field :small, class: "form-control" %>
+                </div>
+
+                <div class="form-group">
+                  <%= p.label :medium %>
+                  <%= p.text_field :medium, class: "form-control" %>
+                </div>
+
+                <div class="form-group">
+                  <%= p.label :large %>
+                  <%= p.text_field :large, class: "form-control" %>
+                </div>
+
+
+                <div class="form-group">
+                  <%= p.label "destroy?"%>
+                  <%= p.check_box :_destroy %>
+                </div>
+              </div>
+          <% end %>
+        </div>
+    <% end %>
+
+    <div class="actions">
+      <%= f.submit @snowboot.new_record?? "创建": "更新", class:"btn btn-default btn-xs" %>
+    </div>
+
+<% end %>

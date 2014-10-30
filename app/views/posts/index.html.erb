@@ -10,7 +10,7 @@
               <%= link_to post  do %>
                 <%= image_tag post.cover.big , style: "width:100%"%>
                 <div class="carousel-caption">
-                  <h3><%= post.title %></h3>
+                  <h2 class="color-light"><%= post.title %></h2>
                 </div>
               <% end %>
             </div>
@@ -41,10 +41,10 @@
   <div class="col-sm-3">
       <% if can? :create, Post %>
         <div class="text-center">
-          <%= link_to t('newpost'), new_post_path, class:"btn btn-default btn-block" %>
+          <%= link_to t('newpost'), new_post_path, class:"btn-u btn-block" %>
         </div>
       <% end %>
-    <div class="posts margin-bottom-40">
+    <div class="posts margin-bottom-40 hidden-xs">
       <div class="headline headline-md"> 
         <h2>推荐文章</h2>
       </div>

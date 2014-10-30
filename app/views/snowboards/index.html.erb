@@ -31,9 +31,13 @@
           <div class="thumbnail-img">
             <div class="overflow-hidden">
               <% if snowboard.images.empty? %>
-                no image for this snowboard
+                  <% if snowboard.qiniu_images.empty? %>
+                      暂时还没有图片
+                  <% else %>
+                      <%= image_tag snowboard.qiniu_images.first.original.medium, class:"img-responsive" %>
+                  <% end %>
               <% else %>
-                <%= image_tag snowboard.images.first.medium, class:"img-responsive"%>
+                  <%= image_tag snowboard.images.first.medium, class:"img-responsive"%>
               <% end %>
             </div>
             <%= link_to 'Show', snowboard, class:"btn-more hover-effect" %>

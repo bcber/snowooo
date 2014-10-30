@@ -2,11 +2,11 @@
   <div class="col-sm-9">
     <div class="margin-bottom-40">
       <h1><%= link_to @post.title, @post %></h1>
-      <hr>
       <% if can? :edit, @post %>
-        <%= link_to '编辑', edit_post_path(@post), class: "btn btn-info btn-xs" %>
+          <hr/>
+        <%= link_to '编辑', edit_post_path(@post), class: "btn btn-default btn-xs" %>
         <hr/>
-    <% end  %>
+      <% end  %>
       <div class="blog-post-tags">
         <ul class="list-unstyled list-inline blog-info">
             <li><i class="fa fa-calendar"></i> <%= @post.created_at.to_date %></li>

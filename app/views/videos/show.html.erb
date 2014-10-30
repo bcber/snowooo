@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" style="margin-top:50px;">
   
   <div class="col-md-8 col-md-offset-2">
     <h1><%= @video.title %> &nbsp;<a href="<%= @video.url %>" target="_blank"><span class="icon-login"></span></a></h1>
@@ -23,7 +23,7 @@
   
 </div>
 <% if Rails.env.development? %>
-  <script src="/assets/js/youku.js"></script>
+  <script src="http://static.god.com/js/jsapi.js"></script>
 <% else %>
   <script type="text/javascript" src="http://player.youku.com/jsapi"></script>
 <% end %>

@@ -77,6 +77,9 @@
           <% @snowbinding.images.each do |img| %>
               <div class="item"><%= image_tag img.medium ,style:"width:100%"%></div>
           <% end %>
+          <% @snowbinding.qiniu_images.each do |img| %>
+            <div class="item"> <%= image_tag img.original.medium, style:"width:100%" %></div>
+          <% end %>
         </div>
       </div>
     </div>

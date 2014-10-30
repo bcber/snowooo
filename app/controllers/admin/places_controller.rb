@@ -15,7 +15,7 @@ class Admin::PlacesController < Admin::ApplicationController
   # GET /admin/places/new
   def new
     @admin_place = Place.new
-    @admin_place.place_images.build
+    3.times { @admin_place.place_images.build }
   end
 
   # GET /admin/places/1/edit

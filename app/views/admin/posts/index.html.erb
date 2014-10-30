@@ -1,3 +1,9 @@
+<div class="row margin-bottom-20"></div>
+<div class="row">
+  <div class="col-xs-12">
+    <%= link_to '新建', new_post_path, class: "btn btn-default btn-xs" %>
+  </div>
+</div>
 <table class="table">
   <thead>
     <tr>
@@ -9,17 +15,17 @@
   </thead>
 
   <tbody>
-    <% @admin_posts.each do |admin_post| %>
+    <% @posts.each do |post| %>
       <tr>
-        <td><%= admin_post.title %></td>
-        <td><%= admin_post.up_at %></td>
-        <td><%= admin_post.recommend_at %></td>
+        <td><%= post.title %></td>
+        <td><%= post.up_at %></td>
+        <td><%= post.recommend_at %></td>
         <td>
-        <%= link_to '显示', admin_post , class:"btn btn-default btn-xs" %>
-        <%= link_to '编辑', edit_post_path(admin_post), class:"btn btn-default btn-xs" %>
-        <%= link_to '置顶' , up_admin_post_path(admin_post), class:"btn btn-default btn-xs"%>
-        <%= link_to "推荐", recommend_admin_post_path(admin_post), class:"btn btn-default btn-xs" %>
-        <%= link_to '删除', admin_post, method: :delete, data: { confirm: 'Are you sure?' } , class:"btn btn-danger btn-xs"%></td>
+        <%= link_to '显示', post , class:"btn btn-default btn-xs" %>
+        <%= link_to '编辑', edit_admin_post_path(post), class:"btn btn-default btn-xs" %>
+        <%= link_to '置顶' , up_admin_post_path(post), class:"btn btn-default btn-xs"%>
+        <%= link_to "推荐", recommend_admin_post_path(post), class:"btn btn-default btn-xs" %>
+        <%= link_to '删除', admin_post_path(post), method: :delete, data: { confirm: 'Are you sure?' } , class:"btn btn-danger btn-xs"%></td>
       </tr>
     <% end %>
   </tbody>
@@ -27,9 +33,9 @@
 
 <div class="text-center">
   <div class="pagination">
-    <%= will_paginate @admin_posts %>
+    <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
   </div>
 </div>
 <br>
 
-<%= link_to 'New Post', new_post_path %>
+
