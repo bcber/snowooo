@@ -55,35 +55,34 @@
             </div>
           <% end %>
         </div>
-      </div>
 
-      <% @posts[2..-1].in_groups_of(2,false).each do |group| %>
-          <div class="row">
-            <% group.each do |item| %>
-            <div class="post-item post-child-item">
-                <div class="col-xs-6" style="margin-bottom:30px;">
-                  <div class="row">
-                    <div class="col-xs-5"><%= link_to item do  %>
-                          <div class="img-medium box-shadow shadow-effect-2">
-                            <%= image_tag item.cover.medium, class:"img-responsive"%>
+        <% @posts[2..-1].in_groups_of(2,false).each do |group| %>
+              <div class="row">
+                <% group.each do |item| %>
+                <div class="col-xs-6" style="margin-bottom:30px;" >
+                    <div class="post-item post-child-item">
+                      <div class="row">
+                        <div class="col-xs-5"><%= link_to item do  %>
+                              <div class="img-medium box-shadow shadow-effect-2">
+                                <%= image_tag item.cover.medium, class:"img-responsive"%>
+                              </div>
+                          <% end %></div>
+                        <div class="col-xs-7">
+                          <div class="info">
+                              <h3><%= link_to item.title , item%></h3>
+                              <div class="by-author">
+                                <strong><%= item.user.present? ? item.user.name: 'admin' %></strong>
+                                <span>/ <%= item.created_at.strftime("%m-%d-%Y") %></span>
+                              </div>
                           </div>
-                      <% end %></div>
-                    <div class="col-xs-7">
-                      <div class="info">
-                          <h3><%= link_to item.title , item%></h3>
-                          <div class="by-author">
-                            <strong><%= item.user.present? ? item.user.name: 'admin' %></strong>
-                            <span>/ <%= item.created_at.strftime("%m-%d-%Y") %></span>
-                          </div>
+                         </div>
                       </div>
-                     </div>
-                  </div>
+                    </div>
                 </div>
-            </div>
+              <% end %>
+              </div>
           <% end %>
-          </div>
-
-      <% end %>
+      </div>
     </div>
 
     <hr/>
