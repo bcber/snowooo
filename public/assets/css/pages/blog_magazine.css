@@ -15,9 +15,10 @@
 }
 
 .magazine-page span.magazine-badge {
-	top: 0;
-	left: 0;
+	bottom: 5px;
+	left: 5px;
 	color: #fff;
+    opacity: 0.7;
 	font-size: 14px;
 	padding: 2px 8px;
 	position: absolute;
@@ -64,8 +65,22 @@
 
 .magazine-news-img {
 	overflow: hidden;
-	max-height: 150px;
+	max-height: 480px;
 	position: relative;
+}
+
+.magazine-news-img img{
+    width:100%;
+}
+
+.magazine-news-split-img {
+    overflow: hidden;
+    max-height: 160px;
+    position: relative;
+}
+
+.magazine-page img{
+    width:100%;
 }
 
 /*Magazine Mini News*/

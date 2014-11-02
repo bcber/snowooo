@@ -1,3 +1,54 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@mixin max-height($height) {
+  max-height: $height;
+  overflow: hidden;
+
+  img {
+    width:100%;
+  }
+}
+
+.img-thumb{
+  max-height:100px;
+  overflow:hidden;
+}
+
+.img-thumb img{
+  width:100%;
+}
+
+.img-medium{
+  max-height:180px;
+  overflow:hidden;
+}
+
+.img-medium img{
+  width:100%;
+}
+
+.max-height-100{@include max-height(100px)}
+.max-height-200{@include max-height(200px)}
+.max-height-300{@include max-height(300px)}
+.max-height-400{@include max-height(400px)}
+.max-height-500{@include max-height(500px)}
+.max-height-600{@include max-height(600px)}
+
+.post-item img{
+   height:100px;
+}
+
+.post-item.post-item-head img{
+  height:200px;
+  width:100%;
+}
+
+.post-item .info{
+  color: #cbcbcb;
+}
+
+.post-item.post-child-item .info{
+  margin-top: 30px;
+}

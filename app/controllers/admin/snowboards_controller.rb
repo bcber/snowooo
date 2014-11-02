@@ -9,6 +9,11 @@ class Admin::SnowboardsController < Admin::ApplicationController
     3.times{ @snowboard.qiniu_images.build }
   end
 
+  def updateimg
+
+    redirect_to admin_snowboards_path
+  end
+
   def edit
     @snowboard.qiniu_images.build
   end

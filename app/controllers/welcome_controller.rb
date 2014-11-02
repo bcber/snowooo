@@ -1,6 +1,12 @@
 class WelcomeController < ApplicationController
   def index
-    @posts = Post.desc(:created_time).limit(10)
+    @top_posts = Post.desc(:up_time).limit(4)
+    @posts = Post.desc(:created_time).limit(6)
+    @places = Place.desc(:created_time).limit(6)
+    @videos = Video.desc(:created_time).limit(6)
+    @snowboards = Snowboard.desc(:created_time).limit(7)
+    @snowbindings = Snowbinding.desc(:created_time).limit(7)
+    @snowboots = Snowboot.desc(:created_time).limit(7)
   end
 end
   

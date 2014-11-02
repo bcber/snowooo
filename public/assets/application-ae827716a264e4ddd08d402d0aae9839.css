@@ -1,0 +1,176 @@
+/* line 4, /home/god/project/snowooo/app/assets/stylesheets/places.css.scss */
+.map {
+  height: 250px;
+}
+
+/* line 8, /home/god/project/snowooo/app/assets/stylesheets/places.css.scss */
+.text-center .star {
+  margin: auto;
+}
+/*Registration and Login Page v1
+------------------------------------*/
+/* line 4, /home/god/project/snowooo/app/assets/stylesheets/signup.css.scss */
+.reg-page {
+  color: #555;
+  padding: 30px;
+  background: #fefefe;
+  border: solid 1px #eee;
+  box-shadow: 0 0 3px #eee;
+}
+
+/*Reg Header*/
+/* line 13, /home/god/project/snowooo/app/assets/stylesheets/signup.css.scss */
+.reg-header {
+  color: #555;
+  text-align: center;
+  margin-bottom: 35px;
+  border-bottom: solid 1px #eee;
+}
+
+/* line 20, /home/god/project/snowooo/app/assets/stylesheets/signup.css.scss */
+.reg-header h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+/*Reg Forms*/
+/* line 26, /home/god/project/snowooo/app/assets/stylesheets/signup.css.scss */
+.reg-page label {
+  color: #777;
+}
+/* line 14, /home/god/project/snowooo/app/assets/stylesheets/welcome.css.scss */
+.img-thumb {
+  max-height: 100px;
+  overflow: hidden;
+}
+
+/* line 19, /home/god/project/snowooo/app/assets/stylesheets/welcome.css.scss */
+.img-thumb img {
+  width: 100%;
+}
+
+/* line 23, /home/god/project/snowooo/app/assets/stylesheets/welcome.css.scss */
+.img-medium {
+  max-height: 180px;
+  overflow: hidden;
+}
+
+/* line 28, /home/god/project/snowooo/app/assets/stylesheets/welcome.css.scss */
+.img-medium img {
+  width: 100%;
+}
+
+/* line 32, /home/god/project/snowooo/app/assets/stylesheets/welcome.css.scss */
+.max-height-100 {
+  max-height: 100px;
+  overflow: hidden;
+}
+/* line 9, /home/god/project/snowooo/app/assets/stylesheets/welcome.css.scss */
+.max-height-100 img {
+  width: 100%;
+}
+
+/* line 33, /home/god/project/snowooo/app/assets/stylesheets/welcome.css.scss */
+.max-height-200 {
+  max-height: 200px;
+  overflow: hidden;
+}
+/* line 9, /home/god/project/snowooo/app/assets/stylesheets/welcome.css.scss */
+.max-height-200 img {
+  width: 100%;
+}
+
+/* line 34, /home/god/project/snowooo/app/assets/stylesheets/welcome.css.scss */
+.max-height-300 {
+  max-height: 300px;
+  overflow: hidden;
+}
+/* line 9, /home/god/project/snowooo/app/assets/stylesheets/welcome.css.scss */
+.max-height-300 img {
+  width: 100%;
+}
+
+/* line 35, /home/god/project/snowooo/app/assets/stylesheets/welcome.css.scss */
+.max-height-400 {
+  max-height: 400px;
+  overflow: hidden;
+}
+/* line 9, /home/god/project/snowooo/app/assets/stylesheets/welcome.css.scss */
+.max-height-400 img {
+  width: 100%;
+}
+
+/* line 36, /home/god/project/snowooo/app/assets/stylesheets/welcome.css.scss */
+.max-height-500 {
+  max-height: 500px;
+  overflow: hidden;
+}
+/* line 9, /home/god/project/snowooo/app/assets/stylesheets/welcome.css.scss */
+.max-height-500 img {
+  width: 100%;
+}
+
+/* line 37, /home/god/project/snowooo/app/assets/stylesheets/welcome.css.scss */
+.max-height-600 {
+  max-height: 600px;
+  overflow: hidden;
+}
+/* line 9, /home/god/project/snowooo/app/assets/stylesheets/welcome.css.scss */
+.max-height-600 img {
+  width: 100%;
+}
+
+/* line 39, /home/god/project/snowooo/app/assets/stylesheets/welcome.css.scss */
+.post-item img {
+  height: 100px;
+}
+
+/* line 43, /home/god/project/snowooo/app/assets/stylesheets/welcome.css.scss */
+.post-item.post-item-head img {
+  height: 200px;
+  width: 100%;
+}
+
+/* line 48, /home/god/project/snowooo/app/assets/stylesheets/welcome.css.scss */
+.post-item .info {
+  color: #cbcbcb;
+}
+
+/* line 52, /home/god/project/snowooo/app/assets/stylesheets/welcome.css.scss */
+.post-item.post-child-item .info {
+  margin-top: 30px;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+
+
+ */
+
+.pagination-custome{
+  display: block;
+  position: relative;
+  text-align: center;
+  clear:both;
+}
+
+.item-list{
+  margin:0;
+  padding:0;
+  overflow: hidden;
+}
+
+.loginbar{
+    height:100px;
+    overflow:hidden;
+}
+

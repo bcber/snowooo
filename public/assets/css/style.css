@@ -92,7 +92,7 @@
 	padding-bottom: 15px;
 }
 
-.topbar ul.loginbar > li > a, 
+.topbar ul.loginbar > li > a,
 .topbar ul.loginbar > li > a:hover {
 	color: #7c8082;
 	font-size: 11px;
@@ -851,8 +851,8 @@
 }
 
 .dropdown > a:after {
-    top: 9px;
-    right: 15px;
+    top: 16px;
+    right: 3px;
     content: "\f107";
 }
 

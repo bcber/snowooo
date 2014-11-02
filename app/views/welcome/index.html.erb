@@ -1,10 +1,305 @@
-<div class="title-box-v2">
-  <h1>
-    <span class="glyphicon glyphicon-exclamation-sign"></span>
-    正在
-    <span class="color-green">
-      建设中...
-    </span>
-  </h1>
-</div>
+<% if @top_posts.entries.count > 3 %>
+<div class="row magazine-page">
+  <div class="col-xs-8">
+        <div class="magazine-news-img">
+          <%= link_to @top_posts[0] do  %>
+            <%= image_tag @top_posts[0].cover.medium, class:'img-responsive' %>
+          <% end %>
+          <span class="magazine-badge label-blue"><%= truncate(@top_posts[0].title, length:30) %></span>
+        </div>
+  </div>
+  <div class="col-xs-4">
+    <div class="magazine-news-split-img">
+      <%= link_to @top_posts[1] do  %>
+          <%= image_tag @top_posts[1].cover.medium, class:'img-responsive' %>
+      <% end %>
+      <span class="magazine-badge label-blue"><%= truncate(@top_posts[1].title, length:30) %></span>
+    </div>
 
+    <div class="magazine-news-split-img">
+      <%= link_to @top_posts[2] do  %>
+          <%= image_tag @top_posts[2].cover.medium, class:'img-responsive' %>
+      <% end %>
+      <span class="magazine-badge label-blue"><%= truncate(@top_posts[2].title, length:30) %></span>
+    </div>
+
+    <div class="magazine-news-split-img">
+      <%= link_to @top_posts[3] do  %>
+          <%= image_tag @top_posts[3].cover.medium, class:'img-responsive' %>
+      <% end %>
+      <span class="magazine-badge label-blue"><%= truncate(@top_posts[3].title, length:30) %></span>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<hr/>
+<div class="row">
+  <div class="col-xs-8">
+    <div class="row">
+      <div class="headline headline-md"><h2>最近的资讯</h2></div>
+
+      <div class="col-xs-12">
+        <div class="row">
+          <% @posts[0..1].each do |post| %>
+            <div class="col-xs-6">
+              <div class="post-item post-item-head">
+                <%= image_tag post.cover.medium, class:"img-responsive" %>
+                <h3 class="text-center"><%= link_to post.title, post %></h3>
+
+                <div class="info text-center">
+                    <strong><%= post.user.present? ? item.user.name: 'admin' %></strong>
+                    <span><%= post.created_at.strftime("%m-%d-%Y") %></span>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <% @posts[2..-1].in_groups_of(2,false).each do |group| %>
+          <div class="row">
+            <% group.each do |item| %>
+            <div class="post-item post-child-item">
+                <div class="col-xs-6">
+                  <div class="row">
+                    <div class="col-xs-3"><%= link_to item do  %>
+                          <div class="img-medium">
+                            <%= image_tag item.cover.medium, class:"img-responsive"%>
+                          </div>
+                      <% end %></div>
+                    <div class="col-xs-9">
+                      <div class="info">
+                          <h3><%= link_to item.title , item%></h3>
+                          <div class="by-author">
+                            <strong><%= item.user.present? ? item.user.name: 'admin' %></strong>
+                            <span>/ <%= item.created_at.strftime("%m-%d-%Y") %></span>
+                          </div>
+                      </div>
+                     </div>
+                  </div>
+                </div>
+            </div>
+          <% end %>
+          </div>
+
+      <% end %>
+    </div>
+
+    <hr/>
+    <div class="row">
+      <div class="headline headline-md"><h2>最新装备</h2></div>
+
+      <div class="tab-v2 margin-bottom-40">
+        <ul class="nav nav-tabs margin-bottom-20">
+          <li class="active pull-right"><a data-toggle="tab" href="#snowboard">雪板</a></li>
+          <li class="pull-right"><a data-toggle="tab" href="#snowboot">雪鞋</a></li>
+          <li class="pull-right"><a data-toggle="tab" href="#snowbinding">固定器</a></li>
+        </ul>
+        <div class="tab-content">
+          <div id="snowboard" class="tab-pane active">
+            <div class="row">
+              <div class="col-xs-8">
+                <div class="max-height-600">
+                    <%= link_to @snowboards.first do %>
+                        <% if @snowboards.first.qiniu_images.present? %>
+                            <%= image_tag @snowboards.first.qiniu_images.first.original.medium , class:"img-responsive"%>
+                        <% else %>
+                            <%= image_tag @snowboards.first.images.first.large, class:"img-responsive" %>
+                        <% end %>
+                    <% end %>
+                  <div class="text-center">
+                    <strong><%= @snowboards.first.brand %></strong>
+                    <%= link_to @snowboards.first do %>
+                        <h5><%= @snowboards.first.name %></h5>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-4">
+                <% @snowboards[1..-1].in_groups_of(2,false) do |group| %>
+                    <div class="max-height-200">
+                        <div class="row">
+                          <% group.each do |snowboard| %>
+                              <div class="col-xs-6">
+                                  <div class="img-thumb">
+                                    <%= link_to snowboard do %>
+                                        <% if snowboard.qiniu_images.present? %>
+                                            <%= image_tag snowboard.qiniu_images.first.original.medium , class:"img-responsive"%>
+                                        <% else %>
+                                            <%= image_tag snowboard.images.first.large, class:"img-responsive" %>
+                                        <% end %>
+                                    <% end %>
+                                  </div>
+                                  <div class="text-center">
+                                    <strong><%= snowboard.brand %></strong>
+                                    <%= link_to snowboard do %>
+                                        <h5><%= snowboard.name %></h5>
+                                    <% end %>
+                                  </div>
+                              </div>
+                        <% end %>
+                        </div>
+                    </div>
+
+                <% end %>
+              </div>
+
+              <% @snowboards.in_groups_of(4,false).each do |group| %>
+                  <div class="row">
+                    <% group.each do |snowboard| %>
+                        <div class="col-xs-3">
+
+                        </div>
+                    <% end %>
+                  </div>
+              <% end %>
+
+            </div>
+          </div>
+          <div id="snowboot" class="tab-pane magazine-sb-categories">
+            <div class="row">
+              <div class="col-xs-8">
+                <div class="max-height-600">
+                  <%= link_to @snowboots.first do %>
+                      <% if @snowboots.first.qiniu_images.present? %>
+                          <%= image_tag @snowboots.first.qiniu_images.first.original.medium , class:"img-responsive"%>
+                      <% else %>
+                          <%= image_tag @snowboots.first.images.first.large, class:"img-responsive" %>
+                      <% end %>
+                  <% end %>
+                  <div class="text-center">
+                    <strong><%= @snowboots.first.brand %></strong>
+                    <%= link_to @snowboots.first do %>
+                        <h5><%= @snowboots.first.name %></h5>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-4">
+                <% @snowboots[1..-1].in_groups_of(2,false) do |group| %>
+                    <div class="max-height-200">
+                      <div class="row">
+                        <% group.each do |snowboot| %>
+                            <div class="col-xs-6">
+                              <div class="img-thumb">
+                                <%= link_to snowboot do %>
+                                    <% if snowboot.qiniu_images.present? %>
+                                        <%= image_tag snowboot.qiniu_images.first.original.medium , class:"img-responsive"%>
+                                    <% else %>
+                                        <%= image_tag snowboot.images.first.large, class:"img-responsive" %>
+                                    <% end %>
+                                <% end %>
+                              </div>
+                              <div class="text-center">
+                                <strong><%= snowboot.brand %></strong>
+                                <%= link_to snowboot do %>
+                                    <h5><%= snowboot.name %></h5>
+                                <% end %>
+                              </div>
+                            </div>
+                        <% end %>
+                      </div>
+                    </div>
+
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <div id="snowbinding" class="tab-pane magazine-sb-categories">
+            <div class="row">
+              <div class="col-xs-8">
+                <div class="max-height-600">
+                  <%= link_to @snowbindings.first do %>
+                      <% if @snowbindings.first.qiniu_images.present? %>
+                          <%= image_tag @snowbindings.first.qiniu_images.first.original.medium , class:"img-responsive"%>
+                      <% else %>
+                          <%= image_tag @snowbindings.first.images.first.large, class:"img-responsive" %>
+                      <% end %>
+                  <% end %>
+                  <div class="text-center">
+                    <strong><%= @snowbindings.first.brand %></strong>
+                    <%= link_to @snowbindings.first do %>
+                        <h5><%= @snowbindings.first.name %></h5>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-4">
+                <% @snowbindings[1..-1].in_groups_of(2,false) do |group| %>
+                    <div class="max-height-200">
+                      <div class="row">
+                        <% group.each do |snowbinding| %>
+                            <div class="col-xs-6">
+                              <div class="img-thumb">
+                                <%= link_to snowbinding do %>
+                                    <% if snowbinding.qiniu_images.present? %>
+                                        <%= image_tag snowbinding.qiniu_images.first.original.medium , class:"img-responsive"%>
+                                    <% else %>
+                                        <%= image_tag snowbinding.images.first.large, class:"img-responsive" %>
+                                    <% end %>
+                                <% end %>
+                              </div>
+                              <div class="text-center">
+                                <strong><%= snowbinding.brand %></strong>
+                                <%= link_to snowbinding do %>
+                                    <h5><%= snowbinding.name %></h5>
+                                <% end %>
+                              </div>
+                            </div>
+                        <% end %>
+                      </div>
+                    </div>
+
+                <% end %>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <hr/>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="headline headline-md"><h2>雪场信息</h2></div>
+        <% @places.in_groups_of(4,false).each do |group| %>
+            <div class="row">
+                <% group.each do |place| %>
+                  <div class="col-xs-3">
+                    <%= link_to place do %>
+                        <div class="img-thumb">
+                          <%= image_tag place.cover.medium , class:'img-responsive'%>
+                        </div>
+                    <% end %>
+                    <div class="text-center">
+                      <%= link_to place do %>
+                          <h3><%= place.name %></h3>
+                      <% end %>
+                      <%= rating_for place %>
+                    </div>
+                  </div>
+                <% end %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-3 col-xs-offset-1">
+    <div class="row">
+      <div class="headline headline-md"><h2>最新视频</h2></div>
+      <% @videos.in_groups_of(2,false) do |group| %>
+        <% group.each do |video| %>
+            <div class="col-xs-6">
+              <%= link_to video do%>
+                <div class="img-video">
+                  <%= image_tag video.thumbnail %>
+                  <p><%= video.title %></p>
+                </div>
+              <% end %>
+            </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

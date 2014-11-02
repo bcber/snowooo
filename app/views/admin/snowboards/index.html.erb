@@ -20,6 +20,7 @@
             <td><%= snowboard.created_at %></td>
             <td>
               <%= link_to '详情', snowboard, class: "btn btn-default btn-xs" %>
+              <%= link_to '更新图片', updateimg_admin_snowboard_path(snowboard), class:"btn btn-default btn-xs" %>
               <%= link_to '编辑', edit_admin_snowboard_path(snowboard), class: "btn btn-default btn-xs" %>
               <%= link_to '删除', admin_snowboard_path(snowboard), data:{confirm:"确定?"},method: :delete,class: "btn btn-danger btn-xs" %>
             </td>
