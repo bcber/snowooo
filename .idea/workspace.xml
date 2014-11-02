@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fe0aafb0-c432-45a8-ac2f-c083d39e2612" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/letsrate.js.erb" afterPath="$PROJECT_DIR$/app/assets/javascripts/letsrate.js.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/css/pages/blog_magazine.css" afterPath="$PROJECT_DIR$/public/assets/css/pages/blog_magazine.css" />
     </list>
     <ignored path="snowooo.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -70,16 +70,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_form.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/admin/snowboards/_form.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.25" vertical-offset="1125" max-vertical-offset="2340">
-              <caret line="93" column="80" selection-start-line="93" selection-start-column="80" selection-end-line="93" selection-end-column="80" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="application_controller.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/admin/application_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
@@ -100,11 +90,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="letsrate.js.erb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="letsrate.js.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/letsrate.js.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="645">
-              <caret line="0" column="58" selection-start-line="0" selection-start-column="58" selection-end-line="0" selection-end-column="58" />
+            <state vertical-scroll-proportion="-12.5" vertical-offset="0" max-vertical-offset="645">
+              <caret line="20" column="47" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="blog_magazine.css" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/assets/css/pages/blog_magazine.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.92990655" vertical-offset="772" max-vertical-offset="2670">
+              <caret line="78" column="24" selection-start-line="78" selection-start-column="24" selection-end-line="78" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -185,7 +185,6 @@
         <option value="$PROJECT_DIR$/app/views/admin/posts/index.html.erb" />
         <option value="$PROJECT_DIR$/config/initializers/assets.rb" />
         <option value="$PROJECT_DIR$/Capfile" />
-        <option value="$PROJECT_DIR$/public/assets/css/pages/blog_magazine.css" />
         <option value="$PROJECT_DIR$/public/assets/css/app.css" />
         <option value="$PROJECT_DIR$/app/views/places/show.html.erb" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
@@ -201,6 +200,7 @@
         <option value="$PROJECT_DIR$/app/views/welcome/index.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/welcome.css.scss" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/letsrate.js.erb" />
+        <option value="$PROJECT_DIR$/public/assets/css/pages/blog_magazine.css" />
       </list>
     </option>
   </component>
@@ -528,7 +528,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../jiulongpei" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
-    <property name="SearchEverywhereHistoryKey" value="app.css&#9;FILE&#9;file:///home/god/project/snowooo/public/assets/css/app.css&#10;style.css&#9;FILE&#9;file:///home/god/project/snowooo/public/assets/css/style.css&#10;appl&#9;FILE&#9;file:///home/god/project/snowooo/app/views/layouts/application.html.erb&#10;gemfile&#9;FILE&#9;file:///home/god/project/snowooo/Gemfile&#10;routes&#9;FILE&#9;file:///home/god/project/snowooo/config/routes.rb&#10;video.rb&#9;FILE&#9;file:///home/god/project/snowooo/app/models/video.rb&#10;snowboard.rb&#9;FILE&#9;file:///home/god/project/snowooo/app/models/snowboard.rb&#10;places/show&#9;FILE&#9;file:///home/god/project/snowooo/app/views/places/show.html.erb&#10;place.rb&#9;FILE&#9;file:///home/god/project/snowooo/app/models/place.rb&#10;app&#9;FILE&#9;file:///home/god/project/snowooo/public/assets/css/app.css&#10;post.rb&#9;FILE&#9;file:///home/god/project/snowooo/app/models/post.rb&#10;wel&#9;FILE&#9;file:///home/god/project/snowooo/app/controllers/welcome_controller.rb&#10;blo&#9;FILE&#9;file:///home/god/project/snowooo/public/assets/css/pages/blog_magazine.css&#10;welcome&#9;null&#9;null&#10;welcome/i&#9;FILE&#9;file:///home/god/project/snowooo/app/views/welcome/index.html.erb&#10;capfile&#9;FILE&#9;file:///home/god/project/snowooo/Capfile&#10;ass&#9;FILE&#9;file:///home/god/project/snowooo/config/initializers/assets.rb&#10;admi&#9;FILE&#9;file:///home/god/project/snowooo/app/views/layouts/admin.html.erb&#10;snowbind&#9;null&#9;null&#10;gemfi&#9;FILE&#9;file:///home/god/project/snowooo/Gemfile&#10;gem&#9;FILE&#9;file:///home/god/project/snowooo/Gemfile&#10;user.rb&#9;FILE&#9;file:///home/god/project/snowooo/app/models/user.rb&#10;snowboar&#9;FILE&#9;file:///home/god/project/snowooo/app/controllers/admin/snowboards_controller.rb&#10;home/index&#9;FILE&#9;file:///home/god/project/snowooo/app/views/admin/home/index.html.erb&#10;ad&#9;FILE&#9;file:///home/god/project/snowooo/app/views/layouts/admin.html.erb&#10;application.js&#9;FILE&#9;file:///home/god/project/snowooo/app/assets/javascripts/application.js&#10;snowboards/show&#9;FILE&#9;file:///home/god/project/snowooo/app/views/snowboards/show.html.erb&#10;posts/in&#9;FILE&#9;file:///home/god/project/snowooo/app/views/posts/index.html.erb&#10;adm&#9;FILE&#9;file:///home/god/project/snowooo/app/views/layouts/admin.html.erb&#10;zh&#9;FILE&#9;file:///home/god/project/snowooo/config/locales/zh-CN.yml&#10;snowboards/in&#9;FILE&#9;file:///home/god/project/snowooo/app/views/snowboards/index.html.erb&#10;show&#9;FILE&#9;file:///home/god/project/snowooo/app/views/videos/show.html.erb&#10;place&#9;FILE&#9;file:///home/god/project/snowooo/app/models/place.rb&#10;place/show&#9;FILE&#9;file:///home/god/project/snowooo/app/views/places/show.html.erb&#10;gemf&#9;FILE&#9;file:///home/god/project/snowooo/Gemfile&#10;ind&#9;FILE&#9;file:///home/god/project/snowooo/app/views/admin/places/index.html.erb&#10;rout&#9;FILE&#9;file:///home/god/project/snowooo/config/routes.rb&#10;admin&#9;FILE&#9;file:///home/god/project/snowooo/app/views/layouts/admin.html.erb&#10;mai&#9;null&#9;null&#10;&#9;FILE&#9;file:///home/god/project/snowooo/config/locales/zh-CN.yml&#10;snowbi/in&#9;FILE&#9;file:///home/god/project/snowooo/app/views/snowbindings/index.html.erb&#10;snowboard/index&#9;FILE&#9;file:///home/god/project/snowooo/app/views/snowboards/index.html.erb&#10;index&#9;FILE&#9;file:///home/god/project/snowooo/app/views/snowboots/index.html.erb&#10;inde&#9;FILE&#9;file:///home/god/project/snowooo/app/views/posts/index.html.erb&#10;a&#9;FILE&#9;file:///home/god/project/snowooo/app/views/layouts/application.html.erb&#10;_post&#9;FILE&#9;file:///home/god/project/snowooo/app/views/posts/_post.html.erb&#10;posts/ind&#9;FILE&#9;file:///home/god/project/snowooo/app/views/posts/index.html.erb&#10;users/edit&#9;FILE&#9;file:///home/god/project/snowooo/app/views/users/edit.html.erb&#10;users/_&#9;FILE&#9;file:///home/god/project/snowooo/app/views/users/_form.html.erb&#10;users/_fo&#9;FILE&#9;file:///home/god/project/snowooo/app/views/admin/users/_form.html.erb" />
+    <property name="SearchEverywhereHistoryKey" value="blog&#9;FILE&#9;file:///home/god/project/snowooo/public/assets/css/pages/blog_magazine.css&#10;app.css&#9;FILE&#9;file:///home/god/project/snowooo/public/assets/css/app.css&#10;style.css&#9;FILE&#9;file:///home/god/project/snowooo/public/assets/css/style.css&#10;appl&#9;FILE&#9;file:///home/god/project/snowooo/app/views/layouts/application.html.erb&#10;gemfile&#9;FILE&#9;file:///home/god/project/snowooo/Gemfile&#10;routes&#9;FILE&#9;file:///home/god/project/snowooo/config/routes.rb&#10;video.rb&#9;FILE&#9;file:///home/god/project/snowooo/app/models/video.rb&#10;snowboard.rb&#9;FILE&#9;file:///home/god/project/snowooo/app/models/snowboard.rb&#10;places/show&#9;FILE&#9;file:///home/god/project/snowooo/app/views/places/show.html.erb&#10;place.rb&#9;FILE&#9;file:///home/god/project/snowooo/app/models/place.rb&#10;app&#9;FILE&#9;file:///home/god/project/snowooo/public/assets/css/app.css&#10;post.rb&#9;FILE&#9;file:///home/god/project/snowooo/app/models/post.rb&#10;wel&#9;FILE&#9;file:///home/god/project/snowooo/app/controllers/welcome_controller.rb&#10;blo&#9;FILE&#9;file:///home/god/project/snowooo/public/assets/css/pages/blog_magazine.css&#10;welcome&#9;null&#9;null&#10;welcome/i&#9;FILE&#9;file:///home/god/project/snowooo/app/views/welcome/index.html.erb&#10;capfile&#9;FILE&#9;file:///home/god/project/snowooo/Capfile&#10;ass&#9;FILE&#9;file:///home/god/project/snowooo/config/initializers/assets.rb&#10;admi&#9;FILE&#9;file:///home/god/project/snowooo/app/views/layouts/admin.html.erb&#10;snowbind&#9;null&#9;null&#10;gemfi&#9;FILE&#9;file:///home/god/project/snowooo/Gemfile&#10;gem&#9;FILE&#9;file:///home/god/project/snowooo/Gemfile&#10;user.rb&#9;FILE&#9;file:///home/god/project/snowooo/app/models/user.rb&#10;snowboar&#9;FILE&#9;file:///home/god/project/snowooo/app/controllers/admin/snowboards_controller.rb&#10;home/index&#9;FILE&#9;file:///home/god/project/snowooo/app/views/admin/home/index.html.erb&#10;ad&#9;FILE&#9;file:///home/god/project/snowooo/app/views/layouts/admin.html.erb&#10;application.js&#9;FILE&#9;file:///home/god/project/snowooo/app/assets/javascripts/application.js&#10;snowboards/show&#9;FILE&#9;file:///home/god/project/snowooo/app/views/snowboards/show.html.erb&#10;posts/in&#9;FILE&#9;file:///home/god/project/snowooo/app/views/posts/index.html.erb&#10;adm&#9;FILE&#9;file:///home/god/project/snowooo/app/views/layouts/admin.html.erb&#10;zh&#9;FILE&#9;file:///home/god/project/snowooo/config/locales/zh-CN.yml&#10;snowboards/in&#9;FILE&#9;file:///home/god/project/snowooo/app/views/snowboards/index.html.erb&#10;show&#9;FILE&#9;file:///home/god/project/snowooo/app/views/videos/show.html.erb&#10;place&#9;FILE&#9;file:///home/god/project/snowooo/app/models/place.rb&#10;place/show&#9;FILE&#9;file:///home/god/project/snowooo/app/views/places/show.html.erb&#10;gemf&#9;FILE&#9;file:///home/god/project/snowooo/Gemfile&#10;ind&#9;FILE&#9;file:///home/god/project/snowooo/app/views/admin/places/index.html.erb&#10;rout&#9;FILE&#9;file:///home/god/project/snowooo/config/routes.rb&#10;admin&#9;FILE&#9;file:///home/god/project/snowooo/app/views/layouts/admin.html.erb&#10;mai&#9;null&#9;null&#10;&#9;FILE&#9;file:///home/god/project/snowooo/config/locales/zh-CN.yml&#10;snowbi/in&#9;FILE&#9;file:///home/god/project/snowooo/app/views/snowbindings/index.html.erb&#10;snowboard/index&#9;FILE&#9;file:///home/god/project/snowooo/app/views/snowboards/index.html.erb&#10;index&#9;FILE&#9;file:///home/god/project/snowooo/app/views/snowboots/index.html.erb&#10;inde&#9;FILE&#9;file:///home/god/project/snowooo/app/views/posts/index.html.erb&#10;a&#9;FILE&#9;file:///home/god/project/snowooo/app/views/layouts/application.html.erb&#10;_post&#9;FILE&#9;file:///home/god/project/snowooo/app/views/posts/_post.html.erb&#10;posts/ind&#9;FILE&#9;file:///home/god/project/snowooo/app/views/posts/index.html.erb&#10;users/edit&#9;FILE&#9;file:///home/god/project/snowooo/app/views/users/edit.html.erb&#10;users/_&#9;FILE&#9;file:///home/god/project/snowooo/app/views/users/_form.html.erb" />
     <property name="FullScreen" value="false" />
   </component>
   <component name="RunManager" selected="Rails.Development: snowooo">
@@ -696,7 +696,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2152568" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27286586" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27286586" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -912,14 +912,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/assets/css/pages/blog_magazine.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="2655">
-          <caret line="67" column="19" selection-start-line="67" selection-start-column="19" selection-end-line="67" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/post.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="437">
@@ -1114,8 +1106,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/letsrate.js.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="645">
-          <caret line="0" column="58" selection-start-line="0" selection-start-column="58" selection-end-line="0" selection-end-column="58" />
+        <state vertical-scroll-proportion="-12.5" vertical-offset="0" max-vertical-offset="645">
+          <caret line="20" column="47" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/css/pages/blog_magazine.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.92990655" vertical-offset="772" max-vertical-offset="2670">
+          <caret line="78" column="24" selection-start-line="78" selection-start-column="24" selection-end-line="78" selection-end-column="24" />
           <folding />
         </state>
       </provider>
