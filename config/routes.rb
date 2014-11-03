@@ -3,10 +3,17 @@ Rails.application.routes.draw do
   post '/rate' => 'rater#create', :as => 'rate'
   mount Ckeditor::Engine => '/ckeditor'
 
-  resources :places ,:snowboards , :posts, :snowbindings ,:snowboots ,:videos do
+  resources :places ,:snowboards , :snowbindings ,:snowboots ,:videos do
     resources :comments
   end
   resources :comments
+
+  resources :posts do
+    resources :comments
+    collection do
+      get 'category/:category' => 'posts#category', as: :category
+    end
+  end
 
   authenticate :user, lambda { |u| u.has_role? :admin } do
     mount Sidekiq::Web => '/sidekiq'
@@ -58,6 +65,7 @@ Rails.application.routes.draw do
   end
 
   root 'welcome#index'
+  get 'gear' => 'welcome#gear'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

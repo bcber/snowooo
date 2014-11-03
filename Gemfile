@@ -23,6 +23,10 @@ gem 'cancancan', '~> 1.9'
 gem 'devise', :git => 'https://github.com/plataformatec/devise'
 gem "will_paginate_mongoid"
 
+gem "html_truncator", "~>0.2"
+#tag
+gem 'mongoid_taggable_on'
+
 #queue
 gem 'sidekiq'
 gem 'sinatra', '>= 1.3.0', :require => nil

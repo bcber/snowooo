@@ -2,7 +2,9 @@ class Snowboard
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Letsrate
+
   letsrate_rateable
+
 
   STYLES = Snowboard.all.pluck(:style).uniq
 

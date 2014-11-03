@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
     request.env['devise.mapping'] if Rails.env.development?
   end
 
+  def date(time)
+    time.strftime('%m-%d-%Y')
+  end
+
   def year
     Time.now.year
   end
@@ -30,5 +34,5 @@ class ApplicationController < ActionController::Base
            handler: [:erb], status: status, layout: 'application'
   end
 
-  helper_method :info, :admin?, :year
+  helper_method :info, :admin?, :year, :date
 end

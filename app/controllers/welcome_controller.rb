@@ -8,5 +8,11 @@ class WelcomeController < ApplicationController
     @snowbindings = Snowbinding.desc(:created_time).limit(7)
     @snowboots = Snowboot.desc(:created_time).limit(7)
   end
+
+  def gear
+    @snowboards = Snowboard.desc(:created_time).limit(8)
+    @snowbindings = Snowbinding.desc(:created_time).limit(8)
+    @snowboots = Snowboot.desc(:created_time).limit(8)
+  end
 end
   

@@ -1,16 +1,18 @@
+<h2>所有含有标签 <%= params[:category] %> 的文章</h2>
+<hr/>
 <div class="row">
-  <div class="col-sm-9">
+  <div class="col-sm-12">
 
-    <% @posts.in_groups_of(2,false) do |group| %>
+    <% @posts.in_groups_of(3,false) do |group| %>
         <div class="row">
           <% group.each do |post| %>
-              <div class="col-sm-6">
+              <div class="col-sm-4">
                 <div class="post-item" style="margin-bottom:40px;">
-                    <div class="max-height-200">
-                      <%= link_to post do  %>
-                      <%= image_tag post.cover.big %>
-                      <% end %>
-                    </div>
+                  <div class="max-height-200">
+                    <%= link_to post do  %>
+                        <%= image_tag post.cover.big %>
+                    <% end %>
+                  </div>
                   <div class="title">
                     <h3><%= link_to post.title, post%></h3>
                   </div>
@@ -38,30 +40,6 @@
       <div class="pagination">
         <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
       </div>
-    </div>
-  </div>
-  <div class="col-sm-3">
-      <% if can? :create, Post %>
-        <div class="text-center">
-          <%= link_to t('newpost'), new_post_path, class:"btn-u btn-block" %>
-        </div>
-      <% end %>
-    <div class="posts margin-bottom-40 hidden-xs">
-      <div class="headline headline-md"> 
-        <h2>推荐文章</h2>
-      </div>
-      <% @recommend_posts.each do |post| %>
-        <dl class="dl-horizontal">
-          <dt>
-            <%= link_to post do %>
-              <%= image_tag post.cover.thumb %>
-            <% end %>
-          </dt>
-          <dd>
-            <p><%= truncate(post.title, length: 20) %></p>
-          </dd>
-        </dl>
-      <% end %>
     </div>
   </div>
 </div>

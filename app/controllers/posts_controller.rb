@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :set_tag, only: [:create, :update]
   load_and_authorize_resource
   respond_to :html
 
@@ -22,6 +21,10 @@ class PostsController < ApplicationController
   def edit
   end
 
+  def category
+    @posts = Post.tagged_with_on(:category,params[:category]).paginate(page:params[:page], per_page: 9)
+  end
+
   def create
     @post = Post.new(post_params)
     @post.save
@@ -38,15 +41,11 @@ class PostsController < ApplicationController
   end
 
   private
-    def set_tag
-      logger.info params[:tag_string]
-    end
-
     def set_post
       @post = Post.find(params[:id])
     end
 
     def post_params
-      params.require(:post).permit( :title, :content, :cover, :remote_cover_url, :tag_string )
+      params.require(:post).permit( :title, :content, :cover, :remote_cover_url, :tag_string ,:category_list)
     end
 end

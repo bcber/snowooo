@@ -18,6 +18,12 @@
 
     <hr/>
     <div class="input-group">
+      <span class="input-group-addon">标签</span>
+      <%= f.text_field :category_list, class:"form-control", placeholder:"添加标签，以逗号分开,如: 滑雪，雪板，雪场" %>
+    </div>
+
+    <hr/>
+    <div class="input-group">
       <span class="input-group-addon">上传封面图片</span>
       <%= f.file_field :cover, class:"form-control" %>
       <%= f.text_field :remote_cover_url, class: "form-control",placeholder:"或者图片的链接" %>
