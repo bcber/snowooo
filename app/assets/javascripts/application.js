@@ -15,3 +15,11 @@
 //= require turbolinks
 //= require ckeditor/init
 //= require_tree .
+
+$(document).on('page:change',function(){
+    $('.show-description-detail').click(function(){
+        $('.description-short').hide();
+        $('.description-detail').removeClass('hide');
+        $(this).hide();
+    });
+});

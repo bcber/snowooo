@@ -91,7 +91,15 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="headline"><h2>雪板介绍</h2></div>
-        <%= @snowboard.description.to_s.html_safe %>
+
+        <div class="description-short">
+          <%= truncate(strip_tags(@snowboard.description.to_s.html_safe), length: 50) %>
+        </div>
+        <div class="hide description-detail">
+          <%= @snowboard.description.to_s.html_safe %>
+        </div>
+
+        <button class="show-description-detail btn-u btn-block">更多</button>
       </div>
     </div>
 
