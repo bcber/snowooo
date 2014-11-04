@@ -4,6 +4,9 @@ class Snowboot
   include Mongoid::Letsrate
   letsrate_rateable
 
+  field :up_at, type: Time, default: Time.new(1970)
+  field :recommend_at, type: Time, default: Time.new(1970)
+
   STYLES = Snowboot.all.pluck(:style).uniq
 
   def self.create_scope(scopes)
@@ -18,6 +21,8 @@ class Snowboot
   field :brand
   field :style
   field :description
+  field :cover
+  mount_uploader :cover, QiniuimageUploader
 
   embeds_many :images, inverse_of: :images
 
@@ -26,4 +31,5 @@ class Snowboot
 
   has_many :comments, as: :commentable
   accepts_nested_attributes_for :comments
+  alias :title :name
 end

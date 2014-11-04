@@ -16,6 +16,10 @@ class QiniuimageUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+  def default_url
+    "http://snowooo-cdn.qiniudn.com/snowooolog.png?imageMogr2/thumbnail/200x/crop/!177x175a10a45"
+  end
+
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
   #   # For Rails 3.1+ asset pipeline compatibility:
@@ -43,6 +47,12 @@ class QiniuimageUploader < CarrierWave::Uploader::Base
   end
 
   version :medium do
+    def full_filename(for_file)
+      [for_file, version_name].compact.join('-')
+    end
+  end
+
+  version :large do
     def full_filename(for_file)
       [for_file, version_name].compact.join('-')
     end

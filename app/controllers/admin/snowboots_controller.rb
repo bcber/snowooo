@@ -1,5 +1,5 @@
 class Admin::SnowbootsController < Admin::ApplicationController
-  before_action :set_snowboot, only:[:edit,:update,:destroy]
+  before_action :set_snowboot, only:[:edit,:update,:destroy, :up, :recommend]
   def index
     @snowboots = Snowboot.desc(:created_at).paginate(:page => params[:page], :per_page => 10)
   end
@@ -11,6 +11,21 @@ class Admin::SnowbootsController < Admin::ApplicationController
 
   def edit
     @snowboot.qiniu_images.build
+  end
+
+
+  # up
+  def up
+    if @snowboot.update(up_at: Time.now)
+      redirect_to admin_snowboots_path
+    end
+  end
+
+  #recommend
+  def recommend
+    if @snowboot.update(recommend_at: Time.now)
+      redirect_to admin_snowboots_path
+    end
   end
 
   def create

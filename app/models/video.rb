@@ -16,6 +16,9 @@ class Video
   field :thumbnail, type: String
   field :description, type: String
 
+  field :up_at, type: Time, default: Time.new(1970)
+  field :recommend_at, type: Time, default: Time.new(1970)
+
   scope :crawled, ->{where(:title.nin => [nil,''])}
 
   has_many :comments, as: :commentable

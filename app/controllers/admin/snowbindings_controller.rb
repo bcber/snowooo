@@ -1,5 +1,5 @@
 class Admin::SnowbindingsController < Admin::ApplicationController
-  before_action :set_snowbinding, only:[:edit,:update,:destroy]
+  before_action :set_snowbinding, only:[:edit,:update,:destroy, :up, :recommend]
   def index
     @snowbindings = Snowbinding.desc(:created_at).paginate(:page => params[:page], :per_page => 10)
   end
@@ -24,6 +24,20 @@ class Admin::SnowbindingsController < Admin::ApplicationController
         format.html { render :new }
         format.json { render json: @snowbinding.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  # up
+  def up
+    if @snowbinding.update(up_at: Time.now)
+      redirect_to admin_snowbindings_path
+    end
+  end
+
+  #recommend
+  def recommend
+    if @snowbinding.update(recommend_at: Time.now)
+      redirect_to admin_snowbindings_path
     end
   end
 

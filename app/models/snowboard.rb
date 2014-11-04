@@ -47,6 +47,10 @@ class Snowboard
   field :manufacturerwarranty
   field :description
   field :origurl
+  field :up_at, type: Time, default: Time.new(1970)
+  field :recommend_at, type: Time, default: Time.new(1970)
+  field :cover
+  mount_uploader :cover, QiniuimageUploader
 
   embeds_many :qiniu_images, :cascade_callbacks => true
   accepts_nested_attributes_for :qiniu_images, reject_if: :all_blank, allow_destroy: true
@@ -58,4 +62,6 @@ class Snowboard
 
   has_many :comments, as: :commentable
   accepts_nested_attributes_for :comments
+
+  alias :title :name
 end

@@ -65,7 +65,7 @@
 
 .magazine-news-img {
 	overflow: hidden;
-	max-height: 500px;
+	max-height: 360px;
 	position: relative;
 }
 
@@ -75,7 +75,7 @@
 
 .magazine-news-split-img {
     overflow: hidden;
-    max-height: 160px;
+    max-height: 110px;
     margin-bottom: 10px;
     position: relative;
 }

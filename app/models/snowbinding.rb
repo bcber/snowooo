@@ -20,6 +20,11 @@ class Snowbinding
   field :recommendeduse
   field :description
   field :style
+  field :cover
+  mount_uploader :cover, QiniuimageUploader
+
+  field :up_at, type: Time, default: Time.new(1970)
+  field :recommend_at, type: Time, default: Time.new(1970)
 
   STYLES_OPTIONS = %w{ women men kid }
   embeds_many :images, inverse_of: :images
@@ -29,5 +34,5 @@ class Snowbinding
 
   has_many :comments, as: :commentable
   accepts_nested_attributes_for :comments
-
+  alias :title :name
 end

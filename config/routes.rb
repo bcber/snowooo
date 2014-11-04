@@ -45,18 +45,10 @@ Rails.application.routes.draw do
 
   namespace :admin do 
     root to: "home#index"
-    resources :snowboards do
-      member do
-        get 'updateimg'
-      end
-    end
-    resources :snowboots
-    resources :snowbindings
+
     resources :settings
     resources :users
-    resources :videos
-    resources :places
-    resources :posts do
+    resources :posts , :places, :videos, :snowboots, :snowbindings , :snowboards do
       member do
         get 'up'
         get 'recommend'

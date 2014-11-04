@@ -1,33 +1,33 @@
-<% if @top_posts.entries.count > 3 %>
+<% if @top.count > 3 %>
 <div class="row magazine-page">
   <div class="col-xs-8">
         <div class="magazine-news-img">
-          <%= link_to @top_posts[0] do  %>
-            <%= image_tag @top_posts[0].cover.medium, class:'img-responsive' %>
+          <%= link_to @top[0] do  %>
+              <%= image_tag @top[0].cover.medium, class:'img-responsive' %>
           <% end %>
-          <span class="magazine-badge label-blue"><%= truncate(@top_posts[0].title, length:30) %></span>
+          <span class="magazine-badge label-blue"><%= truncate(@top[0].title, length:30) %></span>
         </div>
   </div>
   <div class="col-xs-4">
     <div class="magazine-news-split-img">
-      <%= link_to @top_posts[1] do  %>
-          <%= image_tag @top_posts[1].cover.medium, class:'img-responsive' %>
+      <%= link_to @top[1] do  %>
+          <%= image_tag @top[1].cover.medium, class:'img-responsive' %>
       <% end %>
-      <span class="magazine-badge label-blue"><%= truncate(@top_posts[1].title, length:30) %></span>
+      <span class="magazine-badge label-blue"><%= truncate(@top[1].title, length:30) %></span>
     </div>
 
     <div class="magazine-news-split-img">
-      <%= link_to @top_posts[2] do  %>
-          <%= image_tag @top_posts[2].cover.medium, class:'img-responsive' %>
+      <%= link_to @top[2] do  %>
+          <%= image_tag @top[2].cover.medium, class:'img-responsive' %>
       <% end %>
-      <span class="magazine-badge label-blue"><%= truncate(@top_posts[2].title, length:30) %></span>
+      <span class="magazine-badge label-blue"><%= truncate(@top[2].title, length:30) %></span>
     </div>
 
     <div class="magazine-news-split-img">
-      <%= link_to @top_posts[3] do  %>
-          <%= image_tag @top_posts[3].cover.medium, class:'img-responsive' %>
+      <%= link_to @top[3] do  %>
+          <%= image_tag @top[3].cover.medium, class:'img-responsive' %>
       <% end %>
-      <span class="magazine-badge label-blue"><%= truncate(@top_posts[3].title, length:30) %></span>
+      <span class="magazine-badge label-blue"><%= truncate(@top[3].title, length:30) %></span>
     </div>
   </div>
 </div>
@@ -234,8 +234,10 @@
                                 <%= link_to snowbinding do %>
                                     <% if snowbinding.qiniu_images.present? %>
                                         <%= image_tag snowbinding.qiniu_images.first.original.medium , class:"img-responsive"%>
-                                    <% else %>
+                                    <% elsif snowbinding.images.present? %>
                                         <%= image_tag snowbinding.images.first.large, class:"img-responsive" %>
+                                    <% else %>
+                                        还没有图片
                                     <% end %>
                                 <% end %>
                               </div>
@@ -302,3 +304,5 @@
     </div>
   </div>
 </div>
+
+<%= @top.inspect %>

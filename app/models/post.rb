@@ -7,9 +7,9 @@ class Post
 
   field :title, type: String
   field :content, type: String
-  field :up_at, type: Time, default: Time.now
-  field :recommend_at, type: Time, default: Time.now
-  field :cover, type: String
+  field :up_at, type: Time, default: Time.new(1970)
+  field :recommend_at, type: Time, default: Time.new(1970)
+  field :cover
   mount_uploader :cover, PostCoverUploader
 
   has_many :comments, as: :commentable

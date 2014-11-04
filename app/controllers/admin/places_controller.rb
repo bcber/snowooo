@@ -1,5 +1,5 @@
 class Admin::PlacesController < Admin::ApplicationController
-  before_action :set_admin_place, only: [:show, :edit, :update, :destroy]
+  before_action :set_admin_place, only: [:show, :edit, :update, :destroy, :up, :recommend]
 
   # GET /admin/places
   # GET /admin/places.json
@@ -60,6 +60,20 @@ class Admin::PlacesController < Admin::ApplicationController
     respond_to do |format|
       format.html { redirect_to admin_places_path, notice: 'Place was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  # up
+  def up
+    if @admin_place.update(up_at: Time.now)
+      redirect_to admin_places_path
+    end
+  end
+
+  #recommend
+  def recommend
+    if @admin_place.update(recommend_at: Time.now)
+      redirect_to admin_places_path
     end
   end
 

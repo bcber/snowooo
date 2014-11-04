@@ -1,5 +1,5 @@
 class Admin::SnowboardsController < Admin::ApplicationController
-  before_action :set_snowboard, only:[:edit,:update,:destroy]
+  before_action :set_snowboard, only:[:edit,:update,:destroy, :up, :recommend]
   def index
     @snowboards = Snowboard.desc(:created_at).paginate(:page => params[:page], :per_page => 10)
   end
@@ -9,13 +9,22 @@ class Admin::SnowboardsController < Admin::ApplicationController
     3.times{ @snowboard.qiniu_images.build }
   end
 
-  def updateimg
-
-    redirect_to admin_snowboards_path
-  end
-
   def edit
     @snowboard.qiniu_images.build
+  end
+
+  # up
+  def up
+    if @snowboard.update(up_at: Time.now)
+      redirect_to admin_snowboards_path
+    end
+  end
+
+  #recommend
+  def recommend
+    if @snowboard.update(recommend_at: Time.now)
+      redirect_to admin_snowboards_path
+    end
   end
 
   def create

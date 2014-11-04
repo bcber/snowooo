@@ -1,5 +1,5 @@
 class Admin::VideosController < Admin::ApplicationController
-  before_action :set_admin_video, only: [:show, :edit, :update, :destroy]
+  before_action :set_admin_video, only: [:show, :edit, :update, :destroy, :up, :recommend]
 
   # GET /admin/videos
   # GET /admin/videos.json
@@ -58,6 +58,20 @@ class Admin::VideosController < Admin::ApplicationController
     respond_to do |format|
       format.html { redirect_to admin_videos_path, notice: 'Video was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  # up
+  def up
+    if @admin_video.update(up_at: Time.now)
+      redirect_to admin_videos_path
+    end
+  end
+
+  #recommend
+  def recommend
+    if @admin_video.update(recommend_at: Time.now)
+      redirect_to admin_videos_path
     end
   end
 

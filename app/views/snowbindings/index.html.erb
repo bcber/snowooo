@@ -30,15 +30,7 @@
         <div class="thumbnails thumbnail-style thumbnail-kenburn">
           <div class="thumbnail-img">
             <div class="overflow-hidden">
-              <% if snowbinding.images.empty? %>
-                <% if snowbinding.qiniu_images.empty? %>
-                    暂时还没有图片
-                <% else %>
-                    <%= image_tag snowbinding.qiniu_images.first.original.medium, class:"img-responsive" %>
-                <% end %>
-              <% else %>
-                <%= image_tag snowbinding.images.first.medium, class:"img-responsive"%>
-              <% end %>
+                <%= image_tag snowbinding.cover.medium, class:"img-responsive"%>
             </div>
             <%= link_to 'Show', snowbinding, class:"btn-more hover-effect" %>
           </div>

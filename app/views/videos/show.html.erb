@@ -5,7 +5,6 @@
     
     <p><%= @video.description %></p>
     <div id="youkuplayer" style="width:100%;height:480px;"></div>
-
     <hr/>
     <div class="media">
       <h3> <span class="comment-count"><%= @video.comments.count %></span> <%= t("comments") %></h3>
@@ -20,13 +19,7 @@
       <% end %>
     <% end %>
   </div>
-  
 </div>
-<% if Rails.env.development? %>
-  <script src="http://static.god.com/js/jsapi.js"></script>
-<% else %>
-  <script type="text/javascript" src="http://player.youku.com/jsapi"></script>
-<% end %>
 <script>
   player = new YKU.Player('youkuplayer',{
   styleid: '0',
