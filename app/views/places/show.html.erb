@@ -6,14 +6,15 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-8">
+      <div class="col-sm-6">
         <div class="owl-carousel">
+          <div class="item"><%= image_tag @place.cover.large , style:"width:100%;"%></div>
           <% @place.place_images.each do |img| %>
           <div class="item"><%= image_tag img.original.medium ,style:"width:100%"%></div>
           <% end %>
         </div>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-6">
         <div class="row">
           <div class="col-sm-12">
             场地评分(<%= @place.rates.count %> 个人评分)<h1><%= @place.average.present?? @place.average.avg : 0 %></h1> <%= rating_for @place %>
@@ -22,11 +23,11 @@
         <hr/>
         <div class="row">
           <div class="col-sm-12">
-               <%= link_to @place.site , target:"_blank",class:"btn btn-default btn-xs" do %>
+               <%= link_to 'javascript:void(0)',class:"btn-u btn-u-xs" do %>
                   <span class="glyphicon glyphicon-send"></span>
-                  雪场官网
+                  <%= @place.site %>
                   <% end %>
-               <button class="btn btn-default btn-xs">
+               <button class="btn-u btn-u-xs">
                  <span class="glyphicon glyphicon-earphone"></span> <%= @place.phone %>
                </button>
           </div>

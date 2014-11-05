@@ -59,6 +59,12 @@ class PlaceImageUploader < CarrierWave::Uploader::Base
     end
   end
 
+  version :large do
+    def full_filename(for_file)
+      [for_file, version_name].compact.join('-')
+    end
+  end
+
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   # def extension_white_list

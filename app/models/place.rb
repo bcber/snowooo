@@ -15,6 +15,7 @@ class Place
   field :recommend_at, type: Time, default: Time.new(1970)
   field :cover
   mount_uploader :cover, QiniuimageUploader
+  field :cover_img_url
 
   letsrate_rateable
 

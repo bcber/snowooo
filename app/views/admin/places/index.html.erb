@@ -14,22 +14,27 @@
   </thead>
 
   <tbody>
-    <% @admin_places.each do |admin_place| %>
+    <% @places.each do |place| %>
       <tr>
-        <td><%= admin_place.name %></td>
-        <td><%= admin_place.up_at %></td>
-        <td><%= admin_place.recommend_at %></td>
-        <td><%= link_to '详情', admin_place, class:"btn btn-default btn-xs" %>
-        <%= link_to '编辑', edit_admin_place_path(admin_place) , class:"btn btn-default btn-xs"%>
-        <%= link_to '置顶' , up_admin_place_path(admin_place), class:"btn btn-default btn-xs"%>
-        <%= link_to "推荐", recommend_admin_place_path(admin_place), class:"btn btn-default btn-xs" %>
-        <%= link_to '删除', admin_place_path(admin_place), method: :delete, data: { confirm: 'Are you sure?' } , class:"btn btn-danger btn-xs"%></td>
+        <td><%= place.name %></td>
+        <td><%= place.up_at %></td>
+        <td><%= place.recommend_at %></td>
+        <td><%= link_to '详情', place, class:"btn btn-default btn-xs" %>
+        <%= link_to '编辑', edit_admin_place_path(place) , class:"btn btn-default btn-xs"%>
+        <%= link_to '置顶' , up_admin_place_path(place), class:"btn btn-default btn-xs"%>
+        <%= link_to "推荐", recommend_admin_place_path(place), class:"btn btn-default btn-xs" %>
+        <%= link_to '删除', admin_place_path(place), method: :delete, data: { confirm: 'Are you sure?' } , class:"btn btn-danger btn-xs"%></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 </div>
 
+<div class="text-center">
+  <div class="pagination">
+    <%= will_paginate @places, renderer: BootstrapPagination::Rails %>
+  </div>
+</div>
 
 <br>
 

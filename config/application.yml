@@ -13,10 +13,10 @@
 app_name: "snowooo"
 admin_emails:
   - nxbtch@163.com
-mail_domain: "snowooo.nxbtch.com"
+mail_domain: "snowooo.com"
 
 development:
   domain: "localhost:3000"
 
 production:
-  domain: "snowooo.nxbtch.com"
+  domain: "snowooo.com"

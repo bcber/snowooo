@@ -1,8 +1,12 @@
 <div class="row">
   <div class="col-sm-10">
-    <%= render partial: 'place', collection: @places %>
+    <% @places.in_groups_of(4,false) do |places| %>
+        <div class="row">
+        <%= render partial: 'place', collection: places %>
+        </div>
+    <% end %>
     <div class="text-center">
-      <%= will_paginate @places %>
+      <%= will_paginate @places , renderer: BootstrapPagination::Rails%>
     </div>
   </div>
   <div class="col-sm-2"></div>

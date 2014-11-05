@@ -1,8 +1,9 @@
 <div class="col-sm-3 shadow-wrapper" style="text-align: center;">
-
   <div class="heading-sm ">
     <div class="box-shadow shadow-effect-2 rounded">
-      <%= image_tag place.cover.thumb , class:"img-responsive rounded img-bordered", style:"margin:auto"%>
+      <%= link_to place do %>
+        <%= image_tag place.cover.medium , class:"img-responsive rounded img-bordered", style:"margin:auto"%>
+      <% end %>
     </div>
     <div class="text-center"><%= rating_for place%></div>
     <h5><%= link_to place.name, place %></h5>
