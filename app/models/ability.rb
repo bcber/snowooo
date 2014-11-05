@@ -41,5 +41,7 @@ class Ability
     can :read, Place
     can :read, User
     can :read, Post
+    can :create, Post
+    can :edit, Post
   end
 end

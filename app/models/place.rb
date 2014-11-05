@@ -2,9 +2,9 @@ class Place
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Letsrate
+  include Mongoid::TaggableOn
 
   field :name
-  field :region
   field :address
   field :site
   field :description
