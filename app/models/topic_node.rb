@@ -5,5 +5,5 @@ class TopicNode
   field :title
   field :description
 
-  has_many :topics
+  has_many :topics, dependent: :destroy
 end

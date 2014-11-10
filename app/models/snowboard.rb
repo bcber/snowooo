@@ -61,7 +61,7 @@ class Snowboard
     a[:small].blank? or a[:medium].blank? or a[:large].blank?
   }, allow_destroy: true
 
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, dependent: :destroy
   accepts_nested_attributes_for :comments
 
   alias :title :name

@@ -9,7 +9,7 @@ class Topic
   field :content, type: String
   field :comment_count ,type: Integer, default: 0
 
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, dependent: :destroy
   belongs_to :user
   belongs_to :topic_node
 

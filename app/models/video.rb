@@ -22,7 +22,7 @@ class Video
 
   scope :crawled, ->{where(:title.nin => [nil,''])}
 
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, dependent: :destroy
   accepts_nested_attributes_for :comments
   
   def getVid

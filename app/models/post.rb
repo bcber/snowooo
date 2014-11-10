@@ -18,6 +18,6 @@ class Post
   scope :passed, -> { where(pass: true) }
   scope :nopassed, -> { where(pass: false) }
 
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, dependent: :destroy
   belongs_to :user
 end

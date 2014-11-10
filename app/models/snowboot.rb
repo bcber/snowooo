@@ -30,7 +30,7 @@ class Snowboot
   embeds_many :qiniu_images, :cascade_callbacks => true
   accepts_nested_attributes_for :qiniu_images, reject_if: :all_blank, allow_destroy: true
 
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, dependent: :destroy
   accepts_nested_attributes_for :comments
   alias :title :name
 end
