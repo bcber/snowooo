@@ -7,9 +7,20 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, :alert => exception.message
   end
 
+  def require_user
+    if current_user.blank?
+      respond_to do |format|
+        format.html { redirect_to login_path }
+        format.all { head(:unauthorized) }
+      end
+    end
+  end
+
   def info
     request.env['devise.mapping'] if Rails.env.development?
   end
+
+
 
   def date(time)
     time.strftime('%m-%d-%Y')

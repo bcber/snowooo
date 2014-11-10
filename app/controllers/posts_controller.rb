@@ -4,14 +4,16 @@ class PostsController < ApplicationController
   respond_to :html
 
   def index
-    @posts = Post.desc(:created_at).paginate(page: params[:page], per_page: 10)
-    @top_posts = Post.desc(:up_at).limit(3)
-    @recommend_posts = Post.desc(:recommend_at).limit(10)
+    posts = Post.passed
+    @posts = posts.desc(:created_at).paginate(page: params[:page], per_page: 10)
+    @top_posts = posts.desc(:up_at).limit(3)
+    @recommend_posts = posts.desc(:recommend_at).limit(10)
   end
 
   def show
-    @recommend_posts = Post.asc(:recommend_at.desc).limit(10)
+    @recommend_posts = Post.passed.asc(:recommend_at.desc).limit(10)
     @comment = Comment.new
+    session[:reply_page] = url_for(@post)
   end
 
   def new
@@ -28,8 +30,11 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
-    @post.save
-    redirect_to @post
+    if @post.save
+      redirect_to posts_path, notice: "您的文章已提交审核，请耐心等待"
+    else
+      render action: 'edit'
+    end
   end
 
   def update

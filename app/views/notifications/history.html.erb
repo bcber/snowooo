@@ -1,0 +1,18 @@
+<% @notifications.each do |notify| %>
+    <div class="row">
+      <div class="col-sm-9">
+        <h5><%= notify.title %></h5>
+        <p>
+          <%= raw notify.body %>
+        </p>
+        <h5>原文链接:<%= link_to notify.notificable.title ,notify.notificable%> | <%= cus_time(notify.created_at) %></h5>
+      </div>
+    </div>
+    <hr/>
+<% end %>
+
+<div class="text-center">
+  <div class="pagination">
+    <%= will_paginate @notifications, renderer: BootstrapPagination::Rails %>
+  </div>
+</div>

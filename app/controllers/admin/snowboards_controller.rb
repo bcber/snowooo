@@ -1,5 +1,5 @@
 class Admin::SnowboardsController < Admin::ApplicationController
-  before_action :set_snowboard, only:[:edit,:update,:destroy, :up, :recommend]
+  before_action :set_snowboard, only:[:edit,:update,:destroy, :up,:down, :recommend]
   def index
     @snowboards = Snowboard.desc(:created_at).paginate(:page => params[:page], :per_page => 10)
   end
@@ -16,6 +16,12 @@ class Admin::SnowboardsController < Admin::ApplicationController
   # up
   def up
     if @snowboard.update(up_at: Time.now)
+      redirect_to admin_snowboards_path
+    end
+  end
+
+  def down
+    if @snowboard.update(up_at: Time.new(1970))
       redirect_to admin_snowboards_path
     end
   end

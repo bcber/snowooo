@@ -1,4 +1,6 @@
 zh-CN:
+  topics:
+    create_topic_success: "发帖成功"
   will_paginate:
     next_label: "下一页 &#8594;"
     previous_label: "&#8592; 上一页"
@@ -36,13 +38,16 @@ zh-CN:
     messages:
       no_name: "还没有设置昵称"
       binding_social: "已绑定的社交帐号"
-
   mongoid:
     models:
       user: "用户"
     attributes:
+      topic:
+        title: "标题"
+        description: "分类描述"
       user:
         name: "名字"
+        description: "自我介绍"
         avatar: "头像"
         credit: "积分"
         email: "邮箱"
@@ -66,3 +71,9 @@ zh-CN:
         site: "场地官网"
         description: "场地介绍"
         images: "图片"
+      post:
+        title: "题目"
+        content: "内容"
+      topic:
+        title: "标题"
+        content: "内容"

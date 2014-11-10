@@ -77,6 +77,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'capistrano-sidekiq'
   gem 'pry-rails'
+  gem 'traceroute'
 end
 
 # Use ActiveModel has_secure_password

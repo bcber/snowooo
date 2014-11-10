@@ -56,12 +56,12 @@
     <hr/>
     <div class="row">
       <div class="headline">
-        <h4><span class="comment-count"><%= @snowboot.comments.count %></span> 条评论</h4>
+        <h4><span class="comment-count"><%= @snowboot.comment_count %></span> 条评论</h4>
       </div>
     </div>
 
-    <div class="comment_container">
-      <%= render partial: "comments/comment", collection: @snowboot.comments %>
+    <div id="comment-container" data-comment-count=<%= @snowboot.comment_count %>>
+      <%= render partial: "comments/comment", collection: @snowboot.comments.desc('likes_count') %>
     </div>
 
     <hr/>
@@ -86,7 +86,7 @@
         </div>
 
     <% else %>
-        <%= link_to '登录', login_path %>或<%= link_to '注册' , signup_path%>评论此雪场
+        <%= render 'common/login_signup_prompt' %>
     <% end %>
 
   </div>

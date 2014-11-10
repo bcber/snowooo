@@ -20,6 +20,7 @@ class SnowboardsController < ApplicationController
   # GET /snowboards/1
   # GET /snowboards/1.json
   def show
+    session[:reply_page] = url_for(@snowboard)
   end
 
   def noimage

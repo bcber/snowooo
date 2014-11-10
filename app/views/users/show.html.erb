@@ -1,29 +1,104 @@
-<div class="row">
-  <div class="col-sm-3">
-    <%= image_tag @user.avatar.bigthumb %>
-    <hr>
-    <h2><%= @user.name.present? ? @user.name: t("users.messages.no_name")%></h2>
-    <h3><%= @user.email %></h3>
-  </div>
-  <div class="col-sm-9">
-    <div class="profile">
-      <h2 class="heading-md"><%= t("profile") %></h2>
+<div class="profile">
 
-      <dl class="dl-horizontal">
-        <dt><%= t("users.messages.binding_social") %></dt>
-        <dd>
-          <% @user.omniauths.each do |social| %>
-            <button class="btn  btn-<%= social.provider %>">
-              <i class="fa fa-<%= social.provider %>"></i> <%= t(social.provider) %>
-            </button>
-          <% end %>
-        </dd>
-        <hr>
-      </dl>
+<div class="profile-body">
+<div class="profile-bio">
+  <div class="row">
+    <div class="col-md-5">
+      <%= image_tag @user.avatar.large, class:"img-responsive md-margin-bottom-10" %>
+    </div>
+    <div class="col-md-7">
+      <h2><%= @user.name %>
+
+        <% if can? :edit, @user %>
+            <%= link_to modify_path do %>
+                <i class="fa fa-pencil"></i>
+            <% end %>
+        <% end %>
+      </h2>
+
+      <span><strong>邮箱:</strong> <%= @user.email %></span>
+      <hr>
+      <p><%= @user.description %></p>
     </div>
   </div>
-</div>
+</div><!--/end row-->
 
-<% if can? :edit, User %>
-  <%= link_to t('modify'), modify_path , class:"btn-u"%>
-<% end %>
+<hr>
+
+<div class="row">
+  <!--Social Icons v3-->
+  <div class="col-sm-6 sm-margin-bottom-30">
+    <div class="panel panel-profile">
+      <div class="panel-heading overflow-h">
+        <h2 class="panel-title heading-sm pull-left"><i class="fa fa-pencil"></i> 社交帐号</h2>
+      </div>
+      <div class="panel-body">
+        <ul class="list-unstyled social-contacts-v2">
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!--End Social Icons v3-->
+
+  <!--Skills-->
+  <div class="col-sm-6 sm-margin-bottom-30">
+    <div class="panel panel-profile">
+      <div class="panel-heading overflow-h">
+        <h2 class="panel-title heading-sm pull-left"><i class="fa fa-lightbulb-o"></i> 等级</h2>
+      </div>
+      <table class="table">
+        <tbody>
+        <tr>
+          <td><i class="fa fa-bars"></i>  等级 </td>
+          <td><%= @user.level %></td>
+        </tr>
+        <tr>
+          <td> <i class="fa fa-gift"></i>  积分 </td>
+          <td><%= @user.credit %></td>
+        </tr>
+        <tr>
+          <td><i class="fa fa-heart"></i>  经验 </td>
+          <td><%= @user.exp %></td>
+        </tr>
+        <tr>
+          <td><i class="glyphicon glyphicon-bold"></i>  金币 </td>
+          <td><%= @user.coin %></td>
+        </tr>
+        <tr>
+          <td><i class="fa fa-fire"></i>  声望 </td>
+          <td><%= @user.prestige %></td>
+        </tr>
+        <tr>
+          <td> <i class="fa fa-check"></i> 已签到次数</td>
+          <td><%= @user.check_in_count %></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--End Skills-->
+</div><!--/end row-->
+  <hr/>
+<div class="row">
+  <div class="panel panel-default">
+    <div class="panel-heading overflow-h">
+        <h2 class="panel-title heading-sm pull-left"> <i class="fa fa-exclamation-circle"></i> 用户发表的资讯</h2>
+    </div>
+
+    <table class="table">
+      <tbody>
+      <% @user.posts.passed.each do |post| %>
+          <tr>
+            <td>
+              <%= link_to post.title, post %>
+              <br/>
+              <%= truncate_html(post.content, 50) %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+</div>

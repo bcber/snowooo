@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+
+  <!-- Meta -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta content="" name="description">
+  <meta content="" name="author">
+  <title>雪圈网|BBS</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+  <!-- Latest compiled and minified CSS -->
+  <link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Optional theme -->
+  <link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css" rel="stylesheet">
+
+  <!-- CSS Global Compulsory -->
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+  <!-- CSS Implementing Plugins -->
+  <link rel="stylesheet" href="/assets/plugins/line-icons/line-icons.css">
+  <link href="http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- CSS Theme -->
+  <link rel="stylesheet" href="/assets/css/themes/default.css">
+
+
+  <!--owlgraphic carousel-->
+  <link href="http://cdn.bootcss.com/owl-carousel/1.32/owl.carousel.min.css" rel="stylesheet">
+  <link href="http://cdn.bootcss.com/owl-carousel/1.32/owl.theme.min.css" rel="stylesheet">
+
+  <!-- CSS Brand Button plugin -->
+  <link rel="stylesheet" href="/assets/css/plugins/brand-buttons/brand-buttons.css">
+  <link rel="stylesheet" href="http://nxbtch-cdn.qiniudn.com/css/pages/page_404_error.css"/>
+  <link rel="stylesheet" href="/assets/css/pages/blog_magazine.css"/>
+  <% if not Rails.env.development? %>
+      <script type="text/javascript" src="http://player.youku.com/jsapi"></script>
+  <% end %>
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=AoosGLCN5hncfMh6u3IoZa90"></script>
+  <script src="http://cdn.bootcss.com/owl-carousel/1.32/owl.carousel.min.js"></script>
+</head>
+<body class="header-fixed bbs">
+<div class="header">
+  <!-- Navbar -->
+  <div class="navbar" role="navigation">
+    <div class="container">
+      <div class="navbar-header hidden-xs">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="fa fa-bars"></span>
+        </button>
+        <%= link_to bbs_root_path , class:"navbar-brand" do %>
+        <% end %>
+      </div>
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="collapse navbar-collapse navbar-responsive-collapse">
+        <ul class="nav navbar-nav pull-left">
+          <%= render 'common/bbs_nav' %>
+        </ul>
+
+        <ul class="nav navbar-nav">
+          <%= render 'common/user_nav' %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End Navbar -->
+</div>
+
+<div class="container">
+  <div class="row" style="margin-top:20px;">
+    <% if notice %>
+        <div class="alert alert-info fade in alert-dismissable"><%= notice %></div>
+    <% end %>
+    <% if alert %>
+        <div class="alert alert-danger  fade in alert-dismissable"><%= alert %></div>
+    <% end %>
+  </div>
+  <div class="row">
+    <%= yield %>
+  </div>
+</div>
+
+<% if Rails.env.development? %>
+    <div class="well">
+      <%= user_omniauth_callback_path(:weibo) %>
+    </div>
+    <div class="well">
+      <%= info.inspect %>
+    </div>
+<% end %>
+
+</body>
+<!-- JS Global Compulsory -->
+<script src="http://cdn.bootcss.com/jquery-migrate/1.2.1/jquery-migrate.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<!-- JS Implementing Plugins -->
+<script src="/assets/plugins/back-to-top.js"></script>
+<!-- JS Page Level -->
+<script src="/assets/js/app.js"></script>
+<script>
+    jQuery(document).ready(function() {
+        App.init();
+    });
+</script>
+
+<!--[if lt IE 9]>
+<script src="assets/js/respond.js"></script>
+<![endif]-->
+</html>

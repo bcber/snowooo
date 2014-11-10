@@ -7,16 +7,26 @@
     <div id="youkuplayer" style="width:100%;height:480px;"></div>
     <hr/>
     <div class="media">
-      <h3> <span class="comment-count"><%= @video.comments.count %></span> <%= t("comments") %></h3>
+      <h3> <span class="comment-count"><%= @video.comment_count %></span> <%= t("comments") %></h3>
     </div>
-    <div class="comment_container">
-      <%= render partial: "comments/comment", collection: @video.comments %>
+    <div id="comment-container" data-comment-count=<%= @video.comment_count %>>
+      <%= render partial: "comments/comment", collection: @video.comments.desc('likes_count') %>
     </div>
-  
+
     <% if current_user %>
-      <%= form_for [@video, @comment], remote: true do |f| %>
-        <%= render 'comments/form'%>
-      <% end %>
+        <%= form_for [@video, @comment], remote: true do |f| %>
+            <div class="field">
+              <%= f.label :content %><br>
+              <%= f.text_area :content , class: "form-control", rows:"8"%>
+            </div>
+
+            <br>
+            <div class="actions">
+              <%= f.submit t("comment"), class:"btn-u" %>
+            </div>
+        <% end %>
+    <% else %>
+        <%= render 'common/login_signup_prompt' %>
     <% end %>
   </div>
 </div>

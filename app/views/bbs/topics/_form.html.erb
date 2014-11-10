@@ -1,0 +1,38 @@
+<%= form_for [:bbs, @topic] do |f| %>
+  <% if @topic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@topic.errors.count, "error") %></h2>
+
+      <ul>
+      <% @topic.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col-sm-4">
+        <%= f.label "选择类别" %>
+        <%= f.select :topic_node_id, options_from_collection_for_select(TopicNode.all, 'id','title',@topic.topic_node.present? ? @topic.topic_node.id: '') , {},class:"form-control"%>
+      </div>
+      <div class="col-sm-8">
+        <%= f.label "标题" %><br>
+        <%= f.text_field :title , class:"form-control",placeholder: "在这里填写标题" %></div>
+    </div>
+
+  </div>
+
+  <div class="field">
+    <div class="field">
+      <%= f.cktext_area :content, ckeditor: { language: 'zh-cn', height: 500} %>
+    </div>
+  </div>
+  <hr/>
+    <div class="actions text-center">
+      <%= f.submit '提交',class:"btn-u"%>
+      <%= link_to "取消", bbs_topics_path, class:"btn-u" %>
+    </div>
+
+<% end %>

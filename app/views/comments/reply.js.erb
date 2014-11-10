@@ -1,0 +1,3 @@
+reply_view = "<%= @comment_counter %>"
+$("#reply_comment_form").remove();
+$("#comment"+reply_view+" .replys").append("<%= j(render(partial: 'comment',locals: {comment: @comment, comment_counter: @comment_counter.to_i+1} )) %>")

@@ -1,0 +1,28 @@
+<div class="media comment">
+  <%= link_to profile_path(comment.user), class: "media-left" do %>
+      <%= image_tag comment.user.avatar.thumb, class:"img-thumbnail", style:"width:64px;height:64px;" %>
+  <% end %>
+  <div class="media-body">
+    <div class="media-heading">
+      <i class="glyphicon glyphicon-user"></i><span><%= comment.user.present? ? comment.user.name: "admin" %></span>
+      <i class="glyphicon glyphicon-calendar"></i><span><%= comment.created_at.to_date %></span>
+
+    </div>
+    <p>
+      <%= comment.content %>
+    </p>
+  </div>
+</div>
+
+<h2>回复</h2>
+<%= form_for comment.comments.build, url: reply_comment_path(comment) do |f| %>
+    <div class="field">
+      <%= f.label :content %><br>
+      <%= f.text_area :content , id:"reply_comment_content", class: "form-control",rows:"8"%>
+    </div>
+
+    <br>
+    <div class="actions">
+      <%= f.submit t("comment"), class:"btn-u" %>
+    </div>
+<% end %>

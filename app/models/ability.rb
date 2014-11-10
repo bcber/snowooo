@@ -2,6 +2,8 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    alias_action :index, :show, :good,:hot, :no_comment, :to => :read
+
     if user
       user.roles.each{ |role| send(role, user) }
       can :manage, User, id: user.id
@@ -10,26 +12,31 @@ class Ability
     end
   end
 
-  def admin(uid)
+  def admin(user)
     can :manage, :all
   end
 
-  def moderator(uid)
+  def moderator(user)
     can :manage, Snowboard
     can :manage, Image
     can :manage, Todo
   end
 
-  def editor(uid)
+  def editor(user)
     can :create, Post
-    can :update, Post, user_id: uid
+    can :update, Post, user_id: user.id
   end
 
-  def member(uid)
+  def member(user)
     default
+    can :create, Post
+    can :create, Topic
+    can :update, Topic, user_id: user.id
+    can :edit, Post, user_id: user.id
+    can :edit, User, id: user.id
   end
 
-  def banned(uid)
+  def banned(user)
 
   end
 
@@ -40,8 +47,9 @@ class Ability
     can :read, Video
     can :read, Place
     can :read, User
+    can :show, User
     can :read, Post
-    can :create, Post
-    can :edit, Post
+    can :read, Topic
+    can :node, Topic
   end
 end

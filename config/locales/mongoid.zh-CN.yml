@@ -25,3 +25,19 @@
           attributes:
             url:
               taken: "已存在此条视频"
+        topic:
+          attributes:
+            title:
+              blank: "必须要填写"
+        post:
+          attributes:
+            title:
+              blank: "不能为空"
+            content:
+              blank: "不能为空"
+        topic:
+          attributes:
+            title:
+              blank: "不能为空"
+            content:
+              blank: "不能为空"

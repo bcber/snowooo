@@ -16,7 +16,7 @@ class SnowbootsController < ApplicationController
   end
 
   def show
-    respond_with(@snowboot)
+    session[:reply_page] = url_for(@snowboot)
   end
 
   def new

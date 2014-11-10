@@ -23,6 +23,8 @@ class Snowbinding
   field :cover
   mount_uploader :cover, QiniuimageUploader
 
+  field :comment_count ,type: Integer, default: 0
+
   field :up_at, type: Time, default: Time.new(1970)
   field :recommend_at, type: Time, default: Time.new(1970)
 

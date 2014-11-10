@@ -1,0 +1,27 @@
+<%= form_for [:admin, @topic_node] do |f| %>
+    <% if @topic_node.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@topic_node.errors.count, "error") %> prohibited this topic_node from being saved:</h2>
+
+          <ul>
+            <% @topic_node.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :title %>
+      <%= f.text_field :title ,class:"form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :description %>
+      <%= f.text_field :description, class:"form-control" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit '确认', class:"btn btn-default btn-xs"%>
+    </div>
+<% end %>

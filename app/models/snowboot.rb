@@ -23,6 +23,7 @@ class Snowboot
   field :description
   field :cover
   mount_uploader :cover, QiniuimageUploader
+  field :comment_count ,type: Integer, default: 0
 
   embeds_many :images, inverse_of: :images
 

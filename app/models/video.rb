@@ -15,6 +15,7 @@ class Video
   field :url, type: String
   field :thumbnail, type: String
   field :description, type: String
+  field :comment_count ,type: Integer, default: 0
 
   field :up_at, type: Time, default: Time.new(1970)
   field :recommend_at, type: Time, default: Time.new(1970)

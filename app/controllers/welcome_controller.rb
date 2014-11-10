@@ -14,7 +14,7 @@ class WelcomeController < ApplicationController
     @top.flatten!
     @top.sort_by! {|item| item.up_at }.reverse!
 
-    @posts = Post.desc(:created_at).limit(6)
+    @posts = Post.passed.desc(:created_at).limit(6)
     @places = Place.desc(:created_at).limit(6)
     @videos = Video.desc(:created_at).limit(6)
     @snowboards = Snowboard.desc(:created_at).limit(7)

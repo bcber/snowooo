@@ -1,0 +1,2 @@
+module Bbs::TopicNodesHelper
+end

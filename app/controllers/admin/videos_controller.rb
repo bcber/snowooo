@@ -68,6 +68,12 @@ class Admin::VideosController < Admin::ApplicationController
     end
   end
 
+  def down
+    if @admin_video.update(up_at: Time.new(1970))
+      redirect_to admin_videos_path
+    end
+  end
+
   #recommend
   def recommend
     if @admin_video.update(recommend_at: Time.now)

@@ -16,7 +16,7 @@ class SnowbindingsController < ApplicationController
   end
 
   def show
-    respond_with(@snowbinding)
+    session[:reply_page] = url_for(@snowbinding)
   end
 
   private

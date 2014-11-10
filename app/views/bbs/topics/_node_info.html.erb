@@ -1,0 +1,15 @@
+<% if !node.blank? %>
+    <div>
+      <h2><%= node.title %></h2>
+      <span class="total">共有 <%= node.topics.count %> 个帖子</span>
+    </div>
+    <div class="desc">
+      <%= node.description %>
+    </div>
+<% else %>
+    <div class="text-right">
+      <%= link_to "热门帖子", hot_bbs_topics_path %>
+      \ <%= link_to "优质帖子", good_bbs_topics_path %>
+      \ <%= link_to "无人问津", no_comment_bbs_topics_path %>
+    </div>
+<% end %>

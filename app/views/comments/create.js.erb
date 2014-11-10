@@ -1,4 +1,5 @@
-comment_count = parseInt($(".comment-count").html())
+comment_count = parseInt($("#comment-container").data('comment-count'))
+$("#comment-container").data('comment-count', comment_count+1)
 $(".comment-count").html(comment_count+1)
 $("#comment_content").val("");
-$(".comment_container").append("<%= j(render("comment",comment: @comment)) %>")
+$("#comment-container").append("<%= j(render("comment",comment: @comment )) %>")

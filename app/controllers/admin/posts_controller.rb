@@ -1,10 +1,16 @@
 class Admin::PostsController < Admin::ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :up, :recommend]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :up, :recommend, :down ,:pass]
 
   # GET /admin/posts
   # GET /admin/posts.json
   def index
-    @posts = Post.desc(:created_at).paginate(page: params[:page], per_page: 10)
+    if params[:pass].present? and params[:pass] == '1'
+        @posts = Post.passed.desc(:created_at).paginate(page: params[:page], per_page: 10)
+    elsif params[:pass].present? and params[:pass] == '0'
+        @posts = Post.nopassed.desc(:created_at).paginate(page: params[:page], per_page: 10)
+    else
+      @posts = Post.desc(:created_at).paginate(page: params[:page], per_page: 10)
+    end
   end
 
   # GET /admin/posts/1
@@ -12,9 +18,25 @@ class Admin::PostsController < Admin::ApplicationController
   def show
   end
 
+  def pass
+    if @post.update(pass: true)
+      Notification.generate_pass_post(@post)
+      @post.user.member_rule_post
+      redirect_to admin_posts_path
+    end
+  end
+
   # up
   def up
     if @post.update(up_at: Time.now)
+      @post.user.member_rule_top_post
+      Notification.top_post(@post)
+      redirect_to admin_posts_path
+    end
+  end
+
+  def down
+    if @post.update(up_at: Time.new(1970))
       redirect_to admin_posts_path
     end
   end

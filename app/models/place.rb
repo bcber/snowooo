@@ -9,11 +9,12 @@ class Place
   field :site
   field :description
   field :phone
-  field :xcoordinate, type:BigDecimal
-  field :ycoordinate, type:BigDecimal
+  field :xcoordinate, type:BigDecimal, default: 1
+  field :ycoordinate, type:BigDecimal, default: 1
   field :up_at, type: Time, default: Time.new(1970)
   field :recommend_at, type: Time, default: Time.new(1970)
   field :cover
+  field :comment_count ,type: Integer, default: 0
   mount_uploader :cover, QiniuimageUploader
   field :cover_img_url
 

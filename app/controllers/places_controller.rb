@@ -9,6 +9,7 @@ class PlacesController < ApplicationController
 
   def show
     @comment = Comment.new
+    session[:reply_page] = url_for(@post)
   end
 
   def new

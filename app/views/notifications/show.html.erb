@@ -1,0 +1,59 @@
+<div class="tab-v2">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#unread" data-toggle="tab">未读消息</a></li>
+    <li><a href="#readed" data-toggle="tab">已读消息</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane fade in active" id="unread">
+      <% if !@unread.any? %> <h2 class="text-center">没有未读消息</h2> <% end %>
+      <% @unread.each do |notify| %>
+        <div class="row">
+          <div class="col-sm-9">
+            <h5><%= notify.title %></h5>
+            <p>
+              <%= raw notify.body %>
+            </p>
+            <h5>原文链接:
+              <% if notify.notificable.present? %>
+              <%= link_to notify.notificable.title ,notify.notificable %>
+              <% else %>
+              原文已被删除
+              <% end %>
+              | <%= cus_time(notify.created_at) %></h5>
+          </div>
+          <div class="col-sm-3">
+            <%= link_to '标记为已读',read_notification_path(notify)%>
+          </div>
+        </div>
+          <hr/>
+      <% end %>
+    </div>
+    <div class="tab-pane fade in" id="readed">
+      <% if !@readed.any? %> <h2 class="text-center">没有已读消息</h2> <% end %>
+      <% @readed.each do |notify| %>
+          <div class="row">
+            <div class="col-sm-9">
+              <h5><%= notify.title %></h5>
+              <p>
+                <%= raw notify.body %>
+              </p>
+              <h5>原文链接:
+                <% if notify.notificable.present? %>
+                    <%= link_to notify.notificable.title ,notify.notificable %>
+                <% else %>
+                    原文已被删除
+                <% end %>
+                | <%= cus_time(notify.created_at) %></h5>
+            </div>
+            <div class="col-sm-3">
+              <%= link_to '标记为未读',read_notification_path(notify) %>
+            </div>
+          </div>
+          <hr/>
+      <% end %>
+      <h4 class="text-center">
+        <%= link_to '查看更多历史消息',history_notification_path %>
+      </h4>
+    </div>
+  </div>
+</div>

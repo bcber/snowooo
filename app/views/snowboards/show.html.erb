@@ -107,13 +107,13 @@
     <div class="row">
       <div class="col-xs-12">
           <div class="headline">
-            <h4><span class="comment-count"><%= @snowboard.comments.count %></span> 条评论</h4>
+            <h4><span class="comment-count"><%= @snowboard.comment_count %></span> 条评论</h4>
           </div>
       </div>
     </div>
 
-    <div class="comment_container">
-      <%= render partial: "comments/comment", collection: @snowboard.comments %>
+    <div id="comment-container" data-comment-count=<%= @snowboard.comment_count %>>
+      <%= render partial: "comments/comment", collection: @snowboard.comments.desc('likes_count') %>
     </div>
 
     <hr/>
@@ -138,7 +138,7 @@
         </div>
 
     <% else %>
-        <%= link_to '登录', login_path %>或<%= link_to '注册' , signup_path%>评论此雪场
+        <%= render 'common/login_signup_prompt' %>
     <% end %>
 
   </div>

@@ -1,5 +1,5 @@
 class Admin::PlacesController < Admin::ApplicationController
-  before_action :set_place, only: [:show, :edit, :update, :destroy, :up, :recommend]
+  before_action :set_place, only: [:show, :edit, :update, :destroy, :up, :down ,:recommend]
 
   # GET /admin/places
   # GET /admin/places.json
@@ -66,6 +66,12 @@ class Admin::PlacesController < Admin::ApplicationController
   # up
   def up
     if @place.update(up_at: Time.now)
+      redirect_to admin_places_path
+    end
+  end
+
+  def down
+    if @place.update(up_at: Time.new(1970))
       redirect_to admin_places_path
     end
   end

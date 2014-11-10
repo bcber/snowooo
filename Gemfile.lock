@@ -259,6 +259,8 @@ GEM
     thread_safe (0.3.4)
     tilt (1.4.1)
     timers (1.1.0)
+    traceroute (0.4.0)
+      rails (>= 3.0.0)
     turbolinks (2.5.1)
       coffee-rails
     tzinfo (1.2.2)
@@ -315,6 +317,7 @@ DEPENDENCIES
   spring
   sqlite3
   thin
+  traceroute
   turbolinks
   uglifier (>= 1.3.0)
   whenever

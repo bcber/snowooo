@@ -10,6 +10,7 @@ class VideosController < ApplicationController
 
   def show
     @comment = Comment.new
+    session[:reply_page] = url_for(@video)
   end
 
   def new

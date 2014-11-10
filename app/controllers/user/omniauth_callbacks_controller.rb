@@ -8,22 +8,18 @@ class User::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def weibo
     omniauth = request.env['omniauth.auth']
-    logger.info "omniauth"+"*"*50
 
     omniauth = Omniauth.find_or_initialize_by(provider: omniauth.provider, uid:omniauth.uid)
-    
-    logger.info "+"*80
-    logger.info omniauth.new_record?
 
     if omniauth.new_record?
       if user_signed_in?
         omniauth.user = current_user
         omniauth.save
-        flash[:notice] = "bind weibo success, you can use weibo login in our site"
+        flash[:notice] = "绑定微博成功，现在你可以用微博登录本网站"
         redirect_to root_path
       else
-        flash[:notice] = "register first"
-        redirect_to root_path
+        flash[:notice] = "请先注册本站的一个帐号"
+        redirect_to signup_path
       end
     else
       sign_in_and_redirect omniauth.user

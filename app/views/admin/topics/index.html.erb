@@ -1,0 +1,31 @@
+<div class="row">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>帖子标题</th>
+      <th>发帖时间</th>
+      <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @topics.each do |topic| %>
+        <tr>
+          <td><%= topic.title %></td>
+          <td><%= topic.created_at %></td>
+          <td>
+            <%= link_to '详情', bbs_topic_path(topic), class: "btn btn-default btn-xs" %>
+            <%= link_to '删除', admin_topic_path(topic), data:{confirm:"确定?"},method: :delete,class: "btn btn-danger btn-xs" %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="row">
+  <div class="text-center">
+    <div class="pagination">
+      <%= will_paginate @snowbindings , renderer: BootstrapPagination::Rails%>
+    </div>
+  </div>
+</div>

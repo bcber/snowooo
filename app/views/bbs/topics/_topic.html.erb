@@ -1,0 +1,25 @@
+<div class="row topic">
+  <%= image_tag topic.user.avatar.thumb, style:"width:64px;height:64px;" ,class:"pull-left img-responsive img-bordered rounded-2x"%>
+  <div class="col-sm-10">
+    <div class="row">
+      <div class="col-sm-11">
+          <h4><%= link_to topic.title, bbs_topic_path(topic) %></h4>
+      </div>
+      <div class="col-sm-1">
+        <span class="badge rounded-2x badge-u comment-count"><%= topic.comment_count %></span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <h6>
+          <i class="fa fa-tags"></i>
+          <%= link_to topic.topic_node.title, bbs_topics_node_path(node_id: topic.topic_node) %>
+          <i class="fa fa-user"></i>
+          <%= link_to topic.user.name, user_path(topic.user) %>
+          <i class="fa fa-heart"></i>
+          <%= topic.likes_count %>人喜欢
+        </h6>
+      </div>
+    </div>
+  </div>
+</div>

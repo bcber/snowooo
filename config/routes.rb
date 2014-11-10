@@ -1,12 +1,21 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
+
   post '/rate' => 'rater#create', :as => 'rate'
   mount Ckeditor::Engine => '/ckeditor'
 
-  resources :places ,:snowboards , :snowbindings ,:snowboots ,:videos do
+  resources :places ,:snowboards , :snowbindings ,:snowboots ,:videos,:comments do
     resources :comments
   end
-  resources :comments
+
+  resources :likes
+
+  resources :comments do
+    member do
+      get 'new_reply'
+      post 'reply'
+    end
+  end
 
   resources :posts do
     resources :comments
@@ -19,8 +28,14 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
-  authenticate :user do 
-    get 'profile', to: 'users#show'
+  get 'users/:id' => 'users#show', as: :user
+  authenticate :user do
+    get 'notification', to: 'notifications#show', as: :notification
+    get 'notification/read/:id', to:'notifications#read', as: :read_notification
+    get 'notification/unread/:id', to:'notifications#unread', as: :unread_notification
+    get 'notification/history', to:'notifications#history',as: :history_notification
+    get 'check_in', to: 'users#check_in', as: :check_in
+    get 'profile', to: 'users#profile'
     get 'modify', to: 'users#edit'
     patch 'modify', to: 'users#update'
   end
@@ -41,17 +56,39 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'bbs/topics/new' => 'bbs/topics#new', as: :new_bbs_topic
+  get 'bbs/topics/hot' => 'bbs/topics#hot', as: :hot_bbs_topics
+  get 'bbs/topics/no_comment' => 'bbs/topics#no_comment',as: :no_comment_bbs_topics
+  get 'bbs/topics/good' => 'bbs/topics#good', as: :good_bbs_topics
+  get 'bbs/topics/node:node_id' => 'bbs/topics#node', as: :bbs_topics_node
+  get 'bbs/topics/:id' => 'bbs/topics#show',as: :topic
 
+  namespace :bbs do
+    root to: "home#index"
+    resources :topics do
+      resources :comments, controller: "/comments"
+    end
+    resources :topic_nodes
+  end
 
   namespace :admin do 
     root to: "home#index"
 
+    resources :topics
+    resources :topic_nodes
     resources :settings
     resources :users
     resources :posts , :places, :videos, :snowboots, :snowbindings , :snowboards do
       member do
         get 'up'
         get 'recommend'
+        get 'down'
+      end
+    end
+
+    resources :posts do
+      member do
+        get 'pass'
       end
     end
   end
