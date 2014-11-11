@@ -1,17 +1,17 @@
 <% if @top.count > 3 %>
 <div class="row magazine-page">
-  <div class="col-xs-8">
+  <div class="col-xs-6 col-xs-offset-1">
         <div class="magazine-news-img">
           <%= link_to @top[0] do  %>
-              <%= image_tag @top[0].cover.medium, class:'img-responsive' %>
+              <%= image_tag @top[0].cover.medium, class:'img-responsive' ,style:"width:770px;height:550"%>
           <% end %>
           <span class="magazine-badge label-blue"><%= truncate(@top[0].title, length:30) %></span>
         </div>
   </div>
-  <div class="col-xs-4">
+  <div class="col-xs-5">
     <div class="magazine-news-split-img">
       <%= link_to @top[1] do  %>
-          <%= image_tag @top[1].cover.medium, class:'img-responsive' %>
+          <%= image_tag @top[1].cover.medium, class:'img-responsive'%>
       <% end %>
       <span class="magazine-badge label-blue"><%= truncate(@top[1].title, length:30) %></span>
     </div>
@@ -25,7 +25,7 @@
 
     <div class="magazine-news-split-img">
       <%= link_to @top[3] do  %>
-          <%= image_tag @top[3].cover.medium, class:'img-responsive' %>
+          <%= image_tag @top[3].cover.medium, class:'img-responsive',style:"width:370px;height:247px" %>
       <% end %>
       <span class="magazine-badge label-blue"><%= truncate(@top[3].title, length:30) %></span>
     </div>

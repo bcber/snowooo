@@ -8,6 +8,7 @@ gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'carrierwave-qiniu'
 gem 'mongoid-grid_fs', github: 'ahoward/mongoid-grid_fs'
 gem 'mini_magick'
+gem 'newrelic_rpm'
 
 # settings
 gem 'figaro'
