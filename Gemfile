@@ -27,7 +27,7 @@ gem "will_paginate_mongoid"
 gem "html_truncator", "~>0.2"
 #tag
 gem 'mongoid_taggable_on'
-
+gem 'social-share-button'
 #queue
 gem 'sidekiq'
 gem 'sinatra', '>= 1.3.0', :require => nil

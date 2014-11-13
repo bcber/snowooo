@@ -92,6 +92,7 @@
         <%=  @snowbinding.description.to_s.html_safe   %>
       </div>
     </div>
+    <%= render partial: 'common/social_button',locals: {content: @snowbinding.title} %>
 
     <hr/>
     <div class="row">

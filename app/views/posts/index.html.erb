@@ -42,13 +42,30 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-3">
-      <% if can? :create, Post %>
-        <div class="text-center">
-          <%= link_to t('newpost'), new_post_path, class:"btn-u btn-block" %>
+  <div class="col-sm-3 hidden-xs">
+    <div class="row">
+      <div class="margin-bottom-40">
+        <% if can? :create, Post %>
+            <div class="text-center">
+              <%= link_to "我要爆料！", new_post_path, class:"btn-u btn-block" %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="margin-bottom-40">
+          <div class="headline headline-md"><h2>文章标签</h2></div>
+          <p>
+            <% Post.pluck(:categories).flatten.uniq.each do |category|%>
+                <%= link_to category, category_posts_path(category) ,class:"btn-u btn-xs", style:"margin-top:3px;"%>
+            <% end %>
+          </p>
         </div>
-      <% end %>
-    <div class="posts margin-bottom-40 hidden-xs">
+    </div>
+
+    <div class="row">
+        <div class="posts margin-bottom-40">
       <div class="headline headline-md"> 
         <h2>推荐文章</h2>
       </div>
@@ -65,5 +82,31 @@
         </dl>
       <% end %>
     </div>
+    </div>
+
+    <div class="row">
+      <div class="blog-twitter margin-bottom-40">
+        <div class="headline headline-md"><h2>最新评论</h2></div>
+        <% @comments.each do |comment| %>
+            <div class="blog-twitter-inner">
+              <i class="fa fa-comments-o"></i>
+              <%= link_to comment.user.name, comment.user %>
+              <p><%= comment.content %></p>
+              <span><%= cus_time(comment.created_at) %></span>
+            </div>
+        <% end %>
+      </div>
+      <%= render partial:"welcome/ad",locals: {show:Setting.show_index_ad_6,ad:Setting.index_ad_6, space:true} %>
+    </div>
+
+    <div class="row">
+      <div class="headline headline-md"><h2>关注我们</h2></div>
+      <div class="col-xs-12">
+        <img src="http://snowooo-cdn.qiniudn.com/qrcode_for_gh_5db68f90c722_258.jpg" alt=""/>
+      </div>
+
+      <%= render partial:"welcome/ad",locals: {show:Setting.show_index_ad_7,ad:Setting.index_ad_7, space:true} %>
+    </div>
+
   </div>
 </div>

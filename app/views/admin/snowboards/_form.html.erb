@@ -78,7 +78,21 @@
       <%= f.text_field :mount ,class:"form-control"%>
     </div>
 
-    <%= f.label :qiniu_images %>
+    <div class="form-group">
+      <%= f.label :cover %>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="well">
+          <h3>封面预览</h3>
+          <%= image_tag f.object.cover.medium, class:"img-responsive" %>
+          <%= f.file_field :cover, class: "form-control" %>
+          <%= f.text_field :remote_cover_url , class: "form-control",placeholder:"或者图片链接" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%= f.label "图片" %>
     <%= f.fields_for :qiniu_images do |p| %>
         <div class="well">
             <div class="form-group">
@@ -106,45 +120,10 @@
         <hr/>
     <% end %>
 
-    <% if false %>
-    <div class="form-group">
-      <%= f.label :images %>
-      <%= f.fields_for :images do |p| %>
-          <div class="well images-form">
-
-            <div class="form-group">
-              <%= p.label :color %>
-              <%= p.text_field :color ,class:"form-control"%>
-            </div>
-
-            <div class="form-group">
-              <%= p.label :small %>
-              <%= p.text_field :small, class: "form-control" %>
-            </div>
-
-            <div class="form-group">
-              <%= p.label :medium %>
-              <%= p.text_field :medium, class: "form-control" %>
-            </div>
-
-            <div class="form-group">
-              <%= p.label :large %>
-              <%= p.text_field :large, class: "form-control" %>
-            </div>
-
-
-            <div class="form-group">
-              <%= p.label "destroy?"%>
-              <%= p.check_box :_destroy %>
-            </div>
-          </div>
-      <% end %>
-    </div>
-    <% end %>
-
-
     <div class="actions">
-      <%= f.submit @snowboard.new_record?? "创建": "更新", class:"btn btn-default btn-xs" %>
+      <%= f.submit @snowboard.new_record?? "创建": "更新", class:"btn btn-default" %>
     </div>
 
 <% end %>
+
+<hr/>

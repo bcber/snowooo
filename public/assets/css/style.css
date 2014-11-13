@@ -548,10 +548,8 @@
 	min-width: 35px;
 	font-size: 15px;
 	text-align: center;
-	background: #f7f7f7;
-	padding: 11px 0 12px;
+	padding: 16px 0 12px;
 	display: inline-block;
-	border-bottom: solid 2px #aaa;
 }
 
 .header .navbar .nav > li > .search:hover {
@@ -562,7 +560,7 @@
 
 .header .navbar .search-open {
 	right: 0; 
-	top: 38px; 
+	top: 45px;
 	display: none;
 	padding: 14px; 
 	position: absolute;
@@ -758,7 +756,7 @@
 
 /*Search Bar*/
 .header-fixed .header.header-fixed-shrink .search {
-	margin-top: 12px;
+	margin-top: 30px;
 	padding: 8px !important;
 	color: #585f69 !important;
 	background: none !important;
@@ -822,7 +820,7 @@
 
 	/*Search Bar*/
 	.header-fixed .header.header-fixed-shrink .search-open {
-		top: 56px;
+		top: 76px;
 	}	
 }
 

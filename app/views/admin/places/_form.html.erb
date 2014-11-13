@@ -29,7 +29,7 @@
 
     <div class="form-group">
       <%= f.label :description %>
-      <%= f.text_area :description, class: "form-control" %>
+      <%= f.text_area :description, class: "form-control" ,rows:"10"%>
     </div>
 
     <div class="form-group">
@@ -40,6 +40,11 @@
     <div class="form-group">
       <%= f.label :ycoordinate %>
       <%= f.number_field :ycoordinate , class:"form-control",step:"0.000001"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :level %>
+      <%= f.number_field :level,class:"form-control", step:"1" %>
     </div>
 
     <div class="form-group">

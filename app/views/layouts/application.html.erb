@@ -41,7 +41,9 @@
   <link rel="stylesheet" href="/assets/css/pages/blog_magazine.css"/>
   <link rel="stylesheet" href="/assets/css/pages/profile.css"/>
 
-  <script type="text/javascript" src="http://player.youku.com/jsapi"></script>
+  <% if !Rails.env.development? %>
+    <script type="text/javascript" src="http://player.youku.com/jsapi"></script>
+  <% end %>
   <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=AoosGLCN5hncfMh6u3IoZa90"></script>
   <script src="http://cdn.bootcss.com/owl-carousel/1.32/owl.carousel.min.js"></script>
 </head>
@@ -55,11 +57,7 @@
                 <a href="/"><img id="logo-header" src="http://snowooo-cdn.qiniudn.com/snowooolog.png?imageMogr2/thumbnail/200x/crop/!200x200a4a30" alt="Logo" style="height: 100px;"></a>
               </div>
               <div class="col-sm-10">
-                <% if Setting.show_index_ad_1 %>
-                  <%= raw Setting.index_ad_1 %>
-                <% else %>
-                  <img src="http://placekitten.com/1200/200" alt="">
-                <% end %>
+                <%= render partial:"welcome/ad", locals:{show:Setting.show_index_ad_1, ad: Setting.index_ad_1, space:false} %>
               </div>
             </ul>
             </div>

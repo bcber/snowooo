@@ -63,6 +63,18 @@ zh-CN:
         shape: "形状"
         flex: "软度"
         images: "图片"
+        cover: "封面"
+      snowboot:
+        name: "名称"
+        brand: "品牌"
+        style: "风格"
+        description: "介绍"
+        cover: "封面"
+      snowbinding:
+        name: "名称"
+        brand: "品牌"
+        style: "风格"
+        cover: "封面"
       comment:
         content: "评论内容"
       place:
@@ -70,10 +82,15 @@ zh-CN:
         region: "所属地区"
         site: "场地官网"
         description: "场地介绍"
+        level: "地图缩放等级"
+        cover: "封面"
         images: "图片"
+        xcoordinate: "地图X坐标"
+        ycoordinate: "地图Y坐标"
       post:
         title: "题目"
         content: "内容"
+        cover: "封面"
       topic:
         title: "标题"
         content: "内容"

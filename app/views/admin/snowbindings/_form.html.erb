@@ -80,7 +80,21 @@
 
     <div class="form-group">
       <%= f.label :description %>
-      <%= f.text_area :description, class:"form-control" %>
+      <%= f.text_area :description, class:"form-control" , rows:"10"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :cover %>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="well">
+            <h3>封面预览</h3>
+            <%= image_tag f.object.cover.medium, class:"img-responsive" %>
+            <%= f.file_field :cover, class: "form-control" %>
+            <%= f.text_field :remote_cover_url , class: "form-control",placeholder:"或者图片链接" %>
+          </div>
+        </div>
+      </div>
     </div>
 
       <%= f.label :qiniu_images %>

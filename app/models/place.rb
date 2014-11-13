@@ -11,6 +11,7 @@ class Place
   field :phone
   field :xcoordinate, type:BigDecimal, default: 1
   field :ycoordinate, type:BigDecimal, default: 1
+  field :level,type:Integer, default:11
   field :up_at, type: Time, default: Time.new(1970)
   field :recommend_at, type: Time, default: Time.new(1970)
   field :cover

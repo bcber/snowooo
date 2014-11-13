@@ -1,33 +1,58 @@
 <% if @top.count > 3 %>
 <div class="row magazine-page">
-  <div class="col-xs-6 col-xs-offset-1">
-        <div class="magazine-news-img">
-          <%= link_to @top[0] do  %>
-              <%= image_tag @top[0].cover.medium, class:'img-responsive' ,style:"width:770px;height:550"%>
-          <% end %>
-          <span class="magazine-badge label-blue"><%= truncate(@top[0].title, length:30) %></span>
+  <div class="col-xs-6 col-xs-offset-1" style="padding-right:3px;">
+    <div class="carousel slide carousel-v1 margin-bottom-40" id="myCarousel-1">
+      <div class="carousel-inner">
+        <div class="item active">
+          <div class="magazine-news-img">
+            <%= link_to @top[0] do  %>
+                <%= image_tag @top[0].cover.medium, class:'img-responsive' ,style:"width:770px;height:550"%>
+            <% end %>
+            <span class="magazine-badge label-blue"><%= truncate(@top[0].title, length:30) %></span>
+          </div>
         </div>
+        <div class="item">
+          <div class="magazine-news-img">
+            <%= link_to @top[1] do  %>
+                <%= image_tag @top[1].cover.medium, class:'img-responsive' ,style:"width:770px;height:550"%>
+            <% end %>
+            <span class="magazine-badge label-blue"><%= truncate(@top[0].title, length:30) %></span>
+          </div>
+        </div>
+        <div class="item">
+          <div class="magazine-news-img">
+            <%= link_to @top[2] do  %>
+                <%= image_tag @top[2].cover.medium, class:'img-responsive' ,style:"width:770px;height:550"%>
+            <% end %>
+            <span class="magazine-badge label-blue"><%= truncate(@top[0].title, length:30) %></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-arrow">
+        <a data-slide="prev" href="#myCarousel-1" class="left carousel-control">
+          <i class="fa fa-angle-left"></i>
+        </a>
+        <a data-slide="next" href="#myCarousel-1" class="right carousel-control">
+          <i class="fa fa-angle-right"></i>
+        </a>
+      </div>
+    </div>
+
   </div>
-  <div class="col-xs-5">
+  <div class="col-xs-4" style="padding-left:5px;">
     <div class="magazine-news-split-img">
-      <%= link_to @top[1] do  %>
-          <%= image_tag @top[1].cover.medium, class:'img-responsive'%>
+      <%= link_to @top[3] do  %>
+          <%= image_tag @top[3].cover.medium, class:'img-responsive'%>
       <% end %>
       <span class="magazine-badge label-blue"><%= truncate(@top[1].title, length:30) %></span>
     </div>
 
     <div class="magazine-news-split-img">
-      <%= link_to @top[2] do  %>
-          <%= image_tag @top[2].cover.medium, class:'img-responsive' %>
+      <%= link_to @top[4] do  %>
+          <%= image_tag @top[4].cover.medium, class:'img-responsive' %>
       <% end %>
       <span class="magazine-badge label-blue"><%= truncate(@top[2].title, length:30) %></span>
-    </div>
-
-    <div class="magazine-news-split-img">
-      <%= link_to @top[3] do  %>
-          <%= image_tag @top[3].cover.medium, class:'img-responsive',style:"width:370px;height:247px" %>
-      <% end %>
-      <span class="magazine-badge label-blue"><%= truncate(@top[3].title, length:30) %></span>
     </div>
   </div>
 </div>
@@ -45,9 +70,11 @@
           <% @posts[0..1].each do |post| %>
             <div class="col-xs-6" style="margin-bottom:30px;">
               <div class="post-item post-item-head">
-                <%= link_to post do %>
-                <%= image_tag post.cover.medium, class:"img-responsive img-bordered" %>
-                <% end %>
+                <div class="img-large img-bordered">
+                    <%= link_to post do %>
+                    <%= image_tag post.cover.medium, class:"img-responsive" %>
+                    <% end %>
+                </div>
                 <h3 class="text-center"><%= link_to post.title, post %></h3>
 
                 <div class="info text-center">
@@ -88,6 +115,8 @@
           <% end %>
       </div>
       <% end %>
+
+      <%= render partial:"ad",locals: {show:Setting.show_index_ad_2,ad:Setting.index_ad_2, space:true} %>
     </div>
 
     <hr/>
@@ -264,6 +293,7 @@
 
         </div>
       </div>
+      <%= render partial:"ad",locals: {show:Setting.show_index_ad_3,ad:Setting.index_ad_3, space:true } %>
     </div>
     <hr/>
     <div class="row">
@@ -288,10 +318,13 @@
                 <% end %>
             </div>
         <% end %>
+
+        <%= render partial:"ad",locals: {show:Setting.show_index_ad_4,ad:Setting.index_ad_4, space:true} %>
       </div>
     </div>
   </div>
   <div class="col-xs-3 col-xs-offset-1">
+
     <div class="row">
       <div class="headline headline-md"><h2>最新视频</h2></div>
       <% @videos.in_groups_of(2,false) do |group| %>
@@ -306,6 +339,31 @@
             </div>
         <% end %>
       <% end %>
+      <%= render partial:"ad",locals: {show:Setting.show_index_ad_5,ad:Setting.index_ad_5, space:true} %>
+    </div>
+
+    <div class="row">
+      <div class="blog-twitter margin-bottom-40">
+        <div class="headline headline-md"><h2>最新评论</h2></div>
+        <% @comments.each do |comment| %>
+            <div class="blog-twitter-inner">
+              <i class="fa fa-comments-o"></i>
+              <%= link_to comment.user.name, comment.user %>
+              <p><%= comment.content %></p>
+              <span><%= cus_time(comment.created_at) %></span>
+            </div>
+        <% end %>
+      </div>
+      <%= render partial:"ad",locals: {show:Setting.show_index_ad_6,ad:Setting.index_ad_6, space:true} %>
+    </div>
+
+    <div class="row">
+      <div class="headline headline-md"><h2>关注我们</h2></div>
+      <div class="col-xs-12">
+        <img src="http://snowooo-cdn.qiniudn.com/qrcode_for_gh_5db68f90c722_258.jpg" alt=""/>
+      </div>
+
+      <%= render partial:"ad",locals: {show:Setting.show_index_ad_7,ad:Setting.index_ad_7, space:true} %>
     </div>
   </div>
 </div>

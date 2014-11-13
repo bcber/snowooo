@@ -36,11 +36,6 @@
 .max-height-500{@include max-height(500px)}
 .max-height-600{@include max-height(600px)}
 
-.post-item.post-item-head img{
-  height:200px;
-  width:100%;
-}
-
 .post-item .info{
   color: #cbcbcb;
 }
@@ -55,5 +50,14 @@
 }
 
 .post-item .img-medium img{
+  width:100%;
+}
+
+.post-item .img-large{
+  max-height: 200px;
+  overflow: hidden;
+}
+
+.post-item .img-large img{
   width:100%;
 }

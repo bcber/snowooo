@@ -29,6 +29,7 @@
       <p>
         <%= @post.content.html_safe %>
       </p>
+      <%= render partial: 'common/social_button',locals: {content: @post.title} %>
     </div>
     <div class="media">
       <h3> <span class="comment-count"><%= @post.comment_count %></span> <%= t("comments") %></h3>

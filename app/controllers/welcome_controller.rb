@@ -20,6 +20,7 @@ class WelcomeController < ApplicationController
     @snowboards = Snowboard.desc(:created_at).limit(7)
     @snowbindings = Snowbinding.desc(:created_at).limit(7)
     @snowboots = Snowboot.desc(:created_at).limit(7)
+    @comments = Comment.desc(:created_at).limit(6)
   end
 
   def gear
