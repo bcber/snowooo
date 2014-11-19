@@ -41,7 +41,7 @@
           <% end %>
 
           <% if @user.omniauths.any? %>
-              <%= link_to "http://weibo.com/#{@user.omniauths.first.uid}",class:"btn btn-block btn-weibo" do %>
+              <%= link_to "http://weibo.com/#{@user.omniauths.first.uid}",class:"btn btn-weibo" do %>
                 <i class="fa fa-weibo"></i> Weibo
               <% end %>
           <% else %>
