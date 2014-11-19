@@ -6,16 +6,17 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   config.secret_key = '66fabc7e29ef39f3da680eb929458333b6c9c424f960368c908dd775c8dd66eedcec286634e5da373d0438780259904451e2fec449c80ff25769ac76c86f9362'
 
-  config.omniauth :weibo, '1267461088', '26dea5500d39eca95abe880905cb178d'
+  config.omniauth :weibo, '1924766650', '74e2fc40a31658fa39fabaeaa3644e7b'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = 'admin@snowooo.com'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
+  config.mailer = "DeviseBackgrounder"
 
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and
@@ -142,7 +143,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :validatable
   # Range for password length.
-  config.password_length = 8..128
+  config.password_length = 6..128
 
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly

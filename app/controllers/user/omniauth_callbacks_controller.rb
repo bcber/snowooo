@@ -18,7 +18,7 @@ class User::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         flash[:notice] = "绑定微博成功，现在你可以用微博登录本网站"
         redirect_to root_path
       else
-        flash[:notice] = "请先注册本站的一个帐号"
+        flash[:notice] = "请先注册本站的一个帐号,然后再绑定你的微博"
         redirect_to signup_path
       end
     else

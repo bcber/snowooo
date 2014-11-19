@@ -1,63 +1,52 @@
-<h2>
-  <% if @style %>
-    所有的<%= @style %>雪鞋
-  <% else %>
-    所有的雪鞋
-  <% end %>
-</h2>
-
 <div class="row">
-  <div class="col-sm-2">
-    <div class="row">
-      <div class="headline">
-        <h4>Choose Style</h4>
-      </div>
+  <div class="s-results">
 
-      <div class="row">
-        <ul class="list-unstyled col-xs-8">
-          <% Snowboot::STYLES.each do |style| %>
-            <li> <%= link_to style, snowboots_path(style: style) , class:'color-green'%></li>
-          <% end %>
+    <div class="col-sm-2">
+      <div class="col-sm-12 related-search">
+        <%= render 'sidebar' %>
+      </div>
+    </div>
+    <div class="col-sm-10">
+      <div class="list-container">
+        <ul class="item-list" style="list-style:none">
+          <% @snowboots.each do |snowboot| %>
+          <li style="float:left;width:195px;height:350px; margin:10px;position:relative;">
+            <%= link_to snowboot do  %>
+              <div class="thumbnails thumbnail-style thumbnail-kenburn">
+                <div class="thumbnail-img">
+                  <div class="overflow-hidden">
+                    <%= image_tag snowboot.cover.large, class:"img-responsive"%>
+                  </div>
+
+                </div>
+
+                <div class="caption">
+
+                  <div class="content-boxes-v1">
+                    <strong><%= snowboot.brand %></strong>
+                    <h5>
+                      <%= link_to snowboot.name, snowboot %>
+                      <br>
+                      <h6>
+                        <%= snowboot.style %>
+                      </h6>
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <% end %>
+        <% end %>
         </ul>
       </div>
-    </div>
-  </div>
-  <div class="col-sm-10">
-    <div class="list-container">
-      <ul class="item-list" style="list-style:none">
-        <% @snowboots.each do |snowboot| %>
-        <li style="float:left;width:195px;height:350px; margin:10px;position:relative;">
-            <div class="thumbnails thumbnail-style thumbnail-kenburn">
-              <div class="thumbnail-img">
-                <div class="overflow-hidden">
-                  <%= image_tag snowboot.cover.large, class:"img-responsive"%>
-                </div>
-                <%= link_to 'Show', snowboot, class:"btn-more hover-effect" %>
-              </div>
 
-              <div class="caption">
-
-                <div class="content-boxes-v1">
-                  <strong><%= snowboot.brand %></strong>
-                  <h5>
-                    <%= link_to snowboot.name, snowboot %>
-                    <br>
-                    <h6>
-                      <%= snowboot.style %>
-                    </h6>
-                  </h5>
-                </div>
-              </div>
-            </div>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-
-    <div class="text-center">
-      <div class="pagination">
-        <%= will_paginate @snowboots , renderer: BootstrapPagination::Rails%>
+      <div class="text-center">
+        <div class="pagination">
+          <%= will_paginate @snowboots , renderer: BootstrapPagination::Rails%>
+        </div>
       </div>
     </div>
+
   </div>
+
 </div>

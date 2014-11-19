@@ -71,7 +71,18 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
-  config.serve_static_assets = true
+  config.serve_static_assets = false
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+      :authentication => :plain,
+      :address => "smtp.mailgun.org",
+      :port => 587,
+      :domain => "snowooo.com",
+      :user_name => "postmaster@snowooo.com",
+      :password => "81ee1d7a3fe7af056dcdf73273c207f2"
+  }
+
 
   # Do not dump schema after migrations.
   # config.active_record.dump_schema_after_migration = false

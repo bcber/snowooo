@@ -34,6 +34,14 @@
       </div>
       <div class="panel-body">
         <ul class="list-unstyled social-contacts-v2">
+          <% if @user.omniauths.any? %>
+              <%= link_to '去微博看看', 'http://weibo.com/#{@user.omniauths.first.uid}'%>
+          <% else %>
+              <p>该用户还没有绑定任何社交帐号</p>
+              <% if current_user.id == @user.id %>
+                <%= link_to '绑定我的微博',user_omniauth_authorize_path(:weibo) %>
+              <% end %>
+          <% end %>
         </ul>
       </div>
     </div>

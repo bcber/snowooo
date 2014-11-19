@@ -1,18 +1,27 @@
-<%= form_for(@admin_video,url: admin_videos_path(@admin_video)) do |f| %>
-    <% if @admin_video.errors.any? %>
+<%= form_for([:admin, @video]) do |f| %>
+    <% if @video.errors.any? %>
         <div class="alert alert-danger">
-          <h2><%= pluralize(@admin_video.errors.count, "error") %></h2>
+          <h2><%= pluralize(@video.errors.count, "error") %></h2>
 
           <ul>
-            <% @admin_video.errors.full_messages.each do |message| %>
+            <% @video.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
             <% end %>
           </ul>
         </div>
     <% end %>
-    <div class="field">
-      <%= f.label :url %><br>
-      <%= f.text_field :url ,class:"form-control"%>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-sm-4">
+          <%= f.label "选择类别" %>
+          <%= f.select :video_node_id, options_from_collection_for_select(VideoNode.all, 'id','title',@video.video_node.present? ? @video.video_node.id: '') , {},class:"form-control"%>
+        </div>
+        <div class="col-sm-8">
+          <%= f.label "优酷链接" %><br>
+          <%= f.text_field :url , class:"form-control" %></div>
+      </div>
+
     </div>
     <br/>
     <div class="actions">

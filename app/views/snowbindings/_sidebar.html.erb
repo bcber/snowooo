@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-sm-12">
+    <h3>选择品牌</h3>
+    <ul class="list-unstyled">
+      <% Snowbinding.pluck(:brand).flatten.uniq.each do |brand,index| %>
+        <li><%= link_to brand, snowbindings_path(:"brands[]" => brand) %></li>
+      <% end %>
+    </ul>
+    <hr/>
+  </div>
+</div>
+

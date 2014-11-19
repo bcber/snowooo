@@ -36,7 +36,8 @@ class Bbs::TopicsController < Bbs::ApplicationController
 
   def show
     @comment = Comment.new
-    session[:reply_page] = url_for(@post)
+    session[:reply_page] = url_for(['bbs',@topic])
+    set_seo_meta("#{@topic.title}", "#{@topic.title}")
   end
 
   def new

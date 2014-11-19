@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :places ,:snowboards , :snowbindings ,:snowboots ,:videos,:comments do
     resources :comments
   end
+  get "videos/node/:node_id" => "videos#node" ,as: :videos_node
+  get "places/region/:region" => "places#region", as: :places_region
 
   resources :likes
 
@@ -28,7 +30,7 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
-  get 'users/:id' => 'users#show', as: :user
+  get 'u/:id' => 'users#show', as: :user
   authenticate :user do
     get 'notification', to: 'notifications#show', as: :notification
     get 'notification/read/:id', to:'notifications#read', as: :read_notification
@@ -40,7 +42,13 @@ Rails.application.routes.draw do
     patch 'modify', to: 'users#update'
   end
 
-  devise_for :users , :controllers => { omniauth_callbacks: "user/omniauth_callbacks" }
+  devise_for :users , :controllers => {
+      sessions: "user/sessions",
+      passwords: "user/passwords",
+      registrations: "user/registrations",
+      unlocks:"user/unlocks",
+      omniauth_callbacks: "user/omniauth_callbacks"
+  }
 
   devise_scope :user do
     get "login", to: "user/sessions#new"
@@ -75,6 +83,7 @@ Rails.application.routes.draw do
     root to: "home#index"
 
     resources :topics
+    resources :video_nodes
     resources :topic_nodes
     resources :settings
     resources :users
@@ -94,7 +103,10 @@ Rails.application.routes.draw do
   end
 
   root 'welcome#index'
-  get 'gear' => 'welcome#gear'
+  get 'gear' => 'gear#snowboard'
+  get 'gear/snowboard' => 'gear#snowboard'
+  get 'gear/snowboot' => 'gear#snowboot'
+  get 'gear/snowbinding' => 'gear#snowbinding'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -7,18 +7,23 @@
   <!-- Meta -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta content="" name="description">
-  <meta content="" name="author">
-  <title>雪圈网</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
 
+  <meta name="keywords" content="<%= @meta_keywords %>" />
+  <meta name="description" content="<%= @meta_description %>" />
+
+  <%= render_page_title %>
+  <script src="//lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.min.js"></script>
+  <script src="http://cdn.bootcss.com/turbolinks/1.3.0/turbolinks.min.js"></script>
   <!-- Latest compiled and minified CSS -->
   <link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Optional theme -->
   <link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css" rel="stylesheet">
+  <script src="//cdn.ckeditor.com/4.4.5/standard/ckeditor.js"></script>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag   'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
 
   <!-- CSS Global Compulsory -->
   <link rel="stylesheet" href="/assets/css/style.css">
@@ -46,6 +51,7 @@
   <% end %>
   <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=AoosGLCN5hncfMh6u3IoZa90"></script>
   <script src="http://cdn.bootcss.com/owl-carousel/1.32/owl.carousel.min.js"></script>
+
 </head>
 <body class="header-fixed">
   <div class="header">
@@ -65,7 +71,7 @@
         <!-- End Topbar -->
         <!-- Navbar -->
         <div class="navbar" role="navigation">
-            <div class="container">
+            <div class="container-fluid">
               <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -77,7 +83,7 @@
               </div>
               <!-- Brand and toggle get grouped for better mobile display -->
               <div class="collapse navbar-collapse navbar-responsive-collapse">
-                <ul class="nav navbar-nav pull-left">
+                <ul class="nav navbar-nav pull-left" style="font-size:16px;font-weight:300;">
                     <%= render 'common/menu_bar' %>
                 </ul>
 
@@ -90,13 +96,19 @@
         <!-- End Navbar -->
   </div>
 
-  <div class="container content" style="padding-top:50px;">
+  <div class="container content">
     <div class="row" style="margin-top:20px;">
     <% if notice %>
-        <div class="alert alert-info fade in alert-dismissable"><%= notice %></div>
+        <div class="alert alert-info fade in alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          <%= notice %>
+        </div>
     <% end %>
     <% if alert %>
-        <div class="alert alert-danger  fade in alert-dismissable"><%= alert %></div>
+        <div class="alert alert-danger  fade in alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          <%= alert %>
+        </div>
     <% end %>
     </div>
     <div class="row">

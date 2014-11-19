@@ -4,6 +4,8 @@ class Place
   include Mongoid::Letsrate
   include Mongoid::TaggableOn
 
+  taggable_on :regions, index: true
+
   field :name
   field :address
   field :site
@@ -23,7 +25,18 @@ class Place
 
   embeds_many :place_images, :cascade_callbacks => true
   accepts_nested_attributes_for :place_images, reject_if: :all_blank,allow_destroy: true
+
   has_many :comments, as: :commentable, dependent: :destroy
   accepts_nested_attributes_for :comments
   alias :title :name
+
+  def self.get_tags_on(field)
+    Place.pluck(field.to_sym).flatten!.uniq
+    # ["国内","国外"]
+  end
+
+  def self.get_tags_count(field, value)
+    Place.tagged_with_on(field.to_sym, value).count
+    # 1
+  end
 end

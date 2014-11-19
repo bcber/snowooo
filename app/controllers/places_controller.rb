@@ -9,12 +9,18 @@ class PlacesController < ApplicationController
 
   def show
     @comment = Comment.new
-    session[:reply_page] = url_for(@post)
+    session[:reply_page] = url_for(@place)
+    set_seo_meta("#{@place.title}", "#{@place.title}")
   end
 
   def new
     @place = Place.new
     respond_with(@place)
+  end
+
+  def region
+    @places = Place.tagged_with_on(:regions,params[:region]).paginate(page:params[:page], per_page: 20)
+    render action: 'index'
   end
 
   def edit

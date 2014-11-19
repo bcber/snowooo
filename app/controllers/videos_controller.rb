@@ -11,6 +11,14 @@ class VideosController < ApplicationController
   def show
     @comment = Comment.new
     session[:reply_page] = url_for(@video)
+    set_seo_meta("#{@video.title}", "#{@video.title}")
+
+  end
+
+  def node
+    @node = VideoNode.find(params[:node_id])
+    @videos = @node.videos.desc(:created_at).paginate(page: params[:page], per_page: 10)
+    render action: 'index'
   end
 
   def new

@@ -15,6 +15,7 @@ class PostsController < ApplicationController
     @recommend_posts = Post.passed.asc(:recommend_at.desc).limit(10)
     @comment = Comment.new
     session[:reply_page] = url_for(@post)
+    set_seo_meta("#{@post.title}", "#{@post.title}")
   end
 
   def new

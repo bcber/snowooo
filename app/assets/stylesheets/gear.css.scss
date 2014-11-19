@@ -1,0 +1,35 @@
+.gear .option-item{
+  border-right:1px solid #ccc;
+  padding-top:15px;
+  background: url(http://smpsnowboardmagcom.c.presscdn.com/wp-content/themes/smp/images/bg-subnav.png)
+
+}
+
+.gear .option-item:last-child{
+  border-right: none;
+}
+
+.gear .option-item a{
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-decoration: none;
+}
+
+.gear .option-item:hover{
+  border-bottom: 3px solid #e92020;
+
+}
+
+.gear .option-item .option-item-fixed{
+  position: fixed;
+  top:6px;
+  z-index: 10000;
+}
+.gear .detail-item{
+  text-align:center;
+}
+.gear .detail-item img{
+  height:200px;
+}

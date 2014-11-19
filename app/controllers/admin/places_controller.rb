@@ -91,7 +91,7 @@ class Admin::PlacesController < Admin::ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def place_params
-      params[:place].permit(:name, :region, :site,:description, :level ,:cover,:remote_cover_url, :address,:phone,:xcoordinate, :ycoordinate,{
+      params[:place].permit(:name, :region_list,:site,:description, :level ,:cover,:remote_cover_url, :address,:phone,:xcoordinate, :ycoordinate,{
           place_images_attributes: [:id,:_destroy, :original,:remote_original_url ]
       })
     end

@@ -5,22 +5,21 @@ class SnowboardsController < ApplicationController
   # GET /snowboards
   # GET /snowboards.json
   def index
-    style ||= params[:style]
-    if style and Snowboard::STYLES.include? style
-      @snowboards = Snowboard.send(style.to_sym)
-      @style = style
-    else
-      @snowboards = Snowboard.all
-      flash[:alert] = 'no such style' if style
-    end
-    @snowboards = @snowboards.paginate(:page => params[:page], :per_page => 16)
-    respond_with @snowboards
+    styles = params[:styles] || []
+    brands = params[:brands] || []
+    snowboards = Snowboard.all
+
+    snowboards = snowboards.in(style: styles) if styles.any?
+    snowboards = snowboards.in(brand: brands) if brands.any?
+
+    @snowboards = snowboards.paginate(:page => params[:page], :per_page => 16)
   end
 
   # GET /snowboards/1
   # GET /snowboards/1.json
   def show
     session[:reply_page] = url_for(@snowboard)
+    set_seo_meta("#{@snowboard.title}", "#{@snowboard.title}")
   end
 
   def noimage

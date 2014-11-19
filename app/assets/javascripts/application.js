@@ -9,11 +9,8 @@
 //
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
-//
-//= require jquery
+
 //= require jquery_ujs
-//= require turbolinks
-//= require ckeditor/init
 //= require social-share-button
 //= require_tree .
 
@@ -142,19 +139,16 @@ var App = function () {
 
     function handleHeader() {
         jQuery(window).scroll(function() {
-            if($(document).height()-$(window).height() > 800){
-                if (jQuery(window).scrollTop()> 100   ){
-                    jQuery(".header-fixed .header").addClass("header-fixed-shrink");
-                    jQuery(".header-fixed .header .topbar .loginbar").slideUp();
-                    jQuery(".navbar-brand").css('visibility','visible');
-                }
-                else {
-                    jQuery(".header-fixed .header").removeClass("header-fixed-shrink");
-                    jQuery(".header-fixed .header .topbar .loginbar").slideDown();
-                    jQuery(".navbar-brand").css('visibility','hidden');
-                }
+            if (jQuery(window).scrollTop()> 10   ){
+                jQuery(".header-fixed .header").addClass("header-fixed-shrink");
+                jQuery(".header-fixed .header .topbar .loginbar").hide();
+                jQuery(".navbar-brand").css('visibility','visible');
             }
-
+            else {
+                jQuery(".header-fixed .header").removeClass("header-fixed-shrink");
+                jQuery(".header-fixed .header .topbar .loginbar").show();
+                jQuery(".navbar-brand").css('visibility','hidden');
+            }
         });
     }
 

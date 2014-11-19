@@ -76,10 +76,17 @@
 <div class="container">
   <div class="row" style="margin-top:20px;">
     <% if notice %>
-        <div class="alert alert-info fade in alert-dismissable"><%= notice %></div>
+        <div class="alert alert-info fade in alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          <%= notice %>
+        </div>
     <% end %>
+
     <% if alert %>
-        <div class="alert alert-danger  fade in alert-dismissable"><%= alert %></div>
+        <div class="alert alert-danger  fade in alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          <%= alert %>
+        </div>
     <% end %>
   </div>
   <div class="row">

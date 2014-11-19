@@ -24,6 +24,7 @@ class Video
 
   has_many :comments, as: :commentable, dependent: :destroy
   accepts_nested_attributes_for :comments
+  belongs_to :video_node
   
   def getVid
     mtch = VIDPATTERN.match url

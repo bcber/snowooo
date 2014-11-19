@@ -15,18 +15,13 @@ class WelcomeController < ApplicationController
     @top.sort_by! {|item| item.up_at }.reverse!
 
     @posts = Post.passed.desc(:created_at).limit(6)
-    @places = Place.desc(:created_at).limit(6)
+    @places = Place.desc(:created_at).limit(8)
     @videos = Video.desc(:created_at).limit(6)
     @snowboards = Snowboard.desc(:created_at).limit(7)
     @snowbindings = Snowbinding.desc(:created_at).limit(7)
     @snowboots = Snowboot.desc(:created_at).limit(7)
     @comments = Comment.desc(:created_at).limit(6)
-  end
-
-  def gear
-    @snowboards = Snowboard.desc(:created_at).limit(8)
-    @snowbindings = Snowbinding.desc(:created_at).limit(8)
-    @snowboots = Snowboot.desc(:created_at).limit(8)
+    set_seo_meta
   end
 end
   

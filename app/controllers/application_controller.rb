@@ -21,6 +21,14 @@ class ApplicationController < ActionController::Base
   end
 
 
+  def set_seo_meta(title = '', meta_description = '', meta_keywords='')
+    @page_title = "#{title}}" if title.length > 0
+    @meta_keywords = meta_keywords
+    @meta_description = meta_description
+    @meta_keywords = ENV['keywords'] if meta_keywords.length == 0
+    @meta_description = ENV['keywords'] if meta_description.length == 0
+  end
+
 
   def date(time)
     time.strftime('%m-%d-%Y')

@@ -1,6 +1,6 @@
 <% if @top.count > 3 %>
 <div class="row magazine-page">
-  <div class="col-xs-6 col-xs-offset-1" style="padding-right:3px;">
+  <div class="col-xs-8">
     <div class="carousel slide carousel-v1 margin-bottom-40" id="myCarousel-1">
       <div class="carousel-inner">
         <div class="item active">
@@ -40,7 +40,7 @@
     </div>
 
   </div>
-  <div class="col-xs-4" style="padding-left:5px;">
+  <div class="col-xs-4">
     <div class="magazine-news-split-img">
       <%= link_to @top[3] do  %>
           <%= image_tag @top[3].cover.medium, class:'img-responsive'%>
@@ -62,7 +62,7 @@
 <div class="row">
   <div class="col-xs-8">
     <div class="row">
-      <div class="headline headline-md"><h2>最近的资讯</h2></div>
+      <div class="headline headline-md blue" style=""><h2 style="">最近的资讯</h2></div>
 
       <% if @posts.count > 2 %>
       <div class="col-xs-12">
@@ -121,7 +121,7 @@
 
     <hr/>
     <div class="row">
-      <div class="headline headline-md"><h2>最新装备</h2></div>
+      <div class="headline headline-md red"><h2>最新装备</h2></div>
 
       <div class="tab-v2 margin-bottom-40">
         <ul class="nav nav-tabs margin-bottom-20">
@@ -298,7 +298,8 @@
     <hr/>
     <div class="row">
       <div class="col-xs-12">
-        <div class="headline headline-md"><h2>雪场信息</h2></div>
+        <div class="headline headline-md green"><h2>雪场信息</h2></div>
+        <% cache @places do %>
         <% @places.in_groups_of(4,false).each do |group| %>
             <div class="row">
                 <% group.each do |place| %>
@@ -318,33 +319,45 @@
                 <% end %>
             </div>
         <% end %>
-
+        <% end %>
         <%= render partial:"ad",locals: {show:Setting.show_index_ad_4,ad:Setting.index_ad_4, space:true} %>
       </div>
     </div>
   </div>
-  <div class="col-xs-3 col-xs-offset-1">
+  <div class="col-sm-3 col-sm-offset-1 hidden-xs">
+    <div class="row">
+      <div class="headline headline-md blue"><h2>关注我们</h2></div>
+      <div class="col-xs-12">
+        <img src="http://snowooo-cdn.qiniudn.com/qrcode_for_gh_5db68f90c722_258.jpg" alt=""/>
+      </div>
+
+      <%= render partial:"ad",locals: {show:Setting.show_index_ad_7,ad:Setting.index_ad_7, space:true} %>
+    </div>
 
     <div class="row">
-      <div class="headline headline-md"><h2>最新视频</h2></div>
+      <div class="headline headline-md green"><h2>最新视频</h2></div>
+      <% cache @videos do %>
       <% @videos.in_groups_of(2,false) do |group| %>
         <% group.each do |video| %>
             <div class="col-xs-6">
               <%= link_to video do%>
                 <div class="img-video">
                   <%= image_tag video.thumbnail %>
-                  <p><%= video.title %></p>
+                  <p><%= truncate(video.title, length: 20) %></p>
                 </div>
               <% end %>
             </div>
         <% end %>
+      <% end %>
       <% end %>
       <%= render partial:"ad",locals: {show:Setting.show_index_ad_5,ad:Setting.index_ad_5, space:true} %>
     </div>
 
     <div class="row">
       <div class="blog-twitter margin-bottom-40">
-        <div class="headline headline-md"><h2>最新评论</h2></div>
+        <div class="headline headline-md red"><h2>最新评论</h2></div>
+
+        <% cache @comments do  %>
         <% @comments.each do |comment| %>
             <div class="blog-twitter-inner">
               <i class="fa fa-comments-o"></i>
@@ -353,17 +366,12 @@
               <span><%= cus_time(comment.created_at) %></span>
             </div>
         <% end %>
+        <% end %>
       </div>
       <%= render partial:"ad",locals: {show:Setting.show_index_ad_6,ad:Setting.index_ad_6, space:true} %>
     </div>
 
-    <div class="row">
-      <div class="headline headline-md"><h2>关注我们</h2></div>
-      <div class="col-xs-12">
-        <img src="http://snowooo-cdn.qiniudn.com/qrcode_for_gh_5db68f90c722_258.jpg" alt=""/>
-      </div>
 
-      <%= render partial:"ad",locals: {show:Setting.show_index_ad_7,ad:Setting.index_ad_7, space:true} %>
-    </div>
   </div>
 </div>
+

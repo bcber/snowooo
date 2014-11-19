@@ -124,6 +124,9 @@ GEM
     jwt (1.0.0)
     mail (2.6.1)
       mime-types (>= 1.16, < 3)
+    mailgun_rails (0.6.4)
+      rails (>= 3.2.13)
+      rest-client (>= 1.6.7)
     method_source (0.8.2)
     mime-types (1.25.1)
     mini_magick (3.8.1)
@@ -302,6 +305,7 @@ DEPENDENCIES
   html_truncator (~> 0.2)
   jbuilder (~> 2.0)
   jquery-rails
+  mailgun_rails
   mini_magick
   mongoid (~> 4.0.0)
   mongoid-grid_fs!

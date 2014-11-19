@@ -3,20 +3,15 @@ class SnowbindingsController < ApplicationController
   respond_to :html
 
   def index
-    style ||= params[:style]
-    if style and Snowbinding::STYLES.include? style
-      @snowbindings = Snowbinding.send(style.to_sym)
-      @style = style
-    else
-      @snowbindings = Snowbinding.all
-      flash[:alert] = 'no such style' if style
-    end
-    @snowbindings = @snowbindings.paginate(:page => params[:page], :per_page => 16)
-    respond_with @snowbindings
+    brands = params[:brands] || []
+    snowbindings = Snowbinding.all
+    snowbindings = snowbindings.in(brand: brands) if brands.any?
+    @snowbindings = snowbindings.paginate(:page => params[:page], :per_page => 16)
   end
 
   def show
     session[:reply_page] = url_for(@snowbinding)
+    set_seo_meta("#{@snowbinding.title}", "#{@snowbinding.title}")
   end
 
   private

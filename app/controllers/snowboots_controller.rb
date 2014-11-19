@@ -4,19 +4,19 @@ class SnowbootsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    style ||= params[:style]
-    if style
-      @snowboots = Snowboot.send(style.to_sym)
-      @style = style
-    else
-      @snowboots = Snowboot.all
-    end
-    @snowboots = @snowboots.paginate(page: params[:page], per_page: 16)
-    respond_with(@snowboots)
+    styles = params[:styles] || []
+    brands = params[:brands] || []
+    snowboots = Snowboot.all
+
+    snowboots = snowboots.in(style: styles) if styles.any?
+    snowboots = snowboots.in(brand: brands) if brands.any?
+
+    @snowboots = snowboots.paginate(page: params[:page], per_page: 16)
   end
 
   def show
     session[:reply_page] = url_for(@snowboot)
+    set_seo_meta("#{@snowboot.title}", "#{@snowboot.title}")
   end
 
   def new

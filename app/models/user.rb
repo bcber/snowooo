@@ -12,7 +12,8 @@ class User
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-  :recoverable, :rememberable, :trackable, :validatable, :confirmable
+  :recoverable, :rememberable, :trackable, :validatable
+  # :confirmable
   devise :omniauthable, omniauth_providers: [:weibo]
 
   ## Database authenticatable
@@ -186,21 +187,4 @@ class User
       record if record && record.authenticatable_salt == salt
     end
   end
-
-  protected 
-
-  # TODO use mail
-  def send_devise_notification(notification, token,*args)
-    MailWorker.perform_async(email, token);
-  end
-
-
-  private
-
-  # def send_pending_notifications
-  # end
-
-  # def peding_notifications
-  #   @send_pending_notifications ||= []
-  # end
 end

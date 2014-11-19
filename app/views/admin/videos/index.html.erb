@@ -7,23 +7,25 @@
       <thead>
       <tr>
         <th>标题</th>
+        <th>所属分类</th>
         <th>最近置顶</th>
         <th>最近推荐</th>
       </tr>
       </thead>
       <tbody>
-      <% @admin_videos.each do |admin_video| %>
+      <% @videos.each do |video| %>
           <tr>
-            <td><%= admin_video.title %></td>
-            <td><%= admin_video.up_at %></td>
-            <td><%= admin_video.recommend_at %></td>
+            <td><%= video.title %></td>
+            <td><%= video.video_node.title if video.video_node.present? %></td>
+            <td><%= video.up_at %></td>
+            <td><%= video.recommend_at %></td>
             <td>
-              <%= link_to '详情', admin_video ,class: "btn btn-default btn-xs"%>
-              <%= link_to '置顶' , up_admin_video_path(admin_video), class:"btn btn-default btn-xs"%>
-              <%= link_to '取消置顶', down_admin_video_path(admin_video), class:"btn btn-default btn-xs" %>
-              <%= link_to "推荐", recommend_admin_video_path(admin_video), class:"btn btn-default btn-xs" %>
-              <%= link_to '编辑', edit_admin_video_path(admin_video) ,class: "btn btn-default btn-xs"%>
-              <%= link_to '删除', admin_video_path(admin_video), method: :delete, data: { confirm: 'Are you sure?' } ,class: "btn btn-danger btn-xs"%></td>
+              <%= link_to '详情', video ,class: "btn btn-default btn-xs"%>
+              <%= link_to '置顶' , up_admin_video_path(video), class:"btn btn-default btn-xs"%>
+              <%= link_to '取消置顶', down_admin_video_path(video), class:"btn btn-default btn-xs" %>
+              <%= link_to "推荐", recommend_admin_video_path(video), class:"btn btn-default btn-xs" %>
+              <%= link_to '编辑', edit_admin_video_path(video) ,class: "btn btn-default btn-xs"%>
+              <%= link_to '删除', admin_video_path(video), method: :delete, data: { confirm: 'Are you sure?' } ,class: "btn btn-danger btn-xs"%></td>
           </tr>
       <% end %>
       </tbody>
@@ -33,7 +35,7 @@
 
 <div class="text-center">
   <div class="pagination">
-    <%= will_paginate @admin_videos , renderer: BootstrapPagination::Rails%>
+    <%= will_paginate @videos , renderer: BootstrapPagination::Rails%>
   </div>
 </div>
 <br/>

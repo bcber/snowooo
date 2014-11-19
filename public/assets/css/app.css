@@ -97,7 +97,9 @@ h1 i, h2 i, h3 i, h4 i, h5 i, h6 i {
 }
 
 .headline h2 {
+  color: white;
   font-size: 22px;
+  border-bottom: 1px solid white;
 }
 
 .headline h2, 
@@ -106,7 +108,7 @@ h1 i, h2 i, h3 i, h4 i, h5 i, h6 i {
   margin: 0 0 -2px 0;
   padding-bottom: 5px;
   display: inline-block;
-  border-bottom: 2px solid #72c02c;
+  /*border-bottom: 2px solid #72c02c;*/
 }
 
 .headline-md {
@@ -114,6 +116,8 @@ h1 i, h2 i, h3 i, h4 i, h5 i, h6 i {
 }
 
 .headline-md h2 {
+  color: black;
+  padding: 0 5px;
   font-size: 21px;
 }
 
@@ -2709,7 +2713,7 @@ img.img-circle {
 
 /*Misc*/
 .content {
-  padding-top: 40px;
+  padding-top: 20px;
   padding-bottom: 40px;
 }
 
@@ -2751,4 +2755,73 @@ img.img-circle {
    -o-transform: scale(2) rotate(5deg);
    -ms-transform: scale(2) rotate(5deg);
    transform: scale(2) rotate(5deg);
+}
+
+.headline.headline-md.blue{
+    border-bottom:1px solid #4db2ec;
+}
+
+.headline.headline-md.blue h2{
+    border-bottom:0;margin-bottom:2px;
+    background-color: #4db2ec;
+    color:white;
+}
+
+.headline.headline-md.red{
+    border-bottom:1px solid #f65261;
+}
+
+.headline.headline-md.red h2{
+    border-bottom:0;margin-bottom:2px;
+    background-color: #f65261;
+    color:white;
+}
+
+.headline.headline-md.green {
+    border-bottom: 1px solid #82b440;
+}
+
+.headline.headline-md.green h2{
+    border-bottom:0;margin-bottom:2px;
+    background-color:#82b440;
+    color:white;
+}
+
+.headline.headline-md.yellow {
+    border-bottom: 1px solid #ffd700;
+}
+
+.headline.headline-md.yellow h2{
+    border-bottom:0;margin-bottom:2px;
+    background-color: #ffd700;
+    color:white;
+}
+.nav li a.blue:hover{
+    background-color:#4db2ec;
+    color:white;
+}
+
+.nav li a.red:hover{
+    color:white;
+    background-color:#f65261;
+}
+
+.nav li a.green:hover{
+    color:white;
+    background-color:#82b440;
+}
+
+.nav li a.yellow:hover{
+    color:white;
+    background-color: #ffd700;
+}
+
+.nav li a.purple:hover{
+    color:white;
+    background-color: #912cee;
+}
+
+.nav li a.orange:hover{
+    color:white;
+    background-color: #ff7f00;
 }

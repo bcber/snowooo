@@ -1,24 +1,12 @@
-<h2>
-  <% if @style %>
-    所有的<%= t(@style) %>雪板
-  <% else %>
-    所有的雪板
-  <% end %>
-</h2>
+<div class="snowboard">
+  <div class="s-results">
 
+<div class="row"><%= render 'search_info' %></div>
 <div class="row">
   <div class="col-md-2">
     <div class="row">
-      <div class="headline">
-        <h4>选择风格</h4>
-      </div>
-
-      <div class="row">
-        <ul class="list-unstyled col-xs-8">
-          <% Snowboard::STYLES.each do |style| %>
-            <li> <%= link_to t(style), snowboards_path(style: style) , class:'color-green'%></li>
-          <% end %>
-        </ul>
+      <div class="col-sm-12 related-search">
+        <%= render 'sidebar' %>
       </div>
     </div>
   </div>
@@ -27,12 +15,13 @@
       <ul style="list-style:none" class="item-list">
       <% @snowboards.each do |snowboard| %>
       <li style="float:left;width:195px;height:310px; margin:10px;position:relative;">
+        <%= link_to  snowboard do %>
         <div class="thumbnails thumbnail-style thumbnail-kenburn">
           <div class="thumbnail-img">
             <div class="overflow-hidden">
               <%= image_tag snowboard.cover.large, class: "img-responsive" %>
             </div>
-            <%= link_to 'Show', snowboard, class:"btn-more hover-effect" %>
+
           </div>
 
           <div class="caption">
@@ -49,6 +38,8 @@
               
           </div>
         </div>
+        <% end %>
+
       </li>
       <% end %>
       </ul>
@@ -60,4 +51,6 @@
       </div>
     </div>
   </div>
+</div>
+</div>
 </div>

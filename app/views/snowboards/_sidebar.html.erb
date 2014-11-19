@@ -1,0 +1,27 @@
+
+  <div class="row">
+    <div class="col-sm-12">
+
+      <h3>选择风格</h3>
+      <ul class="list-unstyled">
+        <% Snowboard.pluck(:style).flatten.uniq.each do |style,index| %>
+            <li> <%= link_to t(style.downcase), snowboards_path(@search,:"styles[]" => style)%></li>
+        <% end %>
+      </ul>
+      <hr/>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h3>选择品牌</h3>
+      <ul class="list-unstyled">
+        <% Snowboard.pluck(:brand).flatten.uniq.each do |brand,index| %>
+            <li><%= link_to brand, snowboards_path(@search,:"brands[]" => brand) %></li>
+        <% end %>
+      </ul>
+      <hr/>
+    </div>
+
+  </div>
+

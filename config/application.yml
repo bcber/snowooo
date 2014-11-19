@@ -11,6 +11,8 @@
 #   stripe_publishable_key: pk_live_9lcthxpSIHbGwmdO941O1XVU
 
 app_name: "snowooo"
+title: "雪圈网"
+keywords: "雪圈,雪圈网,雪板,雪鞋,滑雪装备,中国最好滑雪网站,单板,雪场"
 admin_emails:
   - nxbtch@163.com
 mail_domain: "snowooo.com"
