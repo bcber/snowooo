@@ -34,8 +34,16 @@
       </div>
       <div class="panel-body">
         <ul class="list-unstyled social-contacts-v2">
+          <% if Rails.env.development? %>
+            <%= link_to "http://weibo.com/3194570912",class:"btn btn-weibo", target:"_blank" do%>
+              <i class="fa fa-weibo"></i> Weibo
+            <% end %>
+          <% end %>
+
           <% if @user.omniauths.any? %>
-              <%= link_to '去微博看看', 'http://weibo.com/#{@user.omniauths.first.uid}'%>
+              <%= link_to "http://weibo.com/#{@user.omniauths.first.uid}",class:"btn btn-block btn-weibo" do %>
+                <i class="fa fa-weibo"></i> Weibo
+              <% end %>
           <% else %>
               <p>该用户还没有绑定任何社交帐号</p>
               <% if current_user.id == @user.id %>

@@ -1,0 +1,7 @@
+.btn-weibo {
+    background-color: transparent;
+    border-color: #d7584d;
+    color: #d7584d; }
+.btn-weibo:hover {
+    background-color: #d7584d;
+    color: white; }
