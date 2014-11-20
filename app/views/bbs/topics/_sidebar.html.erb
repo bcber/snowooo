@@ -1,1 +1,16 @@
-<%= link_to '发帖',new_bbs_topic_path, class:"btn btn-u btn-block" %>
+<div class="row margin-bottom-40">
+  <% if user_signed_in? %>
+    <%= link_to '发帖',new_bbs_topic_path, class:"btn btn-default btn-block" %>
+  <% else %>
+    <%= link_to '发帖需要注册哦!', signup_path,class:'btn btn-default btn-block' %>
+  <% end %>
+</div>
+
+<div class="row">
+  <div class="panel panel-default">
+    <div class="panel-heading">公告</div>
+    <div class="panel-body">
+      欢迎来到雪圈网哦！
+    </div>
+  </div>
+</div>

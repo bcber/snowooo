@@ -15,7 +15,6 @@ class PlacesController < ApplicationController
 
   def new
     @place = Place.new
-    respond_with(@place)
   end
 
   def region

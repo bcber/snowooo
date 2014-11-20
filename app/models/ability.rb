@@ -51,5 +51,7 @@ class Ability
     can :read, Post
     can :read, Topic
     can :node, Topic
+    can :region, Place
+    can :node, Video
   end
 end
