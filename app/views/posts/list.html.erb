@@ -1,0 +1,23 @@
+<%= render 'node_list' %>
+<div class="row">
+  <div class="col-sm-12">
+    <h2><%= @node.title %></h2>
+    <p><%= @node.description %> | 共有 <%= @node.posts.count %> 篇文章</p>
+  </div>
+</div>
+<hr class="devider devider-dotted">
+<% @posts.in_groups_of(4,false) do |group| %>
+  <div class="row">
+    <% group.each do |post| %>
+      <div class="col-sm-3">
+        <%= render 'post_item_list', post:post %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="text-center">
+  <div class="pagination">
+    <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
+  </div>
+</div>

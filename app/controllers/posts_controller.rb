@@ -11,6 +11,12 @@ class PostsController < ApplicationController
     @comments = Comment.desc(:created_at).limit(6)
   end
 
+  def node
+    @node = PostNode.find(params[:node_id])
+    @posts = @node.posts.passed.desc(:created_at).paginate(page: params[:page], per_page: 12)
+    render 'list'
+  end
+
   def show
     @recommend_posts = Post.passed.asc(:recommend_at.desc).limit(10)
     @comment = Comment.new
@@ -54,6 +60,6 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit( :title, :content, :cover, :remote_cover_url, :tag_string ,:category_list)
+      params.require(:post).permit( :title, :post_node_id ,:content, :cover, :remote_cover_url, :tag_string ,:category_list)
     end
 end

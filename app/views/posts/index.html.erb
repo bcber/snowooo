@@ -1,36 +1,10 @@
 <div class="row">
   <div class="col-sm-9">
-
     <% @posts.in_groups_of(2,false) do |group| %>
         <div class="row">
           <% group.each do |post| %>
               <div class="col-sm-6">
-                <div class="post-item" style="margin-bottom:40px;">
-                    <div class="max-height-200">
-                      <%= link_to post do  %>
-                      <%= image_tag post.cover.large %>
-                      <% end %>
-                    </div>
-                  <div class="title">
-                    <h3><%= link_to post.title, post%></h3>
-                  </div>
-                  <div class="info">
-                    <i class="fa fa-user">&nbsp;<%= post.user.name %></i>
-                    <i class="fa fa-calendar">&nbsp;<%= date(post.created_at) %></i>
-                    <i class="fa fa-comments-o">&nbsp;<%= post.comments.count %></i>
-                  </div>
-                  <div class="tags">
-                    <ul class="list-unstyled list-inline blog-tags">
-                      <li>
-                        <i class="fa fa-tags"></i>
-                        <% post.categories.each do |category| %>
-                            <%= link_to category, category_posts_path(category) %>
-                        <% end %>
-                      </li>
-                    </ul>
-                  </div>
-                  <p><%= truncate(strip_tags(post.content), length:100) %></p>
-                </div>
+                <%= render 'post_item_list', post: post%>
               </div>
           <% end %>
         </div>

@@ -1,20 +1,11 @@
-<div class="row">
-  <div class="col-sm-12">
-    <div class="btn-group margin-bottom-40" role="group" aria-label="...">
-      <% TopicNode.all.each do |node| %>
-        <%= link_to node.title, bbs_topics_node_path(node) , class:'btn btn-default'%>
-      <% end %>
-    </div>
-  </div>
-</div>
-
-
+<%= render 'node_list', node: @node %>
 <div class="row">
   <div class="col-sm-9">
+
+
+    <%= render 'node_info' ,node: @node%>
+
     <div class="panel panel-default">
-      <div class="panel-heading">
-        <%= render 'node_info', node: @node %>
-      </div>
       <div class="panel-body">
         <%= render partial: '/bbs/topics/topic', collection: @topics %>
 
@@ -26,8 +17,6 @@
       </div>
     </div>
   </div>
-
-
 
   <div class="col-sm-3">
     <%= render 'sidebar' %>

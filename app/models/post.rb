@@ -20,4 +20,5 @@ class Post
 
   has_many :comments, as: :commentable, dependent: :destroy
   belongs_to :user
+  belongs_to :post_node
 end

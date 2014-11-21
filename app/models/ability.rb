@@ -53,5 +53,6 @@ class Ability
     can :node, Topic
     can :region, Place
     can :node, Video
+    can :node, Post
   end
 end

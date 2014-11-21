@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
   get "videos/node/:node_id" => "videos#node" ,as: :videos_node
   get "places/region/:region" => "places#region", as: :places_region
+  get "posts/node/:node_id" => "posts#node",as: :posts_node
 
   resources :likes
 
@@ -68,7 +69,7 @@ Rails.application.routes.draw do
   get 'bbs/topics/hot' => 'bbs/topics#hot', as: :hot_bbs_topics
   get 'bbs/topics/no_comment' => 'bbs/topics#no_comment',as: :no_comment_bbs_topics
   get 'bbs/topics/good' => 'bbs/topics#good', as: :good_bbs_topics
-  get 'bbs/topics/node:node_id' => 'bbs/topics#node', as: :bbs_topics_node
+  get 'bbs/topics/node/:node_id' => 'bbs/topics#node', as: :bbs_topics_node
   get 'bbs/topics/:id' => 'bbs/topics#show',as: :topic
 
   namespace :bbs do
@@ -87,6 +88,7 @@ Rails.application.routes.draw do
     resources :topic_nodes
     resources :settings
     resources :users
+    resources :post_nodes
     resources :posts , :places, :videos, :snowboots, :snowbindings , :snowboards do
       member do
         get 'up'

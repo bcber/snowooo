@@ -1,15 +1,26 @@
-<% if !node.blank? %>
-    <div>
-      <h2><%= node.title %></h2>
-      <span class="total">共有 <%= node.topics.count %> 个帖子</span>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-12">
+        <% if !node.blank? %>
+          <h2><%= node.title %></h2>
+          <%= node.description %>
+        <% else %>
+          <h2>所有帖子</h2>
+            全部帖子
+        <% end %>
+        | 共有帖子:
+        <span class="color-sea">
+          <% if node.blank? %>
+            <%= Topic.count %>
+          <% else %>
+            <%= node.topics.count %>
+          <% end %>
+        </span>
+
+      </div>
     </div>
-    <div class="desc">
-      <%= node.description %>
-    </div>
-<% else %>
-    <div class="text-right">
-      <%= link_to "热门帖子", hot_bbs_topics_path %>
-      \ <%= link_to "优质帖子", good_bbs_topics_path %>
-      \ <%= link_to "无人问津", no_comment_bbs_topics_path %>
-    </div>
-<% end %>
+
+  </div>
+</div>
+
