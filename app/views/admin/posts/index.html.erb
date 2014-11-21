@@ -11,6 +11,7 @@
   <thead>
     <tr>
       <th>题目</th>
+      <th>创建时间</th>
       <th>最近置顶</th>
       <th>最近推荐</th>
       <th>操作</th>
@@ -21,6 +22,7 @@
     <% @posts.each do |post| %>
       <tr>
         <td><%= post.title %></td>
+        <td><%= post.created_at %></td>
         <td><%= post.up_at %></td>
         <td><%= post.recommend_at %></td>
         <td>

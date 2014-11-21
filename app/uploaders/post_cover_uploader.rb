@@ -41,7 +41,7 @@ class PostCoverUploader < CarrierWave::Uploader::Base
     end
   end
 
-  version :big do
+  version :large do
     def full_filename(for_file)
       [for_file, version_name].compact.join('-')
     end

@@ -6,7 +6,7 @@
         <div class="item active">
           <div class="magazine-news-img">
             <%= link_to @top[0] do  %>
-                <%= image_tag @top[0].cover.medium, class:'img-responsive' ,style:"width:770px;height:550"%>
+                <%= image_tag @top[0].cover.large, class:'img-responsive'%>
             <% end %>
             <span class="magazine-badge label-blue"><%= truncate(@top[0].title, length:30) %></span>
           </div>
@@ -14,7 +14,7 @@
         <div class="item">
           <div class="magazine-news-img">
             <%= link_to @top[1] do  %>
-                <%= image_tag @top[1].cover.medium, class:'img-responsive' ,style:"width:770px;height:550"%>
+                <%= image_tag @top[1].cover.large, class:'img-responsive'%>
             <% end %>
             <span class="magazine-badge label-blue"><%= truncate(@top[0].title, length:30) %></span>
           </div>
@@ -22,7 +22,7 @@
         <div class="item">
           <div class="magazine-news-img">
             <%= link_to @top[2] do  %>
-                <%= image_tag @top[2].cover.medium, class:'img-responsive' ,style:"width:770px;height:550"%>
+                <%= image_tag @top[2].cover.large, class:'img-responsive'%>
             <% end %>
             <span class="magazine-badge label-blue"><%= truncate(@top[0].title, length:30) %></span>
           </div>
@@ -43,14 +43,14 @@
   <div class="col-xs-4">
     <div class="magazine-news-split-img">
       <%= link_to @top[3] do  %>
-          <%= image_tag @top[3].cover.medium, class:'img-responsive'%>
+          <%= image_tag @top[3].cover.large, class:'img-responsive'%>
       <% end %>
       <span class="magazine-badge label-blue"><%= truncate(@top[1].title, length:30) %></span>
     </div>
 
     <div class="magazine-news-split-img">
       <%= link_to @top[4] do  %>
-          <%= image_tag @top[4].cover.medium, class:'img-responsive' %>
+          <%= image_tag @top[4].cover.large, class:'img-responsive' %>
       <% end %>
       <span class="magazine-badge label-blue"><%= truncate(@top[2].title, length:30) %></span>
     </div>
@@ -72,7 +72,7 @@
               <div class="post-item post-item-head">
                 <div class="img-large img-bordered">
                     <%= link_to post do %>
-                    <%= image_tag post.cover.medium, class:"img-responsive" %>
+                    <%= image_tag post.cover.large, class:"img-responsive" %>
                     <% end %>
                 </div>
                 <h3 class="text-center"><%= link_to post.title, post %></h3>
