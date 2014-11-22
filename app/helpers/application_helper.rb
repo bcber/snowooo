@@ -10,6 +10,6 @@ module ApplicationHelper
   end
 
   def lazy_image_tag(url)
-    image_tag('', :"data-original" => url, class:"img-responsive lazy")
+    image_tag('http://assets2.useetv.com/img/load_img.gif', :"data-original" => url, class:"img-responsive lazy")
   end
 end

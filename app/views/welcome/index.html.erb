@@ -339,7 +339,7 @@
             <div class="col-xs-6">
               <%= link_to video do%>
                 <div class="img-video">
-                  <%= lazy_image_tag video.thumbnail %>
+                  <%= image_tag video.thumbnail, class:"img-responsive" %>
                   <p><%= truncate(video.title, length: 20) %></p>
                 </div>
               <% end %>

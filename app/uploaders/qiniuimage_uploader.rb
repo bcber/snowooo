@@ -17,7 +17,7 @@ class QiniuimageUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    "http://snowooo-cdn.qiniudn.com/snowooolog.png?imageMogr2/thumbnail/200x/crop/!177x175a10a45"
+    "http://snowooo-cdn.qiniudn.com/snowooo_gimped.png"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:

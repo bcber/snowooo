@@ -18,7 +18,7 @@ class PostCoverUploader < CarrierWave::Uploader::Base
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url
-    "http://snowooo-cdn.qiniudn.com/snowooolog.png?imageMogr2/thumbnail/100x/"
+    "http://snowooo-cdn.qiniudn.com/snowooo_gimped.png"
   end
 
   # Process files as they are uploaded:
