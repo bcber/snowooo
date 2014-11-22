@@ -341,4 +341,13 @@ $(document).on('page:change',function(){
         $('.description-detail').removeClass('hide');
         $(this).hide();
     });
+    $("img.lazy").lazyload({
+        effect : "fadeIn"
+    });
+});
+
+$(function() {
+    $("img.lazy").lazyload({
+        effect : "fadeIn"
+    });
 });
