@@ -1,3 +1,11 @@
+<div class="s-results">
+
+<div class="row">
+  <div class="col-sm-12">
+    <%= render 'common/search_info' %>
+  </div>
+</div>
+
 <div class="row s-results">
   <div class="col-md-2">
     <div class="row">
@@ -6,6 +14,9 @@
   </div>
   <div class="col-md-10">
     <div class="list-container">
+      <% if @snowbindings.empty? %>
+        <h2 class="text-center">抱歉没有找到符合条件的固定器！</h2>
+      <% end %>
       <ul style="list-style:none" class="item-list">
       <% @snowbindings.each do |snowbinding| %>
       <li style="float:left;width:195px;height:310px; margin:10px;position:relative;">
@@ -43,3 +54,8 @@
     </div>
   </div>
 </div>
+</div>
+
+<% if Rails.env.development? %>
+  <%= query_params %>
+<% end %>

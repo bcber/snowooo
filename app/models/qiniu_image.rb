@@ -2,7 +2,7 @@ class QiniuImage
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  field :color
+  field :colors
   field :original
   mount_uploader :original, QiniuimageUploader
 

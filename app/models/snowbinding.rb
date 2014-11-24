@@ -4,7 +4,10 @@ class Snowbinding
   include Mongoid::Letsrate
   letsrate_rateable
 
-  STYLES = Snowbinding.all.pluck(:style).uniq
+  BRANDS = Snowbinding.pluck(:brand).flatten.uniq.reject{|brand| brand.blank?}
+  MATERIALS = %w{polycarbonate nylon plastic aluminum steel}
+  FLEXS = %w{soft medium stiff}
+  MOUNTS = %w{4-hole channel 3D}
 
   field :name
   field :brand

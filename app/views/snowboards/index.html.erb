@@ -1,56 +1,66 @@
 <div class="snowboard">
   <div class="s-results">
-
-<div class="row"><%= render 'search_info' %></div>
-<div class="row">
-  <div class="col-md-2">
     <div class="row">
-      <div class="col-sm-12 related-search">
-        <%= render 'sidebar' %>
+      <div class="col-sm-12">
+        <%= render 'common/search_info' %>
       </div>
     </div>
-  </div>
-  <div class="col-md-10">
-    <div class="list-container">
-      <ul style="list-style:none" class="item-list">
-      <% @snowboards.each do |snowboard| %>
-      <li style="float:left;width:195px;height:310px; margin:10px;position:relative;">
-        <%= link_to  snowboard do %>
-        <div class="thumbnails thumbnail-style thumbnail-kenburn">
-          <div class="thumbnail-img">
-            <div class="overflow-hidden">
-              <%= image_tag snowboard.cover.large, class: "img-responsive" %>
-            </div>
-
-          </div>
-
-          <div class="caption">
-
-            <div class="content-boxes-v1">
-              <strong><%= snowboard.brand %></strong>
-              <h5>
-                <%= link_to snowboard.name, snowboard %>
-                <h6>
-                  <%= snowboard.style %>
-                </h6>
-              </h5>
-            </div>
-              
-          </div>
+    <div class="row">
+      <div class="col-md-2">
+      <div class="row">
+        <div class="col-sm-12 related-search">
+          <%= render 'sidebar' %>
         </div>
-        <% end %>
-
-      </li>
-      <% end %>
-      </ul>
-    </div>
-
-    <div class="text-center">
-      <div class="pagination">
-        <%= will_paginate @snowboards , renderer: BootstrapPagination::Rails%>
       </div>
+    </div>
+      <div class="col-md-10">
+      <div class="list-container">
+        <% if @snowboards.empty? %>
+          <h2 class="text-center">抱歉没有找到符合条件的雪板</h2>
+        <% end %>
+        <ul class="item-list list-unstyled">
+        <% @snowboards.each do |snowboard| %>
+        <li style="float:left;width:195px;height:310px; margin:10px;position:relative;">
+          <%= link_to  snowboard do %>
+          <div class="thumbnails thumbnail-style thumbnail-kenburn">
+            <div class="thumbnail-img">
+              <div class="overflow-hidden">
+                <%= lazy_image_tag snowboard.cover.large %>
+              </div>
+
+            </div>
+
+            <div class="caption">
+
+              <div class="content-boxes-v1">
+                <strong><%= snowboard.brand %></strong>
+                <h5>
+                  <%= link_to snowboard.name, snowboard %>
+                  <h6>
+                    <%= snowboard.style %>
+                  </h6>
+                </h5>
+              </div>
+
+            </div>
+          </div>
+          <% end %>
+        </li>
+        <% end %>
+        </ul>
+      </div>
+
+      <div class="text-center">
+        <div class="pagination">
+          <%= will_paginate @snowboards , renderer: BootstrapPagination::Rails%>
+        </div>
+      </div>
+    </div>
     </div>
   </div>
 </div>
-</div>
-</div>
+<% if Rails.env.development? %>
+  <div class="well">
+    <%= query_params %>
+  </div>
+<% end %>

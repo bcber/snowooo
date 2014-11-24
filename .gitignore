@@ -5,8 +5,9 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore bundler config.
+.idea/
 /.bundle
-
+public/
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
@@ -18,7 +19,4 @@ thinapp.yml
 
 start_production.sh
 start_staging_server.sh
-public/uploads/
-public/assets/application-*
-*/*/.*
 log/

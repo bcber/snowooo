@@ -4,8 +4,8 @@
 
       <h3>选择风格</h3>
       <ul class="list-unstyled">
-        <% Snowboard.pluck(:style).flatten.uniq.each do |style,index| %>
-            <li> <%= link_to t(style.downcase), snowboards_path(@search,:"styles[]" => style)%></li>
+        <% Snowboard::STYLES.each do |style,index| %>
+            <li> <%= link_to t(style.downcase), snowboards_path(add_query(:styles, style))%></li>
         <% end %>
       </ul>
       <hr/>
@@ -16,12 +16,45 @@
     <div class="col-sm-12">
       <h3>选择品牌</h3>
       <ul class="list-unstyled">
-        <% Snowboard.pluck(:brand).flatten.uniq.each do |brand,index| %>
-            <li><%= link_to brand, snowboards_path(@search,:"brands[]" => brand) %></li>
+        <% Snowboard::BRANDS.each do |brand| %>
+            <li><%= link_to brand, snowboards_path(add_query(:brands, brand)) %></li>
         <% end %>
       </ul>
       <hr/>
     </div>
-
   </div>
 
+  <div class="row">
+    <div class="col-sm-12">
+      <h3>选择颜色</h3>
+      <ul class="list-unstyled">
+        <% color_list.each do |color| %>
+          <%= link_to snowboards_path(add_query(:colors, color)) do %>
+            <span style="display:inline-block;width:30px;height:30px; background-color:<%= get_rgb(color)%>;<%= color=="white"? "border: 1px solid grey":""%>" ></span>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h3>选择形状</h3>
+      <ul class="list-unstyled">
+        <% Snowboard::SHAPES.each do |shape| %>
+          <li><%= link_to t(shape.downcase), snowboards_path(add_query(:shapes, shape)) %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h3>选择软度</h3>
+      <ul class="list-unstyled">
+        <% Snowboard::FLEXS.each do |flex| %>
+          <li><%= link_to t(flex.downcase), snowboards_path(add_query(:flexs, flex)) %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>

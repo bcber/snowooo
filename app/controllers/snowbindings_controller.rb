@@ -4,8 +4,18 @@ class SnowbindingsController < ApplicationController
 
   def index
     brands = params[:brands] || []
+    colors = params[:colors] || []
+    materials = params[:materials] || []
+    flexs = params[:flexs] || []
+    mounts = params[:mounts] || []
+
     snowbindings = Snowbinding.all
     snowbindings = snowbindings.in(brand: brands) if brands.any?
+    snowbindings = snowbindings.in(colors: colors) if colors.any?
+    snowbindings = snowbindings.in(material: materials.map{|f| /#{f}/}) if materials.any?
+    snowbindings = snowbindings.in(flex: flexs.map{|f| /#{f}/}) if flexs.any?
+    snowbindings = snowbindings.in(mount: mounts.map{|f| /#{f}/}) if mounts.any?
+
     @snowbindings = snowbindings.paginate(:page => params[:page], :per_page => 16)
   end
 

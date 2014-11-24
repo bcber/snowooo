@@ -1,0 +1,17 @@
+<% if query_params.present? %>
+  <p>
+    你选择的条件:
+    <% query_params.each do |k,v| %>
+      <% if v.is_a? Array %>
+        <% v.each do |a| %>
+          <%= link_to  self.url_for(query_params_except(k,a)), class:"btn-u btn-u-sm rounded-3x" do %>
+            <%= t(k) %>:<%= t(a) %>
+            <i class="glyphicon glyphicon-remove-circle"></i>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </p>
+  <p>
+  </p>
+<% end %>

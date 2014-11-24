@@ -82,7 +82,6 @@ Rails.application.routes.draw do
 
   namespace :admin do 
     root to: "home#index"
-
     resources :topics
     resources :video_nodes
     resources :topic_nodes

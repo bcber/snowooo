@@ -81,7 +81,7 @@ class Admin::SnowbindingsController < Admin::ApplicationController
                               :baseplatepadding, :flex,
                               :compatibility,:recommendeduse, :description, :style,
                               {
-                                  qiniu_images_attributes: [:id,:color,:original, :remote_original_url, :_destroy]
+                                  qiniu_images_attributes: [:id,:colors,:original, :remote_original_url, :_destroy]
                               }
     );
   end

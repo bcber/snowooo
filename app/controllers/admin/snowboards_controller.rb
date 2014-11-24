@@ -77,16 +77,16 @@ class Admin::SnowboardsController < Admin::ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def snowboard_params
-    params[:snowboard].permit(:name, :brand, :length, :profile, :shape, :style, :flex, :effectiveedge, :waistwidth,
+    permitted = params[:snowboard].permit(:name, :brand, :length, :profile, :shape, :style, :flex, :effectiveedge, :waistwidth,
                               :sidecutradius, :stancesetback,
                               :stancewidth,:mount, :core, :wrap,
-                              :sidewalls, :edge,
+                              :sidewalls, :edge,:color_list,
                               :base, :recommendedriderweight,
                               :recommendeduse, :manufacturerwarranty,
                               :description, :origurl,
                               {
-                                  qiniu_images_attributes: [:id,:color,:original, :remote_original_url, :_destroy]
+                                  qiniu_images_attributes: [:id,:colors,:original, :remote_original_url, :_destroy]
                               }
-    );
+    )
   end
 end

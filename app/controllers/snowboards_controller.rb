@@ -7,10 +7,16 @@ class SnowboardsController < ApplicationController
   def index
     styles = params[:styles] || []
     brands = params[:brands] || []
+    colors = params[:colors] || []
+    shapes = params[:shapes] || []
+    flexs = params[:flexs] || []
     snowboards = Snowboard.all
 
     snowboards = snowboards.in(style: styles) if styles.any?
     snowboards = snowboards.in(brand: brands) if brands.any?
+    snowboards = snowboards.in(colors: colors) if colors.any?
+    snowboards = snowboards.in(shape: shapes.map{|f| /#{f}/}) if shapes.any?
+    snowboards = snowboards.in(flex: flexs.map{|f| /#{f}/ }) if flexs.any?
 
     @snowboards = snowboards.paginate(:page => params[:page], :per_page => 16)
   end
@@ -29,18 +35,6 @@ class SnowboardsController < ApplicationController
   # GET /snowboards/new
   def new
     @snowboard = Snowboard.new
-    3.times { @snowboard.images.build }
-  end
-
-  # GET
-  def crawl
-    ImageWorker.perform_async(@snowboard.id.to_s)
-    redirect_to snowboards_path , notice: 'updating img'
-  end
-
-  # update all 
-  def crawlall
-
   end
 
   # GET /snowboards/1/edit
@@ -98,7 +92,7 @@ class SnowboardsController < ApplicationController
     def snowboard_params
       params.require(:snowboard).permit(
         {
-          images_attributes: [:id, :_destroy,:color, :small, :medium, :large] 
+          images_attributes: [:id, :_destroy,:colors, :small, :medium, :large]
         },
         :name, 
         :brand,

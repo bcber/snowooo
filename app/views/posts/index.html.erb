@@ -88,3 +88,9 @@
 
   </div>
 </div>
+
+<% if Rails.env.development? %>
+  <div class="well">
+    <%= search_link("ascsd", "asdf") %>
+  </div>
+<% end %>

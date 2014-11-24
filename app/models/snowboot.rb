@@ -7,15 +7,7 @@ class Snowboot
   field :up_at, type: Time, default: Time.new(1970)
   field :recommend_at, type: Time, default: Time.new(1970)
 
-  STYLES = Snowboot.all.pluck(:style).uniq
-
-  def self.create_scope(scopes)
-    scopes.each do |s|
-      scope s.to_sym, ->{ where(style: s.to_s) }
-    end
-  end
-
-  create_scope STYLES
+  STYLES = Snowboot.all.pluck(:style).uniq.reject{|a|a.blank?}
 
   field :name
   field :brand

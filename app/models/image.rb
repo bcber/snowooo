@@ -4,7 +4,7 @@ class Image
 
   # COLOR_OPTIONS = %w{ red white green gray}
 
-  field :color
+  field :colors
   field :small
   field :medium
   field :large

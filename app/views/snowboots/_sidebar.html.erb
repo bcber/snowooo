@@ -5,7 +5,7 @@
     <h3>选择风格</h3>
     <ul class="list-unstyled">
       <% Snowboot.pluck(:style).flatten.uniq.each do |style,index| %>
-        <li> <%= link_to t(style.downcase), snowboots_path(:"styles[]" => style)%></li>
+        <li> <%= link_to t(style.downcase), snowboots_path(add_query(:styles, style))%></li>
       <% end %>
     </ul>
     <hr/>
@@ -17,11 +17,23 @@
     <h3>选择品牌</h3>
     <ul class="list-unstyled">
       <% Snowboot.pluck(:brand).flatten.uniq.each do |brand,index| %>
-        <li><%= link_to brand, snowboots_path(:"brands[]" => brand) %></li>
+        <li><%= link_to brand, snowboots_path(add_query(:brands, brand)) %></li>
       <% end %>
     </ul>
     <hr/>
   </div>
+</div>
 
+<div class="row">
+  <div class="col-sm-12">
+    <h3>选择颜色</h3>
+    <ul class="list-unstyled">
+      <% color_list.each do |color| %>
+        <%= link_to snowboots_path(add_query(:colors, color)) do %>
+          <span style="display:inline-block;width:30px;height:30px; background-color:<%= get_rgb(color)%>;<%= color=="white"? "border: 1px solid grey":""%>" ></span>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
 </div>
 

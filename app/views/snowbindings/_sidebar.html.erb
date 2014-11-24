@@ -2,11 +2,60 @@
   <div class="col-sm-12">
     <h3>选择品牌</h3>
     <ul class="list-unstyled">
-      <% Snowbinding.pluck(:brand).flatten.uniq.each do |brand,index| %>
-        <li><%= link_to brand, snowbindings_path(:"brands[]" => brand) %></li>
+      <% Snowbinding::BRANDS.each do |brand| %>
+        <li><%= link_to brand, snowbindings_path(add_query(:brands, brand)) %></li>
       <% end %>
     </ul>
     <hr/>
   </div>
 </div>
 
+<div class="row">
+  <div class="col-sm-12">
+    <h3>选择颜色</h3>
+    <ul class="list-unstyled">
+      <% color_list.each do |color| %>
+          <%= link_to snowbindings_path(add_query(:colors, color)) do %>
+            <span style="display:inline-block;width:30px;height:30px; background-color:<%= get_rgb(color)%>;<%= color=="white"? "border: 1px solid grey":""%>" ></span>
+          <% end %>
+      <% end %>
+    </ul>
+    <hr/>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <h3>选择材质</h3>
+    <ul class="list-unstyled">
+      <% Snowbinding::MATERIALS.each do |material| %>
+        <li><%= link_to material, snowbindings_path(add_query(:materials, material)) %></li>
+      <% end %>
+    </ul>
+    <hr/>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <h3>选择软度</h3>
+    <ul class="list-unstyled">
+      <% Snowbinding::FLEXS.each do |flex| %>
+        <li><%= link_to flex, snowbindings_path(add_query(:flexs, flex)) %></li>
+      <% end %>
+    </ul>
+    <hr/>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <h3>选择mount</h3>
+    <ul class="list-unstyled">
+      <% Snowbinding::MOUNTS.each do |mount| %>
+        <li><%= link_to mount, snowbindings_path(add_query(:mounts, mount)) %></li>
+      <% end %>
+    </ul>
+    <hr/>
+  </div>
+</div>

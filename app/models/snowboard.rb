@@ -2,26 +2,16 @@ class Snowboard
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Letsrate
+  include Mongoid::TaggableOn
+  taggable_on :colors
+
 
   letsrate_rateable
 
-
-  STYLES = Snowboard.all.pluck(:style).uniq
-
-  def self.create_scope(scopes)
-    scopes.each do |s|
-      scope s.to_sym, ->{ where(style: s.to_s) }
-    end
-  end
-
-  create_scope STYLES
-  
-  def self.crawlAll
-    snowboards = Snowboard.all.limit(5)
-    snowboards.each do |snowboard|
-      ImageWorker.perform_async(snowboard.id.to_s)
-    end
-  end
+  STYLES = Snowboard.pluck(:style).flatten.uniq.reject{|a|a.blank?}
+  BRANDS = Snowboard.pluck(:brand).flatten.uniq.reject{|a|a.blank?}
+  SHAPES = %w{twin directional tapered}
+  FLEXS = %w{soft medium stiff}
 
   # property
   field :name
@@ -63,6 +53,5 @@ class Snowboard
 
   has_many :comments, as: :commentable, dependent: :destroy
   accepts_nested_attributes_for :comments
-
   alias :title :name
 end
