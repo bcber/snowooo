@@ -1,61 +1,66 @@
 <div class="col-sm-9">
-    <div class="blog margin-bottom-40">
-  <h2><%= @topic.title %></h2>
-  <div class="blog-post-tags">
-    <ul class="list-unstyled list-inline blog-info">
-      <li><i class="fa fa-calendar"></i> <%= @topic.created_at.strftime('%d-%m-%Y') %></li>
-      <li><i class="fa fa-pencil"></i> <%= @topic.user.name %></li>
-      <li><i class="fa fa-comments"></i> <a href="#"><span class="comment-count"><%= @topic.comment_count %></span></a></li>
-    </ul>
-    <ul class="list-unstyled list-inline blog-tags">
-      <li>
-        <i class="fa fa-tags"></i>
-        <%= link_to @topic.topic_node.title, bbs_topics_node_path(@topic.topic_node) %>
-      </li>
-    </ul>
+  <div class="panel panel-default">
+    <div class="panel panel-body">
+      <div class="blog margin-bottom-40">
+        <h2><%= @topic.title %></h2>
+        <div class="blog-post-tags">
+          <ul class="list-unstyled list-inline blog-info">
+            <li><i class="fa fa-calendar"></i> <%= @topic.created_at.strftime('%d-%m-%Y') %></li>
+            <li><i class="fa fa-pencil"></i> <%= @topic.user.name %></li>
+            <li><i class="fa fa-comments"></i> <a href="#"><span class="comment-count"><%= @topic.comment_count %></span></a></li>
+          </ul>
+          <ul class="list-unstyled list-inline blog-tags">
+            <li>
+              <i class="fa fa-tags"></i>
+              <%= link_to @topic.topic_node.title, bbs_topics_node_path(@topic.topic_node) %>
+            </li>
+          </ul>
 
-    <ul class="list-unstyled list-inline">
-      <% if can? :edit, @topic %> <%= link_to '编辑', edit_bbs_topic_path(@topic) %><% end %>
-    </ul>
+          <ul class="list-unstyled list-inline">
+            <% if can? :edit, @topic %> <%= link_to '编辑', edit_bbs_topic_path(@topic) %><% end %>
+          </ul>
+        </div>
+        <hr class="devider devider-db">
+        <p>
+          <%= @topic.content.html_safe %>
+        </p>
+        <hr class="devider devider-db">
+        <div class="row">
+          <%= render 'buttons' %>
+        </div>
+
+        <div class="media">
+          <h3> <span class="comment-count"><%= @topic.comment_count %></span> <%= t("comments") %></h3>
+        </div>
+
+        <hr>
+        <div id="comment-container" data-comment-count=<%= @topic.comment_count %>>
+          <%= render partial: "comments/comment", collection: @topic.comments.desc('likes_count') %>
+        </div>
+
+        <div class="topic-comment">
+          <h3><%= t("comment") %></h3>
+        </div>
+
+        <% if current_user %>
+          <%= form_for [:bbs, @topic, @comment], remote: true do |f| %>
+            <div class="field">
+              <%= f.label :content %><br>
+              <%= f.text_area :content , class: "form-control", rows:"8"%>
+            </div>
+
+            <br>
+            <div class="actions">
+              <%= f.submit t("comment"), class:"btn-u" %>
+            </div>
+          <% end %>
+        <% else %>
+          <%= render 'common/login_signup_prompt' %>
+        <% end %>
+      </div>
+
+    </div>
   </div>
-  <hr class="devider devider-db">
-  <p>
-    <%= @topic.content.html_safe %>
-  </p>
-      <hr class="devider devider-db">
-  <div class="row">
-    <%= render 'buttons' %>
-  </div>
-
-  <div class="media">
-    <h3> <span class="comment-count"><%= @topic.comment_count %></span> <%= t("comments") %></h3>
-  </div>
-
-  <hr>
-  <div id="comment-container" data-comment-count=<%= @topic.comment_count %>>
-    <%= render partial: "comments/comment", collection: @topic.comments.desc('likes_count') %>
-  </div>
-
-  <div class="topic-comment">
-    <h3><%= t("comment") %></h3>
-  </div>
-
-  <% if current_user %>
-      <%= form_for [:bbs, @topic, @comment], remote: true do |f| %>
-          <div class="field">
-            <%= f.label :content %><br>
-            <%= f.text_area :content , class: "form-control", rows:"8"%>
-          </div>
-
-          <br>
-          <div class="actions">
-            <%= f.submit t("comment"), class:"btn-u" %>
-          </div>
-      <% end %>
-  <% else %>
-    <%= render 'common/login_signup_prompt' %>
-  <% end %>
- </div>
 </div>
 
 <div class="col-sm-3">
