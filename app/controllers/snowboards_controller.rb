@@ -28,10 +28,6 @@ class SnowboardsController < ApplicationController
     set_seo_meta("#{@snowboard.title}", "#{@snowboard.title}")
   end
 
-  def noimage
-    @snowboards = Snowboard.where(images: nil)
-  end
-
   # GET /snowboards/new
   def new
     @snowboard = Snowboard.new

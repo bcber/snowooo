@@ -65,12 +65,11 @@ class User
   #user prestige
   field :prestige, type: Integer, default: 0
 
+  ## association
   # comments
   has_many :todos, dependent: :destroy
   has_many :comments
-
   has_many :notifications
-
   has_many :posts
   # onmiauthable
   has_many :omniauths

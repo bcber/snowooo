@@ -78,7 +78,9 @@
                 <h3 class="text-center"><%= link_to post.title, post %></h3>
 
                 <div class="info text-center">
-                    <strong><%= post.user.present? ? post.user.name: 'admin' %></strong>
+                    <strong>
+                      <%= link_to  post.user.present? ? post.user.name: 'admin' , user_path(post.user)%>
+                    </strong>
                     <span><%= post.created_at.strftime("%m-%d-%Y") %></span>
                 </div>
               </div>
@@ -102,7 +104,9 @@
                           <div class="info">
                               <h3><%= link_to item.title , item%></h3>
                               <div class="by-author">
-                                <strong><%= item.user.present? ? item.user.name: 'admin' %></strong>
+                                <strong>
+                                  <%= link_to  item.user.present? ? item.user.name: 'admin' , user_path(item.user)%>
+                                </strong>
                                 <span>/ <%= item.created_at.strftime("%m-%d-%Y") %></span>
                               </div>
                           </div>

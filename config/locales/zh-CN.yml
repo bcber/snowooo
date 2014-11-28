@@ -61,6 +61,8 @@ zh-CN:
     models:
       user: "用户"
     attributes:
+      message:
+        content: "内容"
       topic:
         title: "标题"
         description: "分类描述"

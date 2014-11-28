@@ -31,6 +31,8 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
+  get 'message/new/:user_id' => 'users#new_message', as: :new_message
+  post 'messages' => 'users#message', as: :messages
   get 'u/:id' => 'users#show', as: :user
   authenticate :user do
     get 'notification', to: 'notifications#show', as: :notification

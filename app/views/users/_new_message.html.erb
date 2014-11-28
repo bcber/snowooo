@@ -1,0 +1,28 @@
+<div id="message">
+<div style="position:fixed; z-index: 9999; top:0; left:0;right:0;bottom:0; background-color:black; opacity: 0.5;">
+</div>
+<div style="position:fixed;z-index: 10000;width:400px; height:300px;top:50%;left:50%;margin-left: -200px; margin-top: -150px;">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <h5>发送给: <%= @message.reciever.name %></h5>
+      <%= form_for @message do |f| %>
+
+        <div class="input-group margin-bottom-20">
+          <%= f.label :content %>
+          <%= f.text_area :content, rows: "6", cols: "200", class: "form-control" %>
+        </div>
+
+        <div class="input-group hidden">
+          <%= f.text_field :reciever_id, value: @message.reciever.id %>
+          <%= f.text_field :sender_id, value: @message.sender.id %>
+        </div>
+
+        <div class="input-group">
+          <%= f.submit '确定', class:"btn-u btn-u-sm rounded btn-u-light-green" %> &nbsp;&nbsp;
+          <%= link_to '取消', '#',onclick:"$('#message').remove()" , class: "btn-u btn-u-sm rounded btn-u-default" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>
