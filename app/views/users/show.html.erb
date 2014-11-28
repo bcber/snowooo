@@ -17,8 +17,8 @@
       <div class="row">
         <div class="col-sm-12">
           <span><strong>邮箱:</strong> <%= @user.email %></span>
-          <% if @user.id != current_user.id %>
-              <%= link_to new_message_path(@user) ,remote: true, class: "btn-u btn-u-xs rounded-4x btn-u-green" do %>
+          <% if current_user.present? and current_user.id != @user.id %>
+              <%= link_to new_message_path(receiver:@user) ,remote: true, class: "btn-u btn-u-xs rounded-4x btn-u-green" do %>
                 私信ta
               <% end %>
           <% end %>
@@ -53,7 +53,7 @@
               <% end %>
           <% else %>
               <p>该用户还没有绑定任何社交帐号</p>
-              <% if current_user.id == @user.id %>
+              <% if current_user.present? and current_user.id == @user.id %>
                 <%= link_to '绑定我的微博',user_omniauth_authorize_path(:weibo) %>
               <% end %>
           <% end %>

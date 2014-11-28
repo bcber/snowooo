@@ -1,17 +1,30 @@
 <% if user_signed_in? %>
     <% if !current_user.check_in? %>
         <li>
-            <%= link_to '今日签到', check_in_path %>
+            <%= link_to '签到', check_in_path %>
         </li>
     <% end %>
 
   <li class="pull-right dropdown">
     <%= link_to '#', class: 'dropdown-toggle', "data-toggle" => "dropdown" do%>
         <%= current_user.name.present? ? current_user.name: current_user.email %>
+      <% if current_user.has_unread_messages? or current_user.has_unread_notifications? %>
+        <span class="badge badge-red rounded-x">
+          <%= current_user.unread_messages_count+current_user.unread_notifications_count %>
+        </span>
+      <% end %>
     <% end %>
 
     <ul class="dropdown-menu">
       <li><%= link_to t('profile'),  profile_path %></li>
+      <li>
+        <%= link_to  messages_path do %>
+          私信
+          <% if current_user.has_unread_messages? %>
+            <span class="notification badge badge-red rounded-x"><%= current_user.unread_messages_count %></span>
+          <% end %>
+        <% end %>
+      </li>
       <li>
         <%= link_to  notification_path do %>
             消息
@@ -32,14 +45,6 @@
       <li><%= link_to t('logout'), logout_path ,method: :delete  %></li>
     </ul>
   </li>
-    <% if current_user.has_unread_notifications? %>
-        <li class="pull-right">
-        <%= link_to  notification_path do %>
-            消息
-              <span class="notification badge badge-red rounded-x"><%= current_user.unread_notifications_count %></span>
-        <% end %>
-        </li>
-    <% end %>
 <% else %>
   <li>
     <%= link_to t('signup'), signup_path  %>

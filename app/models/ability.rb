@@ -35,6 +35,7 @@ class Ability
     can :edit, Post, user_id: user.id
     can :edit, User, id: user.id
     can :update, User, id:user.id
+    can :new_message, User
   end
 
   def banned(user)

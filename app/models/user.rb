@@ -68,11 +68,13 @@ class User
   ## association
   # comments
   has_many :todos, dependent: :destroy
-  has_many :comments
-  has_many :notifications
-  has_many :posts
+  has_many :comments, dependent: :destroy
+  has_many :notifications, dependent: :destroy
+  has_many :posts, dependent: :destroy
   # onmiauthable
   has_many :omniauths
+  has_many :send_messages, class_name: "Message", inverse_of: :sender
+  has_many :receive_messages, class_name: "Message", inverse_of: :receiver
 
   after_create :setAdmin
 
@@ -102,6 +104,14 @@ class User
       self.update(roles_mask: 1)
       self.confirm!
     end
+  end
+
+  def has_unread_messages?
+    self.receive_messages.unread.any?
+  end
+
+  def unread_messages_count
+    self.receive_messages.unread.count
   end
 
   def has_unread_notifications?

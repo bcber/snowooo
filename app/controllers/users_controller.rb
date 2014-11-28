@@ -19,14 +19,7 @@ class UsersController < ApplicationController
     render action:'show'
   end
 
-  def message
-  end
 
-  def new_message
-    @message = Message.new
-    @message.sender = current_user
-    @message.reciever = User.find(params[:user_id])
-  end
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json

@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   resources :places ,:snowboards , :snowbindings ,:snowboots ,:videos,:comments do
     resources :comments
   end
+
+  post "/messages/readed" => "messages#readed"
+  resources :messages
+
   get "videos/node/:node_id" => "videos#node" ,as: :videos_node
   get "places/region/:region" => "places#region", as: :places_region
   get "posts/node/:node_id" => "posts#node",as: :posts_node
@@ -31,8 +35,6 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
-  get 'message/new/:user_id' => 'users#new_message', as: :new_message
-  post 'messages' => 'users#message', as: :messages
   get 'u/:id' => 'users#show', as: :user
   authenticate :user do
     get 'notification', to: 'notifications#show', as: :notification

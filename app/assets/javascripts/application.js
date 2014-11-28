@@ -333,6 +333,37 @@ window.Application = {
         }
         var url  = Application.search_url+"&q="+text;
         location.href = url;
+    },
+
+    expandEmail: function(ele){
+        ele = $(ele);
+        $('.list-group-item').removeClass('active');
+        $(ele).addClass("active");
+        messageid = ele.data("message");
+        senderid = ele.data("senderid");
+        sendername = ele.data("sendername");
+        content = ele.data("content");
+        time = ele.data("time");
+        readed = ele.data("readed");
+
+        sender_url = '/u/'+senderid;
+        $("#mail-title").html("<a href='"+sender_url+"'>"+sendername+"</a>");
+        $("#mail-time").html(time);
+        $("#mail-content").html(content);
+        $("#mail-reply").attr('href','/messages/new?receiver='+senderid);
+
+        if(!readed){
+            Application.markMailAsRead(ele,messageid);
+        }
+    },
+    markMailAsRead:function(ele,messageid){
+        $.post('/messages/readed',{message:messageid}).success(function(){
+            $(ele).addClass("mail-readed");
+            var count = $("#mail-unreaded-count").data("count");
+            console.log(count);
+            $("#mail-unreaded-count").data("count",count - 1).html(count-1);
+            $(ele).data("readed",true);
+        });
     }
 }
 

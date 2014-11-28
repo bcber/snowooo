@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="col-md-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">我的私信箱</h3>
+      </div>
+      <div class="panel-body">
+        未读私信
+        <span id="mail-unreaded-count" data-count="<%= @messages.unread.count %>">
+          <%= @messages.unread.count %>
+        </span>
+      </div>
+
+      <div style="max-height:300px;overflow: auto;">
+        <div class="list-group">
+          <% @messages.each do |message| %>
+            <a class="mail-list-item list-group-item <%= message.readed ? "mail-readed":"" %>" href="javascript:void(0)" onclick="Application.expandEmail(this)" data-readed="<%= message.readed %>" data-message="<%= message.id %>" data-senderid="<%= message.sender.id %>" data-sendername="<%= message.sender.name %>" data-content="<%= message.content %>" data-time="<%= cus_time(message.created_at) %>">
+              <strong><%= message.sender.name %>:</strong>
+              <span><%= truncate(message.content, length:10) %></span>
+            </a>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-md-9">
+    <div class="panel panel-default">
+      <% if @messages.any? %>
+        <div class="panel-heading">
+          <h3 class="panel-title" id="mail-title">发信人:
+            <%= link_to user_path(@messages.first.sender) do %>
+              <%= @messages.first.sender.name %></h3>
+            <% end %>
+          <h5> 发信时间: <span id="mail-time"><%= cus_time @messages.first.created_at %></span></h5>
+        </div>
+        <div class="panel-body" style="max-height:200px;">
+          <p id="mail-content"><%= @messages.first.content %></p>
+
+          <%= link_to new_message_path(receiver:@messages.first.sender) ,id: "mail-reply",remote: true, class: "btn-u btn-u-xs rounded-4x btn-u-green" do %>
+            回信
+          <% end %>
+
+        </div>
+      <% else %>
+        <div class="panel-body">
+          <p class="text-center">还没有私信</p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

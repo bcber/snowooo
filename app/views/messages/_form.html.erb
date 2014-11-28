@@ -1,0 +1,18 @@
+<%= form_for @message, remote: true do |f| %>
+
+  <h5>发送给: <%= @message.receiver.name %></h5>
+
+  <div class="input-group margin-bottom-20">
+    <%= f.label :content %>
+    <%= f.text_area :content, rows: "6", cols: "200", class: "form-control" %>
+  </div>
+
+  <div class="input-group hidden">
+    <%= f.text_field :receiver_id, value: @message.receiver.id %>
+  </div>
+
+  <div class="input-group">
+    <%= f.submit '确定', class:"btn-u btn-u-sm rounded btn-u-light-green" %> &nbsp;&nbsp;
+    <%= link_to '取消', '#',onclick:"$('#message').remove()" , class: "btn-u btn-u-sm rounded btn-u-default" %>
+  </div>
+<% end %>

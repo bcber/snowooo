@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-sm-8">
+    <h4>
+      <%= link_to user_path(message.sender) do %>
+        <%= message.sender.name %>
+      <% end %>说到：
+    </h4>
+    <p><%= message.content %></p>
+    <h6>发送时间:<%= cus_time(message.created_at) %></h6>
+  </div>
+  <div class="col-sm-4">
+    <% if !message.readed %>
+      <button class="btn btn-default">标记为已读</button>
+    <% end %>
+  </div>
+</div>

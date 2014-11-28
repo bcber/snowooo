@@ -3,7 +3,11 @@ class Message
   include Mongoid::Timestamps
 
   field :content
+  field :readed, type: Boolean, default: false
 
-  belongs_to :reciever, class_name: "User", foreign_key: "reciever_id"
-  belongs_to :sender, class_name: "User", foreign_key: "sender_id"
+  scope :unread, -> { where(readed: false) }
+  scope :readed, -> {where(readed: true)}
+
+  belongs_to :sender, class_name: "User",inverse_of: :send_messages
+  belongs_to :receiver, class_name:"User", inverse_of: :receive_messages
 end
