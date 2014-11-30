@@ -1,8 +1,8 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
 
-  post '/rate' => 'rater#create', :as => 'rate'
   mount Ckeditor::Engine => '/ckeditor'
+  post '/rate' => 'rater#create', :as => 'rate'
 
   resources :places ,:snowboards , :snowbindings ,:snowboots ,:videos,:comments do
     resources :comments

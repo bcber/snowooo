@@ -2,6 +2,7 @@
   <div class="col-sm-9">
     <% @posts.in_groups_of(2,false) do |group| %>
         <div class="row">
+          <%= render 'node_list' %>
           <% group.each do |post| %>
               <div class="col-sm-6">
                 <%= render 'post_item_list', post: post%>

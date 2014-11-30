@@ -1,47 +1,50 @@
-<%= form_for(@post,  multipart: true ) do |f| %>
-  <% if @post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %></h2>
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2">
+    <%= form_for(@post,  multipart: true ) do |f| %>
+      <% if @post.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@post.errors.count, "error") %></h2>
 
-      <ul>
-      <% @post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+            <% @post.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-    <div class="input-group margin-bottom-20">
-      <span class="input-group-addon">题目</span>
-      <%= f.text_field :title, class:"form-control", placeholder:"题目"%>
-    </div>
+      <div class="input-group margin-bottom-20">
+        <span class="input-group-addon">题目</span>
+        <%= f.text_field :title, class:"form-control", placeholder:"题目"%>
+      </div>
 
-    <div class="input-group margin-bottom-20">
-      <span class="input-group-addon">选择分类</span>
+      <div class="input-group margin-bottom-20">
+        <span class="input-group-addon">选择分类</span>
         <%= f.select :post_node_id, options_from_collection_for_select(PostNode.all, 'id','title',@post.post_node.present? ? @post.post_node.id: '') , {},class:"form-control"%>
-    </div>
+      </div>
 
-    <div class="input-group margin-bottom-20">
-      <span class="input-group-addon">标签</span>
-      <%= f.text_field :category_list, class:"form-control", placeholder:"添加标签，以逗号分开,如: 滑雪，雪板，雪场 可填" %>
-    </div>
+      <div class="input-group margin-bottom-20">
+        <span class="input-group-addon">标签</span>
+        <%= f.text_field :category_list, class:"form-control", placeholder:"添加标签，以逗号分开,如: 滑雪，雪板，雪场 可填" %>
+      </div>
 
-    <div class="input-group margin-bottom-20">
-      <span class="input-group-addon">上传封面图片</span>
-      <%= f.file_field :cover, class:"form-control" %>
-      <%= f.text_field :remote_cover_url, class: "form-control",placeholder:"或者图片的链接" %>
-    </div>
+      <div class="input-group margin-bottom-20">
+        <span class="input-group-addon">上传封面图片</span>
+        <%= f.file_field :cover, class:"form-control" %>
+        <%= f.text_field :remote_cover_url, class: "form-control",placeholder:"或者图片的链接" %>
+      </div>
 
-    <br/>
-    <div class="field">
+      <br/>
+      <div class="field">
         <%= f.cktext_area :content, ckeditor: { language: 'zh-cn', height: 500} %>
-    </div>
-    <br/>
+      </div>
+      <br/>
 
-    <div class="actions text-center">
-      <%= f.submit '提交',class:"btn-u"%>
-      <%= link_to "取消", posts_path, class:"btn-u" %>
-    </div>
+      <div class="actions text-center">
+        <%= f.submit '提交',class:"btn-u"%>
+        <%= link_to "取消", posts_path, class:"btn-u" %>
+      </div>
+    <% end %>
 
-<% end %>
+  </div>
+</div>
 
-<%= javascript_include_tag "//cdn.ckeditor.com/4.4.5/standard/ckeditor.js" %>

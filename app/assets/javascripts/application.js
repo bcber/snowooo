@@ -13,6 +13,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require social-share-button
+//= require ckeditor/init
 //= require_tree .
 
 var App = function () {
@@ -235,7 +236,7 @@ var App = function () {
                 maxSlides: 4,
                 minSlides: 4,
                 slideWidth: 360,
-                slideMargin: 10,
+                slideMargin: 10
             });
 
             jQuery('.bxslider1').bxSlider({

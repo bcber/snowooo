@@ -4,7 +4,7 @@
       <li><%= link_to '所有资讯', posts_path, class:"btn-u rounded-3x btn-u-purple" %></li>
       <% PostNode.all.each do |p| %>
           <li>
-            <%= link_to p.title, posts_node_path(p), class: @node.id == p.id ? "btn-u rounded-3x btn-u-default":"btn-u rounded-3x btn-u-purple" %>
+            <%= link_to p.title, posts_node_path(p), class: ( @node.present? and  @node.id == p.id ) ? "btn-u rounded-3x btn-u-default":"btn-u rounded-3x btn-u-purple" %>
           </li>
       <% end %>
     </ul>
