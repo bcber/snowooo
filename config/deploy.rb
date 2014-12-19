@@ -1,5 +1,5 @@
 # config valid only for Capistrano 3.1
-lock '3.2.1'
+# lock '3.2.1'
 
 set :application, 'snowooo'
 set :repo_url, 'git@github.com:Nxbtch/snowooo.git'
@@ -35,40 +35,3 @@ set :linked_dirs, %w{ bin log tmp/pids tmp/cache tmp/sockets vendor/bundle }
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
-
-desc 'get nginx error log'
-task :nginxError do
-  on roles(:app) do
-    execute "cat /var/log/nginx/error.log"
-  end
-end
-
-desc 'get nginx access log'
-task :nginxAccess do
-  on roles(:app) do
-    execute 'cat /var/log/nginx/access.log'
-  end
-end
-
-namespace :deploy do
-
-  desc 'Restart application'
-  task :start do
-    on roles(:app), in: :sequence, wait: 5 do
-      # Your restart mechanism here, for example:
-      # execute :touch, release_path.join('tmp/restart.txt')
-      execute "bundle exec thin start -C #{current_path}/thinapp.yml"
-    end
-  end
-
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
-      execute "bundle exec thin restart -C #{current_path}/thinapp.yml"
-    end
-  end
-
-end
