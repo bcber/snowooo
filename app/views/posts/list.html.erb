@@ -1,6 +1,11 @@
-<%= render 'node_list' %>
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-md-12">
+    <%= render 'node_list' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
     <h2><%= @node.title %></h2>
     <p><%= @node.description %> | 共有 <%= @node.posts.count %> 篇文章</p>
   </div>
@@ -9,7 +14,7 @@
 <% @posts.in_groups_of(4,false) do |group| %>
   <div class="row">
     <% group.each do |post| %>
-      <div class="col-sm-3">
+      <div class="col-md-3">
         <%= render 'post_item_list', post:post %>
       </div>
     <% end %>

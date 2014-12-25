@@ -6,48 +6,50 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-2">
-      <div class="row">
-        <div class="col-sm-12 related-search">
-          <%= render 'sidebar' %>
+      <div class="col-md-2 col-sm-2">
+        <div class="row">
+          <div class="col-sm-12 related-search">
+            <%= render 'sidebar' %>
+          </div>
         </div>
       </div>
-    </div>
-      <div class="col-md-10">
-      <div class="list-container">
+      <div class="col-md-10 col-sm-10">
+        <div class="list-container">
         <% if @snowboards.empty? %>
           <h2 class="text-center">抱歉没有找到符合条件的雪板</h2>
         <% end %>
-        <ul class="item-list list-unstyled">
-        <% @snowboards.each do |snowboard| %>
-        <li style="float:left;width:195px;height:310px; margin:10px;position:relative;">
-          <%= link_to  snowboard do %>
-          <div class="thumbnails thumbnail-style thumbnail-kenburn">
-            <div class="thumbnail-img">
-              <div class="overflow-hidden">
-                <%= lazy_image_tag snowboard.cover.large %>
-              </div>
+          <% @snowboards.in_groups_of(4,false) do |group| %>
+            <div class="row">
+              <% group.each do |snowboard| %>
+                <div class="col-sm-3">
+                  <%= link_to  snowboard do %>
+                    <div class="thumbnails thumbnail-style thumbnail-kenburn">
+                      <div class="thumbnail-img">
+                        <div class="overflow-hidden">
+                          <%= lazy_image_tag snowboard.cover.large %>
+                        </div>
 
+                      </div>
+
+                      <div class="caption">
+
+                        <div class="content-boxes-v1">
+                          <strong><%= snowboard.brand %></strong>
+                          <h5>
+                            <%= link_to snowboard.name, snowboard %>
+                            <h6>
+                              <%= snowboard.style %>
+                            </h6>
+                          </h5>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
             </div>
-
-            <div class="caption">
-
-              <div class="content-boxes-v1">
-                <strong><%= snowboard.brand %></strong>
-                <h5>
-                  <%= link_to snowboard.name, snowboard %>
-                  <h6>
-                    <%= snowboard.style %>
-                  </h6>
-                </h5>
-              </div>
-
-            </div>
-          </div>
           <% end %>
-        </li>
-        <% end %>
-        </ul>
+
       </div>
 
       <div class="text-center">

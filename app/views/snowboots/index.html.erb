@@ -10,14 +10,16 @@
         </div>
       </div>
       <div class="col-sm-10">
-        <div class="list-container">
+        <div>
           <% if @snowboots.empty? %>
             <h2 class="text-center">抱歉没有找到符合条件的雪鞋！</h2>
           <% end %>
-          <ul class="item-list" style="list-style:none">
-            <% @snowboots.each do |snowboot| %>
-              <li style="float:left;width:195px;height:350px; margin:10px;position:relative;">
-                <%= link_to snowboot do  %>
+
+          <% @snowboots.in_groups_of(4,false) do |group| %>
+            <div class="row">
+              <% group.each do |snowboot| %>
+                <div class="col-sm-3">
+                  <%= link_to snowboot do  %>
                   <div class="thumbnails thumbnail-style thumbnail-kenburn">
                     <div class="thumbnail-img">
                       <div class="overflow-hidden">
@@ -42,8 +44,10 @@
                   </div>
                   </li>
                 <% end %>
+                </div>
             <% end %>
-          </ul>
+            </div>
+          <% end %>
         </div>
         <div class="text-center">
           <div class="pagination">

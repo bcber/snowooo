@@ -1,0 +1,222 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require social-share-button
+ *= require_tree .
+ *= require_self
+ */
+.pagination-custome{
+  display: block;
+  position: relative;
+  text-align: center;
+  clear:both;
+}
+
+.item-list{
+  margin:0;
+  padding:0;
+  overflow: hidden;
+}
+
+.loginbar{
+    height:100px;
+    overflow:hidden;
+}
+
+/* custome gear page*/
+.gear{
+    .option-item{
+        border-right:1px solid #ccc;
+        padding-top:15px;
+        background: url(http://smpsnowboardmagcom.c.presscdn.com/wp-content/themes/smp/images/bg-subnav.png)
+
+    }
+
+    .option-item:last-child{
+        border-right: none;
+    }
+}
+
+
+.gear .option-item a{
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-decoration: none;
+}
+
+.gear .option-item:hover{
+    border-bottom: 3px solid #e92020;
+
+}
+
+.gear .option-item .option-item-fixed{
+    position: fixed;
+    top:6px;
+    z-index: 10000;
+}
+.gear .detail-item{
+    text-align:center;
+}
+.gear .detail-item img{
+    height:200px;
+}
+
+.headline.headline-md.blue{
+  border-bottom:1px solid #4db2ec;
+}
+
+.headline.headline-md.blue h2{
+  border-bottom:0;margin-bottom:2px;
+  background-color: #4db2ec;
+  color:white;
+  padding:0 8px;
+}
+
+.headline.headline-md.red{
+  border-bottom:1px solid #f65261;
+}
+
+.headline.headline-md.red h2{
+  border-bottom:0;margin-bottom:2px;
+  background-color: #f65261;
+  color:white;
+  padding:0 8px;
+}
+
+.headline.headline-md.green {
+  border-bottom: 1px solid #82b440;
+}
+
+.headline.headline-md.green h2{
+  border-bottom:0;margin-bottom:2px;
+  background-color:#82b440;
+  color:white;
+  padding:0 8px;
+}
+
+.headline.headline-md.yellow {
+  border-bottom: 1px solid #ffd700;
+}
+
+.headline.headline-md.yellow h2{
+  border-bottom:0;margin-bottom:2px;
+  background-color: #ffd700;
+  color:white;
+  padding:0 8px;
+}
+
+.header .navbar-default .navbar-nav > li{
+  a.blue:hover{
+    background-color:#4db2ec;
+    color:white;
+  }
+
+  a.red:hover{
+    background-color:#f65261;
+    color:white;
+  }
+
+  a.green:hover{
+    background-color:#82b440;
+    color:white;
+  }
+
+  a.yellow:hover{
+    background-color: #ffd700;
+    color:white;
+  }
+
+  a.purple:hover{
+    background-color: #912cee;
+    color:white;
+  }
+
+  a.orange:hover{
+    background-color: #ff7f00;
+    color:white;
+  }
+}
+//button custome
+.btn-weibo {
+  background-color: transparent;
+  border-color: #d7584d;
+  color: #d7584d; }
+.btn-weibo:hover {
+  background-color: #d7584d;
+  color: white; }
+
+//topic page custome
+.topic{
+  padding-left: 15px;
+  border-bottom: 1px solid #f0f0f0;
+  margin-top:8px;
+}
+.topic .comment-count{
+  margin-top:20px;
+}
+
+.bbs .header-fixed-shrink .navbar{
+  margin-top:15px;
+}
+
+.mail-list-item{
+  cursor: pointer;
+}
+
+.mail-list-item.mail-readed{
+  background-color:gainsboro;
+}
+
+//map page
+.map{
+  height:250px;
+}
+
+.text-center .star{
+  margin: auto;
+}
+
+.videos .list-item{
+  width:190px;
+  height:145px;
+  float:left;
+  margin:50px 10px;
+}
+
+.header .navbar-brand{
+  padding: 10px;
+}
+
+.index-top-container-big{
+  overflow: hidden;
+  position: relative;
+  max-height:360px;
+}
+
+.index-top-container-small{
+  overflow: hidden;
+  position: relative;
+  max-height:175px;
+}
+
+.magazine-page span.magazine-badge {
+  bottom: 5px;
+  left: 5px;
+  color: #fff;
+  opacity: 0.7;
+  font-size: 14px;
+  padding: 2px 8px;
+  position: absolute;
+  font-style: inherit;
+}

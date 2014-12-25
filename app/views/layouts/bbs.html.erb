@@ -7,43 +7,63 @@
   <!-- Meta -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta content="" name="description">
-  <meta content="" name="author">
-  <title>雪圈网|BBS</title>
+
+  <meta name="keywords" content="<%= @meta_keywords %>" />
+  <meta name="description" content="<%= @meta_description %>" />
+
   <link href="http://snowooo-cdn.qiniudn.com/snowooo-icon.png" type="image/x-icon" rel="shortcut icon">
   <link href="http://snowooo-cdn.qiniudn.com/snowooo-icon.png" type="image/x-icon" rel="apple-touch-icon">
+  <%= render_page_title %>
+
+  <!--import lib-->
   <script src="//lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.min.js"></script>
   <script src="http://cdn.bootcss.com/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
-  <script src="http://cdn.bootcss.com/turbolinks/1.3.0/turbolinks.min.js"></script>
   <script src="http://cdn.bootcss.com/jquery-migrate/1.2.1/jquery-migrate.min.js"></script>
   <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
   <link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
-  <link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css" rel="stylesheet">
-  <script src="//cdn.ckeditor.com/4.4.5/standard/ckeditor.js"></script>
-
   <link href="http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
-  <!--owlgraphic carousel-->
-  <link href="http://cdn.bootcss.com/owl-carousel/1.32/owl.carousel.min.css" rel="stylesheet">
-  <link href="http://cdn.bootcss.com/owl-carousel/1.32/owl.theme.min.css" rel="stylesheet">
-  <script src="http://cdn.bootcss.com/owl-carousel/1.32/owl.carousel.min.js"></script>
+  <!--toggle between development and production-->
+  <% if Rails.env.production? %>
+    <link rel="stylesheet" href="http://cdn.snowooo.com/css/style.css">
 
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href=http://cdn.snowooo.com/plugins/line-icons/line-icons.css">
+
+    <!-- CSS Theme -->
+    <link rel="stylesheet" href="http://cdn.snowooo.com/css/themes/default.css" id="style_color">
+
+    <link rel="stylesheet" href="http://cdn.snowooo.com/css/pages/blog_magazine.css"/>
+  <% else %>
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="/assets/plugins/line-icons/line-icons.css">
+
+    <!-- CSS Theme -->
+    <link rel="stylesheet" href="/assets/css/themes/default.css" id="style_color">
+
+    <!--page-->
+    <link rel="stylesheet" href="/assets/css/pages/blog_magazine.css"/>
+  <% end %>
+
+  <!--customization-->
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag   'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body class="bbs">
 <div class="header">
   <!-- Navbar -->
-  <div class="navbar" role="navigation">
+  <div class="navbar navbar-default" role="navigation">
     <div class="container">
-      <div class="navbar-header hidden-xs">
+      <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
           <span class="sr-only">Toggle navigation</span>
           <span class="fa fa-bars"></span>
         </button>
-        <%= link_to bbs_root_path , class:"navbar-brand" do %>
-        <% end %>
+        <%= link_to "圈子", bbs_root_path , class:"navbar-brand hidden-md hidden-lg" %>
       </div>
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="collapse navbar-collapse navbar-responsive-collapse">

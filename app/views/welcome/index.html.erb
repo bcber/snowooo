@@ -1,10 +1,10 @@
 <% if @top.count > 3 %>
-<div class="row magazine-page">
-  <div class="col-xs-8">
+<div class="row">
+  <div class="col-lg-8 col-lg-offset-0 col-md-8 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
     <div class="carousel slide carousel-v1 margin-bottom-40" id="myCarousel-1">
       <div class="carousel-inner">
         <div class="item active">
-          <div class="magazine-news-img">
+          <div class="index-top-container-big">
             <%= link_to @top[0] do  %>
               <%= lazy_image_tag @top[0].cover.large %>
             <% end %>
@@ -12,7 +12,7 @@
           </div>
         </div>
         <div class="item">
-          <div class="magazine-news-img">
+          <div class="index-top-container-big">
             <%= link_to @top[1] do  %>
                 <%= lazy_image_tag @top[1].cover.large%>
             <% end %>
@@ -20,7 +20,7 @@
           </div>
         </div>
         <div class="item">
-          <div class="magazine-news-img">
+          <div class="index-top-container-big">
             <%= link_to @top[2] do  %>
                 <%= lazy_image_tag @top[2].cover.large%>
             <% end %>
@@ -40,15 +40,15 @@
     </div>
 
   </div>
-  <div class="col-xs-4">
-    <div class="magazine-news-split-img">
+  <div class="col-lg-4 col-md-4 hidden-sm hidden-xs" style="padding-left:0px;">
+    <div class="index-top-container-small" style="margin-bottom:10px;">
       <%= link_to @top[3] do  %>
           <%= lazy_image_tag @top[3].cover.large%>
       <% end %>
       <span class="magazine-badge label-blue"><%= truncate(@top[1].title, length:30) %></span>
     </div>
 
-    <div class="magazine-news-split-img">
+    <div class="index-top-container-small">
       <%= link_to @top[4] do  %>
           <%= lazy_image_tag @top[4].cover.large %>
       <% end %>
@@ -60,7 +60,7 @@
 
 <hr/>
 <div class="row">
-  <div class="col-xs-8">
+  <div class="col-lg-8 col-lg-offset-0 col-md-8 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
     <div class="row">
       <div class="headline headline-md blue" style=""><h2 style="">最近的资讯</h2></div>
 
@@ -314,7 +314,7 @@
                     <% end %>
                     <div class="text-center">
                       <%= link_to place do %>
-                          <h3><%= place.name %></h3>
+                          <h5><%= place.name %></h5>
                       <% end %>
                       <%= rating_for place %>
                     </div>
@@ -326,11 +326,13 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-3 col-sm-offset-1 hidden-xs">
+  <div class="col-lg-3 col-lg-offset-1 col-md-3 col-md-offset-1 hidden-sm hidden-xs">
     <div class="row">
       <div class="headline headline-md blue"><h2>关注我们</h2></div>
       <div class="col-xs-12">
-        <img src="http://snowooo-cdn.qiniudn.com/qrcode_for_gh_5db68f90c722_258.jpg" alt=""/>
+        <div class="center-block">
+          <img src="http://snowooo-cdn.qiniudn.com/qrcode_for_gh_5db68f90c722_258.jpg" alt="" class="img-responsive"/>
+        </div>
       </div>
 
       <%= render partial:"ad",locals: {show:Setting.show_index_ad_7,ad:Setting.index_ad_7, space:true} %>
