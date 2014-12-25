@@ -9,6 +9,6 @@ max_persistent_conns: 100
 require: []
 wait: 30
 threadpool_size: 20
-servers: 4
+servers: 3
 socket: "/tmp/thin.sock"
 daemonize: true
