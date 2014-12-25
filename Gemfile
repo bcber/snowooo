@@ -80,6 +80,7 @@ group :development do
   gem 'capistrano-sidekiq'
   gem 'pry-rails'
   gem 'traceroute'
+  gem 'capistrano-thin'
 end
 
 # Use ActiveModel has_secure_password
