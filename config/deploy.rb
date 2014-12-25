@@ -9,7 +9,7 @@ set :default_stage , "staging"
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
 # Default deploy_to directory is /var/www/my_app
-# set :deploy_to, '/var/www/my_app'
+set :deploy_to, '/home/deploy/snowooo'
 
 # Default value for :scm is :git
 # set :scm, :git
@@ -25,7 +25,7 @@ set :default_stage , "staging"
 
 # Default value for :linked_files is []
 # set :linked_files, %w{config/database.yml}
-set :linked_files, %w{ thinapp.yml public/assets/img/up.png }
+set :linked_files, %w{ thinapp.yml }
 
 # Default value for linked_dirs is []
 set :linked_dirs, %w{ bin log tmp/pids tmp/cache tmp/sockets vendor/bundle }

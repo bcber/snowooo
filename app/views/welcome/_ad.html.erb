@@ -1,6 +1,6 @@
 <% if space %>
     <hr/>
 <% end %>
-<% if show.to_bool %>
+<% if show.present? and show.is_a?(String) and show.to_bool %>
     <%= raw ad %>
 <% end %>
