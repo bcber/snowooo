@@ -57,18 +57,6 @@ window.Application = {
         $('i.fa',ele).attr('class','fa fa-thumbs-up');
     },
 
-    search_url:"http://zhannei.baidu.com/cse/search?entry=1&s=4194692985026132807",
-
-    search:function(ele){
-        var text = $(".search-open input").val().trim();
-        if(text == ""){
-            alert("请输入要搜索的内容");
-            return;
-        }
-        var url  = Application.search_url+"&q="+text;
-        location.href = url;
-    },
-
     expandEmail: function(ele){
         ele = $(ele);
         $('.list-group-item').removeClass('active');

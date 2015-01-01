@@ -71,7 +71,8 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
-  config.serve_static_assets = true
+  config.serve_static_assets = false
+  config.assets_host = "http://cdn.snowooo.com"
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
