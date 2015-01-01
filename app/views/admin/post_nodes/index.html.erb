@@ -9,6 +9,7 @@
   <tr>
     <th>类别名</th>
     <th>描述</th>
+    <th>包含文章数</th>
     <th>操作</th>
   </tr>
   </thead>
@@ -18,11 +19,17 @@
     <tr>
       <td><%= node.title %></td>
       <td><%= node.description %></td>
+      <td><%= node.posts.count if node.posts.any? %> <%= link_to '查看', posts_node_path(node),target:"_blank"%> </td>
       <td>
         <%= link_to '编辑', edit_admin_post_node_path(node), class:"btn btn-default btn-xs" %>
         <%= link_to '删除', admin_post_node_path(node), method: :delete, data: { confirm: '确认删除?' } , class:"btn btn-danger btn-xs"%></td>
     </tr>
   <% end %>
+  <tr>
+    <td>没有分类</td>
+    <td>这些文章还没有分类</td>
+    <td></td>
+  </tr>
   </tbody>
 </table>
 

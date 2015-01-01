@@ -5,7 +5,7 @@
         <%= image_tag place.cover.medium , class:"img-responsive rounded img-bordered", style:"margin:auto"%>
       <% end %>
     </div>
-    <div class="text-center"><%= rating_for place%></div>
+    <div class="text-center"><div class="rate" data-nomsg="true" data-rate="<%= place.rate_average %>" data-readonly="true"></div></div>
     <h5><%= link_to place.name, place %></h5>
   </div>
 </div>

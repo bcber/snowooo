@@ -1,17 +1,18 @@
 class Comment
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::BaseModel
   include Mongoid::Likeable
 
   field :content, type: String
-  field :commentable_id, type:Integer
-  field :commentable_type, type:String
   field :excellent, type: Integer, default:0
 
   belongs_to :commentable, polymorphic: true
   has_many :comments, as: :commentable
 
   belongs_to :user
+
+  # scope
 
   after_touch :check_if_top
   def check_if_top

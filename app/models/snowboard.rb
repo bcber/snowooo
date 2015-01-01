@@ -1,12 +1,13 @@
 class Snowboard
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Mongoid::Letsrate
+  include Mongoid::BaseModel
+  include Mongoid::Topable
   include Mongoid::TaggableOn
+  include Mongoid::Rateable
   taggable_on :colors
 
-
-  letsrate_rateable
+  ratyrate_rateable
 
   STYLES = Snowboard.pluck(:style).flatten.uniq.reject{|a|a.blank?}
   BRANDS = Snowboard.pluck(:brand).flatten.uniq.reject{|a|a.blank?}
@@ -54,4 +55,6 @@ class Snowboard
   has_many :comments, as: :commentable, dependent: :destroy
   accepts_nested_attributes_for :comments
   alias :title :name
+
+  has_many :reviews, as: :reviewable
 end

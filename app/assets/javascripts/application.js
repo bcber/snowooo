@@ -102,6 +102,27 @@ window.Application = {
 }
 
 $(function() {
+
+    var opts = {
+        lines: 12, // The number of lines to draw
+        length: 20, // The length of each line
+        width: 10, // The line thickness
+        radius: 30, // The radius of the inner circle
+        corners: 1, // Corner roundness (0..1)
+        rotate: 0, // The rotation offset
+        direction: 1, // 1: clockwise, -1: counterclockwise
+        color: '#000', // #rgb or #rrggbb or array of colors
+        speed: 1, // Rounds per second
+        trail: 60, // Afterglow percentage
+        shadow: false, // Whether to render a shadow
+        hwaccel: false, // Whether to use hardware acceleration
+        className: 'spinner', // The CSS class to assign to the spinner
+        zIndex: 2e9, // The z-index (defaults to 2000000000)
+        top: '50%', // Top position relative to parent
+        left: '50%' // Left position relative to parent
+    };
+
+
     $("img.lazy").lazyload({
         effect : "fadeIn"
     });
@@ -111,6 +132,63 @@ $(function() {
         $(".description-short").hide();
         $(".description-detail").removeClass('hide');
         $(this).hide();
+    });
+
+    $(".recent_post_link").on("ajax:beforeSend",function(){
+        var target = document.getElementById('recent_posts');
+        var spinner = new Spinner(opts).spin(target);
+
+        $("#recent_posts").removeClass("animated fadeInDown");
+
+    }).on("ajax:complete",function(){
+        $(".recent_post_link").removeClass("active");
+        $(this).addClass("active");
+        $("#recent_posts").addClass("animated fadeInDown");
+    });
+
+    $('[data-toggle="popover"]').popover();
+
+    $('.owl-carousel').owlCarousel({
+        slideSpeed : 300,
+        paginationSpeed : 400,
+        singleItem:true
+    });
+
+    var ratemessages = ["很差","较差","还行","推荐","力荐"];
+
+    $('.rate').each(function(){
+
+        $ele = $(this);
+        $ele.raty({
+            score: function(){
+                var rate = $ele.data('rate');
+                if($ele.data('nomsg')){
+                    return rate;
+                }
+                if(rate > 0){
+                    $ele.append("<span class='message'>("+ratemessages[rate-1]+")</span>");
+                }
+                return rate;
+            },
+            path: 'http://cdn.snowooo.com/plugins/raty/images',
+            readOnly: $(this).data('readonly')
+        });
+
+    });
+
+    $('.rateable').raty({
+        path: 'http://cdn.snowooo.com/plugins/raty/images',
+        score:function(){
+            var score = $(this).data('rate');
+            if(score>0){
+                $('.rateable-message').html('您给了'+score+'分的评价');
+            }
+            return score;
+        },
+        click:function(score,evt){
+            $('.rateable-message').html("您给了"+score+"分的评价");
+            $("#review_stars").val(score);
+        }
     });
 });
 

@@ -16,7 +16,28 @@
       <div class="col-sm-6">
         <div class="row">
           <div class="col-sm-12">
-            场地评分(<%= @place.rates.count %> 个人评分)<h1><%= @place.average.present?? @place.average.avg : 0 %></h1> <%= rating_for @place %>
+            <div>
+              综合评分:
+              <div class="rate_average rate" data-rate="<%= @place.rate_average %>" data-readonly="true" data-nomsg="true"></div>(<%= @place.rates.count %>人点评)
+              <h3 style="color:#f98361;">
+                <%= @place.rate_average %>
+              </h3>
+            </div>
+            <div>
+              <div class="rate_5 rate" data-rate="5" data-readonly="true"></div> (<%= @place.rate_5 %>个人)
+            </div>
+            <div>
+              <div class="rate_4 rate" data-rate="4" data-readonly="true"></div> (<%= @place.rate_4 %>个人)
+            </div>
+            <div>
+              <div class="rate_3 rate" data-rate="3" data-readonly="true"></div> (<%= @place.rate_3 %>个人)
+            </div>
+            <div>
+              <div class="rate_2 rate" data-rate="2" data-readonly="true"></div> (<%= @place.rate_2 %>个人)
+            </div>
+            <div>
+              <div class="rate_1 rate" data-rate="1" data-readonly="true"></div> (<%= @place.rate_1 %>个人)
+            </div>
           </div>
         </div>
         <hr/>
@@ -61,31 +82,21 @@
     <%= render partial: 'common/social_button',locals: {content: @place.title} %>
 
     <hr/>
-    <div class="media">
-      <h3> <span class="comment-count"><%= @place.comment_count %></span> <%= t("comments") %></h3>
+    <div>
+      <h3> <span class="reviews-count"></span> 点评</h3>
+      <%= render partial: 'reviews/review', collection: @place.reviews %>
     </div>
 
-    <div id="comment-container" data-comment-count=<%= @place.comment_count %>>
-      <%= render partial: "comments/comment", collection: @place.comments.desc('likes_count') %>
-    </div>
-
-    <hr/>
-    <% if current_user %>
-        <%= form_for [@place, @comment], remote: true do |f| %>
-            <div class="field">
-              <%= f.label :content %><br>
-              <%= f.text_area :content , class: "form-control", rows:"8"%>
-            </div>
-
-            <br>
-            <div class="actions">
-              <%= f.submit t("comment"), class:"btn-u" %>
-            </div>
-        <% end %>
+    <% if current_user  %>
+      <% if @place.rated?(current_user) %>
+        <h5>您已发表点评</h5>
+      <% else %>
+        <h3>我来点评</h3>
+        <%= render partial: 'reviews/partial_form', locals:{ reviewable: @place, review: Review.new} %>
+      <% end %>
     <% else %>
         <%= render 'common/login_signup_prompt' %>
     <% end %>
-
   </div>
   <div class="col-sm-3 hidden-xs">
     <div class="row">
@@ -95,25 +106,37 @@
     </div>
   </div>
 </div>
+<% if @place.show_map %>
 
-<%= javascript_include_tag "http://api.map.baidu.com/api?v=2.0&ak=AoosGLCN5hncfMh6u3IoZa90" %>
-<script type="text/javascript" charset="utf-8">
-    $('.owl-carousel').owlCarousel({
-        slideSpeed : 300,
-        paginationSpeed : 400,
-        singleItem:true
+  <% content_for :map_js do %>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=AoosGLCN5hncfMh6u3IoZa90"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+    <link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
+  <% end %>
+  <script type="text/javascript">
+      var map = new BMap.Map("baidumap");    // 创建Map实例
+      var point = new BMap.Point(<%= @place.xcoordinate %>, <%= @place.ycoordinate %>);
+      var level = <%= @place.level %>;
+      map.centerAndZoom(point, level);  // 初始化地图,设置中心点坐标和地图级别
+      map.enableScrollWheelZoom(true);
+      var marker = new BMap.Marker(point);  // 创建标注
+      map.addOverlay(marker);               // 将标注添加到地图中
+      map.setDefaultCursor("url('bird.cur')");
 
-        // "singleItem:true" is a shortcut for:
-        // items : 1,
-        // itemsDesktop : false,
-        // itemsDesktopSmall : false,
-        // itemsTablet: false,
-        // itemsMobile : false
-    });
-</script>
-<script type="text/javascript">
-    var map = new BMap.Map("baidumap");    // 创建Map实例
-    map.centerAndZoom(new BMap.Point(<%= @place.xcoordinate %>, <%= @place.ycoordinate %>), <%= @place.level %>);  // 初始化地图,设置中心点坐标和地图级别
-    map.setCurrentCity("北京");          // 设置地图显示的城市 此项是必须设置的
-    map.disableDragging();
-</script>
+      var opts = {
+        width : 200,     // 信息窗口宽度
+        height: 100,     // 信息窗口高度
+        title : "<%= @place.title %>" , // 信息窗口标题
+        enableMessage:true,//设置允许信息窗发送短息
+        message:"<%= @place.address %>"
+      }
+      var infoWindow = new BMap.InfoWindow("地址：<%= @place.address %>", opts);  // 创建信息窗口对象
+      marker.addEventListener("click", function(){
+        map.openInfoWindow(infoWindow,point); //开启信息窗口
+      });
+  </script>
+<% else %>
+  <script>
+    $("#baidumap").html("该雪场不提供地图");
+  </script>
+<% end %>

@@ -68,8 +68,8 @@ gem 'omniauth-weibo-oauth2'
 
 gem "mongoid", "~> 4.0.0"
 
-# rating
-gem 'mongoid-letsrate'
+# soft delete
+gem 'mongoid_paranoia'
 
 group :development do
   gem 'capistrano-rails', '~> 1.1.1'

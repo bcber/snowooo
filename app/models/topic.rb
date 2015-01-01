@@ -1,6 +1,7 @@
 class Topic
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::BaseModel
   include Mongoid::Likeable
 
   validates_presence_of :title,:content

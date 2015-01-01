@@ -1,26 +1,21 @@
 class WelcomeController < ApplicationController
   def index
-    top_posts = Post.desc(:up_at).limit(4).entries
-    top_snowboards = Snowboard.desc(:up_at).limit(4).entries
-    top_place = Place.desc(:up_at).limit(4).entries
-    top_snowbindings = Snowbinding.desc(:up_at).limit(4).entries
-    top_snowboots = Snowboot.desc(:up_at).limit(4).entries
     @top = []
-    @top << top_posts
-    @top << top_snowbindings
-    @top << top_place
-    @top << top_snowboards
-    @top << top_snowboots
+    @top << Post.top.limit(5).entries
+    @top << Snowboard.top.limit(5).entries
+    @top << Place.top.limit(5).entries
+    @top << Snowbinding.top.limit(5).entries
+    @top << Snowboot.top.limit(5).entries
     @top.flatten!
-    @top.sort_by! {|item| item.up_at }.reverse!
+    @top.sort_by! {|item| item.top_at }.reverse!
 
-    @posts = Post.passed.desc(:created_at).limit(6)
-    @places = Place.desc(:created_at).limit(8)
-    @videos = Video.desc(:created_at).limit(6)
-    @snowboards = Snowboard.desc(:created_at).limit(7)
-    @snowbindings = Snowbinding.desc(:created_at).limit(7)
-    @snowboots = Snowboot.desc(:created_at).limit(7)
-    @comments = Comment.desc(:created_at).limit(6)
+    @posts = Post.recent.limit(6)
+    @places = Place.recent.limit(8)
+    @videos = Video.recent.limit(6)
+    @snowboards = Snowboard.recent.limit(7)
+    @snowbindings = Snowbinding.recent.limit(7)
+    @snowboots = Snowboot.recent.limit(7)
+    @comments = Comment.recent.limit(6)
     set_seo_meta
   end
 end

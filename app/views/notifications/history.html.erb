@@ -5,7 +5,13 @@
         <p>
           <%= raw notify.body %>
         </p>
-        <h5>原文链接:<%= link_to notify.notificable.title ,notify.notificable%> | <%= cus_time(notify.created_at) %></h5>
+        <h5>原文链接:
+          <% if notify.notificable.present? %>
+            <%= link_to notify.notificable.title ,notify.notificable%> | <%= cus_time(notify.created_at) %>
+          <% else %>
+            原文已被删除
+          <% end %>
+        </h5>
       </div>
     </div>
     <hr/>

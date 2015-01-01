@@ -1,56 +1,7 @@
-<div class="row margin-bottom-20">
-</div>
-<div class="row margin-bottom-20">
-  <div class="col-md-4 col-md-offset-4 text-center">
-    <h1>网站状态(当前状态: <span class="color-green">ok</span>)</h1>
-  </div>
-</div>
-
-<div class="row margin-bottom-20">
-  <div class="col-md-4 text-center">
-    <h3>雪板</h3>
-    <dl class="dl-horizontal">
-      <dt>总数</dt>
-      <dd><%= Snowboard.all.count %></dd>
-    </dl>
-
-  </div>
-  <div class="col-md-4 text-center">
-    <h3>雪鞋</h3>
-    <dl class="dl-horizontal">
-      <dt>总数</dt>
-      <dd><%= Snowboot.all.count %></dd>
-    </dl>
-  </div>
-  <div class="col-md-4 text-center">
-    <h3>固定器</h3>
-    <dl class="dl-horizontal">
-      <dt>总数</dt>
-      <dd><%= Snowbinding.all.count %></dd>
-    </dl>
-  </div>
-</div>
-<hr/>
-<div class="row margin-bottom-20">
-  <div class="col-md-4 text-center">
-    <h3>场地</h3>
-    <dl class="dl-horizontal">
-      <dt>总数</dt>
-      <dd><%= Place.all.count %></dd>
-    </dl>
-  </div>
-  <div class="col-md-4 text-center">
-    <h3>用户</h3>
-    <dl class="dl-horizontal">
-      <dt>总数</dt>
-      <dd><%= User.all.count %></dd>
-    </dl>
-  </div>
-  <div class="col-md-4 text-center">
-    <h3>视频</h3>
-    <dl class="dl-horizontal">
-      <dt>总数</dt>
-      <dd><%= Video.all.count %></dd>
-    </dl>
+<div class="row">
+  <div class="col-sm-12">
+    <h3>
+      待审核文章数: <%= Post.nopassed.count %>
+    </h3>
   </div>
 </div>

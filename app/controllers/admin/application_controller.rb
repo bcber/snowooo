@@ -3,7 +3,7 @@ class Admin::ApplicationController < ApplicationController
   before_filter :require_admin
 
   def require_admin
-    unless current_user and current_user.has_role? :admin
+    unless current_user and current_user.isAdmin
       render_404
     end
   end

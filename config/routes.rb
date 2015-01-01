@@ -2,10 +2,13 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
-  post '/rate' => 'rater#create', :as => 'rate'
 
-  resources :places ,:snowboards , :snowbindings ,:snowboots ,:videos,:comments do
+  resources :videos,:comments do
     resources :comments
+  end
+
+  resources :places, :snowboards, :snowbindings, :snowboots do
+    resources :reviews
   end
 
   post "/messages/readed" => "messages#readed"
@@ -14,7 +17,7 @@ Rails.application.routes.draw do
   get "videos/node/:node_id" => "videos#node" ,as: :videos_node
   get "places/region/:region" => "places#region", as: :places_region
   get "posts/node/:node_id" => "posts#node",as: :posts_node
-
+  get "posts/node/recent/:node_id" => "posts#node_recent", as: :post_node_recent
   resources :likes
 
   resources :comments do
@@ -63,12 +66,6 @@ Rails.application.routes.draw do
     post 'signup', to: 'user/registrations#create'
   end
 
-  resources :todos do
-    member do
-      post 'done'
-    end
-  end
-
   get 'bbs/topics/new' => 'bbs/topics#new', as: :new_bbs_topic
   get 'bbs/topics/hot' => 'bbs/topics#hot', as: :hot_bbs_topics
   get 'bbs/topics/no_comment' => 'bbs/topics#no_comment',as: :no_comment_bbs_topics
@@ -92,6 +89,16 @@ Rails.application.routes.draw do
     resources :settings
     resources :users
     resources :post_nodes
+
+    resources :posts do
+      collection do
+        get 'top_posts'
+      end
+      member do
+        get 'pass'
+      end
+    end
+
     resources :posts , :places, :videos, :snowboots, :snowbindings , :snowboards do
       member do
         get 'up'
@@ -100,11 +107,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :posts do
-      member do
-        get 'pass'
-      end
-    end
+
   end
 
   root 'welcome#index'

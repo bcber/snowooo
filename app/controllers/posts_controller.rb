@@ -4,22 +4,28 @@ class PostsController < ApplicationController
   respond_to :html
 
   def index
-    posts = Post.passed
-    @posts = posts.desc(:created_at).paginate(page: params[:page], per_page: 16)
-    @top_posts = posts.desc(:up_at).limit(3)
-    @recommend_posts = posts.desc(:recommend_at).limit(10)
+    @posts = Post.recent.paginate(page: params[:page], per_page: 8)
+    @top_posts = Post.desc(:up_at).limit(3)
+    @recommend_posts = Post.desc(:recommend_at).limit(10)
     @comments = Comment.desc(:created_at).limit(6)
   end
 
   def node
     @node = PostNode.find(params[:node_id])
-    @posts = @node.posts.passed.desc(:created_at).paginate(page: params[:page], per_page: 12)
+    @posts = @node.posts.recent.passed.paginate(page: params[:page], per_page: 8)
+    @top_posts = Post.desc(:up_at).limit(3)
+    @recommend_posts = Post.desc(:recommend_at).limit(10)
+    @comments = Comment.desc(:created_at).limit(6)
     render 'list'
+  end
+
+  def node_recent
+    @node = PostNode.find(params[:node_id])
+    @posts = @node.posts.recent.limit(6)
   end
 
   def show
     @recommend_posts = Post.passed.asc(:recommend_at.desc).limit(10)
-    @comment = Comment.new
     session[:reply_page] = url_for(@post)
     set_seo_meta("#{@post.title}", "#{@post.title}")
   end
@@ -56,7 +62,11 @@ class PostsController < ApplicationController
 
   private
     def set_post
-      @post = Post.find(params[:id])
+      if current_user and current_user.isAdmin?
+        @post = Post.unscoped.find(params[:id])
+      else
+        @post = Post.find(params[:id])
+      end
     end
 
     def post_params

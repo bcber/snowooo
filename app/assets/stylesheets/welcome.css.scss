@@ -2,62 +2,129 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-@mixin max-height($height) {
-  max-height: $height;
-  overflow: hidden;
+.post_node{
+  float:right;
+  margin-bottom:12px;
+  a{
+    padding-left:5px;
+    color: #555;
 
-  img {
-    width:100%;
+    &.active{
+      color:#72c02c;
+    }
   }
 }
 
-.img-thumb{
-  max-height:100px;
-  overflow:hidden;
+.post_recent{
+  width:50%;
+  padding:10px;
+  display: inline-block;
+  float: left;
+  position:relative;
+  .img{
+    width:50%;
+    float: left;
+    display: inline-block;
+  }
+
+  .info{
+    margin-left:190px;
+    .desc{
+      display: none;
+    }
+    .title{
+      font-size:14px;
+    }
+
+    .by-author{
+      font-size:12px;
+    }
+  }
+
+  &:nth-child(1),&:nth-child(2){
+    height:390px;
+
+    .img{
+      width:100%;
+      float:none;
+    }
+    .info{
+      margin-left:0px;
+      .title{
+        color:#555;
+        font-size:18px;
+      }
+
+      .desc{
+        display:block;
+      }
+
+      .by-author{
+        color:gainsboro;
+      }
+
+
+    }
+  }
 }
 
-.img-thumb img{
-  width:100%;
+@media (max-width: 750px) {
+  .post_recent{
+    width:100%;
+    padding:10px;
+    display: inline-block;
+    float: left;
+    position:relative;
+    .img{
+      width:30%;
+      float: left;
+      display: inline-block;
+    }
+
+    .info{
+      .desc{
+        display: none;
+      }
+      .title{
+        font-size:12px;
+      }
+    }
+
+    &:nth-child(1),&:nth-child(2){
+
+
+      .img{
+        width:100%;
+        float:none;
+      }
+      .info{
+        margin-left:0px;
+        .title{
+          color:#555;
+          font-size:18px;
+        }
+
+        .desc{
+          display:block;
+        }
+
+        .by-author{
+          color:gainsboro;
+        }
+
+
+      }
+    }
+  }
+
 }
 
-.img-medium{
-  max-height:180px;
-  overflow:hidden;
-}
-
-.img-medium img{
-  width:100%;
-}
-
-.max-height-100{@include max-height(100px)}
-.max-height-200{@include max-height(200px)}
-.max-height-300{@include max-height(300px)}
-.max-height-400{@include max-height(400px)}
-.max-height-500{@include max-height(500px)}
-.max-height-600{@include max-height(600px)}
-
-.post-item .info{
-  color: #cbcbcb;
-}
-
-.post-item.post-child-item .info{
-  margin-top: 20px;
-}
-
-.post-item .img-medium{
-  max-height: 100px;
-  overflow: hidden;
-}
-
-.post-item .img-medium img{
-  width:100%;
-}
-
-.post-item .img-large{
-  max-height: 185px;
-  overflow: hidden;
-}
-
-.post-item .img-large img{
-  width:100%;
+.guanzhuwomen{
+  font-size:30px;
+  .fa-weibo{
+    color:#ec7e57;
+  }
+  .fa-weixin{
+    color:#9bc47d;
+  }
 }

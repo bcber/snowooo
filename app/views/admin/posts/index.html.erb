@@ -1,4 +1,9 @@
 <div class="row margin-bottom-20"></div>
+<div class="row margin-bottom-20">
+  <div class="col-xs-12">
+    <%= link_to "置顶文章", top_posts_admin_posts_path, class:"btn btn-primary btn-xs" %>
+  </div>
+</div>
 <div class="row">
   <div class="col-xs-12">
     <%= link_to '新建', new_post_path, class: "btn btn-default btn-xs" %>
@@ -7,13 +12,19 @@
     <%= link_to '待审核', admin_posts_path(pass: 0) , class: "btn btn-default btn-xs" %>
   </div>
 </div>
+<div class="row">
+  <div class="col-xs-12">
+    <h4>共有文章: <%= Post.unscoped.count %></h4>
+  </div>
+</div>
 <table class="table">
   <thead>
     <tr>
       <th>题目</th>
       <th>创建时间</th>
-      <th>最近置顶</th>
-      <th>最近推荐</th>
+      <th>是否置顶</th>
+      <th>是否推荐</th>
+      <th>所属分类</th>
       <th>操作</th>
     </tr>
   </thead>
@@ -21,10 +32,11 @@
   <tbody>
     <% @posts.each do |post| %>
       <tr>
-        <td><%= post.title %></td>
-        <td><%= post.created_at %></td>
-        <td><%= post.up_at %></td>
-        <td><%= post.recommend_at %></td>
+        <td><%= link_to post.title , post %></td>
+        <td><%= time_ago_in_words(post.created_at) %>前</td>
+        <td><%= post.top? ? "是":"否"%></td>
+        <td><%= post.recommend_at.present? ? "是":"否" %></td>
+        <td> <% if post.post_node.present? %> <%= post.post_node.title %>  <% else %> 没有分类 <% end %></td>
         <td>
         <% if not post.pass %>
             <%= link_to '审核通过', pass_admin_post_path(post), class:"btn btn-default btn-xs" %>
@@ -32,10 +44,12 @@
             <button class="btn btn-default btn-xs" disabled>已审核</button>
         <% end %>
 
-        <%= link_to '显示', post , class:"btn btn-default btn-xs" %>
         <%= link_to '编辑', edit_post_path(post), class:"btn btn-default btn-xs" %>
-        <%= link_to '置顶' , up_admin_post_path(post), class:"btn btn-default btn-xs"%>
-        <%= link_to '取消置顶', down_admin_post_path(post), class:"btn btn-default btn-xs" %>
+          <% if post.top? %>
+            <%= link_to '取消置顶', down_admin_post_path(post), class:"btn btn-default btn-xs" %>
+          <% else %>
+            <%= link_to '置顶' , up_admin_post_path(post), class:"btn btn-default btn-xs"%>
+          <% end %>
         <%= link_to "推荐", recommend_admin_post_path(post), class:"btn btn-default btn-xs" %>
         <%= link_to '删除', admin_post_path(post), method: :delete, data: { confirm: 'Are you sure?' } , class:"btn btn-danger btn-xs"%></td>
       </tr>

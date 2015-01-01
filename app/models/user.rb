@@ -1,14 +1,13 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Mongoid::Letsrate
-
-  letsrate_rater
+  include Mongoid::BaseModel
+  include Mongoid::Rateable
+  ratyrate_rater
 
   validates_uniqueness_of :name, :email
   validates_presence_of :name, :email
-  ROLES = %w[admin moderator editor member banned]
-  
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -54,7 +53,7 @@ class User
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
 
-  field :roles_mask, type: Integer, default: 2**ROLES.index('member')
+  field :isAdmin, type: Boolean, default:false
 
   # user system
   field :credit, type: Integer, default: 10
@@ -67,7 +66,6 @@ class User
 
   ## association
   # comments
-  has_many :todos, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
   has_many :posts, dependent: :destroy
@@ -75,6 +73,7 @@ class User
   has_many :omniauths
   has_many :send_messages, class_name: "Message", inverse_of: :sender
   has_many :receive_messages, class_name: "Message", inverse_of: :receiver
+  has_many :reviews, dependent: :destroy
 
   after_create :setAdmin
 
@@ -98,14 +97,6 @@ class User
     end
   end
   
-  def setAdmin
-    if ENV['admin_emails'].include?(email) and not has_role?(:admin)
-      logger.info "*"*40+"add #{email} to admin role!"
-      self.update(roles_mask: 1)
-      self.confirm!
-    end
-  end
-
   def has_unread_messages?
     self.receive_messages.unread.any?
   end
@@ -159,20 +150,6 @@ class User
     likeable.pull(liked_user_ids: self.id)
     likeable.inc(likes_count: -1)
     likeable.touch
-  end
-
-  def roles=(roles)
-    self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)
-  end
-
-  def roles
-    ROLES.reject do |r|
-      ((roles_mask.to_i || 0) & 2**ROLES.index(r)).zero?
-    end
-  end
-
-  def has_role?(role)
-    !!roles.index(role.to_s)
   end
 
   # many member rule

@@ -1,6 +1,7 @@
 class Video
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::BaseModel
   before_save :getVid
   after_save :addToWorker
 

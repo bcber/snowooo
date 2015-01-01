@@ -1,16 +1,14 @@
 <li class="dropdown">
-  <%= link_to "资讯NEWS", "#",class:"dropdown-toggle blue", 'data-toggle' => 'dropdown' %>
+  <%= link_to "资讯NEWS", posts_path ,class:"dropdown-toggle blue"%>
   <ul class="dropdown-menu">
-    <li><%= link_to '所有资讯', posts_path %></li>
     <% PostNode.all.each do |p| %>
       <li><%= link_to p.title, posts_node_path(p) %></li>
     <% end %>
   </ul>
 </li>
 <li class="dropdown">
-  <%= link_to '装备GEAR','#', class:'dropdown-toggle red', 'data-toggle' => 'dropdown' %>
+  <%= link_to '装备GEAR',gear_path, class:'dropdown-toggle red'%>
   <ul class="dropdown-menu">
-    <li><%= link_to '装备', gear_path %></li>
     <li class="dropdown-submenu">
       <%= link_to '雪板', '#'%>
       <ul class="dropdown-menu">
@@ -38,18 +36,16 @@
   </ul>
 </li>
 <li class="dropdown">
-  <%= link_to "雪场RESORTS", "#", class:'dropdown-toggle green',  'data-toggle' => 'dropdown' %>
+  <%= link_to "雪场RESORTS", places_path, class:'dropdown-toggle green' %>
   <ul class="dropdown-menu">
-    <li><%= link_to "所有雪场", places_path %></li>
     <li><%= link_to "国内雪场", places_region_path("国内") %></li>
     <li><%= link_to "国外雪场", places_region_path("国外") %></li>
   </ul>
 </li>
 
 <li class="dropdown">
-  <%= link_to "视频VIDEO", videos_path, class:'dropdown-toggle yellow', 'data-toggle' => 'dropdown' %>
+  <%= link_to "视频VIDEO", videos_path, class:'dropdown-toggle yellow' %>
   <ul class="dropdown-menu">
-    <li><%= link_to "所有的视频",  videos_path %></li>
     <% VideoNode.all.each do |node| %>
         <li><%= link_to node.title, videos_node_path(node) %></li>
     <% end %>
@@ -60,13 +56,4 @@
 <li><%= link_to "圈子CLUB", bbs_topics_path , class:"orange"%></li>
 
 <li>
-  <i class="search fa search-btn fa-search"></i>
-  <div class="search-open" style="display: none;">
-    <div class="input-group animated fadeInDown">
-      <input type="text" class="form-control" placeholder="搜索本站">
-      <span class="input-group-btn">
-        <button class="btn-u" type="button" onclick="Application.search(this)">搜索</button>
-      </span>
-    </div>
-  </div>
 </li>

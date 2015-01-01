@@ -106,8 +106,8 @@ zh-CN:
         level: "地图缩放等级"
         cover: "封面"
         images: "图片"
-        xcoordinate: "地图X坐标"
-        ycoordinate: "地图Y坐标"
+        coordinate: "地图坐标"
+        show_map: "是否显示地图(需要提前设置号坐标，如果没有设置会显示错误)"
       post:
         title: "题目"
         content: "内容"
@@ -115,3 +115,8 @@ zh-CN:
       topic:
         title: "标题"
         content: "内容"
+      review:
+        good: "优点"
+        bad: "缺点"
+        composite: "综合评价"
+        stars: "评价"

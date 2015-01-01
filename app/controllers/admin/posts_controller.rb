@@ -4,13 +4,19 @@ class Admin::PostsController < Admin::ApplicationController
   # GET /admin/posts
   # GET /admin/posts.json
   def index
+    posts = Post.unscoped
     if params[:pass].present? and params[:pass] == '1'
-        @posts = Post.passed.desc(:created_at).paginate(page: params[:page], per_page: 10)
+        posts = posts.passed
     elsif params[:pass].present? and params[:pass] == '0'
-        @posts = Post.nopassed.desc(:created_at).paginate(page: params[:page], per_page: 10)
+        posts = posts.nopassed
     else
-      @posts = Post.desc(:created_at).paginate(page: params[:page], per_page: 10)
+      posts = posts.recent.paginate(page: params[:page], per_page: 10)
     end
+    @posts = posts
+  end
+
+  def top_posts
+    @posts = Post.top
   end
 
   # GET /admin/posts/1
@@ -28,7 +34,7 @@ class Admin::PostsController < Admin::ApplicationController
 
   # up
   def up
-    if @post.update(up_at: Time.now)
+    if @post.pushToTop
       @post.user.member_rule_top_post
       Notification.top_post(@post)
       redirect_to admin_posts_path
@@ -36,7 +42,7 @@ class Admin::PostsController < Admin::ApplicationController
   end
 
   def down
-    if @post.update(up_at: Time.new(1970))
+    if @post.cancelTop
       redirect_to admin_posts_path
     end
   end
@@ -98,13 +104,12 @@ class Admin::PostsController < Admin::ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def post_params
-      params[:post]
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def post_params
+    params[:post]
+  end
 end

@@ -183,6 +183,10 @@
   height:250px;
 }
 
+#bigmap{
+  height:300px;
+}
+
 .text-center .star{
   margin: auto;
 }
@@ -219,4 +223,16 @@
   padding: 2px 8px;
   position: absolute;
   font-style: inherit;
+}
+
+.footer{
+  margin-top:20px;
+}
+
+.rate{
+  display: inline-block;
+
+  .message{
+    float: right;
+  }
 }

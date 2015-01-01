@@ -8,7 +8,6 @@ class PlacesController < ApplicationController
   end
 
   def show
-    @comment = Comment.new
     session[:reply_page] = url_for(@place)
     set_seo_meta("#{@place.title}", "#{@place.title}")
   end

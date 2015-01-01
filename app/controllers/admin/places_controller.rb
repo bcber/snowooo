@@ -44,8 +44,7 @@ class Admin::PlacesController < Admin::ApplicationController
   def update
     respond_to do |format|
       if @place.update(place_params)
-        format.html { redirect_to edit_admin_place_path(@place), notice: '编辑成功' }
-        format.json { render :show, status: :ok, location: @place }
+        format.html { redirect_to @place, notice: '编辑成功' }
       else
         format.html { render :edit }
         format.json { render json: @place.errors, status: :unprocessable_entity }
@@ -91,7 +90,7 @@ class Admin::PlacesController < Admin::ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def place_params
-      params[:place].permit(:name, :region_list,:site,:description, :level ,:cover,:remote_cover_url, :address,:phone,:xcoordinate, :ycoordinate,{
+      params[:place].permit(:name, :region_list,:site,:description, :level ,:cover,:remote_cover_url, :show_map,:address,:phone,:coordinate,{
           place_images_attributes: [:id,:_destroy, :original,:remote_original_url ]
       })
     end

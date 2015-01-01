@@ -5,8 +5,8 @@ module ApplicationHelper
 
   def render_page_title
     site_name = ENV['title']
-    title = @page_title ? " #{ @page_title } | #{site_name} " : site_name rescue "SITE_NAME"
-    content_tag("title", title, nil, false)
+    title = @page_title.present? ? " #{@page_title} | #{site_name} ": site_name rescue "SITE_NAME"
+    content_tag("title",title)
   end
 
   def lazy_image_tag(url)

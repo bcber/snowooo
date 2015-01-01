@@ -1,8 +1,10 @@
 class Snowbinding
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Mongoid::Letsrate
-  letsrate_rateable
+  include Mongoid::BaseModel
+  include Mongoid::Topable
+  include Mongoid::Rateable
+  ratyrate_rateable
 
   BRANDS = Snowbinding.pluck(:brand).flatten.uniq.reject{|brand| brand.blank?}
   MATERIALS = %w{polycarbonate nylon plastic aluminum steel}
@@ -40,4 +42,6 @@ class Snowbinding
   has_many :comments, as: :commentable, dependent: :destroy
   accepts_nested_attributes_for :comments
   alias :title :name
+
+  has_many :reviews, as: :reviewable
 end

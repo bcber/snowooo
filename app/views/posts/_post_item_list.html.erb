@@ -1,7 +1,7 @@
 <div class="post-item margin-bottom-20">
-  <div class="max-height-200">
+  <div class="post-list-item-img-container">
     <%= link_to post do  %>
-      <%= image_tag '', class:"lazy",:"data-original" => post.cover.large %>
+      <%= image_tag post.cover.large ,class:"img-responsive"%>
     <% end %>
   </div>
   <div class="title">

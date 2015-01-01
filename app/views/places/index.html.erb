@@ -1,4 +1,10 @@
 <div class="row">
+  <div class="col-xs-12">
+    <div id="bigmap"></div>
+  </div>
+</div>
+<hr/>
+<div class="row">
   <div class="col-sm-9">
     <% @places.in_groups_of(4,false) do |places| %>
         <div class="row">
@@ -13,3 +19,50 @@
     <%= render 'region_side_bar' %>
   </div>
 </div>
+
+<% content_for :map_js do %>
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=AoosGLCN5hncfMh6u3IoZa90"></script>
+  <script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+  <link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
+<% end %>
+<script type="text/javascript">
+  var map = new BMap.Map("bigmap");    // 创建Map实例
+
+  var point = new BMap.Point(112.51784,38.188454);
+  map.centerAndZoom(point, 6);
+//  map.enableScrollWheelZoom(true);
+
+  var points = [];
+  <% Place.each do |p| %>
+    <% if p.show_map %>
+      points.push({x: <%= p.xcoordinate %>, y: <%= p.ycoordinate %>, title: "<%= p.title %>", address: "<%= p.address %>"});
+    <% end %>
+  <% end %>
+
+  var top_left_control = new BMap.ScaleControl({anchor: BMAP_ANCHOR_TOP_LEFT});// 左上角，添加比例尺
+  var top_left_navigation = new BMap.NavigationControl();  //左上角，添加默认缩放平移控件
+  //添加控件和比例尺
+  map.addControl(top_left_control);
+  map.addControl(top_left_navigation);
+
+
+  for (var i = 0; i < points.length; i ++) {
+    (function(){
+      var point = new BMap.Point(points[i].x, points[i].y);
+      var marker = new BMap.Marker(point);
+      var opts = {
+        width : 200,     // 信息窗口宽度
+        height: 100,     // 信息窗口高度
+        title : ""+points[i].title// 信息窗口标题
+      };
+
+      var infoWindow = new BMap.InfoWindow("地址："+points[i].address, opts);  // 创建信息窗口对象
+      marker.addEventListener("click", function(){
+        map.openInfoWindow(infoWindow,point); //开启信息窗口
+      });
+
+      map.addOverlay(marker);
+    }());
+  }
+
+</script>

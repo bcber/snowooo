@@ -1,8 +1,10 @@
 class Snowboot
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Mongoid::Letsrate
-  letsrate_rateable
+  include Mongoid::BaseModel
+  include Mongoid::Topable
+  include Mongoid::Rateable
+  ratyrate_rateable
 
   field :up_at, type: Time, default: Time.new(1970)
   field :recommend_at, type: Time, default: Time.new(1970)
@@ -25,4 +27,6 @@ class Snowboot
   has_many :comments, as: :commentable, dependent: :destroy
   accepts_nested_attributes_for :comments
   alias :title :name
+
+  has_many :reviews, as: :reviewable
 end

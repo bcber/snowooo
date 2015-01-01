@@ -6,7 +6,30 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-12">雪鞋评分(<%= @snowboot.rates.count %> 个人评分)<h1><%= @snowboot.average.present?? @snowboot.average.avg : 0 %></h1> <%= rating_for @snowboot %></div>
+      <div class="col-sm-12">
+        <div>
+          综合评分:
+          <div class="rate_average rate" data-rate="<%= @snowboot.rate_average %>" data-readonly="true" data-nomsg="true"></div>(<%= @snowboot.rates.count %>人点评)
+          <h3 style="color:#f98361;">
+            <%= @snowboot.rate_average %>
+          </h3>
+        </div>
+        <div>
+          <div class="rate_5 rate" data-rate="5" data-readonly="true"></div> (<%= @snowboot.rate_5 %>个人)
+        </div>
+        <div>
+          <div class="rate_4 rate" data-rate="4" data-readonly="true"></div> (<%= @snowboot.rate_4 %>个人)
+        </div>
+        <div>
+          <div class="rate_3 rate" data-rate="3" data-readonly="true"></div> (<%= @snowboot.rate_3 %>个人)
+        </div>
+        <div>
+          <div class="rate_2 rate" data-rate="2" data-readonly="true"></div> (<%= @snowboot.rate_2 %>个人)
+        </div>
+        <div>
+          <div class="rate_1 rate" data-rate="1" data-readonly="true"></div> (<%= @snowboot.rate_1 %>个人)
+        </div>
+      </div>
     </div>
     <hr/>
     <div class="row">
@@ -48,47 +71,43 @@
 
     <div class="row">
       <div class="headline"><h2>雪鞋介绍</h2></div>
-      <div class="col-sm-12">
-        <%=  @snowboot.description.html_safe   %>
-      </div>
+      <% if @snowboot.description.present? and @snowboot.description.is_a? String %>
+
+        <div class="description-short">
+          <%= truncate(strip_tags(@snowboot.description.html_safe), length: 50) %>
+        </div>
+
+        <div class="hide description-detail">
+          <%= @snowboot.description.html_safe %>
+        </div>
+
+        <button class="show-description-detail btn-u btn-block">更多</button>
+      <% else %>
+
+        <h3>还没有介绍</h3>
+
+      <% end %>
     </div>
 
     <%= render partial: 'common/social_button',locals: {content: @snowboot.title} %>
 
     <hr/>
-    <div class="row">
-      <div class="headline">
-        <h4><span class="comment-count"><%= @snowboot.comment_count %></span> 条评论</h4>
-      </div>
-    </div>
-
-    <div id="comment-container" data-comment-count=<%= @snowboot.comment_count %>>
-      <%= render partial: "comments/comment", collection: @snowboot.comments.desc('likes_count') %>
+    <div>
+      <h3> <span class="reviews-count"></span> 点评</h3>
+      <%= render partial: 'reviews/review', collection: @snowboot.reviews %>
     </div>
 
     <hr/>
-    <% if current_user %>
-        <div class="row">
-          <%= form_for [@snowboot, Comment.new], remote: true do |f| %>
-              <div class="post-comment">
-                <div class="headline">
-                  <h3><%= t("comment") %></h3>
-                </div>
-                <div class="field">
-                  <%= f.label :content %><br>
-                  <%= f.text_area :content , class: "form-control", rows:"8"%>
-                </div>
 
-                <br>
-                <div class="actions">
-                  <%= f.submit t("comment"), class:"btn-u" %>
-                </div>
-              </div>
-          <% end %>
-        </div>
-
+    <% if current_user  %>
+      <% if @snowboot.rated?(current_user) %>
+        <h5>您已发表点评</h5>
+      <% else %>
+        <h3>我来点评</h3>
+        <%= render partial: 'reviews/partial_form', locals:{ reviewable: @snowboot, review: Review.new} %>
+      <% end %>
     <% else %>
-        <%= render 'common/login_signup_prompt' %>
+      <%= render 'common/login_signup_prompt' %>
     <% end %>
 
   </div>

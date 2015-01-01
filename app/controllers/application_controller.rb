@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
 
 
   def set_seo_meta(title = '', meta_description = '', meta_keywords='')
-    @page_title = "#{title}}" if title.length > 0
+    @page_title = "#{title}" if title.length > 0
     @meta_keywords = meta_keywords
     @meta_description = meta_description
     @meta_keywords = ENV['keywords'] if meta_keywords.length == 0
@@ -36,10 +36,6 @@ class ApplicationController < ActionController::Base
 
   def year
     Time.now.year
-  end
-
-  def admin?
-    user_signed_in? and current_user.has_role? :admin
   end
 
   def render_404

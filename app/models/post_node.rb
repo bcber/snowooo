@@ -5,5 +5,5 @@ class PostNode
   field :title
   field :description
 
-  has_many :posts, dependent: :destroy
+  has_many :posts, dependent: :nullify
 end

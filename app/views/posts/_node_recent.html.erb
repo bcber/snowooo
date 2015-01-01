@@ -1,0 +1,17 @@
+<% posts.each do |item| %>
+  <div class="post_recent">
+    <%= link_to item do  %>
+        <%= image_tag item.cover.medium, class:"img-responsive img"%>
+    <% end %>
+    <div class="info">
+      <h3 class="title"><%= link_to item.title , item%></h3>
+      <div class="by-author">
+        <strong>
+          <%= link_to  item.user.present? ? item.user.name: 'admin' , user_path(item.user)%>
+        </strong>
+        <span>/ <%= item.created_at.strftime("%m-%d-%Y") %></span>
+      </div>
+      <p class="desc"><%= truncate_html(item.content, 50) %></p>
+    </div>
+  </div>
+<% end %>

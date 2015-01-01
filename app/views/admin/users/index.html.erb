@@ -3,20 +3,20 @@
     <tr>
       <th>邮件</th>
       <th>用户名</th>
-      <th>账户确认时间</th>
+      <th>加入时间</th>
       <th>操作</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @admin_users.each do |admin_user| %>
+    <% @users.each do |user| %>
       <tr>
-        <td><%= admin_user.email %></td>
-        <td><%= admin_user.name %></td>
-        <td><%= admin_user.confirmed_at %></td>
-        <td><%= link_to '详情', admin_user_path(admin_user), class:"btn btn-default btn-xs" %>
-        <%= link_to '编辑', edit_admin_user_path(admin_user), class:"btn btn-default btn-xs" %>
-        <%= link_to '删除', admin_user_path(admin_user), method: :delete, data: { confirm: '确认删除?' } , class:"btn btn-danger btn-xs"%></td>
+        <td><%= user.email %>  </td>
+        <td><%= user.name %></td>
+        <td><%= time_ago_in_words(user.created_at) %>前</td>
+        <td><%= link_to '详情', admin_user_path(user), class:"btn btn-default btn-xs" %>
+        <%= link_to '编辑', edit_admin_user_path(user), class:"btn btn-default btn-xs" %>
+        <%= link_to '删除', admin_user_path(user), method: :delete, data: { confirm: '确认删除?' } , class:"btn btn-danger btn-xs"%></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,7 +24,7 @@
 
 <div class="text-center">
   <div class="pagination">
-    <%= will_paginate @admin_users %>
+    <%= will_paginate @users %>
   </div>
 </div>
 <br>

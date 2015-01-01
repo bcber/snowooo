@@ -45,7 +45,7 @@
     </div>
 
     <% if current_user %>
-      <%= form_for [@post, @comment], remote: true do |f| %>
+      <%= form_for [@post, Comment.new], remote: true do |f| %>
             <div class="field">
               <%= f.label :content %><br>
               <%= f.text_area :content , class: "form-control", rows:"8"%>
@@ -62,7 +62,7 @@
   </div>
   <div class="col-sm-3 hidden-xs">
     <div class="posts margin-bottom-40">
-      <div class="headline headline-md"> Recent posts</div>
+      <div class="headline headline-md">向你推荐</div>
       <% @recommend_posts.each do |post| %>
         <dl class="dl-horizontal">
           <dt>
