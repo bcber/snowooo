@@ -32,7 +32,7 @@ class Ability
   end
 
   def default
-    can :read , :Snowboard
+    can :read , Snowboard
     can :read, Snowboot
     can :read, Snowbinding
     can :read, Video
@@ -44,5 +44,6 @@ class Ability
     can :region, Place
     can :node, Video
     can :node, Post
+    can :node_recent, Post
   end
 end
