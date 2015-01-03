@@ -5,6 +5,7 @@ class Place
   include Mongoid::Topable
   include Mongoid::TaggableOn
   include Mongoid::Rateable
+  include Mongoid::Recommendable
   ratyrate_rateable
 
   taggable_on :regions, index: true

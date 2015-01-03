@@ -17,6 +17,7 @@
   <script src="http://cdn.bootcss.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
   <link href="http://cdn.bootcss.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
   <link href="http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="http://cdn.bootcss.com/html5sortable/0.1.8/html.sortable.min.js"></script>
 
   <!--toggle between development and production-->
   <% if Rails.env.production? %>
@@ -51,7 +52,7 @@
 <body>
   <div class="header">
     <div class="navbar navbar-default" role="navigation">
-      <div class="container">
+      <div class="container-fluid">
 
         <div class="navbar-header hidden-md hidden-lg">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -68,6 +69,7 @@
             <li><%= link_to t("admin.index"), admin_root_path %></li>
           </div>
           <div class="nav navbar-nav">
+            <li><%= link_to "置顶管理", admin_tops_path %></li>
             <li class="dropdown">
               <a href=#" class="dropdown-toggle" data-toggle="dropdown" >资讯</a>
               <ul class="dropdown-menu" role="menu">

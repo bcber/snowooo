@@ -4,10 +4,8 @@ class Snowboot
   include Mongoid::BaseModel
   include Mongoid::Topable
   include Mongoid::Rateable
+  include Mongoid::Recommendable
   ratyrate_rateable
-
-  field :up_at, type: Time, default: Time.new(1970)
-  field :recommend_at, type: Time, default: Time.new(1970)
 
   STYLES = Snowboot.all.pluck(:style).uniq.reject{|a|a.blank?}
 

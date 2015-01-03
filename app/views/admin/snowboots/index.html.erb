@@ -8,23 +8,33 @@
   <table class="table">
     <thead>
     <tr>
-      <th>名称</th>
-      <th>最近置顶</th>
-      <th>最近推荐</th>
-      <th>操作</th>
+      <th><%= t("name") %></th>
+      <th><%= t("isTop") %></th>
+      <th><%= t("isRecommend") %></th>
+      <th><%= t("views_count") %></th>
+      <th><%= t("operation") %></th>
     </tr>
     </thead>
     <tbody>
     <% @snowboots.each do |snowboot| %>
         <tr>
-          <td><%= snowboot.name %></td>
-          <td><%= snowboot.up_at %></td>
-          <td><%= snowboot.recommend_at %></td>
+          <td><%= link_to snowboot.name , snowboot %></td>
+          <td><% if snowboot.top? %> <i class="fa fa-check"></i> <% end %></td>
+          <td><% if snowboot.recommend? %> <i class="fa fa-check"></i> <% end %></td>
+          <td><%= snowboot.views_count %></td>
           <td>
-            <%= link_to '详情', snowboot, class: "btn btn-default btn-xs" %>
-            <%= link_to '置顶' , up_admin_snowboot_path(snowboot), class:"btn btn-default btn-xs"%>
-            <%= link_to '取消置顶', down_admin_snowboot_path(snowboot), class:"btn btn-default btn-xs" %>
-            <%= link_to "推荐", recommend_admin_snowboot_path(snowboot), class:"btn btn-default btn-xs" %>
+
+            <% if snowboot.top? %>
+              <%= link_to '取消置顶', cancel_top_admin_snowboot_path(snowboot), class:"btn btn-default btn-xs" %>
+            <% else %>
+              <%= link_to '置顶' , set_top_admin_snowboot_path(snowboot), class:"btn btn-default btn-xs"%>
+            <% end %>
+
+            <% if snowboot.recommend? %>
+              <%= link_to '取消置顶', cancel_recommend_admin_snowboot_path(snowboot),class:"btn btn-default btn-xs" %>
+            <% else %>
+              <%= link_to "推荐", set_recommend_admin_snowboot_path(snowboot), class:"btn btn-default btn-xs" %>
+            <% end %>
             <%= link_to '编辑', edit_admin_snowboot_path(snowboot), class: "btn btn-default btn-xs" %>
             <%= link_to '删除', admin_snowboot_path(snowboot), data:{confirm:"确定?"},method: :delete,class: "btn btn-danger btn-xs" %>
           </td>

@@ -37,7 +37,15 @@
     </tr>
     <tr>
       <td>管理员</td>
-      <td><% if @user.isAdmin %> 是 <% else %> 否 <% end %></td>
+      <td>
+        <% if @user.isAdmin %>
+          是 <%= link_to '取消管理员', cancel_admin_admin_user_path(@user) ,class: "btn btn-default btn-xs"%>
+        <% else %>
+          否 <%= link_to '设为管理员', set_admin_admin_user_path(@user) ,class: "btn btn-default btn-xs"%>
+      <% end %>
+      </td>
+    </tr>
+    <tr>
     </tr>
   </tbody>
 </table>

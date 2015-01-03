@@ -33,7 +33,7 @@ class Admin::PostNodesController < Admin::ApplicationController
   private
 
   def set_post_node
-    @post_node = PostNode.find(params[:id])
+    @post_node = PostNode.unscoped.find(params[:id])
   end
 
   def post_node_params

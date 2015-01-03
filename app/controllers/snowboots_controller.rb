@@ -16,6 +16,7 @@ class SnowbootsController < ApplicationController
 
   def show
     session[:reply_page] = url_for(@snowboot)
+    @snowboot.view
     set_seo_meta("#{@snowboot.title}", "#{@snowboot.title}")
   end
 

@@ -5,13 +5,14 @@ class Post
   include Mongoid::TaggableOn
   include Mongoid::Paranoia
   include Mongoid::Topable
+  include Mongoid::Recommendable
+
   taggable_on :category
 
   validates_presence_of :title,:content
 
   field :title
   field :content
-  field :recommend_at, type: Time, default: nil
   field :pass, type: Boolean, default: false
   field :comment_count ,type: Integer, default: 0
   field :cover
@@ -20,7 +21,7 @@ class Post
   scope :passed, -> { where(pass: true) }
   scope :nopassed, -> { where(pass: false) }
   scope :no_node, ->{where(post_node_id: nil)}
-  default_scope ->{ where( pass: true).where(:post_node_id.ne => nil) }
+  default_scope ->{ where( pass: true,:post_node_id.ne => nil) }
 
   has_many :comments, as: :commentable, dependent: :destroy
   belongs_to :user

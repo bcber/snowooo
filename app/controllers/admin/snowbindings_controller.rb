@@ -1,7 +1,12 @@
 class Admin::SnowbindingsController < Admin::ApplicationController
-  before_action :set_snowbinding, only:[:edit,:update,:destroy, :up, :down, :recommend]
+  before_action :set_snowbinding, only:[:edit,:update,:destroy, :set_top, :cancel_top, :set_recommend, :cancel_recommend]
   def index
-    @snowbindings = Snowbinding.desc(:created_at).paginate(:page => params[:page], :per_page => 10)
+    if params[:order]
+      @snowbindings = Snowbinding.desc(params[:order])
+    else
+      @snowbindings = Snowbinding.recent
+    end
+    @snowbindings = @snowbindings.paginate(:page => params[:page], :per_page => 10)
   end
 
   def new
@@ -28,23 +33,25 @@ class Admin::SnowbindingsController < Admin::ApplicationController
   end
 
   # up
-  def up
-    if @snowbinding.update(up_at: Time.now)
-      redirect_to admin_snowbindings_path
-    end
+  def set_top
+    @snowbinding.set_top
+    redirect_to admin_snowbindings_path, notice: "设置成功"
   end
 
-  def down
-    if @snowbinding.update(up_at: Time.new(1970))
-      redirect_to admin_snowbindings_path
-    end
+  def cancel_top
+    @snowbinding.cancel_top
+    redirect_to admin_snowbindings_path, notice: "设置成功"
   end
 
   #recommend
-  def recommend
-    if @snowbinding.update(recommend_at: Time.now)
-      redirect_to admin_snowbindings_path
-    end
+  def set_recommend
+    @snowbinding.set_recommend
+    redirect_to admin_snowbindings_path, notice: "设置成功"
+  end
+
+  def cancel_recommend
+    @snowbinding.cancel_recommend
+    redirect_to admin_snowbindings_path, notice: "设置成功"
   end
 
   # PATCH/PUT /snowboards/1

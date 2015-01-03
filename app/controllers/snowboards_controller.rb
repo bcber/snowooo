@@ -25,6 +25,7 @@ class SnowboardsController < ApplicationController
   # GET /snowboards/1.json
   def show
     session[:reply_page] = url_for(@snowboard)
+    @snowboard.view
     set_seo_meta("#{@snowboard.title}", "#{@snowboard.title}")
   end
 

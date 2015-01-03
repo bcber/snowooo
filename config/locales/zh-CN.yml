@@ -53,6 +53,11 @@ zh-CN:
   video: "视频"
   comment: "评论"
   newpost: "写文章"
+  name: "名称"
+  isRecommend: "是否推荐"
+  isTop: "是否置顶"
+  operation: "操作"
+  views_count: "查看次数"
   users:
     messages:
       no_name: "还没有设置昵称"

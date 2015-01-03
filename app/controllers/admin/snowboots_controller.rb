@@ -1,5 +1,5 @@
 class Admin::SnowbootsController < Admin::ApplicationController
-  before_action :set_snowboot, only:[:edit,:update,:destroy, :up, :down,:recommend]
+  before_action :set_snowboot, only:[:edit,:update,:destroy, :set_top, :cancel_top,:set_recommend,:cancel_recommend]
   def index
     @snowboots = Snowboot.desc(:created_at).paginate(:page => params[:page], :per_page => 10)
   end
@@ -13,25 +13,26 @@ class Admin::SnowbootsController < Admin::ApplicationController
     @snowboot.qiniu_images.build
   end
 
-
   # up
-  def up
-    if @snowboot.update(up_at: Time.now)
-      redirect_to admin_snowboots_path
-    end
+  def set_top
+    @snowboot.set_top
+    redirect_to admin_snowboots_path,notice:"设置成功"
   end
 
-  def down
-    if @snowboot.update(up_at: Time.new(1970))
-      redirect_to admin_snowboots_path
-    end
+  def cancel_top
+    @snowboot.cancel_top
+    redirect_to admin_snowboots_path,notice:"设置成功"
   end
 
   #recommend
-  def recommend
-    if @snowboot.update(recommend_at: Time.now)
-      redirect_to admin_snowboots_path
-    end
+  def set_recommend
+    @snowboot.set_recommend
+    redirect_to admin_snowboots_path,notice:"设置成功"
+  end
+
+  def cancel_recommend
+    @snowboot.cancel_recommend
+    redirect_to admin_snowboots_path,notice:"设置成功"
   end
 
   def create

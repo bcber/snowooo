@@ -1,15 +1,31 @@
 class Admin::UsersController < Admin::ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy,:set_admin,:cancel_admin]
 
   # GET /admin/users
   # GET /admin/users.json
   def index
-    @users = User.paginate(page: params[:page], per_page: 10)
+    @users = User.recent.paginate(page: params[:page], per_page: 10)
   end
 
   # GET /admin/users/1
   # GET /admin/users/1.json
   def show
+  end
+
+  def set_admin
+    if @user.set_admin
+      redirect_to admin_user_path(@user), notice:"设置成功!"
+    else
+      redirect_to admin_user_path(@user), notice:"设置失败"
+    end
+  end
+
+  def cancel_admin
+    if @user.cancel_admin
+      redirect_to admin_user_path(@user), notice:"设置成功!"
+    else
+      redirect_to admin_user_path(@user), notice:"设置失败"
+    end
   end
 
   # GET /admin/users/new
@@ -55,10 +71,7 @@ class Admin::UsersController < Admin::ApplicationController
   # DELETE /admin/users/1.json
   def destroy
     @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to admin_users_path
   end
 
   private

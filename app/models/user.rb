@@ -113,6 +113,18 @@ class User
     self.notifications.unread.count
   end
 
+  def set_admin
+    if not isAdmin
+      update(isAdmin: true)
+    end
+  end
+
+  def cancel_admin
+    if isAdmin
+      update(isAdmin: false)
+    end
+  end
+
   def check_in
     self.touch(:check_in_at)
     self.add_credit 10

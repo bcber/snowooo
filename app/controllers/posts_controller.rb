@@ -26,6 +26,7 @@ class PostsController < ApplicationController
 
   def show
     @recommend_posts = Post.passed.asc(:recommend_at.desc).limit(10)
+    @post.view
     session[:reply_page] = url_for(@post)
     set_seo_meta("#{@post.title}", "#{@post.title}")
   end

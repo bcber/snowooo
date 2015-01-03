@@ -1,5 +1,5 @@
 class Admin::SnowboardsController < Admin::ApplicationController
-  before_action :set_snowboard, only:[:edit,:update,:destroy, :up,:down, :recommend]
+  before_action :set_snowboard, only:[:edit,:update,:destroy, :set_top,:cancel_top, :set_recommend,:cancel_recommend]
   def index
     @snowboards = Snowboard.desc(:created_at).paginate(:page => params[:page], :per_page => 10)
   end
@@ -14,16 +14,14 @@ class Admin::SnowboardsController < Admin::ApplicationController
   end
 
   # up
-  def up
-    if @snowboard.update(up_at: Time.now)
-      redirect_to admin_snowboards_path
-    end
+  def set_top
+    @snowboard.set_top
+    redirect_to admin_snowboards_path, notice:"设置成功"
   end
 
-  def down
-    if @snowboard.update(up_at: Time.new(1970))
-      redirect_to admin_snowboards_path
-    end
+  def cancel_top
+    @snowboard.cancel_top
+    redirect_to admin_snowboards_path, notice:"设置成功"
   end
 
   #recommend
@@ -31,6 +29,11 @@ class Admin::SnowboardsController < Admin::ApplicationController
     if @snowboard.update(recommend_at: Time.now)
       redirect_to admin_snowboards_path
     end
+  end
+
+  def cancel_recommend
+    @snowboard.cancel_recommend
+    redirect_to admin_snowboards_path, notice:"设置成功"
   end
 
   def create

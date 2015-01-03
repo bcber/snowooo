@@ -1,13 +1,6 @@
 class WelcomeController < ApplicationController
   def index
-    @top = []
-    @top << Post.top.limit(5).entries
-    @top << Snowboard.top.limit(5).entries
-    @top << Place.top.limit(5).entries
-    @top << Snowbinding.top.limit(5).entries
-    @top << Snowboot.top.limit(5).entries
-    @top.flatten!
-    @top.sort_by! {|item| item.top_at }.reverse!
+    @top = Top.asc(:position).limit(5).entries.map{ |e| e.model }
 
     @posts = Post.recent.limit(6)
     @places = Place.recent.limit(8)

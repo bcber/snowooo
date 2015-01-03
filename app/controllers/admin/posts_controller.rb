@@ -1,5 +1,5 @@
 class Admin::PostsController < Admin::ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :up, :recommend, :down ,:pass]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :set_top, :cancel_top, :set_recommend,:cancel_recommend ,:pass]
 
   # GET /admin/posts
   # GET /admin/posts.json
@@ -33,18 +33,28 @@ class Admin::PostsController < Admin::ApplicationController
   end
 
   # up
-  def up
-    if @post.pushToTop
+  def set_top
+    @post.set_top
+    if not @post.user.isAdmin
       @post.user.member_rule_top_post
       Notification.top_post(@post)
-      redirect_to admin_posts_path
     end
+    redirect_to admin_posts_path, notice:"设置成功"
   end
 
-  def down
-    if @post.cancelTop
-      redirect_to admin_posts_path
-    end
+  def cancel_top
+    @post.cancel_top
+    redirect_to admin_posts_path, notice:"设置成功"
+  end
+
+  def set_recommend
+    @post.set_recommend
+    redirect_to admin_posts_path, notice:"设置成功"
+  end
+
+  def cancel_recommend
+    @post.cancel_recommend
+    redirect_to admin_posts_path, notice:"设置成功"
   end
 
   #recommend
@@ -105,7 +115,7 @@ class Admin::PostsController < Admin::ApplicationController
 
   private
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.unscoped.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

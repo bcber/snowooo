@@ -6,24 +6,35 @@
     <table class="table">
       <thead>
       <tr>
-        <th>标题</th>
+        <th><%= t("name") %></th>
         <th>所属分类</th>
-        <th>最近置顶</th>
-        <th>最近推荐</th>
+        <th><%= t("isTop") %></th>
+        <th><%= t("isRecommend") %></th>
+        <th><%= t("views_count") %></th>
+        <th><%= t("operation") %></th>
       </tr>
       </thead>
       <tbody>
       <% @videos.each do |video| %>
           <tr>
-            <td><%= video.title %></td>
+            <td><%= link_to video.title, video %></td>
             <td><%= video.video_node.title if video.video_node.present? %></td>
-            <td><%= video.up_at %></td>
-            <td><%= video.recommend_at %></td>
+            <td><% if video.top? %> <i class="fa fa-check"></i> <% end %></td>
+            <td><% if video.recommend? %> <i class="fa fa-check"></i> <% end %></td>
+            <td><%= video.views_count %></td>
             <td>
               <%= link_to '详情', video ,class: "btn btn-default btn-xs"%>
-              <%= link_to '置顶' , up_admin_video_path(video), class:"btn btn-default btn-xs"%>
-              <%= link_to '取消置顶', down_admin_video_path(video), class:"btn btn-default btn-xs" %>
-              <%= link_to "推荐", recommend_admin_video_path(video), class:"btn btn-default btn-xs" %>
+              <% if video.top? %>
+                <%= link_to '取消置顶', cancel_top_admin_video_path(video), class:"btn btn-default btn-xs" %>
+              <% else %>
+                <%= link_to '置顶' , set_top_admin_video_path(video), class:"btn btn-default btn-xs"%>
+              <% end %>
+
+              <% if video.recommend? %>
+                <%= link_to "取消推荐", cancel_recommend_admin_video_path(video), class:"btn btn-default btn-xs" %>
+              <% else %>
+                <%= link_to "推荐", set_recommend_admin_video_path(video), class:"btn btn-default btn-xs" %>
+              <% end %>
               <%= link_to '编辑', edit_admin_video_path(video) ,class: "btn btn-default btn-xs"%>
               <%= link_to '删除', admin_video_path(video), method: :delete, data: { confirm: 'Are you sure?' } ,class: "btn btn-danger btn-xs"%></td>
           </tr>

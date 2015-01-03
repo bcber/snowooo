@@ -6,25 +6,34 @@
 <table class="table">
   <thead>
     <tr>
-      <th>名称</th>
-      <th>最近置顶</th>
-      <th>最近推荐</th>
-      <th>操作</th>
+      <th><%= t("name") %></th>
+      <th><%= t("isTop") %></th>
+      <th><%= t("isRecommend") %></th>
+      <th><%= t("operation") %></th>
     </tr>
   </thead>
 
   <tbody>
     <% @places.each do |place| %>
       <tr>
-        <td><%= place.name %></td>
-        <td><%= place.up_at %></td>
-        <td><%= place.recommend_at %></td>
-        <td><%= link_to '详情', place, class:"btn btn-default btn-xs" %>
-        <%= link_to '编辑', edit_admin_place_path(place) , class:"btn btn-default btn-xs"%>
-        <%= link_to '置顶' , up_admin_place_path(place), class:"btn btn-default btn-xs"%>
-        <%= link_to '取消置顶' , down_admin_place_path(place), class:"btn btn-default btn-xs"%>
-        <%= link_to "推荐", recommend_admin_place_path(place), class:"btn btn-default btn-xs" %>
-        <%= link_to '删除', admin_place_path(place), method: :delete, data: { confirm: 'Are you sure?' } , class:"btn btn-danger btn-xs"%></td>
+        <td><%= link_to place.name , place %></td>
+        <td><% if place.top? %> <i class="fa fa-check"></i> <% end %></td>
+        <td><% if place.recommend? %> <i class="fa fa-check"></i> <% end %></td>
+        <td>
+          <%= link_to '编辑', edit_admin_place_path(place) , class:"btn btn-default btn-xs"%>
+          <% if place.top? %>
+            <%= link_to '取消置顶' , cancel_top_admin_place_path(place), class:"btn btn-default btn-xs"%>
+          <% else %>
+            <%= link_to '置顶' , set_top_admin_place_path(place), class:"btn btn-default btn-xs"%>
+          <% end %>
+
+          <% if place.recommend? %>
+            <%= link_to "取消推荐", cancel_recommend_admin_place_path(place),class:"btn btn-default btn-xs" %>
+          <% else %>
+            <%= link_to "推荐", set_recommend_admin_place_path(place), class:"btn btn-default btn-xs" %>
+          <% end %>
+
+          <%= link_to '删除', admin_place_path(place), method: :delete, data: { confirm: 'Are you sure?' } , class:"btn btn-danger btn-xs"%></td>
       </tr>
     <% end %>
   </tbody>

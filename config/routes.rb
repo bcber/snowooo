@@ -84,16 +84,24 @@ Rails.application.routes.draw do
   namespace :admin do 
     root to: "home#index"
     resources :topics
+    resources :tops do
+      collection do
+        post "set_position"
+      end
+    end
+
     resources :video_nodes
     resources :topic_nodes
     resources :settings
-    resources :users
+    resources :users do
+      member do
+        get 'set_admin'
+        get 'cancel_admin'
+      end
+    end
     resources :post_nodes
 
     resources :posts do
-      collection do
-        get 'top_posts'
-      end
       member do
         get 'pass'
       end
@@ -101,9 +109,10 @@ Rails.application.routes.draw do
 
     resources :posts , :places, :videos, :snowboots, :snowbindings , :snowboards do
       member do
-        get 'up'
-        get 'recommend'
-        get 'down'
+        get 'set_top'
+        get 'cancel_top'
+        get 'set_recommend'
+        get 'cancel_recommend'
       end
     end
 

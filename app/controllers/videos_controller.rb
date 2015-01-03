@@ -11,8 +11,8 @@ class VideosController < ApplicationController
   def show
     @comment = Comment.new
     session[:reply_page] = url_for(@video)
+    @video.view
     set_seo_meta("#{@video.title}", "#{@video.title}")
-
   end
 
   def node

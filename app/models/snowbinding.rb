@@ -4,6 +4,7 @@ class Snowbinding
   include Mongoid::BaseModel
   include Mongoid::Topable
   include Mongoid::Rateable
+  include Mongoid::Recommendable
   ratyrate_rateable
 
   BRANDS = Snowbinding.pluck(:brand).flatten.uniq.reject{|brand| brand.blank?}

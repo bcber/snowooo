@@ -128,3 +128,14 @@
     color:#9bc47d;
   }
 }
+
+.index-top-container-small,.index-top-container-big{
+  .magazine-badge{
+    position: absolute;
+    left: 5px;
+    bottom:5px;
+    padding:5px;
+    color:white;
+    opacity: 0.6;
+  }
+}

@@ -5,6 +5,8 @@ class Snowboard
   include Mongoid::Topable
   include Mongoid::TaggableOn
   include Mongoid::Rateable
+  include Mongoid::Recommendable
+
   taggable_on :colors
 
   ratyrate_rateable
