@@ -1,6 +1,5 @@
 <% if @top.count > 4 %>
-<div class="row">
-  <div class="col-lg-8 col-lg-offset-0 col-md-8 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+  <div class="col-lg-8 col-lg-offset-0 col-md-8 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12">
     <div class="carousel slide carousel-v1 margin-bottom-40" id="myCarousel-1">
       <div class="carousel-inner">
         <div class="item active">
@@ -16,7 +15,7 @@
             <%= link_to @top[1] do  %>
                 <%= lazy_image_tag @top[1].cover.large%>
             <% end %>
-            <span class="magazine-badge label-blue"><%= truncate(@top[0].title, length:30) %></span>
+            <span class="magazine-badge label-blue"><%= truncate(@top[1].title, length:30) %></span>
           </div>
         </div>
         <div class="item">
@@ -24,7 +23,7 @@
             <%= link_to @top[2] do  %>
                 <%= lazy_image_tag @top[2].cover.large%>
             <% end %>
-            <span class="magazine-badge label-blue"><%= truncate(@top[0].title, length:30) %></span>
+            <span class="magazine-badge label-blue"><%= truncate(@top[2].title, length:30) %></span>
           </div>
         </div>
       </div>
@@ -55,7 +54,6 @@
       <span class="magazine-badge label-blue"><%= truncate(@top[4].title, length:30) %></span>
     </div>
   </div>
-</div>
 <% end %>
 
 <hr/>
