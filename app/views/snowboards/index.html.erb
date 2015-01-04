@@ -1,62 +1,57 @@
 <div class="snowboard">
   <div class="s-results">
-    <div class="row">
+    <div class="row hidden-xs">
       <div class="col-sm-12">
         <%= render 'common/search_info' %>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-2 col-sm-2">
+      <div class="col-md-2 hidden-xs">
         <div class="row">
           <div class="col-sm-12 related-search">
             <%= render 'sidebar' %>
           </div>
         </div>
       </div>
-      <div class="col-md-10 col-sm-10">
+      <div class="col-md-10">
         <div class="list-container">
-        <% if @snowboards.empty? %>
-          <h2 class="text-center">抱歉没有找到符合条件的雪板</h2>
-        <% end %>
-          <% @snowboards.in_groups_of(4,false) do |group| %>
-            <div class="row">
-              <% group.each do |snowboard| %>
-                <div class="col-sm-3">
-                  <%= link_to  snowboard do %>
-                    <div class="thumbnails thumbnail-style thumbnail-kenburn">
-                      <div class="thumbnail-img">
-                        <div class="overflow-hidden">
-                          <%= lazy_image_tag snowboard.cover.large %>
-                        </div>
-
-                      </div>
-
-                      <div class="caption">
-
-                        <div class="content-boxes-v1">
-                          <strong><%= snowboard.brand %></strong>
-                          <h5>
-                            <%= link_to snowboard.name, snowboard %>
-                            <h6>
-                              <%= snowboard.style %>
-                            </h6>
-                          </h5>
-                        </div>
-                      </div>
+          <% if @snowboards.empty? %>
+            <h2 class="text-center">抱歉没有找到符合条件的雪板</h2>
+          <% end %>
+          <% @snowboards.each do |snowboard| %>
+            <div class="col-md-3 col-xs-12 col-sm-6">
+              <%= link_to  snowboard do %>
+                <div class="thumbnails thumbnail-style thumbnail-kenburn">
+                  <div class="thumbnail-img">
+                    <div class="overflow-hidden">
+                      <%= lazy_image_tag snowboard.cover.large %>
                     </div>
-                  <% end %>
+
+                  </div>
+
+                  <div class="caption">
+
+                    <div class="content-boxes-v1">
+                      <strong><%= snowboard.brand %></strong>
+                      <h5>
+                        <%= link_to snowboard.name, snowboard %>
+                        <h6>
+                          <%= snowboard.style %>
+                        </h6>
+                      </h5>
+                    </div>
+                  </div>
                 </div>
               <% end %>
             </div>
           <% end %>
-
-      </div>
-
-      <div class="text-center">
-        <div class="pagination">
-          <%= will_paginate @snowboards , renderer: BootstrapPagination::Rails%>
         </div>
-      </div>
+
+        <div class="text-center">
+          <div class="pagination">
+            <%= paginate @snowboards%>
+          </div>
+        </div>
     </div>
     </div>
   </div>

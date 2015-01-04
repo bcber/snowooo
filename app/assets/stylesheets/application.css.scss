@@ -27,11 +27,6 @@
   overflow: hidden;
 }
 
-.loginbar{
-    height:100px;
-    overflow:hidden;
-}
-
 /* custome gear page*/
 .gear{
     .option-item{
@@ -158,12 +153,21 @@
 
 //topic page custome
 .topic{
-  padding-left: 15px;
   border-bottom: 1px solid #f0f0f0;
   margin-top:8px;
-}
-.topic .comment-count{
-  margin-top:20px;
+
+  .right-info{
+    padding-left:55px;
+  }
+
+  img{
+    width:50px;
+    height:50px;
+  }
+
+  .badge{
+    margin-top:7px;
+  }
 }
 
 .bbs .header-fixed-shrink .navbar{
@@ -189,13 +193,6 @@
 
 .text-center .star{
   margin: auto;
-}
-
-.videos .list-item{
-  width:190px;
-  height:145px;
-  float:left;
-  margin:50px 10px;
 }
 
 .header .navbar-brand{
@@ -245,3 +242,9 @@ img.lazy{
   margin-left: auto;
   margin-right: auto;
 }
+
+.pagination li a {
+  color: #777;
+  padding: 6px 12px;
+}
+

@@ -1,35 +1,32 @@
+<div class="col-md-9 videos">
+  <% if @node.present? %>
+    <%= render 'node_info', node: @node %>
+  <% end %>
 
-<div class="row">
-  <div class="col-sm-9 videos">
-    <% if @node.present? %>
-        <div class="row">
-          <%= render 'node_info', node: @node %>
-        </div>
-    <% end %>
-
-    <% @videos.each do |video| %>
+  <% @videos.each do |video| %>
+    <div class="col-md-3 col-xs-12">
       <div class="thumbnails thumbnail-style list-item">
         <%= link_to(video, { class: "fancybox-button zoomer" , :"data-rel" => "fancybox-button"}) do %>
-          <span class="overlay-zoom">  
-              <img class="img-responsive" src="<%= video.thumbnail %>" style="width:100%">
-              <span class="zoom-icon"></span>
-          </span>                                              
+        <span class="overlay-zoom">
+            <img class="img-responsive" src="<%= video.thumbnail %>" style="width:100%">
+            <span class="zoom-icon"></span>
+        </span>
         <% end %>
         <div class="caption" style="padding:5px;">
           <h6>
             <% if video.video_node.present? %>
-            <i class="fa fa-tags"></i>
-            <%= link_to video.video_node.title ,videos_node_path(video.video_node) %></h6>
+              <i class="fa fa-tags"></i>
+              <%= link_to video.video_node.title ,videos_node_path(video.video_node) %></h6>
             <% end %>
             <h6><%= link_to video.title, video, class:"hover-effect" %></h6>
-        </div>
+            </div>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
+</div>
 
-  <div class="col-sm-3">
-    <%= render 'node_side_bar' %>
-  </div>
+<div class="col-md-3">
+  <%= render 'node_side_bar' %>
 </div>
 <%= javascript_include_tag "http://player.youku.com/jsapi" %>
 

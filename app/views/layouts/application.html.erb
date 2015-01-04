@@ -97,7 +97,11 @@
               <!-- Brand and toggle get grouped for better mobile display -->
               <div class="collapse navbar-collapse navbar-responsive-collapse">
                 <ul class="nav navbar-nav pull-left">
+                  <% if mobile? %>
+                    <%= render 'mobile/menu_bar' %>
+                  <% else %>
                     <%= render 'common/menu_bar' %>
+                  <% end %>
                 </ul>
 
                 <ul class="nav navbar-nav">

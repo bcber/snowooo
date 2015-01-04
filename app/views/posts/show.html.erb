@@ -1,80 +1,86 @@
-<div class="blog-item">
-  <div class="col-sm-9">
-    <div class="margin-bottom-40">
-      <h1><%= link_to @post.title, @post %></h1>
-      <% if can? :edit, @post %>
+<% if @post.publish or (current_user and current_user.isAdmin) %>
+  <div class="blog-item">
+    <div class="col-sm-9">
+      <div class="margin-bottom-40">
+        <h1><%= link_to @post.title, @post %></h1>
+        <% if can? :edit, @post %>
           <hr/>
-        <%= link_to '编辑', edit_post_path(@post) %>
-        <hr/>
-      <% end  %>
-      <div class="blog-post-tags">
-        <ul class="list-unstyled list-inline blog-info">
+          <%= link_to '编辑', edit_post_path(@post) %>
+          <hr/>
+        <% end  %>
+        <div class="blog-post-tags">
+          <ul class="list-unstyled list-inline blog-info">
             <li><i class="fa fa-calendar"></i> <%= @post.created_at.to_date %></li>
             <li><i class="fa fa-pencil"></i> <%= @post.user.present? ? @post.user.name: "admin" %></li>
             <li><i class="fa fa-comments"></i> <span class="comment-count"><%= @post.comment_count %></span> 条评论</li>
-        </ul>
-        <ul class="list-unstyled list-inline blog-tags">
+          </ul>
+          <ul class="list-unstyled list-inline blog-tags">
             <li>
-                <i class="fa fa-tags"></i> 
-                <% @post.categories.each do |category| %>
-                    <%= link_to category, category_posts_path(category) %>
-                <% end %>
+              <i class="fa fa-tags"></i>
+              <% @post.categories.each do |category| %>
+                <%= link_to category, category_posts_path(category) %>
+              <% end %>
             </li>
-        </ul>                                                
+          </ul>
+        </div>
+        <hr>
+        <div class="blog-img margin-bottom-40">
+          <%= image_tag @post.cover, class:"img-responsive" %>
+        </div>
+        <p>
+          <%= @post.content.html_safe %>
+        </p>
+        <%= render partial: 'common/social_button',locals: {content: @post.title} %>
       </div>
+      <div class="media">
+        <h3> <span class="comment-count"><%= @post.comment_count %></span> <%= t("comments") %></h3>
+      </div>
+
       <hr>
-      <div class="blog-img margin-bottom-40">
-        <%= image_tag @post.cover, class:"img-responsive" %>
+      <div id="comment-container" data-comment-count=<%= @post.comment_count %>>
+        <%= render partial: "comments/comment", collection: @post.comments.desc('likes_count') %>
       </div>
-      <p>
-        <%= @post.content.html_safe %>
-      </p>
-      <%= render partial: 'common/social_button',locals: {content: @post.title} %>
-    </div>
-    <div class="media">
-      <h3> <span class="comment-count"><%= @post.comment_count %></span> <%= t("comments") %></h3>
-    </div>
 
-    <hr>
-    <div id="comment-container" data-comment-count=<%= @post.comment_count %>>
-      <%= render partial: "comments/comment", collection: @post.comments.desc('likes_count') %>
-    </div>
+      <div class="post-comment">
+        <h3><%= t("comment") %></h3>
+      </div>
 
-    <div class="post-comment">
-      <h3><%= t("comment") %></h3>
-    </div>
+      <% if current_user %>
+        <%= form_for [@post, Comment.new], remote: true do |f| %>
+          <div class="field">
+            <%= f.label :content %><br>
+            <%= f.text_area :content , class: "form-control", rows:"8"%>
+          </div>
 
-    <% if current_user %>
-      <%= form_for [@post, Comment.new], remote: true do |f| %>
-            <div class="field">
-              <%= f.label :content %><br>
-              <%= f.text_area :content , class: "form-control", rows:"8"%>
-            </div>
-
-            <br>
-            <div class="actions">
-              <%= f.submit t("comment"), class:"btn-u" %>
-            </div>
-      <% end %>
-    <% else %>
+          <br>
+          <div class="actions">
+            <%= f.submit t("comment"), class:"btn-u" %>
+          </div>
+        <% end %>
+      <% else %>
         <%= render 'common/login_signup_prompt' %>
-    <% end %>
-  </div>
-  <div class="col-sm-3 hidden-xs">
-    <div class="posts margin-bottom-40">
-      <div class="headline headline-md">向你推荐</div>
-      <% @recommend_posts.each do |post| %>
-        <dl class="dl-horizontal">
-          <dt>
-            <%= link_to post do %>
-              <%= image_tag post.cover , class:"img-responsive"%>
-            <% end %>
-          </dt>
-          <dd>
-            <p><%= truncate(post.title, length: 20) %></p>
-          </dd>
-        </dl>
       <% end %>
     </div>
+    <div class="col-sm-3 hidden-xs">
+      <div class="posts margin-bottom-40">
+        <div class="headline headline-md">向你推荐</div>
+        <% @recommend_posts.each do |post| %>
+          <dl class="dl-horizontal">
+            <dt>
+              <%= link_to post do %>
+                <%= image_tag post.cover , class:"img-responsive"%>
+              <% end %>
+            </dt>
+            <dd>
+              <p><%= truncate(post.title, length: 20) %></p>
+            </dd>
+          </dl>
+        <% end %>
+      </div>
+    </div>
   </div>
-</div>
+<% else %>
+  <div class="col-xs-12">
+    <h3 class="text-center">对不起, 这篇文章正在审核，暂时还不能查看</h3>
+  </div>
+<% end %>

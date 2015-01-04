@@ -1,162 +1,160 @@
-<div class="row">
-  <div class="col-sm-4">
-    <div class="row">
-      <div class="col-sm-12">
-        <h1> <strong><%= @snowboard.name %></strong></h1>
-      </div>
+<div class="col-md-4">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1> <strong><%= @snowboard.name %></strong></h1>
     </div>
-    <div class="row">
-      <div class="col-sm-12">
-        <div>
-          综合评分:
-          <div class="rate_average rate" data-rate="<%= @snowboard.rate_average %>" data-readonly="true" data-nomsg="true"></div>(<%= @snowboard.rates.count %>人点评)
-          <h3 style="color:#f98361;">
-            <%= @snowboard.rate_average %>
-          </h3>
-        </div>
-        <div>
-          <div class="rate_5 rate" data-rate="5" data-readonly="true"></div> (<%= @snowboard.rate_5 %>个人)
-        </div>
-        <div>
-          <div class="rate_4 rate" data-rate="4" data-readonly="true"></div> (<%= @snowboard.rate_4 %>个人)
-        </div>
-        <div>
-          <div class="rate_3 rate" data-rate="3" data-readonly="true"></div> (<%= @snowboard.rate_3 %>个人)
-        </div>
-        <div>
-          <div class="rate_2 rate" data-rate="2" data-readonly="true"></div> (<%= @snowboard.rate_2 %>个人)
-        </div>
-        <div>
-          <div class="rate_1 rate" data-rate="1" data-readonly="true"></div> (<%= @snowboard.rate_1 %>个人)
-        </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div>
+        综合评分:
+        <div class="rate_average rate" data-rate="<%= @snowboard.rate_average %>" data-readonly="true" data-nomsg="true"></div>(<%= @snowboard.rates.count %>人点评)
+        <h3 style="color:#f98361;">
+          <%= @snowboard.rate_average %>
+        </h3>
       </div>
-    </div>
-    <hr/>
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="headline">
-          <h4>技术指标</h4>
-        </div>
-        <table class="table table-striped">
-          <tbody>
-          <tr>
-            <td>风格</td>
-            <td><%= @snowboard.style %></td>
-          </tr>
-          <tr>
-            <td>长度</td>
-            <td>
-              <%= @snowboard.length %>
-            </td>
-          </tr>
-          <tr>
-            <td>profile</td>
-            <td><%= @snowboard.profile %></td>
-          </tr>
-          <tr>
-            <td>shape</td>
-            <td><%= @snowboard.shape %></td>
-          </tr>
-          <tr>
-            <td>flex</td>
-            <td><%= @snowboard.flex %></td>
-          </tr>
-          <tr>
-            <td>effectiveEdge</td>
-            <td><%= @snowboard.effectiveedge %></td>
-          </tr>
-          <tr>
-            <td>waistWidth</td>
-            <td><%= @snowboard.waistwidth %></td>
-          </tr>
-          <tr>
-            <td>sidecutRadius</td>
-            <td><%= @snowboard.sidecutradius %></td>
-          </tr>
-          <tr>
-            <td>stanceWidth</td>
-            <td><%= @snowboard.stancewidth %></td>
-          </tr>
-          <tr>
-            <td>stanceSetback</td>
-            <td><%= @snowboard.stancesetback %></td>
-          </tr>
-          <tr>
-            <td>mount</td>
-            <td><%= @snowboard.mount %></td>
-          </tr>
-          </tbody>
-        </table>
+      <div>
+        <div class="rate_5 rate" data-rate="5" data-readonly="true"></div> (<%= @snowboard.rate_5 %>个人)
+      </div>
+      <div>
+        <div class="rate_4 rate" data-rate="4" data-readonly="true"></div> (<%= @snowboard.rate_4 %>个人)
+      </div>
+      <div>
+        <div class="rate_3 rate" data-rate="3" data-readonly="true"></div> (<%= @snowboard.rate_3 %>个人)
+      </div>
+      <div>
+        <div class="rate_2 rate" data-rate="2" data-readonly="true"></div> (<%= @snowboard.rate_2 %>个人)
+      </div>
+      <div>
+        <div class="rate_1 rate" data-rate="1" data-readonly="true"></div> (<%= @snowboard.rate_1 %>个人)
       </div>
     </div>
   </div>
-  <div class="col-sm-8">
-    <div class="row">
-      <div class="col-sm-12">
-        <h2 style="text-align:right;"><%= @snowboard.brand %></h2>
+  <hr/>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="headline">
+        <h4>技术指标</h4>
       </div>
+      <table class="table table-striped">
+        <tbody>
+        <tr>
+          <td>风格</td>
+          <td><%= @snowboard.style %></td>
+        </tr>
+        <tr>
+          <td>长度</td>
+          <td>
+            <%= @snowboard.length %>
+          </td>
+        </tr>
+        <tr>
+          <td>profile</td>
+          <td><%= @snowboard.profile %></td>
+        </tr>
+        <tr>
+          <td>shape</td>
+          <td><%= @snowboard.shape %></td>
+        </tr>
+        <tr>
+          <td>flex</td>
+          <td><%= @snowboard.flex %></td>
+        </tr>
+        <tr>
+          <td>effectiveEdge</td>
+          <td><%= @snowboard.effectiveedge %></td>
+        </tr>
+        <tr>
+          <td>waistWidth</td>
+          <td><%= @snowboard.waistwidth %></td>
+        </tr>
+        <tr>
+          <td>sidecutRadius</td>
+          <td><%= @snowboard.sidecutradius %></td>
+        </tr>
+        <tr>
+          <td>stanceWidth</td>
+          <td><%= @snowboard.stancewidth %></td>
+        </tr>
+        <tr>
+          <td>stanceSetback</td>
+          <td><%= @snowboard.stancesetback %></td>
+        </tr>
+        <tr>
+          <td>mount</td>
+          <td><%= @snowboard.mount %></td>
+        </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="row">
-      <div class="col-sm-8 col-sm-offset-2">
-        <div class="owl-carousel">
-          <% @snowboard.images.each do |img| %>
-              <div class="item"><%= image_tag img.medium ,style:"width:100%"%></div>
-          <% end %>
-          <% @snowboard.qiniu_images.each do |img| %>
-          <div class="item"> <%= image_tag img.original.medium, style:"width:100%" %></div>
-          <% end %>
-        </div>
-      </div>
+  </div>
+</div>
+<div class="col-md-8">
+  <div class="row">
+    <div class="col-sm-12">
+      <h2 style="text-align:right;"><%= @snowboard.brand %></h2>
     </div>
-
-    <hr/>
-
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="headline"><h2>雪板介绍</h2></div>
-
-        <% if @snowboard.description.present? and @snowboard.description.is_a? String %>
-
-          <div class="description-short">
-              <%= truncate(strip_tags(@snowboard.description.html_safe), length: 50) %>
-          </div>
-
-          <div class="hide description-detail">
-            <%= @snowboard.description.html_safe %>
-          </div>
-
-          <button class="show-description-detail btn-u btn-block">更多</button>
-        <% else %>
-
-        <h3>还没有介绍</h3>
-
+  </div>
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <div class="owl-carousel">
+        <% @snowboard.images.each do |img| %>
+            <div class="item"><%= image_tag img.medium ,style:"width:100%"%></div>
+        <% end %>
+        <% @snowboard.qiniu_images.each do |img| %>
+        <div class="item"> <%= image_tag img.original.medium, style:"width:100%" %></div>
         <% end %>
       </div>
     </div>
-
-    <%= render partial: 'common/social_button',locals: {content: @snowboard.title} %>
-
-    <hr/>
-
-    <div>
-      <h3> <span class="reviews-count"></span> 点评</h3>
-      <%= render partial: 'reviews/review', collection: @snowboard.reviews %>
-    </div>
-
-    <hr/>
-
-    <% if current_user  %>
-      <% if @snowboard.rated?(current_user) %>
-        <h5>您已发表点评</h5>
-      <% else %>
-        <h3>我来点评</h3>
-        <%= render partial: 'reviews/partial_form', locals:{ reviewable: @snowboard, review: Review.new} %>
-      <% end %>
-    <% else %>
-      <%= render 'common/login_signup_prompt' %>
-    <% end %>
-
   </div>
+
+  <hr/>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="headline"><h2>雪板介绍</h2></div>
+
+      <% if @snowboard.description.present? and @snowboard.description.is_a? String %>
+
+        <div class="description-short">
+            <%= truncate(strip_tags(@snowboard.description.html_safe), length: 50) %>
+        </div>
+
+        <div class="hide description-detail">
+          <%= @snowboard.description.html_safe %>
+        </div>
+
+        <button class="show-description-detail btn-u btn-block">更多</button>
+      <% else %>
+
+      <h3>还没有介绍</h3>
+
+      <% end %>
+    </div>
+  </div>
+
+  <%= render partial: 'common/social_button',locals: {content: @snowboard.title} %>
+
+  <hr/>
+
+  <div>
+    <h3> <span class="reviews-count"></span> 点评</h3>
+    <%= render partial: 'reviews/review', collection: @snowboard.reviews %>
+  </div>
+
+  <hr/>
+
+  <% if current_user  %>
+    <% if @snowboard.rated?(current_user) %>
+      <h5>您已发表点评</h5>
+    <% else %>
+      <h3>我来点评</h3>
+      <%= render partial: 'reviews/partial_form', locals:{ reviewable: @snowboard, review: Review.new} %>
+    <% end %>
+  <% else %>
+    <%= render 'common/login_signup_prompt' %>
+  <% end %>
+
 </div>
 
 <script type="text/javascript" charset="utf-8">

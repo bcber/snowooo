@@ -25,10 +25,14 @@ class CommentsController < ApplicationController
     @comment_to_reply = Comment.find(params[:id])
     @comment = @comment_to_reply.comments.build(comment_params)
     @comment.user = current_user
-    @comment.save
-    redirect = session[:reply_page]
-    session[:reply_page] = nil
-    redirect_to redirect
+
+    if @comment.save
+      redirect = session[:reply_page]
+      session[:reply_page] = nil
+      redirect_to redirect
+    else
+      render 'edit_reply'
+    end
   end
 
   def edit
@@ -38,23 +42,20 @@ class CommentsController < ApplicationController
     @commentable = find_commentable
     @comment = @commentable.comments.build(comment_params)
     @comment.user = current_user
-    if @comment.commentable_type.downcase == 'post'
+
+    if @comment.save
+      @commentable.inc(comment_count: 1)
+
+      if @comment.commentable_type.downcase == 'post'
         Notification.generate_comment_post(@commentable,@comment)
-    end
-
-    if @comment.commentable_type.downcase == 'topic'
-      Notification.generate_comment_topic(@commentable,@comment)
-    end
-
-    respond_to do |format|
-      if @comment.save
-        @commentable.inc(comment_count: 1)
-        format.html { redirect_to @commentable, notice: '评论成功.' }
-        format.js
-      else
-        format.html { render :new }
-        format.js
       end
+
+      if @comment.commentable_type.downcase == 'topic'
+        Notification.generate_comment_topic(@commentable,@comment)
+      end
+      render partial: 'comment', locals:{comment: @comment },layout: false
+    else
+      head :bad_request
     end
   end
 

@@ -4,7 +4,7 @@
 <% Place.get_tags_on(:regions).in_groups_of(3, false) do |group| %>
   <div class="row" style="margin-bottom: 12px;">
     <% group.each do |region| %>
-        <div class="col-sm-4" >
+        <div class="col-md-4 col-md-offset-0 col-xs-5 col-xs-offset-1" style="padding: 12px;">
           <span><%= link_to region, places_region_path(region) %></span>
           <span class="badge rounded-2x badge-sea"><%= Place.get_tags_count(:regions, region) %></span>
         </div>

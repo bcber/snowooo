@@ -1,7 +1,12 @@
 class Admin::SnowbootsController < Admin::ApplicationController
   before_action :set_snowboot, only:[:edit,:update,:destroy, :set_top, :cancel_top,:set_recommend,:cancel_recommend]
   def index
-    @snowboots = Snowboot.desc(:created_at).paginate(:page => params[:page], :per_page => 10)
+    if params[:order]
+      @snowboots = Snowboot.desc(params[:order])
+    else
+      @snowboots = Snowboot.recent
+    end
+    @snowboots = @snowboots.paginate(:page => params[:page], :per_page => 10)
   end
 
   def new

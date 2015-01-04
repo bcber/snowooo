@@ -68,7 +68,8 @@
   }
 }
 
-@media (max-width: 750px) {
+@media (max-width: 768px) {
+
   .post_recent{
     width:100%;
     padding:10px;
@@ -117,6 +118,15 @@
     }
   }
 
+  #youkuplayer{
+    height:280px;
+  }
+}
+
+@media (min-width: 769px){
+  #youkuplayer{
+    height: 480px;
+  }
 }
 
 .guanzhuwomen{

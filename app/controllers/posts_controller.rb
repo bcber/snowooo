@@ -12,7 +12,7 @@ class PostsController < ApplicationController
 
   def node
     @node = PostNode.find(params[:node_id])
-    @posts = @node.posts.recent.passed.paginate(page: params[:page], per_page: 8)
+    @posts = @node.posts.recent.paginate(page: params[:page], per_page: 8)
     @top_posts = Post.desc(:up_at).limit(3)
     @recommend_posts = Post.desc(:recommend_at).limit(10)
     @comments = Comment.desc(:created_at).limit(6)
@@ -25,14 +25,14 @@ class PostsController < ApplicationController
   end
 
   def show
-    @recommend_posts = Post.passed.asc(:recommend_at.desc).limit(10)
+    @recommend_posts = Post.published.asc(:recommend_at.desc).limit(10)
     @post.view
     session[:reply_page] = url_for(@post)
     set_seo_meta("#{@post.title}", "#{@post.title}")
   end
 
   def new
-    @post = Post.new
+    @post = Post.new(publish: false)
   end
 
   def edit
@@ -44,6 +44,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.publish = false
     @post.user = current_user
     if @post.save
       redirect_to posts_path, notice: "您的文章已提交审核，请耐心等待"
@@ -63,11 +64,7 @@ class PostsController < ApplicationController
 
   private
     def set_post
-      if current_user and current_user.isAdmin?
-        @post = Post.unscoped.find(params[:id])
-      else
-        @post = Post.find(params[:id])
-      end
+      @post = Post.unscoped.find(params[:id])
     end
 
     def post_params

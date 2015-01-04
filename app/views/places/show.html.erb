@@ -1,108 +1,106 @@
-<div class="row">
-  <div class="col-sm-9">
-    <div class="row">
-      <div class="col-sm-12">
-        <h1><%= @place.name %></h1>
+<div class="col-md-9 col-xs-12">
+  <div class="row">
+    <div class="col-md-12">
+      <h1><%= @place.name %></h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-xs-12">
+      <div class="owl-carousel">
+        <% @place.place_images.each do |img| %>
+        <div class="item"><%= image_tag img.original.large ,style:"width:100%"%></div>
+        <% end %>
       </div>
     </div>
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="owl-carousel">
-          <% @place.place_images.each do |img| %>
-          <div class="item"><%= image_tag img.original.large ,style:"width:100%"%></div>
+    <div class="col-md-6 col-xs-12">
+      <div class="row">
+        <div class="col-md-12">
+          <div style="font-size: 16px; margin-top:20px;">
+            综合评分:
+            <div class="rate_average rate" data-rate="<%= @place.rate_average %>" data-readonly="true" data-nomsg="true"></div>(<%= @place.rates.count %>人点评)
+            <h3 style="color:#f98361;">
+              <%= @place.rate_average %>
+            </h3>
+          </div>
+          <div>
+            <div class="rate_5 rate" data-rate="5" data-readonly="true"></div> (<%= @place.rate_5 %>个人)
+          </div>
+          <div>
+            <div class="rate_4 rate" data-rate="4" data-readonly="true"></div> (<%= @place.rate_4 %>个人)
+          </div>
+          <div>
+            <div class="rate_3 rate" data-rate="3" data-readonly="true"></div> (<%= @place.rate_3 %>个人)
+          </div>
+          <div>
+            <div class="rate_2 rate" data-rate="2" data-readonly="true"></div> (<%= @place.rate_2 %>个人)
+          </div>
+          <div>
+            <div class="rate_1 rate" data-rate="1" data-readonly="true"></div> (<%= @place.rate_1 %>个人)
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div class="row">
+        <div class="col-md-12">
+          <% if can? :edit, @place %>
+              <%= link_to '编辑', edit_admin_place_path(@place) %>
+              <hr/>
           <% end %>
         </div>
       </div>
-      <div class="col-sm-6">
-        <div class="row">
-          <div class="col-sm-12">
-            <div>
-              综合评分:
-              <div class="rate_average rate" data-rate="<%= @place.rate_average %>" data-readonly="true" data-nomsg="true"></div>(<%= @place.rates.count %>人点评)
-              <h3 style="color:#f98361;">
-                <%= @place.rate_average %>
-              </h3>
-            </div>
-            <div>
-              <div class="rate_5 rate" data-rate="5" data-readonly="true"></div> (<%= @place.rate_5 %>个人)
-            </div>
-            <div>
-              <div class="rate_4 rate" data-rate="4" data-readonly="true"></div> (<%= @place.rate_4 %>个人)
-            </div>
-            <div>
-              <div class="rate_3 rate" data-rate="3" data-readonly="true"></div> (<%= @place.rate_3 %>个人)
-            </div>
-            <div>
-              <div class="rate_2 rate" data-rate="2" data-readonly="true"></div> (<%= @place.rate_2 %>个人)
-            </div>
-            <div>
-              <div class="rate_1 rate" data-rate="1" data-readonly="true"></div> (<%= @place.rate_1 %>个人)
-            </div>
-          </div>
+      <div class="row">
+        <div class="col-md-12">
+             <%= link_to 'javascript:void(0)',class:"btn-u btn-u-xs" do %>
+                <span class="glyphicon glyphicon-send"></span>
+                <%= @place.site %>
+                <% end %>
+             <button class="btn-u btn-u-xs">
+               <span class="glyphicon glyphicon-earphone"></span> <%= @place.phone %>
+             </button>
         </div>
-        <hr/>
-        <div class="row">
-          <div class="col-sm-12">
-            <% if can? :edit, @place %>
-                <%= link_to '编辑', edit_admin_place_path(@place) %>
-                <hr/>
-            <% end %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-12">
-               <%= link_to 'javascript:void(0)',class:"btn-u btn-u-xs" do %>
-                  <span class="glyphicon glyphicon-send"></span>
-                  <%= @place.site %>
-                  <% end %>
-               <button class="btn-u btn-u-xs">
-                 <span class="glyphicon glyphicon-earphone"></span> <%= @place.phone %>
-               </button>
-          </div>
 
-        </div>
-        <hr/>
-        <div class="row">
-          <div class="col-sm-12">
-            <%= @place.address %>
-          </div>
+      </div>
+      <hr/>
+      <div class="row">
+        <div class="col-md-12">
+          <%= @place.address %>
         </div>
       </div>
     </div>
-    <hr/>
-    <div class="row">
-      <div class="col-sm-12">
-        <h3>雪场简介:</h3>
-        <p>
-          <%= @place.description.html_safe %>
-        </p>
-      </div>
-    </div>
-
-    <%= render partial: 'common/social_button',locals: {content: @place.title} %>
-
-    <hr/>
-    <div>
-      <h3> <span class="reviews-count"></span> 点评</h3>
-      <%= render partial: 'reviews/review', collection: @place.reviews %>
-    </div>
-
-    <% if current_user  %>
-      <% if @place.rated?(current_user) %>
-        <h5>您已发表点评</h5>
-      <% else %>
-        <h3>我来点评</h3>
-        <%= render partial: 'reviews/partial_form', locals:{ reviewable: @place, review: Review.new} %>
-      <% end %>
-    <% else %>
-        <%= render 'common/login_signup_prompt' %>
-    <% end %>
   </div>
-  <div class="col-sm-3 hidden-xs">
-    <div class="row">
-      <p>地图</p>
-      <div id="baidumap" class="map">
-      </div>
+  <hr/>
+  <div class="row">
+    <div class="col-md-12">
+      <h3>雪场简介:</h3>
+      <p>
+        <%= @place.description.html_safe %>
+      </p>
+    </div>
+  </div>
+
+  <%= render partial: 'common/social_button',locals: {content: @place.title} %>
+
+  <hr/>
+  <div>
+    <h3> <span class="reviews-count"></span> 点评</h3>
+    <%= render partial: 'reviews/review', collection: @place.reviews %>
+  </div>
+
+  <% if current_user  %>
+    <% if @place.rated?(current_user) %>
+      <h5>您已发表点评</h5>
+    <% else %>
+      <h3>我来点评</h3>
+      <%= render partial: 'reviews/partial_form', locals:{ reviewable: @place, review: Review.new} %>
+    <% end %>
+  <% else %>
+      <%= render 'common/login_signup_prompt' %>
+  <% end %>
+</div>
+<div class="col-md-3 hidden-xs">
+  <div class="row">
+    <p>地图</p>
+    <div id="baidumap" class="map">
     </div>
   </div>
 </div>

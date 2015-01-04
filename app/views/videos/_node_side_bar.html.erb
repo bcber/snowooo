@@ -1,14 +1,11 @@
-<div class="row">
-  <div class="headline headline-md yellow"><h2>视频分类</h2></div>
-  <% VideoNode.all.in_groups_of(3,false) do |group| %>
-    <div class="row margin-bottom-40">
-        <% group.each do |node| %>
-            <div class="col-sm-4">
-              <%= link_to node.title ,videos_node_path(node) %>
-              <span class="badge rounded-2x badge-sea"><%= node.videos.count %></span>
-            </div>
-        <% end %>
-    </div>
-
-  <% end %>
-</div>
+<div class="headline headline-md yellow"><h2>视频分类</h2></div>
+<% VideoNode.all.in_groups_of(3,false) do |group| %>
+  <div class="row">
+      <% group.each do |node| %>
+          <div class="col-md-4 col-xs-6">
+            <%= link_to node.title ,videos_node_path(node) %>
+            <span class="badge rounded-2x badge-sea"><%= node.videos.count %></span>
+          </div>
+      <% end %>
+  </div>
+<% end %>

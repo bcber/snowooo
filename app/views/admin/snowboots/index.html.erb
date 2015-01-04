@@ -11,7 +11,7 @@
       <th><%= t("name") %></th>
       <th><%= t("isTop") %></th>
       <th><%= t("isRecommend") %></th>
-      <th><%= t("views_count") %></th>
+      <th><%= link_to t("views_count"), url_for(order: 'views_count') %></th>
       <th><%= t("operation") %></th>
     </tr>
     </thead>

@@ -1,12 +1,10 @@
-<div class="row">
-  <div class="col-sm-12">
-    <ul class="list-inline">
-      <li><%= link_to '所有', bbs_topics_path, class: node.blank? ? "btn-u rounded-3x btn-u-default": "btn-u rounded-3x btn-u-sea" %></li>
-      <% TopicNode.all.each do |p| %>
-        <li>
-          <%= link_to p.title, bbs_topics_node_path(p), class: (node.present? and node.id == p.id) ? "btn-u rounded-3x btn-u-default":"btn-u rounded-3x btn-u-sea" %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
+<div class="col-sm-12">
+  <ul class="list-inline">
+    <li><%= link_to '所有', bbs_topics_path, class: node.blank? ? "btn-u rounded-3x btn-u-default": "btn-u rounded-3x btn-u-sea" %></li>
+    <% TopicNode.all.each do |p| %>
+      <li style="margin-top: 10px;">
+        <%= link_to p.title, bbs_topics_node_path(p), class: (node.present? and node.id == p.id) ? "btn-u rounded-3x btn-u-default":"btn-u rounded-3x btn-u-sea" %>
+      </li>
+    <% end %>
+  </ul>
 </div>

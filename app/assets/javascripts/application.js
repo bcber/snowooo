@@ -154,5 +154,28 @@ $(function() {
             $("#review_stars").val(score);
         }
     });
+
+    $(".new_comment").on("ajax:beforeSend",function(){
+        var content = $(this).find("#comment_content");
+        if(content.val() == ''){
+           alert("内容不能为空");
+           return false;
+        }
+        content.val("正在提交评论");
+        content.attr("disabled",true);
+    }).on("ajax:success",function(e,data,xhr,settings){
+        var comment_count = parseInt($("#comment-container").data('comment-count'));
+        $("#comment-container").data('comment-count', comment_count+1);
+        $(".comment-count").html(comment_count+1);
+        $("#comment-container").append(data);
+    }).on("ajax:fail",function(){
+        alert("提交评论失败!");
+    }).on("ajax:complete",function(){
+        var content = $(this).find("#comment_content");
+        content.val("");
+        content.attr("disabled",false);
+    });
+
+
 });
 

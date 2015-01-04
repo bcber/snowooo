@@ -1,7 +1,12 @@
 class Admin::SnowboardsController < Admin::ApplicationController
   before_action :set_snowboard, only:[:edit,:update,:destroy, :set_top,:cancel_top, :set_recommend,:cancel_recommend]
   def index
-    @snowboards = Snowboard.desc(:created_at).paginate(:page => params[:page], :per_page => 10)
+    if params[:order]
+      @snowboards = Snowboard.desc(params[:order])
+    else
+      @snowboards = Snowboard.recent
+    end
+    @snowboards = @snowboards.paginate(:page => params[:page], :per_page => 10)
   end
 
   def new

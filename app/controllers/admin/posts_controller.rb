@@ -1,35 +1,40 @@
 class Admin::PostsController < Admin::ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :set_top, :cancel_top, :set_recommend,:cancel_recommend ,:pass]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :set_top, :cancel_top, :set_recommend,:cancel_recommend ,:set_publish, :cancel_publish]
 
   # GET /admin/posts
   # GET /admin/posts.json
   def index
-    posts = Post.unscoped
-    if params[:pass].present? and params[:pass] == '1'
-        posts = posts.passed
-    elsif params[:pass].present? and params[:pass] == '0'
-        posts = posts.nopassed
-    else
-      posts = posts.recent.paginate(page: params[:page], per_page: 10)
+    posts = Post.unscoped.recent
+
+    if params[:filter].present?
+      if params[:filter] == 'published'
+        posts = posts.where(publish: true)
+      elsif params[:filter] == 'unpublish'
+        posts = posts.where(publish: false)
+      end
     end
-    @posts = posts
-  end
 
-  def top_posts
-    @posts = Post.top
-  end
+    if params[:order].present?
+      posts = posts.desc(params[:order])
+    end
 
+    @posts = posts.paginate(page: params[:page], per_page: 10)
+  end
   # GET /admin/posts/1
   # GET /admin/posts/1.json
   def show
   end
 
-  def pass
-    if @post.update(pass: true)
-      Notification.generate_pass_post(@post)
-      @post.user.member_rule_post
-      redirect_to admin_posts_path
-    end
+  def set_publish
+    @post.set_publish
+    Notification.generate_pass_post(@post)
+    @post.user.member_rule_post
+    redirect_to admin_posts_path, notice:"设置成功"
+  end
+
+  def cancel_publish
+    @post.cancel_publish
+    redirect_to admin_posts_path, notice:"设置成功"
   end
 
   # up

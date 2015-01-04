@@ -1,26 +1,24 @@
 <%= render 'node_list', node: @node %>
-<div class="row">
-  <div class="col-sm-9">
+<div class="col-sm-9">
 
 
-    <%= render 'node_info' ,node: @node%>
+  <%= render 'node_info' ,node: @node%>
 
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <%= render partial: '/bbs/topics/topic', collection: @topics %>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <%= render partial: '/bbs/topics/topic', collection: @topics %>
 
-        <div class="text-center">
-          <div class="pagination">
-            <%= will_paginate @topics, renderer: BootstrapPagination::Rails %>
-          </div>
+      <div class="text-center">
+        <div class="pagination">
+          <%= will_paginate @topics, renderer: BootstrapPagination::Rails %>
         </div>
       </div>
     </div>
   </div>
-
-  <div class="col-sm-3">
-    <%= render 'sidebar' %>
-  </div>
-
 </div>
+
+<div class="col-sm-3">
+  <%= render 'sidebar' %>
+</div>
+
 

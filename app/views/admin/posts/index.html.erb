@@ -1,10 +1,9 @@
 <div class="row margin-bottom-20"></div>
 <div class="row">
   <div class="col-xs-12">
-    <%= link_to '新建', new_post_path, class: "btn btn-default btn-xs" %>
-    <%= link_to '所有', admin_posts_path, class:"btn btn-default btn-xs"%>
-    <%= link_to '已审核通过', admin_posts_path(pass:1), class:"btn btn-default btn-xs"%>
-    <%= link_to '待审核', admin_posts_path(pass: 0) , class: "btn btn-default btn-xs" %>
+    <%= link_to '所有', url_for(), class:"btn btn-default btn-xs" %>
+    <%= link_to '已发布', url_for(filter: "published"), class:"btn btn-default btn-xs"%>
+    <%= link_to '未发布(待审核)', admin_posts_path(filter: "unpublish") , class: "btn btn-default btn-xs" %>
   </div>
 </div>
 <div class="row">
@@ -20,7 +19,7 @@
       <th><%= t("isTop") %></th>
       <th><%= t("isRecommend") %></th>
       <th>所属分类</th>
-      <th><%= t("views_count") %></th>
+      <th><%= link_to t("views_count"), url_for(order: 'views_count') %></th>
       <th><%= t("operation") %></th>
     </tr>
   </thead>
@@ -35,10 +34,10 @@
         <td> <% if post.post_node.present? %> <%= link_to post.post_node.title, [:admin, post.post_node] %>  <% else %> 没有分类 <% end %></td>
         <td><%= post.views_count %></td>
         <td>
-        <% if not post.pass %>
-            <%= link_to '审核通过', pass_admin_post_path(post), class:"btn btn-default btn-xs" %>
+        <% if post.publish %>
+            <%= link_to '取消发布', cancel_publish_admin_post_path(post), class:"btn btn-primary btn-xs" %>
         <% else %>
-            <button class="btn btn-default btn-xs" disabled>已审核</button>
+            <%= link_to '发布', set_publish_admin_post_path(post), class:"btn btn-default btn-xs" %>
         <% end %>
 
         <%= link_to '编辑', edit_post_path(post), class:"btn btn-default btn-xs" %>

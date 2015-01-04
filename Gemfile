@@ -82,6 +82,7 @@ group :development do
   gem 'pry-rails'
   gem 'traceroute'
   gem 'capistrano-thin'
+  gem 'pry-byebug'
 end
 
 # Use ActiveModel has_secure_password

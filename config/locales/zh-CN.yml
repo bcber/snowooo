@@ -21,8 +21,8 @@ zh-CN:
   topics:
     create_topic_success: "发帖成功"
   will_paginate:
-    next_label: "下一页 &#8594;"
-    previous_label: "&#8592; 上一页"
+    next_label: "&#10093;"
+    previous_label: "&#10092;"
     page_gap: "&hellip;"
   weibo: "微博"
   modify: "修改个人资料"
@@ -57,7 +57,7 @@ zh-CN:
   isRecommend: "是否推荐"
   isTop: "是否置顶"
   operation: "操作"
-  views_count: "查看次数"
+  views_count: "用户点击量"
   users:
     messages:
       no_name: "还没有设置昵称"

@@ -1,34 +1,31 @@
-<div class="row" style="margin-top:50px;">
-  
-  <div class="col-md-8 col-md-offset-2">
-    <h1><%= @video.title %> &nbsp;<a href="<%= @video.url %>" target="_blank"><span class="icon-login"></span></a></h1>
-    
-    <p><%= @video.description %></p>
-    <div id="youkuplayer" style="width:100%;height:480px;"></div>
-    <hr/>
-    <div class="media">
-      <h3> <span class="comment-count"><%= @video.comment_count %></span> <%= t("comments") %></h3>
-    </div>
-    <div id="comment-container" data-comment-count=<%= @video.comment_count %>>
-      <%= render partial: "comments/comment", collection: @video.comments.desc('likes_count') %>
-    </div>
+<div class="col-md-8 col-md-offset-2 col-xs-12">
+  <h1><%= @video.title %> &nbsp;<a href="<%= @video.url %>" target="_blank"><span class="icon-login"></span></a></h1>
 
-    <% if current_user %>
-        <%= form_for [@video, @comment], remote: true do |f| %>
-            <div class="field">
-              <%= f.label :content %><br>
-              <%= f.text_area :content , class: "form-control", rows:"8"%>
-            </div>
-
-            <br>
-            <div class="actions">
-              <%= f.submit t("comment"), class:"btn-u" %>
-            </div>
-        <% end %>
-    <% else %>
-        <%= render 'common/login_signup_prompt' %>
-    <% end %>
+  <p><%= @video.description %></p>
+  <div id="youkuplayer"></div>
+  <hr/>
+  <div class="media">
+    <h3> <span class="comment-count"><%= @video.comment_count %></span> <%= t("comments") %></h3>
   </div>
+  <div id="comment-container" data-comment-count=<%= @video.comment_count %>>
+    <%= render partial: "comments/comment", collection: @video.comments.desc('likes_count') %>
+  </div>
+
+  <% if current_user %>
+      <%= form_for [@video, @comment], remote: true do |f| %>
+          <div class="field">
+            <%= f.label :content %><br>
+            <%= f.text_area :content , class: "form-control", rows:"8"%>
+          </div>
+
+          <br>
+          <div class="actions">
+            <%= f.submit t("comment"), class:"btn-u" %>
+          </div>
+      <% end %>
+  <% else %>
+      <%= render 'common/login_signup_prompt' %>
+  <% end %>
 </div>
 
 <%= javascript_include_tag "http://player.youku.com/jsapi" %>

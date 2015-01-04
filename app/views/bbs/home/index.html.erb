@@ -1,23 +1,23 @@
 <h2 class="text-center">最近帖子</h2>
-<div class="row">
-  <% @topics.in_groups_of(2,false) do |group| %>
-      <div class="row">
-        <% group.each do |topic| %>
-            <div class="col-sm-6"><%= render partial: '/bbs/topics/topic', locals:{topic: topic} %></div>
-        <% end %>
-      </div>
-  <% end %>
-</div>
+
+<% @topics.in_groups_of(2,false) do |group| %>
+    <div class="row">
+      <% group.each do |topic| %>
+          <div class="col-md-6 col-xs-12"><%= render partial: '/bbs/topics/topic', locals:{topic: topic} %></div>
+      <% end %>
+    </div>
+<% end %>
 
 <hr/>
 <h2 class="text-center">所有分类</h2>
 <div class="row">
-  <ul class="list-inline">
-  <% TopicNode.all.each do |node| %>
-    <li>
-        <%= link_to node.title, bbs_topics_node_path(node) %>
-    </li>
-  <% end %>
-  </ul>
-
+  <div class="col-xs-12">
+    <ul class="list-inline">
+      <% TopicNode.all.each do |node| %>
+        <li>
+          <%= link_to node.title, bbs_topics_node_path(node) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </div>

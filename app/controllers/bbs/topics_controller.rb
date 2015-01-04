@@ -7,27 +7,6 @@ class Bbs::TopicsController < Bbs::ApplicationController
     @topics = Topic.desc(:created_at).paginate(page: params[:page], per_page: 10)
   end
 
-  def no_comment
-    @topics = Topic.no_comment.desc(:created_at).paginate(page: params[:page], per_page: 10)
-    render action: 'index'
-  end
-
-  def good
-    @topics = Topic.good.desc(:created_at).paginate(page: params[:page], per_page: 10)
-    render action: 'index'
-  end
-
-  def hot
-    @topics = Topic.hot.desc(:created_at).paginate(page: params[:page], per_page: 10)
-    render action: 'index'
-  end
-
-  # def node
-    # @node = TopicNode.find(params[:id])
-    # @topics = @node.topics
-    # render action: 'index'
-  # end
-
   def node
     @node = TopicNode.find(params[:node_id])
     @topics = @node.topics.desc(:created_at).paginate(page: params[:page], per_page: 10)
@@ -50,12 +29,10 @@ class Bbs::TopicsController < Bbs::ApplicationController
   def create
     @topic = Topic.new(topic_params)
     @topic.user = current_user
-    @topic.save
-
     if @topic.save
       redirect_to(bbs_topic_path(@topic), notice: t('topics.create_topic_success'))
     else
-      render action: 'edit'
+      render 'edit'
     end
   end
 

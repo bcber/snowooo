@@ -74,9 +74,6 @@ class User
   has_many :send_messages, class_name: "Message", inverse_of: :sender
   has_many :receive_messages, class_name: "Message", inverse_of: :receiver
   has_many :reviews, dependent: :destroy
-
-  after_create :setAdmin
-
   # use level
   def level
     case self.exp

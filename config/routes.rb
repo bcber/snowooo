@@ -103,7 +103,8 @@ Rails.application.routes.draw do
 
     resources :posts do
       member do
-        get 'pass'
+        get 'set_publish'
+        get 'cancel_publish'
       end
     end
 

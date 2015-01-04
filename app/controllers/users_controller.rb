@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show]
+  before_action :set_user, only: [:show ]
   load_and_authorize_resource
 
   def check_in
@@ -19,7 +19,9 @@ class UsersController < ApplicationController
     render action:'show'
   end
 
-
+  def edit
+    @user = current_user
+  end
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json

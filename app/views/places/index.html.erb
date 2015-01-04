@@ -12,7 +12,7 @@
         </div>
     <% end %>
     <div class="text-center">
-      <%= will_paginate @places , renderer: BootstrapPagination::Rails%>
+      <%= paginate @places %>
     </div>
   </div>
   <div class="col-sm-3">
