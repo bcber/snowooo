@@ -1,6 +1,9 @@
 [雪圈网](http://snowooo.com)
 ===
 
+##应用服务器
+passenger
+
 ##数据库
 
 mongodb
