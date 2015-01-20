@@ -44,8 +44,8 @@ capistrano
 
 #开发工具
 
-hirb
-better_errors
-pry-rails
-pry-byebug
+* hirb
+* better_errors
+* pry-rails
+* pry-byebug
 
