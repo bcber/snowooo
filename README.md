@@ -52,3 +52,8 @@ capistrano
 * pry-rails
 * pry-byebug
 
+##LICENSE
+
+The MIT License (MIT)
+
+Copyright (c) 2015 何晨
